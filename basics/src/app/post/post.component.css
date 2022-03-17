@@ -1,0 +1,8 @@
+img {
+  width: 200px;
+  height: 200px;
+}
+/*:host - specifies the selector of particular component i.e-app-post  */
+:host {
+  font-size: 24px;
+}
