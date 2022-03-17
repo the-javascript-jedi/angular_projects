@@ -33,9 +33,23 @@
   height: 200px;
   margin-bottom: 15px;
   transition: 0.3s ease-in-out;
+  margin: auto;
 }
 
 .card img:hover {
   transition: 0.3s ease-in-out;
   transform: scale(1.1);
+}
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.ellipsisStyle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100ch;
 }

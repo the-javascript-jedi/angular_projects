@@ -28,3 +28,21 @@
         </div>
         </div>
     </div>
+<!-- container -->
+<div class="container" *ngIf="!isLoading">
+    <div class="row">
+        <ng-container *ngFor="let item of productList">
+            <div class="card col-md-3">
+                <img src="{{item.image}}" alt="" />
+                <h5 class="ellipsisStyle">{{item.title}}</h5>
+                <p class="ellipsisStyle">{{item.description}}</p>
+                <p><strong>Price:</strong> ${{item.price}}</p>
+                <button class="btn btn-primary">Add To Cart</button>
+            </div>
+        </ng-container>        
+    </div>
+</div>
+<!-- loading -->
+<div class="loadingContainer" >
+    Data is Loading...
+</div>
