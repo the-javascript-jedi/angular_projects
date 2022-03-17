@@ -1,8 +1,10 @@
 <input type="text" (keyup)="changeImage($event)" [value]="imgUrl"/>
-<app-post [postImg]="imgUrl"></app-post>
+<app-post [postImg]="imgUrl" (imgSelected)="logImg($event)">
+    <p>Inside app-post tags</p>
+</app-post>
 
-<p>Hello from template</p>
+<!-- <p>Hello from template</p>
 <p>Hello {{name}}</p>
 <p>Hello {{getName()}}</p>
-<p>Age: {{20+10}}</p>
+<p>Age: {{20+10}}</p> -->
 
