@@ -11,6 +11,7 @@ import { PostComponent } from './post/post.component';
     AppComponent,
     PostComponent
   ],
+  // to use pipes BrowserModule needs to be registered
   imports: [
     BrowserModule
   ],

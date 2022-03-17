@@ -4,7 +4,11 @@
 </app-post>
 
 <p>Hello from template</p>
-<p>Hello {{name}}</p>
+<p>Hello {{name | titlecase}}</p>
 <p>Hello {{getName()}}</p>
 <p>Age: {{20+10}}</p>
-
+<!-- date -->
+<p>{{currentDate}}</p>
+<p>{{currentDate|date}}</p>
+<p>{{currentDate|date:"MMMM d"}}</p>
+<p>{{currentDate|date:"short"}}</p>
