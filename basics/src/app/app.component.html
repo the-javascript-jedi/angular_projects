@@ -1,14 +1,11 @@
-<input type="text" (keyup)="changeImage($event)" [value]="imgUrl"/>
-<app-post [postImg]="imgUrl" (imgSelected)="logImg($event)">
-    <p>Inside app-post tags</p>
-</app-post>
 
-<p>Hello from template</p>
-<p>Hello {{name | titlecase}}</p>
-<p>Hello {{getName()}}</p>
-<p>Age: {{20+10}}</p>
-<!-- date -->
-<p>{{currentDate}}</p>
-<p>{{currentDate|date}}</p>
-<p>{{currentDate|date:"MMMM d"}}</p>
-<p>{{currentDate|date:"short"}}</p>
+<!-- alternate way to give classname in ngClass -->
+
+<!-- <input type="text" (keyup)="changeImage($event)" [value]="imgUrl"/> -->
+<!-- <app-post [postImg]="imgUrl" (imgSelected)="logImg($event)">
+    <p>Inside app-post tags</p>
+</app-post> -->
+<!-- *ngFor -->
+<app-post *ngFor="let image of images;let i=index" [postImg]="image" (imgSelected)="logImg($event)">
+    <p>{{i}} - Inside app-post tags</p>
+</app-post>

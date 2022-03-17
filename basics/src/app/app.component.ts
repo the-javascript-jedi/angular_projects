@@ -10,7 +10,9 @@ export class AppComponent{
   name="nithin samuel";
   imgUrl="https://i.picsum.photos/id/237/500/500.jpg?hmac=idOEkrJhLd7nEU5pNrAGCyJ6HHJdR_sit1qDt5J3Wo0";
   currentDate=new Date();
-
+  images=['https://randomuser.me/api/portraits/med/women/77.jpg','https://randomuser.me/api/portraits/med/women/78.jpg','https://randomuser.me/api/portraits/med/women/79.jpg']
+  colorChange=false;
+  fontSize="10";
   getName(){
     return this.name;
   }
