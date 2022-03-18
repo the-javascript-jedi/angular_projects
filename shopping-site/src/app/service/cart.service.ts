@@ -8,6 +8,9 @@ export class CartService {
   public cartItemList:any=[];
   // emit or subscribe value, observable act as a subscriber
   public productListBehaviourSub=new BehaviorSubject<any>([]);
+  // create a behaviour subject to pass data
+  //will act as both observable subscribing and emitting
+  public searchBehaviourSub=new BehaviorSubject<string>("");
 
   constructor() { }
 

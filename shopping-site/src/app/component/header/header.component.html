@@ -6,7 +6,7 @@
                 <strong style="font-size:30px;">Angular Shopping Site</strong>
             </div>
             <div class="form-group position-relative">
-                <input type="text" class="form-control" placeholder="search products">
+                <input type="text" class="form-control" placeholder="search products" [(ngModel)]="searchTerm" (keyup)="search($event)"/>
                 <span class="fas fa-search search-icon"></span>
             </div>
         </div>

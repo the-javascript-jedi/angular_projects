@@ -10,6 +10,7 @@ import { CartService } from 'src/app/service/cart.service';
 export class ProductsComponent implements OnInit {
 
   public productList:any;
+  searchKey:string="";
   isLoading=true;
   // to use the api service inject it to the constructor
   constructor(private api:ApiService,private cartService:CartService) { }
@@ -26,8 +27,12 @@ export class ProductsComponent implements OnInit {
       }
       console.log("this.productList",this.productList)
     })
+    // subscribe to the search term being typed in header component
+  this.cartService.searchBehaviourSub.subscribe((val:any)=>{
+    this.searchKey=val;
+  })
   }
   addToCart(item:any){   
     this.cartService.addtoCartService(item);
-  }
+  }  
 }
