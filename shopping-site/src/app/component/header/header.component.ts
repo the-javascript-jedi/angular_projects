@@ -14,7 +14,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     // total items in cart
     this.cartService.getProductsService().subscribe(res=>{
-      this.totalItems=res.length;      
+      console.log("res",res);
+      const sumWithInitial = res.reduce(function (acc:any, obj:any) { return acc + obj.quantity; }, 0);  
+      // this.totalItems=res.length;      
+      this.totalItems=sumWithInitial;      
     })
   }
 }

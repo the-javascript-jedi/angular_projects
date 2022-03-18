@@ -24,7 +24,27 @@ export class CartService {
   }
 
   addtoCartService(product:any){
-    this.cartItemList.push(product);
+   /*Existing Code--starts*/
+  //  this.cartItemList.push(product);
+  //    // this data will be passed wherever it is subscribed
+  //   this.productListBehaviourSub.next(this.cartItemList);
+  //   // take values and total the values
+  //   this.getTotalPriceService();
+  /*Existing Code--Ends*/
+    // check if product is already present in cart
+    let alreadyExisting = this.cartItemList.find((val:any) => val.id == product.id);       
+    if(alreadyExisting!==undefined){    
+      // if item already present in cart increase the quaantity
+      alreadyExisting.quantity=alreadyExisting.quantity+1;
+      alreadyExisting.total=alreadyExisting.price*alreadyExisting.quantity;
+      //find the existing product and remove it from the array
+      var existingId=this.cartItemList.findIndex((val:any)=>val.id==alreadyExisting.id);     
+      var changedData=this.cartItemList.splice(existingId, 1);
+      //add the new product with correct quantity 
+      this.cartItemList.push(...changedData);
+    }else{
+      this.cartItemList.push(product);
+    }
      // this data will be passed wherever it is subscribed
     this.productListBehaviourSub.next(this.cartItemList);
     // take values and total the values

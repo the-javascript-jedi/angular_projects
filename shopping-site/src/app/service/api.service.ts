@@ -8,8 +8,8 @@ import {map} from 'rxjs/operators';
 export class ApiService {
 
   constructor(private http:HttpClient) { }
-  getProduct(){
-    return this.http.get<any>("https://fakestoreapi.com/products").pipe(map((res:any)=>{
+  getProduct(){    
+    return this.http.get<any>("http://localhost:5000/products").pipe(map((res:any)=>{
       return res;
     }))
   }
