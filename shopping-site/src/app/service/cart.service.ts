@@ -31,12 +31,13 @@ export class CartService {
     this.getTotalPriceService();
   }
   //take values in cart and total all values
-  getTotalPriceService(){
+  getTotalPriceService():number{
     let grandTotal=0;
     this.cartItemList.map((a:any)=>{
       // get price of product
       grandTotal+=a.total;
     })
+    return grandTotal;
   }
   removeCartItemService(product:any){
     this.cartItemList.map((a:any,index:any)=>{
@@ -44,8 +45,10 @@ export class CartService {
         this.cartItemList.splice(index,1)
       }
     })
+     // this data will be passed wherever it is subscribed
+     this.productListBehaviourSub.next(this.cartItemList);
   }
-  removeAllCart(){
+  removeAllCartItemsService(){
     this.cartItemList=[];
     // this data will be passed wherever it is subscribed
     this.productListBehaviourSub.next(this.cartItemList);

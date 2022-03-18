@@ -17,5 +17,4 @@ export class HeaderComponent implements OnInit {
       this.totalItems=res.length;      
     })
   }
-
 }
