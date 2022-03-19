@@ -10,6 +10,7 @@ import { CartService } from 'src/app/service/cart.service';
 export class ProductsComponent implements OnInit {
 
   public productList:any;
+  public filterCategory:any;
   searchKey:string="";
   isLoading=true;
   // to use the api service inject it to the constructor
@@ -18,8 +19,14 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.api.getProduct().subscribe(res=>{
       this.productList=res;
+      // store the data in filterCategory
+      this.filterCategory=res;
       // add a quantity and total key to the object
       this.productList.forEach((a:any)=>{
+        // add a common category to the array value
+        if(a.category==="women's clothing"||a.category==="men's clothing"){
+          a.category="fashion";
+        }
         Object.assign(a,{quantity:1,total:a.price})
       })
       if(this.productList.length>0){
@@ -34,5 +41,12 @@ export class ProductsComponent implements OnInit {
   }
   addToCart(item:any){   
     this.cartService.addtoCartService(item);
-  }  
+  } 
+  filterOnClickCategory(clickedCategory:string){
+    this.filterCategory=this.productList.filter((productItem:any)=>{
+      if(productItem.category==clickedCategory||clickedCategory==""){
+        return productItem;
+      }
+    })
+  } 
 }
