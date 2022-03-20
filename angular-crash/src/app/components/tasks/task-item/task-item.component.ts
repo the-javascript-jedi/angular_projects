@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
 import { TaskInterface} from '../../../mockData/TaskInterface';
 
 @Component({
@@ -8,9 +8,17 @@ import { TaskInterface} from '../../../mockData/TaskInterface';
 })
 export class TaskItemComponent implements OnInit {
   @Input() taskItem:TaskInterface|any;
-
+  // in parent component html we need to specify this event emitter
+  @Output() onDeleteTaskOutputEvent:EventEmitter<TaskInterface>= new EventEmitter();
+  @Output() onToggleReminderOutputEvent:EventEmitter<TaskInterface>= new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+  }
+  onDelete(task:any){
+    this.onDeleteTaskOutputEvent.emit(task);
+  }
+  onToggleClick(task:any){
+      this.onToggleReminderOutputEvent.emit(task);
   }
 }

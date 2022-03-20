@@ -1,1 +1,8 @@
-<app-task-item *ngFor="let task of tasks" [taskItem]="task"></app-task-item>
+<app-add-task></app-add-task>
+<app-task-item *ngFor="let task of tasks" 
+[taskItem]="task" 
+(onDeleteTaskOutputEvent)="deleteTask(task)"
+(onToggleReminderOutputEvent)="toggleReminder(task)"
+>
+
+</app-task-item>
