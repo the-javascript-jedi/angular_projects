@@ -44,5 +44,9 @@ export class TaskService {
       const url=`${this.apiUrl}/${task.id}`;
       return this.http.put<TaskInterface>(url,task,httpOptions);    
   }
-
+  // Add Task Servicwe
+  addTaskService(task:TaskInterface):Observable<TaskInterface>{
+    const url=`${this.apiUrl}/${task.id}`;
+    return this.http.post<TaskInterface>(this.apiUrl,task,httpOptions)
+  }
 }

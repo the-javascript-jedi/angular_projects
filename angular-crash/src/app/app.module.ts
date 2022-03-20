@@ -7,7 +7,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskItemComponent } from './components/tasks/task-item/task-item.component';
 import {HttpClientModule} from '@angular/common/http';
-import { AddTaskComponent } from './components/add-task/add-task.component';
+import { AddTaskComponent } from './components/tasks/add-task/add-task.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
