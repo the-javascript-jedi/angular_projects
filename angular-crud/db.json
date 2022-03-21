@@ -2,8 +2,11 @@
   "posts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "firstName": "ns",
+      "lastName": "ss",
+      "email": "aaa@gmail.com",
+      "mobile": "988748787",
+      "salary": "7878787"
     },
     {
       "id": 2,
@@ -12,8 +15,23 @@
       "email": "aaa@gmail.com",
       "mobile": "988748787",
       "salary": ""
+    },
+    {
+      "id": 3,
+      "firstName": "sss",
+      "lastName": "sasas",
+      "email": "sasas",
+      "mobile": "asas",
+      "salary": "asas"
+    },
+    {
+      "id": 4,
+      "firstName": "winu",
+      "lastName": "winu",
+      "email": "winu",
+      "mobile": "winu",
+      "salary": "winu"
     }
-    
   ],
   "comments": [
     {

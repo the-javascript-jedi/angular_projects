@@ -11,6 +11,7 @@ import { ApiService } from '../service/api.service';
 export class EmployeeDashboardComponent implements OnInit {
 
   formValue!:FormGroup;
+  employeeData:any;
   constructor(private formBuilder:FormBuilder,private _apiService:ApiService) { }
   // create an object of type Employee Model
   employeeModelObj:EmployeeModel=new EmployeeModel();
@@ -23,6 +24,8 @@ export class EmployeeDashboardComponent implements OnInit {
       mobile:[''],
       salary:['']
     })
+    // Make API Call to get employees
+    this.getAllEmployees();
   }
   // PostEmployee details
   postEmployeeDetails(){
@@ -40,11 +43,20 @@ export class EmployeeDashboardComponent implements OnInit {
       let refClose=document.getElementById('closeBtn');
       // Get a reference of Bootstrap cancel button and trigger the click event
       refClose!.click();
+      // Make API Call to get employees
+      this.getAllEmployees();
     },
     err=>{
       console.log("err",err);
       alert("Something went wrong");
     }
     )
+  }
+
+  // Get All Employees
+  getAllEmployees(){
+    this._apiService.getEmployeeService().subscribe(responseGet=>{
+      this.employeeData=responseGet;
+    })
   }
 }
