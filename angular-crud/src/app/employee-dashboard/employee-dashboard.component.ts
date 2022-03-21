@@ -59,4 +59,13 @@ export class EmployeeDashboardComponent implements OnInit {
       this.employeeData=responseGet;
     })
   }
+
+  // Delete Employees
+  deleteEmployee(row:any){
+    this._apiService.deleteEmployeeService(row.id).subscribe((responseDelete)=>{
+      console.log("responseDelete",responseDelete);
+      alert(`Employee withm ${row.id} is deleted!!!`);
+      this.getAllEmployees();
+    })
+  }
 }
