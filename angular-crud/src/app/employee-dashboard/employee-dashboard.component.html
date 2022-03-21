@@ -45,33 +45,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form [formGroup]="formValue">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" formControlName="firstName" class="form-control" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                        <input type="text" formControlName="lastName" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Email ID</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                        <input type="text" formControlName="email" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mobile No</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                        <input type="text" formControlName="mobile" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Salary</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                        <input type="text" formControlName="salary" class="form-control">
                     </div>
                     
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
+                <button type="button" class="btn btn-primary" (click)="postEmployeeDetails()">Add</button>
             </div>
         </div>
     </div>
