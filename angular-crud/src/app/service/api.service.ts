@@ -24,7 +24,7 @@ export class ApiService {
   }
   // UPDATE/PUT
   updateEmployeeService(data:any,id:number){
-    return this._http.put<any>("http://localhost:3000/posts"+id,data)
+    return this._http.put<any>("http://localhost:3000/posts/"+id,data)
     .pipe(map((response:any)=>{
       return response;
     }))

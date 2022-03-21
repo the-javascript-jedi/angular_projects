@@ -12,6 +12,8 @@ export class EmployeeDashboardComponent implements OnInit {
 
   formValue!:FormGroup;
   employeeData:any;
+  showAddButton!:boolean;
+  showUpdateButton!:boolean;
   constructor(private formBuilder:FormBuilder,private _apiService:ApiService) { }
   // create an object of type Employee Model
   employeeModelObj:EmployeeModel=new EmployeeModel();
@@ -67,5 +69,45 @@ export class EmployeeDashboardComponent implements OnInit {
       alert(`Employee withm ${row.id} is deleted!!!`);
       this.getAllEmployees();
     })
+  }
+  // Edit Employee - Fill row values to modal
+  onEdit(row:any){
+    this.showUpdateButton=true;
+    this.showAddButton=false;
+    // store employee id in the object on edit click
+    this.employeeModelObj.id=row.id;
+
+    this.formValue.controls['firstName'].setValue(row.firstName);
+    this.formValue.controls['lastName'].setValue(row.lastName);
+    this.formValue.controls['email'].setValue(row.email);
+    this.formValue.controls['mobile'].setValue(row.mobile);
+    this.formValue.controls['salary'].setValue(row.salary);
+  }
+  // Update Employee Details
+  updateEmployeeDetails(){
+    // Create an object with updated values
+     this.employeeModelObj.firstName=this.formValue.value.firstName;
+    this.employeeModelObj.lastName=this.formValue.value.lastName;
+    this.employeeModelObj.email=this.formValue.value.email;
+    this.employeeModelObj.mobile=this.formValue.value.mobile;
+    this.employeeModelObj.salary=this.formValue.value.salary;
+    // Make API request
+    this._apiService.updateEmployeeService(this.employeeModelObj,this.employeeModelObj.id).subscribe(responseUpdate=>{
+      console.log("Updated Successfully",responseUpdate);
+      alert(`Updated ${this.employeeModelObj.firstName} successfully!!!`);
+      this.formValue.reset();
+      // close the modal after successfully submitting the form
+      let refClose=document.getElementById('closeBtn');
+      // Get a reference of Bootstrap cancel button and trigger the click event
+      refClose!.click();
+      // Make API Call to get employees
+      this.getAllEmployees();
+    })
+  }
+  // Add Employee Click
+  clickAddEmployee(){
+    this.formValue.reset();
+    this.showAddButton=true;
+    this.showUpdateButton=false;
   }
 }

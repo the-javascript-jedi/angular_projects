@@ -2,28 +2,30 @@
   "posts": [
     {
       "id": 1,
-      "firstName": "ns",
-      "lastName": "ss",
-      "email": "aaa@gmail.com",
-      "mobile": "988748787",
-      "salary": "7878787"
+      "firstName": "nithin",
+      "lastName": "samuel",
+      "email": "nithin@gmail.com",
+      "mobile": "9500000",
+      "salary": "987456321"
     },
     {
-      "id": 4,
+      "id": 2,
       "firstName": "winu",
-      "lastName": "winu",
-      "email": "winu",
-      "mobile": "winu",
-      "salary": "winu"
-    }
-  ],
-  "comments": [
+      "lastName": "samuel",
+      "email": "winu@gmail.com",
+      "mobile": "987456321",
+      "salary": "987456321"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 3,
+      "firstName": "rian",
+      "lastName": "samuel",
+      "email": "rian@gmail.com",
+      "mobile": "963258741",
+      "salary": "999999999"
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
