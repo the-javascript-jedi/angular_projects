@@ -10,6 +10,6 @@ export class CrashRiskTrendComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
+  }  
 
 }

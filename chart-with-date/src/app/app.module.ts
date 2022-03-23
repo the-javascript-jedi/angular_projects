@@ -7,19 +7,26 @@ import { CrashRiskTrendComponent } from './components/crash-risk-trend/crash-ris
 import { FormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { CalendarComponent } from './components/crash-risk-trend/calendar/calendar.component';
+import { ChartComponentComponent } from './components/crash-risk-trend/chart-component/chart-component.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './services/api.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     CrashRiskTrendComponent,
-    CalendarComponent
+    CalendarComponent,
+    ChartComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgxDaterangepickerMd.forRoot()
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

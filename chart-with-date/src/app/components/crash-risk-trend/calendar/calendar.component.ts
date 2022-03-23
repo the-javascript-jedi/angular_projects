@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import * as dayjs from 'dayjs';
-
+import { UiService } from 'src/app/services/ui.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-
+  subscription:Subscription|undefined;
    selected: any;
   alwaysShowCalendars: boolean;
   showRangeLabelOnInput: boolean;
@@ -55,8 +56,14 @@ export class CalendarComponent implements OnInit {
       return false;
     }
   }
+fnButtonOnClick=()=>{
+    console.log("Button-Clicked Add Button");
+        this._uiService.setChartDate(this.selected);
+  }
 
-  constructor() {
+  showAddTask:boolean=false;  
+  constructor(private _uiService:UiService) {
+
     this.maxDate = dayjs().add(2,  'weeks');
     this.minDate = dayjs().subtract(3, 'days');
 
@@ -67,6 +74,12 @@ export class CalendarComponent implements OnInit {
       startDate: dayjs().subtract(1, 'days').set('hours', 0).set('minutes', 0),
       endDate: dayjs().subtract(1, 'days').set('hours', 23).set('minutes', 59)
     };
+    console.log("Last 3 MOnths", dayjs()
+        .subtract(3, 'month')
+        .startOf('month'),
+      dayjs()
+        .subtract(1, 'month')
+        .endOf('month'))
   }
   rangeClicked(range:any) {
     console.log('[rangeClicked] range is : ', range);
