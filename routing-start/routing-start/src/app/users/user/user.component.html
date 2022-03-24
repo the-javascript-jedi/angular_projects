@@ -1,2 +1,6 @@
-<p>User with ID _ID_ loaded.</p>
-<p>User name is _NAME_</p>
+<p>User with ID {{user.id}} loaded.</p>
+<p>User name is {{user.name}}</p>
+<hr/>
+<!-- Load the url with below data -->
+<a [routerLink]="['/users',10,'Anna']">Load Anna 10</a>
+<!-- On Click Route is updated as http://localhost:4200/users/10/Anna -->
