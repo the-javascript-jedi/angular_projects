@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ServersService } from './servers.service';
 
 @Component({
@@ -7,12 +8,14 @@ import { ServersService } from './servers.service';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-  public servers: {id: number, name: string, status: string}[] = [];
+  public allServers: {id: number, name: string, status: string}[] = [];
+  public singleServer:{id: number, name: string, status: string};
 
-  constructor(private serversService: ServersService) { }
+  constructor(private serversService: ServersService,private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.servers = this.serversService.getServers();
+    this.allServers = this.serversService.getServers();
+    console.log("this.allServers",this.allServers);    
   }
 
 }
