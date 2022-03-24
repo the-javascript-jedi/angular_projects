@@ -17,5 +17,4 @@ export class ServersComponent implements OnInit {
     this.allServers = this.serversService.getServers();
     console.log("this.allServers",this.allServers);    
   }
-
 }
