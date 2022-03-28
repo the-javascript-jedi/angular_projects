@@ -13,8 +13,10 @@ export class AppComponent implements OnInit {
     //step 2 initialize reactive form before rendering it
     // after initializing a reactive form we need to add FormControl which specify the form elements
     this.signupFormGroup=new FormGroup({
-      'usernameFormControl':new FormControl(null,Validators.required),
-      'emailFormControl':new FormControl(null,[Validators.required,Validators.email]),
+      'userDataFormGroup':new FormGroup({
+        'usernameFormControl':new FormControl(null,Validators.required),
+        'emailFormControl':new FormControl(null,[Validators.required,Validators.email]),
+      }),
       'genderFormControl':new FormControl("male"),
     });
   }
