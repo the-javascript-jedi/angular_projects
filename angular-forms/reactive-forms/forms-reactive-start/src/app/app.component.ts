@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup,Validators} from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
     //step 2 initialize reactive form before rendering it
     // after initializing a reactive form we need to add FormControl which specify the form elements
     this.signupFormGroup=new FormGroup({
-      'usernameFormControl':new FormControl(null),
-      'emailFormControl':new FormControl(null),
+      'usernameFormControl':new FormControl(null,Validators.required),
+      'emailFormControl':new FormControl(null,[Validators.required,Validators.email]),
       'genderFormControl':new FormControl("male"),
     });
   }
