@@ -13,6 +13,7 @@
   </div>
   <hr />
   <div class="row">
+    <p *ngIf="userActivated">Activated from RxJS Subject</p>
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <router-outlet></router-outlet>
     </div>
