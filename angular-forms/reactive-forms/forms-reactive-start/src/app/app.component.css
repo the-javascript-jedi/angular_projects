@@ -8,3 +8,8 @@ input.ng-invalid.ng-touched {
 .help-block {
   color: red;
 }
+
+.customFormInput {
+  display: flex;
+  flex-direction: row;
+}

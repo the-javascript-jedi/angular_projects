@@ -32,6 +32,20 @@
               [value]="gender">{{ gender }}
           </label>
         </div>
+        <!-- Array of Form Controls -->
+        <!-- specify the formArrayName to use FormArray -->
+        <div formArrayName="hobbiesFormArray">
+          <h4>Your Hobbies</h4>
+          <button class="btn btn-default" type="button" (click)="onAddHobby()">Add Hobby</button>
+          <!-- FormArray Looping -->
+          <div class="form-group customFormInput" *ngFor="let hobbyControl of signupFormGroup.get('hobbiesFormArray')['controls']; let i=index">
+            <!-- Pass the index of array to the formControlName -->
+            <input type="text" class="form-control" [formControlName]="i"/>
+            <button (click)="onDeleteHobby(i)" type="button">Delete Hobby</button>
+          </div>
+        </div>
+
+
           <span class="help-block" *ngIf="!signupFormGroup.valid&&signupFormGroup.touched">Please enter a valid data!</span>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
