@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import {map,filter} from 'rxjs/operators'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,10 +10,7 @@ export class HomeComponent implements OnInit,OnDestroy {
   // create a Subscription data to store and  destroy the observable 
   private firstObservable:Subscription;
   constructor() { }
-  ngOnInit() {
-    // this.firstObservable=interval(1000).subscribe(count=>{
-    //   console.log('count',count);
-    // })
+  ngOnInit() {    
     const customIntervalObservable=Observable.create(observer=>{
       let count=0;
       setInterval(()=>{
@@ -32,8 +30,15 @@ export class HomeComponent implements OnInit,OnDestroy {
           count++;
       },1000)
     })
+    
     // Call the observale
-    this.firstObservable=customIntervalObservable.subscribe(data=>{
+    this.firstObservable=customIntervalObservable.pipe(filter(data=>{
+      // return true if the data should be allowed to pass to next round
+      return data>0;
+    }),map((data:number)=>{
+      // using pipe to transform the observable strwam of data
+      return "Round:"+(data+1);
+    })).subscribe(data=>{
       console.log("data",data);
     },error=>{
       // handling the error
