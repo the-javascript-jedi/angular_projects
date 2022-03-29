@@ -51,7 +51,16 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <p>No posts available!</p>
+      <p *ngIf="loadedPosts.length<1">No posts available!</p>
     </div>
+    <p *ngIf="isFetching==true">Loading</p>
+    <ul class="list-group" *ngIf="loadedPosts.length>=1">
+      <p>{{loadedPosts|json}}</p>
+      <li class="list-group-item" *ngFor="let post of loadedPosts">
+        <p>{{post|json}}</p>
+        <h1>{{post.postData.title}}</h1>
+        <p>{{post.postData.content}}</p>
+      </li>
+    </ul>
   </div>
 </div>
