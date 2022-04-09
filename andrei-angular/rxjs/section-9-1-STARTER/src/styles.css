@@ -1,0 +1,29 @@
+body {
+  background-color: #f1f1f1;
+}
+
+button {
+  font-size: 20px;
+  padding: 20px 60px;
+  border-radius: 30px;
+  background-color: rgb(245, 23, 103);
+  color: #fff;
+  border: 2px solid rgb(245, 23, 103);
+  cursor: pointer;
+  margin: 0 auto;
+  font-weight: 700;
+}
+
+button:hover {
+  border-color: rgb(187, 32, 88);
+  background-color: rgb(187, 32, 88);
+}
+
+input {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  padding: 15px 30px;
+  outline: 0;
+}
