@@ -24,13 +24,6 @@ export class HomeComponent implements OnInit {
         // map through the observable and get the necessary data
         const courses$: Observable<Course[]>=http$.pipe(map(res=>Object.values(res["payload"])),shareReplay())
          // subscribe to the data
-       //  Normal Approach
-        //    courses$.subscribe(
-        //        courses=>{
-        //            this.beginnerCourse$=courses.filter(course=>course.category==="BEGINNER");
-        //            this.advancedCourse$=courses.filter(course=>course.category==="ADVANCED");
-        //        }
-        //    )
         /*RxjS Approach */        
         this.beginnerCourses$=courses$.pipe(map(function(courses){
             console.log("courses",courses)
