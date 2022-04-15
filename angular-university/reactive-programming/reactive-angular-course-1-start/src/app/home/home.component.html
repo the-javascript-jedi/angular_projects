@@ -3,7 +3,7 @@
     <h3>All Courses</h3>
     <mat-tab-group>
         <mat-tab label="Beginners">
-          <mat-card *ngFor="let course of beginnerCourses" class="course-card mat-elevation-z10">
+          <mat-card *ngFor="let course of (beginnerCourses$|async)" class="course-card mat-elevation-z10">
             <mat-card-header>
               <mat-card-title>{{course.description}}</mat-card-title>
             </mat-card-header>
@@ -23,7 +23,7 @@
           </mat-card>
         </mat-tab>
         <mat-tab label="Advanced">
-          <mat-card *ngFor="let course of advancedCourses" class="course-card mat-elevation-z10">
+          <mat-card *ngFor="let course of (advancedCourses$|async)" class="course-card mat-elevation-z10">
             <mat-card-header>
               <mat-card-title>{{course.description}}</mat-card-title>
             </mat-card-header>
