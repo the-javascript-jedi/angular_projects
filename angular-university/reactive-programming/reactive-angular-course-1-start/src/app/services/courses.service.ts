@@ -8,9 +8,7 @@ import { Course } from '../model/course';
   providedIn: 'root'
 })
 export class CoursesService {
-
   constructor(private http:HttpClient) { }
-
   loadAllCourse():Observable<Course[]>{
     return this.http.get<Course[]>("/api/courses").pipe(map(
       res=>res["payload"]
