@@ -17,4 +17,11 @@ export class CoursesService {
     shareReplay()
     )
   }
+  // save the course
+  // Partial type makes all the interface types as optional
+  saveCourse(courseId:string,changes:Partial<Course>):Observable<any>{
+    return this.http.put(`/api/courses/${courseId}`,changes).pipe(
+      shareReplay()
+    )
+  }
 }

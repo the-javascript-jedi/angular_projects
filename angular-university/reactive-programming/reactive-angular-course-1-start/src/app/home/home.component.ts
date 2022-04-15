@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
   constructor(private coursesService: CoursesService) { }
   ngOnInit() {
     console.log("ngOnInit homne")
+    this.reloadCourses(); 
+  } 
+  reloadCourses(){
     // since we are doing multiple subscriptions(beginnerCourses$,advancedCourses$) shareReplay must be used
     const course$=this.coursesService.loadAllCourse().pipe(map(
       courses=>courses.sort(function compare(c1,c2){
@@ -32,5 +35,4 @@ export class HomeComponent implements OnInit {
       map(courses=>courses.filter(course=>course.category=="ADVANCED"))
     )
   }
- 
 }
