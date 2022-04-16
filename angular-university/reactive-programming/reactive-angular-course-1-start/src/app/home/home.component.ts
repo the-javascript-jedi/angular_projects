@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 // import {CourseDialogComponent} from '../course-dialog/course-dialog.component';
 import { CoursesService } from '../services/courses.service';
 import { LoadingService } from '../loading/loading.service';
+import { MessagesService } from '../messages/messages.service';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -15,7 +16,7 @@ import { LoadingService } from '../loading/loading.service';
 export class HomeComponent implements OnInit {
   beginnerCourses$: Observable<Course[]>;
   advancedCourses$: Observable<Course[]>;
-  constructor(private coursesService: CoursesService,private loadingService:LoadingService) { }
+  constructor(private coursesService: CoursesService,private loadingService:LoadingService,private messagesService:MessagesService) { }
   ngOnInit() {
     console.log("ngOnInit homne")
     this.reloadCourses(); 
@@ -29,7 +30,14 @@ export class HomeComponent implements OnInit {
         return c1.seqNo - c2.seqNo;
       })
     ),
-    // finalize - will run after loadAllCourse observable is completed
+    catchError(err=>{
+      const message="Could not load courses";
+      this.messagesService.showErrors(message);
+      console.log("message,err",message,err);
+      //return a new observable with error
+      return throwError(err);
+    }),
+    // finalize - will run after loadAllCourse observable is completed-original observable chain is terminated
     finalize(()=>{
       this.loadingService.loadingOff();
     })
