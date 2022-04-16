@@ -11,7 +11,8 @@ import { LoadingService } from '../loading/loading.service';
 @Component({
     selector: 'course-dialog',
     templateUrl: './course-dialog.component.html',
-    styleUrls: ['./course-dialog.component.css']
+    styleUrls: ['./course-dialog.component.css'],
+    providers:[LoadingService]
 })
 export class CourseDialogComponent implements AfterViewInit {
     form: FormGroup;
@@ -33,12 +34,14 @@ export class CourseDialogComponent implements AfterViewInit {
     }
     ngAfterViewInit() {}
     save() {
+      this.loadingService.loadingOn();  
       const changes = this.form.value;
       // make put request with id and in body of request pass the form changes
       this.coursesService.saveCourse(this.course.id,changes).subscribe(
           // we pass a value to close the modal to identify when we make a successful PUT request
           (val)=>{
               this.dialogRef.close(val);
+              this.loadingService.loadingOff();  
           }
       )
     }

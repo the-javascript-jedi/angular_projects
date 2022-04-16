@@ -21,12 +21,19 @@ export class HomeComponent implements OnInit {
     this.reloadCourses(); 
   } 
   reloadCourses(){
+    // show loading indicator
+    this.loadingService.loadingOn();
     // since we are doing multiple subscriptions(beginnerCourses$,advancedCourses$) shareReplay must be used
     const course$=this.coursesService.loadAllCourse().pipe(map(
       courses=>courses.sort(function compare(c1,c2){
         return c1.seqNo - c2.seqNo;
       })
-    ))
+    ),
+    // finalize - will run after loadAllCourse observable is completed
+    finalize(()=>{
+      this.loadingService.loadingOff();
+    })
+    )
     // beginner
     this.beginnerCourses$=course$.pipe(
       map(courses=>courses.filter(course=>course.category=="BEGINNER"))
