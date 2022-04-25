@@ -1,1 +1,21 @@
-{{ pages.length }}
+<table class="table is-striped">
+    <!-- Your table content -->
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Word Count</th>
+            <th>Snippet</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let page of pages">
+            <td>
+                <a [href]="'https://en.wikipedia.org?curid=' + page.pageid" target="_blank">
+                    {{ page.title }}
+                </a>
+            </td>
+            <td>{{ page.wordcount }}</td>
+            <td [innerHtml]="page.snippet"></td>
+        </tr>
+    </tbody>
+</table>

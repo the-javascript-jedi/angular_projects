@@ -1,2 +1,7 @@
-<app-search-bar (submitted)="onTerm($event)"></app-search-bar>
-<app-page-list [pages]="pages"></app-page-list>
+
+<!-- (submitted) @Output() event emiited to parent component from app-search-bar component
+[Pages] @Input decorator is used to accept the values from app.component.html to the app-page-list component -->
+<div class="container">
+    <app-search-bar (submitted)="onTerm($event)"></app-search-bar>
+    <app-page-list [pages]="pages" *ngIf="pages.length"></app-page-list>
+</div>
