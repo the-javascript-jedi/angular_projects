@@ -10,6 +10,7 @@ import { PhotoShowComponent } from './photo-show/photo-show.component';
     AppComponent,
     PhotoShowComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule
