@@ -8,29 +8,10 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
     styleUrls: ['./courses-card-list.component.css']
 })
 export class CoursesCardListComponent implements OnInit {
-
     @Input()
     courses: Course[];
 
-    constructor() {
-    }
-
-    ngOnInit() {
-
-    }
-
-    editCourse(course:Course) {
-
-
-    }
-
+    constructor() {   }
+    ngOnInit() {    }
+    editCourse(course:Course) {    }
 }
-
-
-
-
-
-
-
-
-
