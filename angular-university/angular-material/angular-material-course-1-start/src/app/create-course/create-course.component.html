@@ -1,8 +1,29 @@
 <div class="create-course-panel data-form">
-
   <h2 class="title">Create New Course</h2>
-
-
+  <!-- [linear]="true" - only after step 1 is complete we can proceed with step 2 -->
+  <mat-horizontal-stepper class="mat-elevation-z5" [linear]="true" labelPosition="bottom">
+    <!-- step 1 -->
+    <mat-step errorMessage="Course details in error">
+      <ng-template matStepLabel>Course Details</ng-template>
+      <!-- step 1 component -->
+      <create-course-step-1></create-course-step-1>
+      <div class="stepper-buttons">
+        <button mat-raised-button color="primary" matStepperNext>
+          Add Course Lessons
+        </button>
+      </div>
+    </mat-step>
+    <!-- step 2 -->
+    <mat-step errorMessage="Course lessons in error">
+      <ng-template matStepLabel>Course Lessons</ng-template>
+      <!-- step 2 component -->
+      <create-course-step-1></create-course-step-1>
+      <div class="stepper-buttons">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent" matStepperNext>
+         Create Course
+        </button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
-
-
