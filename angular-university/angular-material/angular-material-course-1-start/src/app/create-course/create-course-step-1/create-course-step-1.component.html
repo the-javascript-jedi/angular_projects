@@ -16,4 +16,19 @@
         <mat-radio-button [disabled]="true" value="free">Free</mat-radio-button>
         <mat-radio-button value="premium">Premium</mat-radio-button>
     </mat-radio-group>
+    <!-- select box -->
+    <!-- appearance="fill"|"outline"|"none" or remove the tag entirely for default behaviour-->
+    <mat-form-field>
+        <mat-select formControlName="category" placeholder="Select Category" multiple>
+            <mat-option>None</mat-option>
+            <!-- group select box -->
+            <mat-optgroup label="Beginners">
+                <mat-option value="newprogramming">New to Programming</mat-option>
+                <mat-option value="newjavascript">New to Javascript</mat-option>
+                <mat-option value="newangular">New to Angular</mat-option>
+            </mat-optgroup>
+            <mat-option value="Intermediate">Intermediate</mat-option>
+            <mat-option value="Advanced">Advanced</mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
