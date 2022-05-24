@@ -12,7 +12,7 @@ export class CreateCourseStep1Component {
       Validators.minLength(5),
       Validators.maxLength(60)
     ]],
-    releasedAt: [new Date(), Validators.required],
+    releasedAt: [new Date(1990,0,1), Validators.required],
     category: ['BEGINNER', Validators.required],
     courseType: ['premium', Validators.required],
     downloadsAllowed: [false, Validators.requiredTrue],
