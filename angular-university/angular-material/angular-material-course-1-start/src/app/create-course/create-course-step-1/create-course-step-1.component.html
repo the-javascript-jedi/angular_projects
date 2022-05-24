@@ -1,7 +1,14 @@
 <div [formGroup]="form" class="course-details-form">
-
-
+    <!-- floatLabel= always|never|auto -->
+    <mat-form-field floatLabel="auto">
+        <input type="text" matInput placeholder="Course title" formControlName="title" #title/>
+        <!-- hint -->
+        <mat-hint align="end">
+            {{title.value.length}}/60
+        </mat-hint>
+        <!-- error message - if length<5 -->
+            <mat-error *ngIf="courseTitle.errors?.minlength">
+                A minimum length of 5 Characters
+            </mat-error>
+    </mat-form-field>
 </div>
-
-
-
