@@ -37,4 +37,15 @@
         <mat-datepicker-toggle matSuffix [for]="releasedAtPicker"></mat-datepicker-toggle>
         <mat-datepicker #releasedAtPicker></mat-datepicker>
     </mat-form-field>
+    <!-- checkbox -->
+    <!-- [disabled]="true" / [indeterminate]="true"-->
+    <mat-checkbox color="primary" formControlName="downloadsAllowed">
+        Download Allowed
+    </mat-checkbox>
+    <!-- text area -->
+    <mat-form-field appearance="outline" >
+        <textarea matInput placeholder="Description" formControlName="longDescription"
+        cdkTextareaAutosize [cdkAutosizeMinRows]="2" [cdkAutosizeMinRows]="5"
+        ></textarea>
+    </mat-form-field>
 </div>
