@@ -2,3 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.disabled-date {
+    background-color: rgba(236, 236, 236,1) !important;
+}
+.highlight-date{
+    background-color: rgba(147,250,165, 1) !important;
+}

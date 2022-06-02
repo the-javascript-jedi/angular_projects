@@ -8,12 +8,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { DatesCalendarComponent } from './dates-calendar/dates-calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DatesCalendarComponent
+    DatesCalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,8 @@ import { DatesCalendarComponent } from './dates-calendar/dates-calendar.componen
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule 
+    MatInputModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

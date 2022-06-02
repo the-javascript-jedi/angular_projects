@@ -1,6 +1,6 @@
 <p>dates-calendar works!</p>
 <mat-form-field>
     <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myHolidayFilter" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+    <mat-datepicker #picker [dateClass]="dateClassCustom"></mat-datepicker>
 </mat-form-field>
