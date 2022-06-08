@@ -1,0 +1,11 @@
+<p>
+    <input name="manual-refresh" type="checkbox" [(ngModel)]="manualRefreshEnabled"> <label class="pl-2" for="manual-refresh">Manual refresh enabled</label>
+</p>
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="toggleCollapsed()">Toggle slider visibility</button>
+</p>
+
+<div [ngbCollapse]="isCollapsed">
+  <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" [manualRefresh]="manualRefresh"></ngx-slider>
+</div>
+

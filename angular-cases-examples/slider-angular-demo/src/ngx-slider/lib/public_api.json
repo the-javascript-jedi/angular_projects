@@ -1,0 +1,22 @@
+{
+  "exports": [
+    {
+      "what": [
+        "NgxSliderModule"
+      ],
+      "file": "./slider.module"
+    },
+    {
+      "what": "*",
+      "file": "./change-context"
+    },
+    {
+      "what": "*",
+      "file": "./pointer-type"
+    },
+    {
+      "what": "*",
+      "file": "./options"
+    }
+  ]
+}
