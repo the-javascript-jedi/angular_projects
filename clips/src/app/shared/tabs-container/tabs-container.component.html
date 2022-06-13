@@ -1,11 +1,12 @@
 <!-- Tabs -->
 <ul class="flex flex-wrap mb-4">
-    <li class="flex-auto text-center">
+    <li class="flex-auto text-center" *ngFor="let tab of tabs" (click)="selectTab(tab)">
         <a class="block rounded py-3 px-4 transition hover:text-white text-white
-                    bg-indigo-400" href="#">Login</a>
-    </li>
-    <li class="flex-auto text-center">
-        <a class="block rounded py-3 px-4 transition hover:text-indigo-400" href="#">Register</a>
+                    bg-indigo-400" href="#"
+                    [ngClass]="{'hover:text-indigo-400':!tab.active,'hover:text-white text-white bg-indigo-400':tab.active}"
+                    >
+                    {{tab.tabTitle}}
+                </a>
     </li>
 </ul>
 <!-- we will project the tab component here -->
