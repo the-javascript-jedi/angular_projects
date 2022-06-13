@@ -1,24 +1,24 @@
 <div class="container">
   <div class="tab">
     <ul>
-      <li id="mission">Our Mission</li>
-      <li id="vision">Our Vision</li>
-      <li id="value">Values</li>
+      <!-- apply active tab for custom color using [class.activeColor]-->
+      <li id="mission" [class.activeColor]="id==='mission'" (click)="tabChange('mission')">Our Mission</li>
+      <li id="vision"  [class.activeColor]="id==='vision'" (click)="tabChange('vision')">Our Vision</li>
+      <li id="value" [class.activeColor]="id==='value'" (click)="tabChange('value')">Values</li>
     </ul>
     <!--Mission Content  -->
     <div class="content">
-      <div class="content-value">
+      <div class="content-value" *ngIf="id==='mission'">
         <h2>Our Mission</h2>
         <p>Mission Mission Mission Mission Mission Mission</p>
       </div>
     <!--Vision Content  -->
-      <div class="content-value">
+      <div class="content-value" *ngIf="id==='vision'">
         <h2>Our Vision</h2>
         <p>Vision Vision Vision Vision Vision Vision</p>
       </div>
-    <!--Values  -->
-    
-      <div class="content-value">
+    <!--Values  -->    
+      <div class="content-value" *ngIf="id==='value'">
         <h2>Values</h2>
         <p>Values Values Values Values Values Values</p>
       </div>

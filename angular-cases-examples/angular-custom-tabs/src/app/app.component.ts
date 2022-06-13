@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-custom-tabs';
+  // on load apply active tab
+  id:any="mission";
+  // apply active tab based on click
+  tabChange(idClicked:string){
+    console.log("idClicked",idClicked);
+    this.id=idClicked;
+  }
 }
