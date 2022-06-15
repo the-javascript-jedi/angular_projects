@@ -1,0 +1,10 @@
+<form [formGroup]="mathForm">
+    <!-- {{mathForm.value.a}}+{{mathForm.value.b}}=; -->
+    <!-- alternative to above syntax -->
+    {{a}}+{{b}}=
+    <input formControlName="answer"/>
+</form>
+<hr>
+<div>Form is valid: {{mathForm.valid}}</div>
+<div>Form Values: {{mathForm.value|json}}</div>
+<div>Form errors: {{mathForm.errors|json}}</div>
