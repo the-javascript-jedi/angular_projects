@@ -25,24 +25,14 @@ myHolidayDates = [
                     new Date("6/25/2022"),
                     new Date("6/26/2022")
                 ];
-  // highhlight dates
-  datesToHighlight = [
-    '2022-06-22T18:30:00.000Z',
-    '2022-06-23T18:30:00.000Z',
-    '2022-06-24T18:30:00.000Z',
-    '2022-06-25T18:30:00.000Z',
-    '2022-06-26T18:30:00.000Z',
-    '2022-06-27T18:30:00.000Z',
-    '2022-06-28T18:30:00.000Z',
-    '2022-06-29T18:30:00.000Z',
-  ];
-  // disable dates
+  // disable dates--single date picker
     myHolidayFilter = (d: Date): boolean => {
+      // console.log("myHolidayDates--",this.myHolidayDates);
         const time=d.getTime();
-        console.log("this.myHolidayDates.find(x=>x.getTime()==time);",this.myHolidayDates.find(x=>x.getTime()==time))
+        // console.log("this.myHolidayDates.find(x=>x.getTime()==time);",this.myHolidayDates.find(x=>x.getTime()==time))
         return !this.myHolidayDates.find(x=>x.getTime()==time);
     }
-    // highlight dates
+    // highlight dates--single date picker
     dateClassCustom=(d: Date): string => {
         const time=d.getTime();
         console.log("this.myHolidayDates.find(x=>x.getTime()==time);",this.myHolidayDates.find(x=>x.getTime()==time))
@@ -52,6 +42,4 @@ myHolidayDates = [
           return 'disabled-date'
         }
     }
-
-
 }

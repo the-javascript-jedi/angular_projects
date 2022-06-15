@@ -10,11 +10,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { DatesCalendarComponent } from './dates-calendar/dates-calendar.component';
+import { RangeDatesComponent } from './range-dates/range-dates.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DatesCalendarComponent,
+    RangeDatesComponent,
   ],
   imports: [
     BrowserModule,
