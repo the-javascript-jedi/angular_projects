@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup,AbstractControl } from '@angular/forms';
-
+import { FormControl, FormGroup } from '@angular/forms';
+import { MathValidators } from '../math-validators';
 @Component({
   selector: 'app-equation',
   templateUrl: './equation.component.html',
@@ -13,16 +13,7 @@ export class EquationComponent implements OnInit {
     answer:new FormControl('')
   },[
     // custom validation using abstract form control
-    (form:AbstractControl)=>{
-      console.log("form.value",form.value);
-      const {a,b,answer}=form.value;
-      // check if the added values return the answer or use abstract form control and display a custom error
-      if(a+b===parseInt(answer)){
-        return null;
-      }else{
-        return {addition:true}
-      }
-    }
+    MathValidators.addition('answer','a','b')
   ])
   // alternative to using form control values
   get a(){
