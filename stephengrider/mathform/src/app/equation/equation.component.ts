@@ -25,6 +25,29 @@ export class EquationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // statusChanges is an observable will return a subject so we can subscribe to the changes for form validity
+    console.log("this.mathForm.statusChanges",this.mathForm.statusChanges);
+    this.mathForm.statusChanges.subscribe(value=>{
+      console.log("value",value);
+      // do not reset the form if invalid
+      if(value==="INVALID"){
+        return;
+      }
+      // generate a new random number if the form is valid
+      // individual form insert
+      // this.mathForm.controls['a'].setValue(this.randomNumber());
+      // this.mathForm.controls['b'].setValue(this.randomNumber());
+      // // clear the form field
+      // this.mathForm.controls['answer'].setValue('');
+      // group form insert
+      this.mathForm.setValue({
+        a:this.randomNumber(),
+        b:this.randomNumber(),
+        answer:'',
+      })
+      // we can use patch value and update only necessary values
+      // this.mathForm.setValue({
+    })
   }
   randomNumber(){
     return Math.floor(Math.random()*10);
