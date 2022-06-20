@@ -11,12 +11,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { DatesCalendarComponent } from './dates-calendar/dates-calendar.component';
 import { RangeDatesComponent } from './range-dates/range-dates.component';
+import { DisableFilterDatesComponent } from './disable-filter-dates/disable-filter-dates.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DatesCalendarComponent,
     RangeDatesComponent,
+    DisableFilterDatesComponent,
   ],
   imports: [
     BrowserModule,
