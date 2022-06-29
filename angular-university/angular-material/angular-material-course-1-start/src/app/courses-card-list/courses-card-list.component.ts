@@ -18,7 +18,10 @@ export class CoursesCardListComponent implements OnInit {
     // We have encapsulated the logic of opening the dialogue here in Save a Function, the open edit course dialog function.
     editCourse(course:Course) {  
         // open the modal
-        openEditCourseDialog(this.dialog,course).pipe(filter(val=>!!val)).subscribe(
+        openEditCourseDialog(this.dialog,course).pipe(
+            //  if the user closes the dialogue without passing any data, then these observable here will not emit any value.
+            filter(val=>!!val)
+            ).subscribe(
             val=>console.log("new course value:",val)
         )
     }
