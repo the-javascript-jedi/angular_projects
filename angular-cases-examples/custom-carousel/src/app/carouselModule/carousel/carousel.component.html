@@ -1,0 +1,7 @@
+App Carousel
+<div *ngIf="images &&images.length>0" class="carousel-container">
+    <img *ngFor="let image of images;let i=index" 
+        [src]="image.imageSrc" [alt]="image.imageAlt"
+        [ngClass]="{'image-active':selectedIndex===i}"
+    >
+</div>
