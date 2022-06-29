@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 interface carouselImage{
   imageSrc:string;
   imageAlt:string;
+  sliderText:string;
 }
 @Component({
   selector: 'app-carousel',

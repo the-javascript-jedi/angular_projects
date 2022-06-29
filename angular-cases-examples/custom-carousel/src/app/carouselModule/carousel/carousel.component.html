@@ -1,16 +1,22 @@
 <div *ngIf="images &&images.length>0" class="carousel-container">
-    <img *ngFor="let image of images;let i=index" 
-        [src]="image.imageSrc" [alt]="image.imageAlt"
-        [ngClass]="{'image-active':selectedIndex===i}"
-    >
-    <!-- dots -->
-    <div *ngIf="indicators" class="carousel-dot-container">
-        <span *ngFor="let dot of images;let i=index" 
-         class="dot"
-         [ngClass]="{'active':selectedIndex===i}"
-         (click)="selectImage(i)"
-        >
-        </span>
+    <div class="carousel-image-container">
+        <div class="carousel-images">
+        <img *ngFor="let image of images;let i=index" [src]="image.imageSrc" [alt]="image.imageAlt"
+             [ngClass]="{'image-active':selectedIndex===i}">
+        </div>
+        <!-- dots -->
+        <div *ngIf="indicators" class="carousel-dot-container">
+            <span *ngFor="let dot of images;let i=index" class="dot" [ngClass]="{'active':selectedIndex===i}"
+                (click)="selectImage(i)">
+            </span>
+        </div>
+    </div>
+    <!-- text -->
+    <div class="carousel-text-container">
+        <div *ngFor="let image of images;let i=index" class="carousel-text-data"
+            [ngClass]="{'text-data-active':selectedIndex===i}">
+            <h3>{{image.sliderText}}</h3>
+        </div>
     </div>
     <!-- buttons -->
     <button *ngIf="controls" class="btn-carousel btn-prev" (click)="onPrevClick()">
