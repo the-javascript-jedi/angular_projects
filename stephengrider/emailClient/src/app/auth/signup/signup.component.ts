@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { MatchPassword } from '../validators/match-password';
+import { UniqueUsername } from '../validators/unique-username';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,12 +11,17 @@ import { MatchPassword } from '../validators/match-password';
 export class SignupComponent implements OnInit {
   
   authForm=new FormGroup({
-    username:new FormControl('',[
+    username:new FormControl('',
+    // non async validators are passed in second argument
+    [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20),
       Validators.pattern(/^[a-z0-9]+$/),
     ],
+    // async validators are passed as third argument
+    // async validators will run only after non async validators are run(required,minLength,etc)
+    [this.uniqueUsername.validate]
     ),
     password:new FormControl('',[
       Validators.required,
@@ -28,7 +35,10 @@ export class SignupComponent implements OnInit {
     ],)
   },{validators:[this.matchPassword.validate]}
   );
-  constructor(private matchPassword:MatchPassword) { }
+  constructor(
+    private matchPassword:MatchPassword, 
+    private uniqueUsername:UniqueUsername
+    ) { }
   ngOnInit(): void {
   }
 }
