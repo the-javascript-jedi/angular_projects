@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../auth.service";
 import { AsyncValidator,FormControl } from "@angular/forms";
 import { map,catchError, of } from "rxjs";
 // we add @Injectable to enable class to add dependency injection for HttpClient
@@ -7,13 +7,11 @@ import { map,catchError, of } from "rxjs";
     providedIn:'root'
 })
 export class UniqueUsername implements AsyncValidator {
-    constructor(private http:HttpClient){}
+    constructor(private authService:AuthService){}
     // use arrow function to overcome binding this
     validate=(control:FormControl)=>{
         const {value}=control;
-        return this.http.post<any>('https://api.angular-email.com/auth/username',{
-            username:value
-        }).pipe(
+        return this.authService.usernameAvailable(value).pipe(
             map((value)=>{
                 // if username is available
                 console.log("value",value);
