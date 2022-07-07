@@ -1,11 +1,16 @@
 <p>
-    You can also set array of objects as items input
+    You can also set array of objects as items inputaaa
 </p>
 
 <ng-select [items]="people"
-           bindLabel="company"
-           bindValue="id"
-           [(ngModel)]="selectedPersonId">
+           bindLabel="name"
+           bindValue="name"
+            placeholder="Search Item ONE"
+           [(ngModel)]="selectedPersonId"
+           #select (change)="select.blur()"
+           (focus)="selectedPersonId=null" 
+           (blur)="selectedPersonId===null?selectedPersonId='select a device':''"           
+           >
 </ng-select>
 
 <hr>
@@ -15,5 +20,9 @@
 </p>
 
 <ng-select [items]="simpleItems"
-           [(ngModel)]="selectedSimpleItem">
+           [(ngModel)]="selectedSimpleItem"
+           placeholder="Search Item"
+           (focus)="selectedSimpleItem=null"
+           (blur)="selectedSimpleItem='select a device'"
+           >
 </ng-select>

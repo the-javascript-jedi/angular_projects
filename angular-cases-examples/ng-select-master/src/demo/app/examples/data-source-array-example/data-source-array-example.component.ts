@@ -18,8 +18,20 @@ export class DataSourceArrayExampleComponent implements OnInit {
     }
 
     ngOnInit() {
+        var insertData={
+            id: 'string',
+    isActive: false,
+    age: 31,
+    name: 'select a device',
+    gender: 'string',
+    company: 'company',
+    email: 'email',
+    phone: 'phone',
+    disabled: false,
+        }
         this.dataService.getPeople().subscribe(items =>{
-            this.people = items
+            this.people = items;
+            this.people.unshift(insertData)
             console.log("this.people",this.people);;
         });
         this.simpleItems = [true, 'Two', 3];
