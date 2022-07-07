@@ -1,0 +1,9 @@
+<div class="search-dropdown">
+    <input type="text" [(ngModel)]="selectedUser" (input)="filterUsers()" (focus)="isMenuOpen=true;selectedUser=''" #toggleButton/>
+    <div class="menu" *ngIf="isMenuOpen"  #menu>       
+            <p class="options" *ngFor="let opt of filterdOptions" (click)="selectValue(opt.value)">{{ opt.value }}</p>        
+    </div>
+</div>
+<pre>selectedUser{{selectedUser}}</pre>
+<pre>{{ filterdOptions | json }}
+</pre>
