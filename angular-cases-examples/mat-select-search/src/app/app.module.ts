@@ -7,6 +7,7 @@ import { MatSelectSearchModule } from 'mat-select-search';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { SelectSearchComponent } from './select-search/select-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SelectSearchComponent } from './select-search/select-search.component';
     BrowserAnimationsModule,
     MatSelectModule,
     MatCardModule,
-    MatSelectSearchModule
+    MatSelectSearchModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
