@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, tap } from 'rxjs';
 
 interface UsernameAvailableResponse{
   available:boolean;
@@ -18,6 +19,7 @@ interface SignupResponse{
 })
 export class AuthService {
   rootUrl='https://api.angular-email.com';
+  signedin$=new BehaviorSubject(false);
   constructor(private http:HttpClient) { }
 
   usernameAvailable(username:string){
@@ -27,6 +29,24 @@ export class AuthService {
   }
 
   signup(credentials:SignupCredentials){
-    return this.http.post<SignupResponse>(`${this.rootUrl}/auth/signup`,credentials)
+    // add withCredentials:true to consider cookie
+    return this.http.post<SignupResponse>(`${this.rootUrl}/auth/signup`,credentials,{
+      withCredentials:true
+    }).pipe(
+      // error will akip the tap
+      tap(()=>{
+      this.signedin$.next(true);
+    }))
+  }
+
+  checkAuth(){
+    // add withCredentials:true to consider cookie
+    return this.http.get(`${this.rootUrl}/auth/signedin`,{
+      withCredentials:true
+    }).pipe(
+      tap(response=>{
+        console.log('checkAuth--response',response);
+      })
+    )
   }
 }
