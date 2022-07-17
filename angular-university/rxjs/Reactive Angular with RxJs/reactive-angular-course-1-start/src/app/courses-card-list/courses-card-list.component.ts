@@ -13,7 +13,7 @@ export class CoursesCardListComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
   @Input()
   courses:Course[]=[];
-  // Event Emitter
+  // Event Emitter to display when edit changes the data
   @Output()
   private coursesChanged=new EventEmitter();
 

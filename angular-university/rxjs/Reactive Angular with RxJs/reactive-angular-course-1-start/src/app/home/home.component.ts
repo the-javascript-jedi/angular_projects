@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       map(courses=>courses.sort(sortCoursesBySeqNo))
     );
     // showLoaderUntilCompleted will take a observable as argument
-    const loadCourses$=this.loadingService.showLoaderUntilCompleted(courses$)
+    const loadCourses$=this.loadingService.showLoaderUntilCompleted(courses$);
     // Beginner Courses
     this.beginnerCourses$=loadCourses$.pipe(
       map(courses=>courses.filter(
