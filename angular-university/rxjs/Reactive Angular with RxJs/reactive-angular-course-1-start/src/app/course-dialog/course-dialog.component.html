@@ -1,4 +1,6 @@
 <h2 mat-dialog-title>{{course.description}}</h2>
+<!-- since the loading service is separately mentioned in the provider of app.module.ts and course-dialog.component.ts we need to also add a loading component separately 1) for app.component.ts and another for course-dialog.component.ts -->
+<loading></loading>
 <mat-dialog-content [formGroup]="form">
   <mat-form-field>
     <input matInput

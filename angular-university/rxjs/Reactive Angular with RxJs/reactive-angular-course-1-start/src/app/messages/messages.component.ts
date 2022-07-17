@@ -9,21 +9,7 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-
-
-  constructor() {
-
-  }
-
-  ngOnInit() {
-
-
-  }
-
-
-  onClose() {
-
-
-  }
-
+  constructor() {  }
+  ngOnInit() { }
+  onClose() { }
 }

@@ -11,7 +11,10 @@ import { LoadingService } from '../loading/loading.service';
 @Component({
     selector: 'course-dialog',
     templateUrl: './course-dialog.component.html',
-    styleUrls: ['./course-dialog.component.css']
+    styleUrls: ['./course-dialog.component.css'],
+    providers:[
+        LoadingService
+    ]
 })
 export class CourseDialogComponent implements AfterViewInit {
     form: FormGroup;
@@ -21,7 +24,7 @@ export class CourseDialogComponent implements AfterViewInit {
         private dialogRef: MatDialogRef<CourseDialogComponent>,
         @Inject(MAT_DIALOG_DATA) course:Course,
         private coursesService:CoursesService,
-        private _loadingService:LoadingService
+        private loadingService:LoadingService
         ) {
         this.course = course;
         this.form = fb.group({
@@ -30,6 +33,10 @@ export class CourseDialogComponent implements AfterViewInit {
             releasedAt: [moment(), Validators.required],
             longDescription: [course.longDescription,Validators.required]
         });
+        const changes=this.form.value
+        const saveCourse$=this.coursesService.saveCourse(this.course.id,changes);
+        // call loading service and pass the observable
+        this.loadingService.showLoaderUntilCompleted(saveCourse$)
     }
     ngAfterViewInit() {}
     save() {
