@@ -6,7 +6,7 @@ import { MessagesService } from './messages/messages.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   // instance of loading service in providers means the instance is visible only to application and its child component
-  providers:[LoadingService,MessagesService]
+  providers:[]
 })
 export class AppComponent implements  OnInit {
     constructor() { }

@@ -8,6 +8,7 @@ import {CourseDialogComponent} from '../course-dialog/course-dialog.component';
 import { CoursesService } from '../services/courses.service';
 import { LoadingService } from '../loading/loading.service';
 import { MessagesService } from '../messages/messages.service';
+import { CoursesStore } from '../services/courses.store';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -18,49 +19,22 @@ export class HomeComponent implements OnInit {
   advancedCourses$: Observable<Course[]>;
 
   constructor(
-    private coursesService:CoursesService,
-    private dialog: MatDialog,
-    private loadingService:LoadingService,
-    private messagesService:MessagesService
+    private coursesStore:CoursesStore
     ) { }
   ngOnInit() {
    this.reloadCourses();
   }
 
   reloadCourses(){
-     const courses$=this.coursesService.loadAllCourses().pipe(
-      map(courses=>courses.sort(sortCoursesBySeqNo)),
-      // catch the error
-      catchError(err=>{
-        const message="Could not load courses";
-        // show the message using the service
-        this.messagesService.showErrors(message);
-        console.log("error-message",message,err);
-        // return an observable
-        return throwError(err);
-      })
-    );
-    // showLoaderUntilCompleted will take a observable as argument
-    const loadCourses$=this.loadingService.showLoaderUntilCompleted(courses$);
-    // Beginner Courses
-    this.beginnerCourses$=loadCourses$.pipe(
-      map(courses=>courses.filter(
-        course=>course.category=="BEGINNER"
-      ))
-    )
-    // Advanced Courses
-    this.advancedCourses$=loadCourses$.pipe(
-      map(courses=>courses.filter(
-        course=>course.category=="ADVANCED"
-      ))
-    )
+     this.beginnerCourses$=this.coursesStore.filterByCategory("BEGINNER");
+     this.advancedCourses$=this.coursesStore.filterByCategory("ADVANCED");
   }
-  editCourse(course: Course) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "400px";
-    dialogConfig.data = course;
-    const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
-  }
+  // editCourse(course: Course) {
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "400px";
+  //   dialogConfig.data = course;
+  //   const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+  // }
 }
