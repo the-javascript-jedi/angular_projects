@@ -8,6 +8,7 @@ import {CoursesService} from "../services/courses.service";
 import {debounceTime, distinctUntilChanged, startWith, tap, delay, catchError, finalize} from 'rxjs/operators';
 import {merge, fromEvent, throwError} from "rxjs";
 import { Lesson } from '../model/lesson';
+import { SelectionModel } from '@angular/cdk/collections';
 @Component({
     selector: 'course',
     templateUrl: './course.component.html',
@@ -22,7 +23,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     @ViewChild(MatPaginator) paginator:MatPaginator;
     @ViewChild(MatSort) sort:MatSort;
-
+    // selection-list of rows the user has selected
+    //SelectionModel is a selection model of data selected 
+    selection=new SelectionModel<Lesson>(true,[]);
     // lessons = [
     //    {
     //     id: 120,
@@ -43,11 +46,16 @@ export class CourseComponent implements OnInit, AfterViewInit {
                 private coursesService: CoursesService) {
     }
     // order of the columns to be displayed inthe datatable
-    displayedColumns=['seqNo','description',"duration"];
+    displayedColumns=['select','seqNo','description',"duration"];
     ngOnInit() {
         this.course = this.route.snapshot.data["course"];
         // load lessons from backend for table
         this.loadLessonsPage();
+    }
+    // checkbox toggle selection
+    onLessonToggled(lesson:Lesson){
+      this.selection.toggle(lesson);
+      console.log("this.selection.selected",this.selection.selected);
     }
     loadLessonsPage(){
       this.loading=true;
@@ -78,6 +86,17 @@ export class CourseComponent implements OnInit, AfterViewInit {
       }else{
         // expand lesson
         this.expandedLesson=lesson;
+      }
+    }
+    isAllSelected(){
+      return this.selection.selected?.length==this.lessons?.length
+    }
+    toggleAll(){
+      if(this.isAllSelected()){
+        this.selection.clear();
+      }else{
+        // select all
+        this.selection.select(...this.lessons);
       }
     }
     ngAfterViewInit() {
