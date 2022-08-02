@@ -10,22 +10,16 @@ import {Lesson} from "../model/lesson";
 
 @Injectable()
 export class CoursesService {
-
-    constructor(private http:HttpClient) {
-
-    }
-
+    constructor(private http:HttpClient) { }
     findCourseById(courseId: number): Observable<Course> {
         return this.http.get<Course>(`/api/courses/${courseId}`);
     }
-
     findAllCourses(): Observable<Course[]> {
         return this.http.get('/api/courses')
             .pipe(
                 map(res => res['payload'])
             );
     }
-
     findAllCourseLessons(courseId:number): Observable<Lesson[]> {
         return this.http.get('/api/lessons', {
             params: new HttpParams()
@@ -36,11 +30,9 @@ export class CoursesService {
             map(res =>  res["payload"])
         );
     }
-
     findLessons(
         courseId:number, sortOrder = 'asc',
         pageNumber = 0, pageSize = 3, sortColumn = 'seqNo'):  Observable<Lesson[]> {
-
         return this.http.get('/api/lessons', {
             params: new HttpParams()
                 .set('courseId', courseId.toString())
@@ -52,5 +44,4 @@ export class CoursesService {
             map(res =>  res["payload"])
         );
     }
-
 }
