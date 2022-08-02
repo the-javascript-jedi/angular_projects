@@ -20,6 +20,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
     // paginator:MatPaginator;
 
     @ViewChild(MatPaginator) paginator:MatPaginator;
+    @ViewChild(MatSort) sort:MatSort;
+
     // lessons = [
     //    {
     //     id: 120,
@@ -50,7 +52,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
       this.loading=true;
       // this.paginator.pageIndex - specifies the current page - use elvis operator since we are using viewchild
       // ?? default value is 0
-      this.coursesService.findLessons(this.course.id,"asc",this.paginator?.pageIndex??0,this.paginator?.pageSize??3)
+      // this.sort?.direction??"asc" - check if sort is available else use "asc" as default initially
+      this.coursesService.findLessons(this.course.id,this.sort?.direction??"asc",this.paginator?.pageIndex??0,this.paginator?.pageSize??3,this.sort?.active??"seqNo")
         .pipe(
           tap(
             lessons=>this.lessons=lessons
@@ -67,8 +70,11 @@ export class CourseComponent implements OnInit, AfterViewInit {
         )
         .subscribe();
     }
-    ngAfterViewInit() {  
-      this.paginator.page
+    ngAfterViewInit() {
+      // reset the paginator when we sort
+      this.sort.sortChange.subscribe(()=>this.paginator.pageIndex=0);
+      // merge the sort and pagination observable
+      merge(this.sort.sortChange,this.paginator.page)
         .pipe(
           tap(()=>this.loadLessonsPage())
         )

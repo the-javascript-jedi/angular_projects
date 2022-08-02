@@ -6,11 +6,17 @@
     <mat-spinner></mat-spinner>
   </div>
   <!-- [dataSource]="lessons" -- pass the data as am array -->
-  <table mat-table class="lessons-table mat-elevation-z8" [dataSource]="lessons">
+  <table mat-table class="lessons-table mat-elevation-z8" 
+   [dataSource]="lessons" 
+   matSort
+   matSortDisableClear
+   matSortActive="seqNo"
+   matSortDirection="asc"
+   >
     <!-- template for table columns to be displayed -->
     <!-- 1st column -->
     <ng-container matColumnDef="seqNo">
-      <th mat-header-cell *matHeaderCellDef>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
         #
       </th>
       <!-- *matCellDef - do for loop of lessons array -->
@@ -20,7 +26,7 @@
     </ng-container>
     <!-- 2nd column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header>
         Description
       </th>
       <!-- *matCellDef - do for loop of lessons array -->
