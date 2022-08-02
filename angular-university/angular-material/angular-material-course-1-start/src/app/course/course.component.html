@@ -44,4 +44,8 @@
     <tr mat-row *matRowDef="let lesson;columns:displayedColumns">
     </tr>
   </table>
+    <!-- Paginator -->
+    <!-- [length] - total items of the data-->
+    <mat-paginator class="mat-elevation-z8" [length]="course?.lessonsCount" [pageSize]="3" [pageSizeOptions]="[3,5,10]">
+    </mat-paginator>
 </div>

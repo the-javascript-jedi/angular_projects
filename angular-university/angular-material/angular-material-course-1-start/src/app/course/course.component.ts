@@ -17,6 +17,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
     course:Course;
     lessons:Lesson[];
     loading:boolean=false;
+    // paginator:MatPaginator;
+
+    @ViewChild(MatPaginator) paginator:MatPaginator;
     // lessons = [
     //    {
     //     id: 120,
@@ -45,7 +48,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
     }
     loadLessonsPage(){
       this.loading=true;
-      this.coursesService.findLessons(this.course.id,"asc",0,3)
+      // this.paginator.pageIndex - specifies the current page - use elvis operator since we are using viewchild
+      // ?? default value is 0
+      this.coursesService.findLessons(this.course.id,"asc",this.paginator?.pageIndex??0,this.paginator?.pageSize??3)
         .pipe(
           tap(
             lessons=>this.lessons=lessons
@@ -62,5 +67,11 @@ export class CourseComponent implements OnInit, AfterViewInit {
         )
         .subscribe();
     }
-    ngAfterViewInit() {   }
+    ngAfterViewInit() {  
+      this.paginator.page
+        .pipe(
+          tap(()=>this.loadLessonsPage())
+        )
+        .subscribe()
+     }
 }
