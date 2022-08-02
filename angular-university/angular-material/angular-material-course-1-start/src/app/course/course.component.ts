@@ -7,15 +7,12 @@ import {Course} from "../model/course";
 import {CoursesService} from "../services/courses.service";
 import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
 import {merge, fromEvent} from "rxjs";
-
-
 @Component({
     selector: 'course',
     templateUrl: './course.component.html',
     styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnInit, AfterViewInit {
-
     course:Course;
 
     lessons = [
@@ -97,22 +94,13 @@ export class CourseComponent implements OnInit, AfterViewInit {
         courseId: 11
       }
     ];
-
     constructor(private route: ActivatedRoute,
                 private coursesService: CoursesService) {
-
     }
-
+    // order of the columns to be displayed inthe datatable
+    displayedColumns=['seqNo','description',"duration"];
     ngOnInit() {
-
         this.course = this.route.snapshot.data["course"];
-
-
     }
-
-    ngAfterViewInit() {
-
-
-    }
-
+    ngAfterViewInit() {   }
 }

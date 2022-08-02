@@ -1,9 +1,45 @@
 <div class="course">
-
   <h2>{{course?.description}}</h2>
-
   <img class="course-thumbnail mat-elevation-z8" [src]="course?.iconUrl">
-
+  <!-- [dataSource]="lessons" -- pass the data as am array -->
+  <table mat-table class="lessons-table mat-elevation-z8" [dataSource]="lessons">
+    <!-- template for table columns to be displayed -->
+    <!-- 1st column -->
+    <ng-container matColumnDef="seqNo">
+      <th mat-header-cell *matHeaderCellDef>
+        #
+      </th>
+      <!-- *matCellDef - do for loop of lessons array -->
+      <td mat-cell *matCellDef="let lesson">
+        {{lesson.seqNo}}
+      </td>
+    </ng-container>
+    <!-- 2nd column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>
+        Description
+      </th>
+      <!-- *matCellDef - do for loop of lessons array -->
+      <td mat-cell *matCellDef="let lesson">
+        {{lesson.description}}
+      </td>
+    </ng-container>
+    <!-- 3rd column -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef>
+        Duration
+      </th>
+      <!-- *matCellDef - do for loop of lessons array -->
+      <td mat-cell *matCellDef="let lesson">
+        {{lesson.duration}}
+      </td>
+    </ng-container>
+    <!-- template for row header -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- template for table row -->
+    <tr mat-row *matRowDef="let lesson;columns:displayedColumns">
+    </tr>
+  </table>
 </div>
 
 
