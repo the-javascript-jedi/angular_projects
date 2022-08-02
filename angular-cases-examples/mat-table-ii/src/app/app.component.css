@@ -2,7 +2,7 @@ table {
     width: 100%;
 }
 .content {
-    display: flex;
+    display: block;
     margin: 82px auto 32px;
     padding: 0 16px;
     max-width: 960px;
