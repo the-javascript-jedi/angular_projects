@@ -12,6 +12,7 @@
    matSortDisableClear
    matSortActive="seqNo"
    matSortDirection="asc"
+   multiTemplateDataRows
    >
     <!-- template for table columns to be displayed -->
     <!-- 1st column -->
@@ -44,10 +45,28 @@
         {{lesson.duration}}
       </td>
     </ng-container>
+    <!-- Expanded row-->
+    <ng-container matColumnDef="expandedDetail">      
+      <!-- *matCellDef - do for loop of lessons array -->
+      <td mat-cell *matCellDef="let lesson" colspan="3">
+        {{lesson.longDescription}}
+      </td>
+    </ng-container>
     <!-- template for row header -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <!-- template for table row -->
-    <tr mat-row *matRowDef="let lesson;columns:displayedColumns">
+    <tr mat-row 
+    *matRowDef="let lesson;columns:displayedColumns"
+    (click)="onToggleLesson(lesson)"      
+      >
+    </tr>
+    <!-- template for expanded data row -->
+    <!-- expandedDetail is not part of template -->
+    <!-- collapsed-detail is added if lesson is different from expandedLesson-->
+    <tr mat-row 
+    *matRowDef="let lesson;columns:['expandedDetail']"
+    [class.collapsed-detail]="lesson!=expandedLesson"
+    >
     </tr>
   </table>
     <!-- Paginator -->

@@ -17,7 +17,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
     course:Course;
     lessons:Lesson[];
     loading:boolean=false;
-    // paginator:MatPaginator;
+    // only one lesson is expanded
+    expandedLesson:Lesson=null;
 
     @ViewChild(MatPaginator) paginator:MatPaginator;
     @ViewChild(MatSort) sort:MatSort;
@@ -69,6 +70,15 @@ export class CourseComponent implements OnInit, AfterViewInit {
           })
         )
         .subscribe();
+    }
+    onToggleLesson(lesson:Lesson){
+      if(lesson==this.expandedLesson){
+        // collapse lesson
+        this.expandedLesson=null;
+      }else{
+        // expand lesson
+        this.expandedLesson=lesson;
+      }
     }
     ngAfterViewInit() {
       // reset the paginator when we sort
