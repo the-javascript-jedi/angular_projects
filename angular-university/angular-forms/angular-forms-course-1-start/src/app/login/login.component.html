@@ -7,12 +7,31 @@
         <!-- ngModel must have a name property assigned to form control to work -->
         <!-- we specify # to access the value using the selector -->
         <input matInput ngModel 
-        #email="ngModel"
+        #email="ngModel" required
+        minlength="3"
+        maxlength="20"
+        email
         type="email" name="email" placeholder="Email">
+        <!-- pattern validation is possible using patter property -->
+        <!-- pattern="[a-z]+" -->
+        <!-- error required field -->
+        <!-- use elvis operator in errors because the errors object can be null for a valid scenario -->
+        <mat-error *ngIf="email.errors?.required">
+          The Email is mandatory
+        </mat-error>
+        <!-- error min length -->
+        <mat-error *ngIf="email.errors?.minlength">
+          Your email must have {{email.errors?.minlength.requiredLength}} chars,
+          but it only has {{email.errors?.minlength.actualLength}}
+        </mat-error>
+        <!-- error email -->
+        <mat-error *ngIf="email.errors?.email">
+         This is not a valid email
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput ngModel 
-        #password="ngModel"
+        #password="ngModel" required
         type="password" name="password" placeholder="Password">
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="login(loginForm)">
@@ -21,8 +40,11 @@
     </form>
     <!-- debugging div -->
     <div class="form-val">
-      {{loginForm.value|json}}<br/>
-      {{email.value+' - '+password.value}}
+      <!-- <p>loginForm.value-{{loginForm.value|json}}</p>
+      <p>email.value+' - '+password.value-{{email.value+' - '+password.value}}</p>
+      <p>email.valid+' - '+password.valid-{{email.valid+' - '+password.valid}}</p> -->
+      <p>email.errors{{email.errors|json}}</p>
+      <p>password.errors-{{password.errors |json}}</p>
     </div>
   </mat-card-content>
 </mat-card>
