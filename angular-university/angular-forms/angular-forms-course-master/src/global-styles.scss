@@ -1,0 +1,42 @@
+
+
+.data-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+
+.data-form mat-form-field {
+  display: block;
+  margin-top: 10px;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-buttons button {
+  margin-right: 10px;
+}
+
+.form-val {
+  margin-top: 10px;
+}
+
+.field-message {
+  color:#f44336;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 75%;
+  font-family: "Roboto";
+}
+
+mat-radio-button {
+  margin-right: 10px;
+}
