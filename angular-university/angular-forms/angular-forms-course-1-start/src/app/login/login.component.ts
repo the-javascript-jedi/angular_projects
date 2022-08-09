@@ -6,14 +6,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  val={
+    email:"hello@gmail.com",
+    password:"123456"
+  }
  constructor() {}
   ngOnInit() {}
   login(loginForm:NgForm,submit){
     console.log("loginForm.value",loginForm.value);
     console.log("loginForm.valid",loginForm.valid);
     console.log("submit",submit);
+    console.log("val",this.val);
   }
-  onEmailChange(change){
-    console.log("change",change)
-  }
+
 }

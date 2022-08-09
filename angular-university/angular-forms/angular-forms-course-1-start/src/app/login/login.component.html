@@ -6,15 +6,10 @@
       <mat-form-field appearance="outline">
         <!-- ngModel must be used in input to link to ngForm-->
         <!-- ngModel must have a name property assigned to form control to work -->
-        <!-- we specify # to access the value using the selector -->
-        <!-- ngModelOptions --ngModelDirective will emit a new value only on blur (bydefault it is change)-->
-        <!-- [ngModelOptions]="{updateOn:'blur|change|submit'}" -->
-        <!-- {standAlone:true} - it is disconnected from the form bydefault the value is false-->
-        <!-- [ngModelOptions]="{standAlone:true}" -->
-        <input matInput ngModel 
-        #email="ngModel" required
-        (ngModelChange)="onEmailChange($event)"
-        [ngModelOptions]="{updateOn:'blur'}"
+        <!-- we specify # to access the value using the selector -->   
+        <!-- using [ngModel] we specify single directional data binding-->
+        <input matInput [(ngModel)]="val.email"
+        #email="ngModel" required       
         minlength="3"
         maxlength="20"
         email
@@ -39,6 +34,7 @@
       <mat-form-field>
         <input matInput ngModel 
         #password="ngModel" required
+        [(ngModel)]="val.password"
         type="password" name="password" placeholder="Password">
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
@@ -47,11 +43,11 @@
     </form>
     <!-- debugging div -->
     <div class="form-val">
-      <!-- <p>loginForm.value-{{loginForm.value|json}}</p>
-      <p>email.value+' - '+password.value-{{email.value+' - '+password.value}}</p>
-      <p>email.valid+' - '+password.valid-{{email.valid+' - '+password.valid}}</p> -->
-      <p>email.errors{{email.errors|json}}</p>
-      <p>password.errors-{{password.errors |json}}</p>
+      <p>loginForm.value-{{loginForm.value|json}}</p>
+      <!-- <p>email.value+' - '+password.value-{{email.value+' - '+password.value}}</p>
+      <p>email.valid+' - '+password.valid-{{email.valid+' - '+password.valid}}</p>  -->
+      <!-- <p>email.errors{{email.errors|json}}</p>
+      <p>password.errors-{{password.errors |json}}</p> -->
     </div>
   </mat-card-content>
 </mat-card>
