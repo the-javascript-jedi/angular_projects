@@ -7,8 +7,14 @@
         <!-- ngModel must be used in input to link to ngForm-->
         <!-- ngModel must have a name property assigned to form control to work -->
         <!-- we specify # to access the value using the selector -->
+        <!-- ngModelOptions --ngModelDirective will emit a new value only on blur (bydefault it is change)-->
+        <!-- [ngModelOptions]="{updateOn:'blur|change|submit'}" -->
+        <!-- {standAlone:true} - it is disconnected from the form bydefault the value is false-->
+        <!-- [ngModelOptions]="{standAlone:true}" -->
         <input matInput ngModel 
         #email="ngModel" required
+        (ngModelChange)="onEmailChange($event)"
+        [ngModelOptions]="{updateOn:'blur'}"
         minlength="3"
         maxlength="20"
         email

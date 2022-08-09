@@ -13,4 +13,7 @@ export class LoginComponent implements OnInit {
     console.log("loginForm.valid",loginForm.valid);
     console.log("submit",submit);
   }
+  onEmailChange(change){
+    console.log("change",change)
+  }
 }
