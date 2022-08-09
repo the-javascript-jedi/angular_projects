@@ -8,8 +8,9 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
  constructor() {}
   ngOnInit() {}
-  login(loginForm:NgForm){
+  login(loginForm:NgForm,submit){
     console.log("loginForm.value",loginForm.value);
     console.log("loginForm.valid",loginForm.valid);
+    console.log("submit",submit);
   }
 }
