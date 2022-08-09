@@ -1,17 +1,28 @@
 <mat-card class="login-page">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-    <form class="login-form data-form">
-      <mat-form-field>
-        <input matInput type="email" name="email"
-               placeholder="Email">
+    <form class="login-form data-form" #loginForm="ngForm">
+      <mat-form-field appearance="outline">
+        <!-- ngModel must be used in input to link to ngForm-->
+        <!-- ngModel must have a name property assigned to form control to work -->
+        <!-- we specify # to access the value using the selector -->
+        <input matInput ngModel 
+        #email="ngModel"
+        type="email" name="email" placeholder="Email">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" placeholder="Password">
+        <input matInput ngModel 
+        #password="ngModel"
+        type="password" name="password" placeholder="Password">
       </mat-form-field>
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" (click)="login(loginForm)">
         Login
       </button>
     </form>
+    <!-- debugging div -->
+    <div class="form-val">
+      {{loginForm.value|json}}<br/>
+      {{email.value+' - '+password.value}}
+    </div>
   </mat-card-content>
 </mat-card>
