@@ -18,5 +18,4 @@ export class LoginComponent implements OnInit {
     console.log("submit",submit);
     console.log("val",this.val);
   }
-
 }

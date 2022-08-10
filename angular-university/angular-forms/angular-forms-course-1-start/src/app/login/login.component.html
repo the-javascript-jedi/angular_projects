@@ -35,7 +35,16 @@
         <input matInput ngModel 
         #password="ngModel" required
         [(ngModel)]="val.password"
+        passwordStrength
         type="password" name="password" placeholder="Password">
+        <!-- password mandatory -->
+        <mat-error *ngIf="password.errors?.required">
+          The Password is mandatory
+        </mat-error>
+        <!-- error if password is not strong enough -->
+        <mat-error *ngIf="password.errors?.passwordStrength">
+          Your password must have lowercase, upper case and numeric characters.
+        </mat-error>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
         Login
