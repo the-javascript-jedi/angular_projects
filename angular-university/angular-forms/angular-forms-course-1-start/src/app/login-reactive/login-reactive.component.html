@@ -1,27 +1,25 @@
 <mat-card class="login-page">
   <mat-card-title>Login (Reactive)</mat-card-title>
   <mat-card-content>
-
-    <form class="login-form data-form">
-
+    <!-- for reactive forms add formGroup in form and import ReactiveFormsModule in app.module -->
+    <form class="login-form data-form" [formGroup]="form">
+      <!-- email -->
       <mat-form-field>
-
-        <input matInput type="email" name="email"
-               placeholder="Email">
-
+        <!-- link the formControlName to created formGroup -->
+        <input matInput type="email" name="email" placeholder="Email" formControlName="email">
       </mat-form-field>
-
+      <!-- password -->
       <mat-form-field>
-
-        <input matInput type="password" placeholder="Password">
-
+        <input matInput type="password" placeholder="Password" formControlName="password">
       </mat-form-field>
-
       <button mat-raised-button color="primary">
         Login
       </button>
-
     </form>
-
+    <!-- debugging purpose -->
+    <div class="form-val">
+      <p>form.value--{{form.value|json}}</p>
+      <p>form.valid--{{form.valid|json}}</p>
+    </div>
   </mat-card-content>
 </mat-card>
