@@ -1,8 +1,17 @@
-
 <div class="create-course-panel data-form">
-
   <h2 class="title">Create New Course</h2>
-
+  <mat-horizontal-stepper class="mat-elevation-z5" labelPosition="bottom">
+    <mat-step>
+      <!-- matStepLabel is label of stepper -->
+      <ng-template matStepLabel>
+        Course Landing Page Details
+      </ng-template>
+      <!-- component -->
+      <create-course-step-1></create-course-step-1>
+      <!-- stepper buttons -->
+      <div class="stepper-buttons">
+        <button mat-raised-button color="primary">Continue to step 2</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
-
-

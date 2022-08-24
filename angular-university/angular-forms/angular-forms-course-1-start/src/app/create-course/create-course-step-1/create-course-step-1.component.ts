@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CoursesService} from '../../services/courses.service';
 import {Observable} from 'rxjs';
 import {filter} from 'rxjs/operators';
+import { courseTitleValidator } from '../../validators/course-title.validator';
 
 @Component({
   selector: 'create-course-step-1',
@@ -10,9 +11,25 @@ import {filter} from 'rxjs/operators';
   styleUrls: ['./create-course-step-1.component.scss']
 })
 export class CreateCourseStep1Component implements OnInit {
+  form=this.fb.group({
+    title:['',{
+      validators:[Validators.required,Validators.minLength(5),Validators.maxLength(60)],
+      asyncValidators:[courseTitleValidator(this.courses)],
+      // make api request only on blur
+      updateOn:'blur'
+    }]
+  })
 
+  constructor(private fb:FormBuilder,private courses:CoursesService){
+
+  }
   ngOnInit() {
 
   }
+  // getter for course title
+  get courseTitle(){
+    return this.form.controls['title'];
+  }
+
 
 }

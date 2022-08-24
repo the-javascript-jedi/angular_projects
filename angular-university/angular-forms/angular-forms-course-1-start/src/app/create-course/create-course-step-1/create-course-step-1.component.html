@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Course Title" formControlName="title" #title/>
+        <mat-hint align="end">
+            {{title.value.length}}/60
+        </mat-hint>
+        <!-- error same title -->
+        <mat-error *ngIf="courseTitle.errors?.titleExists">
+            This title is already being used
+        </mat-error>
+    </mat-form-field>
+</div>
