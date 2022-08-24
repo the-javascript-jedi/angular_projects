@@ -34,8 +34,11 @@
           Your password must have lowercase, upper case and numeric characters.
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="!form.valid">
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()">
         Login
+      </button>
+      <button mat-raised-button (click)="reset()">
+        Reset
       </button>
     </form>
     <!-- debugging purpose -->
