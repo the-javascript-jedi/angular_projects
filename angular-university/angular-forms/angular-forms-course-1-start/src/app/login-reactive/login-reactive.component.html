@@ -7,12 +7,34 @@
       <mat-form-field>
         <!-- link the formControlName to created formGroup -->
         <input matInput type="email" name="email" placeholder="Email" formControlName="email">
+        <!-- errors -->
+        <mat-error *ngIf="email.errors?.required">
+        The Email is mandatory
+        </mat-error>
+        <!-- error min length -->
+        <mat-error *ngIf="email.errors?.minlength">
+          Your email must have {{email.errors?.minlength.requiredLength}} chars,
+          but it only has {{email.errors?.minlength.actualLength}}
+        </mat-error>
+        <!-- error email -->
+        <mat-error *ngIf="email.errors?.email">
+          This is not a valid email
+        </mat-error>
       </mat-form-field>
       <!-- password -->
       <mat-form-field>
         <input matInput type="password" placeholder="Password" formControlName="password">
+        <!-- errors -->
+        <!-- password mandatory -->
+        <mat-error *ngIf="password.errors?.required">
+          The Password is mandatory
+        </mat-error>
+        <!-- error if password is not strong enough -->
+        <mat-error *ngIf="password.errors?.passwordStrength">
+          Your password must have lowercase, upper case and numeric characters.
+        </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">
         Login
       </button>
     </form>
