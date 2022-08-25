@@ -47,6 +47,21 @@ export class CreateCourseStep1Component implements OnInit {
   constructor(private fb:FormBuilder,private courses:CoursesService){  }
   ngOnInit() {
     this.courseCategories$=this.courses.findCourseCategories();
+    // check local storage to see if a draft is available
+    const draft=localStorage.getItem("STEP_1");
+    if(draft){
+      // using setValue we can apply changes to all the form values; we will use patchValue for setting specific fields
+      this.form.setValue(JSON.parse(draft));
+    }
+    // subscribe to the form value changes
+    this.form.valueChanges
+    .pipe(
+      // filter only valid form values
+      filter(()=>this.form.valid)
+    )
+    .subscribe(
+      val=>localStorage.setItem("STEP_1",JSON.stringify(val))
+    )
   }
   // getter for course title
   get courseTitle(){
