@@ -10,6 +10,16 @@
             This title is already being used
         </mat-error>
     </mat-form-field>
+    <!-- Dropdown -->
+    <mat-form-field>
+        <mat-select placeholder="Select Category" formControlName="category">
+            <ng-container *ngFor="let category of (courseCategories$|async)">
+                <mat-option [value]="category.code">
+                    {{category.description}}
+                </mat-option>
+            </ng-container>         
+        </mat-select>
+    </mat-form-field>
     <!-- Course Release Date -->
     <mat-form-field>
         <!-- connect releaseDatePicker to the input box as well as date picker toggler -->
