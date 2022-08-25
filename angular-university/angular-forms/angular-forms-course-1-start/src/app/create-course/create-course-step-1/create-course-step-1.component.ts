@@ -17,7 +17,18 @@ export class CreateCourseStep1Component implements OnInit {
       asyncValidators:[courseTitleValidator(this.courses)],
       // make api request only on blur
       updateOn:'blur'
+    }],
+    releaseDateAt:[new Date(),{
+      validators:[Validators.required]
+    }],
+    // Validators.requiredTrue will make sure the checkbox validation is true
+    downloadsAllowed:[false,Validators.requiredTrue],
+    longDescription:['',{
+      validators:[
+        Validators.required,Validators.minLength(3)
+      ]
     }]
+
   })
 
   constructor(private fb:FormBuilder,private courses:CoursesService){
@@ -30,6 +41,4 @@ export class CreateCourseStep1Component implements OnInit {
   get courseTitle(){
     return this.form.controls['title'];
   }
-
-
 }

@@ -1,7 +1,7 @@
 import { AbstractControl, AsyncValidatorFn } from "@angular/forms";
 import { map } from "rxjs/operators";
 import { CoursesService } from "../services/courses.service";
-
+// check if course name already exists
 export function courseTitleValidator(courses:CoursesService):AsyncValidatorFn{
     return (control:AbstractControl)=>{
         return courses.findAllCourses().pipe(

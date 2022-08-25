@@ -1,4 +1,5 @@
 <div [formGroup]="form">
+    <!-- Course Title -->
     <mat-form-field>
         <input type="text" matInput placeholder="Course Title" formControlName="title" #title/>
         <mat-hint align="end">
@@ -9,4 +10,25 @@
             This title is already being used
         </mat-error>
     </mat-form-field>
+    <!-- Course Release Date -->
+    <mat-form-field>
+        <!-- connect releaseDatePicker to the input box as well as date picker toggler -->
+        <input type="text" [matDatepicker]="releaseDatePicker" formControlName="releaseDateAt" 
+        matInput placeholder="Release Date" />
+        <mat-datepicker-toggle matSuffix
+        [for]="releaseDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #releaseDatePicker></mat-datepicker>
+    </mat-form-field>
+    <!-- checkbox -->
+    <mat-checkbox color="primary" formControlName="downloadsAllowed">
+        Downloads Allowed?
+    </mat-checkbox>
+    <!-- text area -->
+    <mat-form-field appearance="outline">
+        <textarea matInput placeholder="Description" formControlName="longDescription"></textarea>
+    </mat-form-field>
+</div>
+<!-- debugging purpose -->
+<div class="form-val">
+    {{form.value|json}}
 </div>
