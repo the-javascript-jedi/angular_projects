@@ -1,8 +1,13 @@
 <div [formGroup]="form">
-    <mat-radio-groupc formControlName="courseType">
+    <!-- radio buttons -->
+    <mat-radio-group formControlName="courseType">
         <mat-radio-button value="free">Free</mat-radio-button>
         <mat-radio-button value="premium">Premium</mat-radio-button>
-    </mat-radio-groupc>
+    </mat-radio-group>
+    <!-- price -->
+    <mat-form-field>
+        <input type="number" matInput placeholder="Price" formControlName="price"/>
+    </mat-form-field>
 </div>
 <!-- debugging purpose -->
 <div class="form-val">
