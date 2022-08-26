@@ -29,7 +29,3 @@ app.route('/api/thumbnail-upload').post(onFileupload);
 const httpServer:any = app.listen(9000, () => {
     console.log("HTTP REST API Server running at http://localhost:" + httpServer.address().port);
 });
-
-
-
-

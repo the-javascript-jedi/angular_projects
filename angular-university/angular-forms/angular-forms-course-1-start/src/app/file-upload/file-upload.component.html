@@ -1,2 +1,17 @@
-
-
+<!-- we hide this input type=file but use it behind the scenes -->
+<!-- change event contains reference to local file data-->
+<input type="file" class="file-input" #fileUpload (change)="onFileSelected($event)"/>
+<div class="file-upload">
+    <mat-form-field>
+        <input type="text" matInput [disabled]="true" [value]="fileName">
+    </mat-form-field>
+    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+</div>
+<!-- progress bar -->
+<mat-progress-bar class="progress-bar" 
+    *ngIf="uploadProgress"
+    mode="determinate" 
+    [value]="uploadProgress">
+</mat-progress-bar>
