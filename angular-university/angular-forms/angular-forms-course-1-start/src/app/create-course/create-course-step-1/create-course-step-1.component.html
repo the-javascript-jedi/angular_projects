@@ -1,4 +1,6 @@
 <div [formGroup]="form">
+    <!-- child form -->
+    <address-form legend="Address" formControlName="address"></address-form>
     <!-- Course Title -->
     <mat-form-field>
         <input type="text" matInput placeholder="Course Title" formControlName="title" #title/>
@@ -40,5 +42,6 @@
 </div>
 <!-- debugging purpose -->
 <div class="form-val">
-    {{form.value|json}}
+    form.value-{{form.value|json}}<br/>
+    form.valid-{{form.valid|json}}<br/>
 </div>

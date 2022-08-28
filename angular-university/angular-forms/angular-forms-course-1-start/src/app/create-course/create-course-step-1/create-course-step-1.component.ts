@@ -39,7 +39,8 @@ export class CreateCourseStep1Component implements OnInit {
       validators:[
         Validators.required,Validators.minLength(3)
       ]
-    }]
+    }],
+    address:[null,Validators.required]
   })
   // course category type
   courseCategories$:Observable<CourseCategory[]>;
@@ -51,7 +52,7 @@ export class CreateCourseStep1Component implements OnInit {
     const draft=localStorage.getItem("STEP_1");
     if(draft){
       // using setValue we can apply changes to all the form values; we will use patchValue for setting specific fields
-      this.form.setValue(JSON.parse(draft));
+      // this.form.setValue(JSON.parse(draft));
     }
     // subscribe to the form value changes
     this.form.valueChanges
