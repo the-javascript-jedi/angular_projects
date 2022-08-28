@@ -5,7 +5,8 @@
         <mat-radio-button value="premium">Premium</mat-radio-button>
     </mat-radio-group>
     <!-- file upload component-->
-    <file-upload requiredFileType="image/png">
+    <!-- since we are implementing control value accessor we can implement the same form validation -->
+    <file-upload requiredFileType="image/png" formControlName="thumbnail">
     </file-upload>
     <!-- price -->
     <mat-form-field>
@@ -30,5 +31,6 @@
 </div>
 <!-- debugging purpose -->
 <div class="form-val">
-    {{form.value|json}}
+    form.value{{form.value|json}}<br/>
+    form.valid{{form.valid|json}}<br/>
 </div>

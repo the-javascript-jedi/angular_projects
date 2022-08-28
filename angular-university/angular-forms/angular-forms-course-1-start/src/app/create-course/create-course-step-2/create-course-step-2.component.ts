@@ -18,12 +18,14 @@ export class CreateCourseStep2Component implements OnInit {
         Validators.max(9999),
         Validators.pattern("[0-9]+")
     ]],
+    thumbnail:[null],
     promoStartAt:[null],
     promoEndAt:[null],
   },{
     // config objet
     validators:[createPromoRangeValidator()],
-    updateOn:'blur'
+    // for file upload component the updateOn must not be blur
+    // updateOn:'blur'
   })
   ngOnInit() { 
     // whenever the form changes any value this observable is updated
