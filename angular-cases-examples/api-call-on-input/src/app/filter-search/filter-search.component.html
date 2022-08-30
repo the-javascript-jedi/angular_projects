@@ -1,0 +1,7 @@
+<p>filter-search works!</p>
+<div>
+    <input type="text"  placeholder="Type your search" #searchInput autocomplete="off">
+    <div class="options" *ngFor="let game of gamesData">
+        <p>{{game.description}}</p>
+    </div>
+</div>
