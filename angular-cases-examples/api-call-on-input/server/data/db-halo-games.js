@@ -65,7 +65,7 @@ var HALO_GAMES = [
   },
   {
     id: 16,
-    description: "Halo: Smoke and Shadiow",
+    description: "Halo: Smoke and Shadow",
   },
   {
     id: 17,
@@ -97,7 +97,7 @@ var HALO_GAMES = [
   },
   {
     id: 24,
-    description: "Halo: Shadows od Reach",
+    description: "Halo: Shadows of Reach",
   },
 ];
 exports.HALO_GAMES = HALO_GAMES;
