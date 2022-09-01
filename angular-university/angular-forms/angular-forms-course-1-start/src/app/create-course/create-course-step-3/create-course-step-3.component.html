@@ -1,0 +1,30 @@
+<h3>Add Course Lessons:</h3>
+<div class="add-lessons-form" [formGroup]="form">
+    <ng-container formArrayName="lessons">
+        <!-- loop through the form builder and get the lessonForm formArray formControl  -->
+        <!-- lessons:this.fb.array([]) -->
+        <ng-container *ngFor="let lessonForm of lessons.controls;let i=index">
+                <div class="lesson-form-row" [formGroup]="lessonForm">
+                    <!-- Title -->
+                    <mat-form-field appearance="fill">
+                        <input matInput formControlName="title" placeholder="Lesson title">
+                    </mat-form-field>
+                    <!-- Dropdown -->
+                    <mat-form-field appearance="fill">
+                        <mat-select placeholder="Lesson Level"  formControlName="level">
+                            <mat-option value="beginner">Beginner</mat-option>
+                            <mat-option value="intermediate">Intermediate</mat-option>
+                            <mat-option value="advanced">Advanced</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <!-- delete the respective form array control based on index selection -->
+                    <mat-icon class="delete-btn" (click)="deleteLesson(i)">delete_forever</mat-icon>
+                </div>
+        </ng-container>
+    </ng-container>
+
+    <!-- add button -->
+    <button mat-mini-fab (click)="addLesson()">
+        <mat-icon class="add-course-btn">add</mat-icon>
+    </button>
+</div>

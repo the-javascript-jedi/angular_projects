@@ -40,7 +40,8 @@ export class CreateCourseStep1Component implements OnInit {
         Validators.required,Validators.minLength(3)
       ]
     }],
-    address:[null,Validators.required]
+    //added for testing demo of nested form array
+    // address:[null,Validators.required]
   })
   // course category type
   courseCategories$:Observable<CourseCategory[]>;

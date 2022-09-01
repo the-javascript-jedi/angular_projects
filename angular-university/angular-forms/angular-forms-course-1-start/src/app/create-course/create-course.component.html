@@ -1,7 +1,7 @@
 <div class="create-course-panel data-form">
   <h2 class="title">Create New Course</h2>
   <!-- [linear]="true" means next step is available only if previous step is completed -->
-  <mat-horizontal-stepper [linear]="false" class="mat-elevation-z5" labelPosition="bottom">
+  <mat-horizontal-stepper [linear]="true" class="mat-elevation-z5" labelPosition="bottom">
     <!-- Step 1 -->
     <!-- since linear is true we need to pass a reference to the stepControl to ensure form is validated -->
     <!-- since the form property is public we can access it outside using a template reference -->
@@ -18,7 +18,8 @@
       </div>
     </mat-step>
     <!-- Step 2 -->
-    <mat-step errorMessage="Pricing in error">
+    <!-- [stepControl]="step2.form" - only if step2 form is valid we will move to next form -->
+    <mat-step [stepControl]="step2.form" errorMessage="Pricing in error">
       <!--course 2 component -->
       <create-course-step-2 #step2></create-course-step-2>
       <ng-template matStepLabel>
@@ -28,6 +29,21 @@
       <div class="stepper-buttons">
         <button mat-raised-button matStepperPrevious>Back</button>
         <button mat-raised-button color="primary" matStepperNext>Continue to step 3</button>
+      </div>
+    </mat-step>
+    <!-- Step 3 -->
+    <mat-step [stepControl]="step3.form" errorMessage="Course lessons in error">
+      <ng-template>
+        Course Lessons
+      </ng-template>
+      <create-course-step-3 #step3></create-course-step-3>
+      <div class="stepper-buttons">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" [disabled]="!step3.form.valid || step3.lessons.length==0"
+          (click)="submit(step1.form.value,step2.form.value,step3.form.value)"
+          >
+          Create Course
+        </button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

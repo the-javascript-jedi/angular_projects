@@ -1,17 +1,22 @@
 <div [formGroup]="form">
-    <!-- child form -->
-    <address-form legend="Address" formControlName="address"></address-form>
+    <!-- child form nested form example-->
+    <!-- <address-form legend="Address" formControlName="address"></address-form> -->
     <!-- Course Title -->
     <mat-form-field>
         <input type="text" matInput placeholder="Course Title" formControlName="title" #title/>
         <mat-hint align="end">
             {{title.value.length}}/60
-        </mat-hint>
+        </mat-hint>        
         <!-- error same title -->
         <mat-error *ngIf="courseTitle.errors?.titleExists">
             This title is already being used
         </mat-error>
+        <!-- min length -->
+        <mat-error *ngIf="courseTitle.errors?.minLength">
+            This title is Small minlength error
+        </mat-error>
     </mat-form-field>
+    <p>courseTitle.errors-{{courseTitle.errors|json}}</p>
     <!-- Dropdown -->
     <mat-form-field>
         <mat-select placeholder="Select Category" formControlName="category">
