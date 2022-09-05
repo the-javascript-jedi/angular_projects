@@ -65,5 +65,16 @@ var storesData = [
     },
     price: 40.0,
   },
+  {
+    id: 6,
+    name: "Halo",
+    studio: "Bungie",
+    thumbnail: "",
+    category: {
+      id: 2,
+      name: "Xbox",
+    },
+    price: 40.0,
+  },
 ];
 exports.storesData = storesData;
