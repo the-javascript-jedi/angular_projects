@@ -1,0 +1,38 @@
+<p>filter-check works!</p>
+<form [formGroup]="myForm">
+    <div *ngFor="let data of categoriesArray">
+        <input type="checkbox" (change)="onChange(data.category, $event)"> {{data.category}}<br>
+    </div>
+</form>
+<button (click)="clickMe()">Click Me</button>
+<pre>Form values: {{myForm.value | json}}</pre>
+<!-- <aside>
+    <ul>
+        <li>
+            <label>
+                <input type="checkbox" value="playstation" class="category-cb">
+                <span>Playstation</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox" value="xbox" class="category-cb">
+                <span>Xbox</span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox" value="nintendo" class="category-cb">
+                <span>Nintendo</span>
+            </label>
+        </li>
+    </ul>
+</aside> -->
+<main>
+    <input type="text" class="store-search" placeholder="Search">
+</main>
+<div class="grid">
+    <div class="filteredStores" *ngFor="let filteredStore of filteredStores">
+        {{filteredStore}}
+    </div>
+</div>
