@@ -1,0 +1,10 @@
+<p>checkbox-click works!</p>
+<ul>
+    <li> <input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll();" />
+    </li>
+    <li *ngFor="let n of names">
+        <input type="checkbox" [(ngModel)]="n.selected" (change)="checkIfAllSelected();">
+        {{n.name}}
+    </li>
+</ul>
+<button (click)="clickTest()">Checkbox clicked</button>
