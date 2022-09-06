@@ -34,14 +34,26 @@ export class CheckboxClickComponent implements OnInit {
     this.selectedAll = this.names.every(function(item:any) {
         return item.selected == true;
       })
-      console.log("this.names",this.names)
+      // console.log("this.names",this.names)
+      this.clickTest()
   }
 // clickTest
 clickTest(){
-   this.names.forEach(val=>{
-    if(val.name==="Sam"){
-      val.selected=!val.selected;
+  //  this.names.forEach(val=>{
+  //   if(val.name==="Sam"){
+  //     val.selected=!val.selected;
+  //   }
+  //  })
+  // find selected names
+  var selectedNames=this.names.filter(val=>{
+    if(val.selected==true){
+      return val.name;
     }
-   })
+  })
+  var namesToDisplay=selectedNames.map(val=>{
+    return val.name;
+  })
+  console.log("selectedNames",selectedNames);
+  console.log("namesToDisplay",namesToDisplay);
 }
 }
