@@ -7,3 +7,29 @@
 .example-item {
     height: 50px;
 }
+
+// .container {
+//     font-family: "Roboto";
+//     display: flex;
+//     justify-content: center;
+//     padding: 30px;
+// }
+.input-search-containers{
+    border: 1px solid;
+        /* width: 100%; */
+        display: flex;
+        flex-direction: column;
+        width: 210px;
+}
+
+.scrolling-container {
+    display: block;
+    width: 200px;
+    height: 200px;
+    overflow: scroll;
+}
+.hide-container{
+    position: absolute;
+        z-index: -1;
+        top: -2000px;
+}

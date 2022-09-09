@@ -1,4 +1,13 @@
-<p>virtual-scroll works!</p>
-<app-virtual-scroll itemSize="50" class="example-viewport">
-    <div *cdkVirtualFor="let item of ds" class="example-item">{{item || 'Loading...'}}</div>
-</app-virtual-scroll>
+<div class="input-search-containers" > 
+    <input type="text" placeholder="Type your search" #searchInput autocomplete="off" (focus)="displayDropdown=true;" [(ngModel)]="dropdownSelectedValue">
+    <div class="request-on-scroll-container " [ngClass]="displayDropdown===false?'hide-container':''">
+        <mat-list class="mat-elevation-z7 ">
+            <div itemSize="48" class="scrolling-container" id="indication" appScrollPosition #indication>
+                <!--  -->
+                <mat-list-item *ngFor="let game of gamesData" (click)="selectListItem(game)" >
+                    {{game.description}}
+                </mat-list-item>
+            </div>
+        </mat-list>
+    </div>
+</div>

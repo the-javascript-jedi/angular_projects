@@ -5,16 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VirtualScrollComponent } from './virtual-scroll/virtual-scroll.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatListModule } from "@angular/material/list";
+import {HttpClientModule} from "@angular/common/http";
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HighlightDirective } from './directives/highlight.directive';
+import { ScrollPositionDirective } from './directives/scroll-position.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    VirtualScrollComponent
+    VirtualScrollComponent,
+    HighlightDirective,
+    ScrollPositionDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatListModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
