@@ -1,12 +1,13 @@
 <p>filter-check works!</p>
-<form [formGroup]="myForm">
-    <div *ngFor="let data of categoriesArray">
-        <input type="checkbox" (change)="onChange(data.category, $event)"> {{data.category}}<br>
-    </div>
-    <main>
-        <input type="text" class="store-search" placeholder="Search" formControlName="name" (keyup)="searchByInput()">
-    </main>
-</form>
+<div *ngFor="let data of categoriesDropdown">
+    <input type="checkbox" [(ngModel)]="data.selected" 
+    (change)="onChange(data.category, $event)"> {{data.category}}<br>
+</div>
+<main>
+    <input type="text" class="store-search" placeholder="Search" (keyup)="searchByInput($event)">
+</main>
+<!-- <form [formGroup]="myForm">
+</form> -->
 <div class="grid">
     <div class="filteredStores" *ngFor="let filteredStore of filteredStores">
         {{filteredStore.name}}

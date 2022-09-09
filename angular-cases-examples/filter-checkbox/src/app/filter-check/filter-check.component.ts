@@ -9,10 +9,16 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 })
 export class FilterCheckComponent implements OnInit {
   constructor(private _http:HttpClient,private fb: FormBuilder) { }
-  categoriesArray = [{ category: "Playstation" }, { category: "Xbox" }, { category: "Nintendo" }, { category: 'PC' }]
+  categoriesDropdown = [
+    { category: "Playstation",selected: false }, 
+    { category: "Xbox",selected: false }, 
+    { category: "Nintendo",selected: false }, 
+    { category: 'PC',selected: false }
+  ]
   filteredStores=[];
   stores:any=[];
   myForm: FormGroup;
+// filters data i.e contains search text as well as checkbox categories
 filters = {
     searchText: '',
     categories: []
@@ -32,28 +38,31 @@ filters = {
     });
 
   }
-
-searchByInput(){
-  // console.log("this.nameForm.get('name')?.value",this.myForm.get('name')?.value);
-  this.filters.searchText = this.myForm.get('name')?.value;
+// Input filter event
+searchByInput(event:Event){
+  // this.filters.searchText = this.myForm.get('name')?.value;
+   this.filters.searchText=(event.target as HTMLInputElement).value;
   // console.log("this.filters",this.filters)
   this.filterStores(this.stores, this.filters);
 }
 // get checkbox checked
 onChange(email: string, isCheckedEvent: any) {
-    let eventIsChecked=isCheckedEvent.target.checked;
-    const emailFormArray = <FormArray>this.myForm.controls['categoriesToFilter'];
-
-    if (eventIsChecked) {
-      emailFormArray.push(new FormControl(email));
-    } else {
-      let index = emailFormArray.controls.findIndex(x => x.value == email)
-      emailFormArray.removeAt(index);
+  // find selected names
+  var allCheckboxesStatus=this.categoriesDropdown.filter(val=>{
+    if(val.selected==true){
+      return val.category;
+    }else{
+      return undefined;
     }
-    this.filters.categories=this.myForm.controls['categoriesToFilter'].value;
-    console.log("this.filters",this.filters);
-    this.filterStores(this.stores, this.filters);
-
+  })
+  // remove undefined values
+  var selectedCheckboxCategories=allCheckboxesStatus.map(val=>{
+    return val.category;
+  });
+  this.filters.categories=selectedCheckboxCategories;
+  console.log("allCheckboxesStatus",allCheckboxesStatus);
+  console.log("selectedCheckboxCategories",selectedCheckboxCategories);    
+  this.filterStores(this.stores, this.filters);
   }
 
 
@@ -61,14 +70,9 @@ onChange(email: string, isCheckedEvent: any) {
     console.log("stores, filters--filterStores",stores, filters);
     this.filteredStores = stores.filter(store => {
       console.log("store--filterStores",store)
-      return store.name.toLowerCase().includes(filters.searchText.toLowerCase())&&((filters.categories.includes(store.category.name))||(filters.categories.length === 0))
-    // return store.name.toLowerCase().includes(filters.searchText.toLowerCase())
-    //  &&
-    //     (
-    //         filters.categories.includes(store.category.name.toLowerCase()) ||
-    //         filters.categories.length === 0 //No selected categories, show all
-    //     )
-    
+      return store.name.toLowerCase().includes(filters.searchText.toLowerCase())&&
+      ((filters.categories.includes(store.category.name))||(filters.categories.length === 0))
+      // filters.categories.length === 0 //No selected categories, show all    
   });
     console.log("filteredStores",this.filteredStores);
   }
