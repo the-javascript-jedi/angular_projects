@@ -1,0 +1,4 @@
+<p>virtual-scroll works!</p>
+<app-virtual-scroll itemSize="50" class="example-viewport">
+    <div *cdkVirtualFor="let item of ds" class="example-item">{{item || 'Loading...'}}</div>
+</app-virtual-scroll>
