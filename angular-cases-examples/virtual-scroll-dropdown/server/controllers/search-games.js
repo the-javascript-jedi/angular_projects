@@ -14,8 +14,6 @@ exports.searchGames = function (req, res) {
         0
       );
     });
-  } else {
-    gamesData = gamesData.slice(0, 10);
   }
   console.log("gamesData", gamesData);
   console.log("filter", filter);
@@ -25,6 +23,6 @@ exports.searchGames = function (req, res) {
 
   setTimeout(() => {
     // res.status(200).json({ payload: lessonsPage });
-    res.status(200).json({ gamesData: gamesDataPage });
+    res.status(200).json({ responseDataFromAPI: gamesDataPage });
   }, 1000);
 };

@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ScrollPositionDirective } from './directives/scroll-position.directive';
+import { MatInputModule } from "@angular/material/input";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { ScrollPositionDirective } from './directives/scroll-position.directive'
     AppRoutingModule,
     BrowserAnimationsModule,
     MatListModule,
+    MatInputModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule

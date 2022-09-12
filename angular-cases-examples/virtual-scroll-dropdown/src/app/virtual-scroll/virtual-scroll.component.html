@@ -1,13 +1,25 @@
 <div class="input-search-containers" > 
-    <input type="text" placeholder="Type your search" #searchInput autocomplete="off" (focus)="displayDropdown=true;" [(ngModel)]="dropdownSelectedValue">
-    <div class="request-on-scroll-container " [ngClass]="displayDropdown===false?'hide-container':''">
-        <mat-list class="mat-elevation-z7 ">
+    <div class="search-input-with-icon">
+        <input type="text" placeholder="Type your search" 
+        autocomplete="off" 
+        #searchInput 
+        (focus)="focusSearchKeyUp()" 
+        [(ngModel)]="dropdownSelectedValue"
+        (keyup)="inputSearchKeyUp($event)"/>        
+        <button (click)="clearSearchText()">X</button>        
+    </div>
+    <div class="request-on-scroll-container" [ngClass]="displayDropdown===false?'hide-container':''">
+        <mat-list class="mat-elevation-z7">
+            
             <div itemSize="48" class="scrolling-container" id="indication" appScrollPosition #indication>
-                <!--  -->
-                <mat-list-item *ngFor="let game of gamesData" (click)="selectListItem(game)" >
-                    {{game.description}}
+                <mat-list-item *ngFor="let data of responseData" (click)="selectListItem(data)" >
+                    {{data.description}}
+                </mat-list-item>
+                <mat-list-item class="loading-data" *ngIf="loadingDropdownApiData===true" disabled>
+                    LOADING...
                 </mat-list-item>
             </div>
         </mat-list>
+        <!-- scrolling - overlay -->
     </div>
 </div>

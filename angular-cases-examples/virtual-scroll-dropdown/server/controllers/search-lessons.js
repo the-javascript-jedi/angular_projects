@@ -35,3 +35,33 @@ exports.searchLessons = function (req, res) {
     res.status(200).json({ lessons: lessonsPage });
   }, 1000);
 };
+
+exports.searchCustomLessons = function (req, res) {
+  const queryParams = req.query;
+  const filter = queryParams.filter || "";
+  const pageNumber = parseInt(queryParams.pageNumber) || 0;
+  const pageSize = parseInt(queryParams.pageSize) || 10;
+
+  let coursesCustomData = [];
+  coursesCustomData = DB_DATA.COURSES;
+  console.log("coursesCustomData", coursesCustomData);
+  let all_courses_data = Object.values(coursesCustomData);
+  if (filter) {
+    // console.log("lessons", lessons);
+    all_courses_data = all_courses_data.filter((courseVal) => {
+      return (
+        courseVal.description
+          .trim()
+          .toLowerCase()
+          .search(filter.toLowerCase()) >= 0
+      );
+    });
+  }
+  const initialPos = pageNumber * pageSize;
+  // const gamesDataPage = gamesData.slice(initialPos, initialPos + pageSize);
+  const courseDataPage = all_courses_data.slice(initialPos, pageSize);
+  setTimeout(() => {
+    // res.status(200).json({ payload: lessonsPage });
+    res.status(200).json({ responseDataFromAPI: courseDataPage });
+  }, 1000);
+};

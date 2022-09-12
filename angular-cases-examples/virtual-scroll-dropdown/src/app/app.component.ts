@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'virtual-scroll-dropdown';
+
+  selectItemParent(selectedItem: string) {
+    console.log("@Output--selectedItem",selectedItem)
+  }
 }

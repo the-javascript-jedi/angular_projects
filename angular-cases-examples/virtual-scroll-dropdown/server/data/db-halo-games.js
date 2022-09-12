@@ -99,5 +99,29 @@ var HALO_GAMES = [
     id: 24,
     description: "Halo: Shadows of Reach",
   },
+  {
+    id: 25,
+    description: "Uncharted",
+  },
+  {
+    id: 26,
+    description: "Drakes Deception",
+  },
+  {
+    id: 27,
+    description: "No Honour Among Thieves",
+  },
+  {
+    id: 27,
+    description: "Uncharted Among Thieves",
+  },
+  {
+    id: 28,
+    description: "A Thief's End",
+  },
+  {
+    id: 29,
+    description: "Halo: Onyx",
+  },
 ];
 exports.HALO_GAMES = HALO_GAMES;
