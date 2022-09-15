@@ -1,0 +1,47 @@
+<p>table-with-graph works!</p>
+<div class="progressbar-placeholder">
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Non Crash</th>
+                <th>Crash</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Contribution</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of tableData">
+                <td style="width:150px;">
+                    <ng-container *ngIf="data.bar_direction==='positive'">
+                        <div [ngStyle]="{'width':data.percentageValue+'%'}" class="green-border">
+
+                        </div>
+                    </ng-container>
+                </td>
+                <td style="width:150px;">
+                    <ng-container *ngIf="data.bar_direction==='negative'">
+                    <div [ngStyle]="{'width':data.percentageValue+'%'}" class="red-border">
+                    
+                    </div>
+                    </ng-container>
+                </td>
+                <td>{{data.id}}</td>
+                <td>{{data.description}}</td>
+                <td>{{data.contribution}}</td>
+                <td>{{data.percentageValue}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- trial data -->
+<ng-container *ngIf="false">
+    <div class="progressbar" *ngFor="let data of dataResponse" [ngStyle]="{
+            'width':data.percentageValue+'%',
+            'border':calculateBorderColor(data.bar_direction)
+        }">
+        {{data.description}} | {{data.percentageValue}}
+    </div>
+</ng-container>
