@@ -10,6 +10,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent implements OnInit {
     form:FormGroup;
+    errors:string[]=[];
+    // error code to display error
+    messagePerErrorCode={
+        min:"The minimum length is 10 characters",
+        uppercase:"At least one upper case characters",
+        digits:"At least one numeric character"
+    }
+
     constructor(private fb: FormBuilder,private authService:AuthService) {
         this.form = this.fb.group({
             email: ['',Validators.required],
@@ -19,14 +27,18 @@ export class SignupComponent implements OnInit {
     }
     ngOnInit() { }
     signUp() {
+        this.errors=[];
         const val = this.form.value;
         //TODO
         if(val.email&&val.password&&val.password===val.confirm){
             this.authService.signUp(val.email,val.password).subscribe({
-                next:()=>{
-                    console.log("user created");
+                next:(response)=>{
+                    console.log("user created",response);
+                    // response=>this.errors=response.error.errors;
                 },
-                error:()=>{}
+                error:(responseError)=>{
+                    this.errors=responseError.error.errors;
+                }
             });
         }
     }
