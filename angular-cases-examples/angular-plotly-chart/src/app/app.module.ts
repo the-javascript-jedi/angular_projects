@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { PlotlyChartComponent } from './plotly-chart/plotly-chart.component';
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
+import { ScatterChartComponent } from './scatter-chart/scatter-chart.component';
+import { GraphComponent } from './graph/graph.component';
+import { ThreeDScatterComponent } from './three-d-scatter/three-d-scatter.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlotlyChartComponent
+    PlotlyChartComponent,
+    ScatterChartComponent,
+    GraphComponent,
+    ThreeDScatterComponent
   ],
   imports: [
     BrowserModule,

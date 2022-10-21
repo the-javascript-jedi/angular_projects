@@ -2,6 +2,7 @@ import { Component, OnInit ,ViewChild,ElementRef, AfterViewInit} from '@angular/
 import * as _ from 'lodash';
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Component({
@@ -37,4 +38,19 @@ export class PlotlyChartComponent implements OnInit {
     ],
     layout: {title: 'Some Data to Highlight'}
   };
+
+//   // Initialize a behavior subject to return the line chart data
+// interactivePlotSubject$: Subject<any> = new BehaviorSubject<any>(this.graph2.data);
+// // We'll bind the hover event from plotly
+// hover(event: any): void {
+//   // The hover event has a lot of information about cursor location.
+//   // The bar the user is hovering over is in "pointIndex"
+//   this.interactivePlotSubject$.next(
+//     [this.graph2.data[event.points[0]].pointIndex]]
+//   );
+// }
+// // Reset to default when hovering stops
+// mouseLeave(event): void {
+//   this.interactivePlotSubject$.next(this.graph2.data);
+// }
 }
