@@ -48,7 +48,7 @@
     "password-validator": "^4.0.0",
     "rxjs": "6.3.3",
     "zone.js": "^0.8.14",
-    "rxjs-compat": "^6.0.0-rc.0"
+    "rxjs-compat": "6.0.0-rc.0"
   },
   "devDependencies": {
     "@angular/cli": "^7.0.0",
