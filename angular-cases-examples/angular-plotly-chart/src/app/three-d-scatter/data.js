@@ -1,11 +1,5 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class ChartService {
-dataX = [
-  "100",
+var dataX = (601)[
+  ("100",
   "99.2388753892",
   "99.5596084127",
   "97.9314245515",
@@ -104,9 +98,9 @@ dataX = [
   "93.2124670895",
   "91.8639364563",
   "93.0149617215",
-  "93.0147091833"
+  "93.0147091833")
 ];
-dataY = [
+var dataY = [
   "0.613222019079",
   "0.589852009747",
   "0.599742550669",
@@ -209,7 +203,7 @@ dataY = [
   "0.394354486446",
 ];
 
-dataZ = [
+var dataZ = [
   "0.734706454227",
   "0.781320309118",
   "0.762565820325",
@@ -311,11 +305,4 @@ dataZ = [
   "1.8052125009",
   "1.80103652748",
 ];
-
-chartScatterData = {
-   dataX:this.dataX,
-   dataY:this.dataY,
-   dataZ:this.dataZ,
- }
-  constructor() { }
-}
+export { dataX, dataY, dataZ };
