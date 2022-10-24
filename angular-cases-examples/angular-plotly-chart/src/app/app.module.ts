@@ -9,6 +9,7 @@ import { PlotlyModule } from 'angular-plotly.js';
 import { ScatterChartComponent } from './scatter-chart/scatter-chart.component';
 import { GraphComponent } from './graph/graph.component';
 import { ThreeDScatterComponent } from './three-d-scatter/three-d-scatter.component';
+import { ThreeDScatterMultipleComponent } from './three-d-scatter-multiple/three-d-scatter-multiple.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -18,7 +19,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     PlotlyChartComponent,
     ScatterChartComponent,
     GraphComponent,
-    ThreeDScatterComponent
+    ThreeDScatterComponent,
+    ThreeDScatterMultipleComponent
   ],
   imports: [
     BrowserModule,
