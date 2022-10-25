@@ -45,7 +45,10 @@ async function createUserAndSession(res:Response,credentials){
     // store the session id
     sessionStore.createSession(sessionId,user);
     // set the session id to cookie
-    res.cookie("SESSIONID",sessionId);
+    res.cookie("SESSIONID",sessionId,{
+        httpOnly:true,
+        secure:true
+    });
     res.status(200).json({
                     id:user.id,
                     email:user.email

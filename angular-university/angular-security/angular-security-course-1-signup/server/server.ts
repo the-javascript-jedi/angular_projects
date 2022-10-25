@@ -5,6 +5,8 @@ import {Application} from "express";
 import * as fs from 'fs';
 import * as https from 'https';
 import { createUser } from './Routes/create-user.route';
+import { getUser } from './Routes/get-user-route';
+import { logout } from './Routes/logout.route';
 import {readAllLessons} from "./Routes/read-all-lessons.route";
 
 const bodyParser = require('body-parser');
@@ -24,6 +26,10 @@ const options = commandLineArgs(optionDefinitions);
 app.route('/api/lessons')
     .get(readAllLessons);
 app.route('/api/signup').post(createUser);
+// find valid user using the session id in the cookie
+app.route('/api/user').get(getUser);
+// logout the user
+app.route('/api/logout').post(logout);
 
 if (options.secure) {
     const httpsServer = https.createServer({

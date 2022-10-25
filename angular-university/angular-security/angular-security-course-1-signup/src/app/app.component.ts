@@ -12,7 +12,8 @@ export class AppComponent implements OnInit{
 
   isLoggedIn$:Observable<boolean>;
   isLoggedOut$:Observable<boolean>;
-  
+  user$: Observable<User>;
+
   constructor(private authService:AuthService){
 
   }
@@ -20,5 +21,14 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
       this.isLoggedIn$=this.authService.isLoggedIn$;
       this.isLoggedOut$=this.authService.isLoggedOut$;
+      this.user$ = this.authService.user$;
+  }
+
+  logout(){
+    this.authService.logout().subscribe({
+      next:(val)=>{
+        console.log("val",val)
+      }
+    });
   }
 }
