@@ -1,7 +1,7 @@
 
 import * as _ from 'lodash';
-import {LESSONS, USERS} from "./database-data";
-import { DbUser } from './db-user';
+import {LESSONS, USERS} from "../Data/database-data";
+import { DbUser } from '../Models/db-user';
 class InMemoryDatabase {
     // to create a key
     userCounter=0;
