@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as https from 'https';
 import { createUser } from './Routes/create-user.route';
 import { getUser } from './Routes/get-user-route';
+import { login } from './Routes/login.route';
 import { logout } from './Routes/logout.route';
 import {readAllLessons} from "./Routes/read-all-lessons.route";
 
@@ -30,6 +31,8 @@ app.route('/api/signup').post(createUser);
 app.route('/api/user').get(getUser);
 // logout the user
 app.route('/api/logout').post(logout);
+// login
+app.route('/api/login').post(login);
 
 if (options.secure) {
     const httpsServer = https.createServer({

@@ -36,6 +36,12 @@ export class AuthService {
             shareReplay(),
             tap(user => this.subject.next(user)),);
   }
+  // login
+  login(email:string,password:string){
+   return this.http.post<User>('/api/login', {email, password}).pipe(
+            shareReplay(),
+            tap(user => this.subject.next(user)),);
+  }
 
   logout():Observable<any>{
     // return this.http.post('/api/logout',null).shareReplay().do(user=>this.subject.next(ANONYMOUS_USER));
