@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LessonsComponent } from './lessons/lessons.component';
@@ -10,17 +10,7 @@ import {LessonsService} from "./services/lessons.service";
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {AuthService} from "./services/auth.service";
-
-
-
-
-
-
-
-
-
-
-
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,10 +25,15 @@ import {AuthService} from "./services/auth.service";
   ],
   providers: [
       LessonsService,
-      AuthService
+      AuthService,{
+        // to which injection token we want to associate our class with
+        provide:HTTP_INTERCEPTORS,
+        // our outhentication interceptor class
+        useClass:AuthInterceptor,
+        // can be multiple http interceptors
+        multi:true
+      }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule {}
