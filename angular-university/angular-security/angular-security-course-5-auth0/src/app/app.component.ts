@@ -9,27 +9,18 @@ import {User} from "./model/user";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit {
-
-    constructor(private auth:AuthService) {
-
-    }
+    constructor(private auth:AuthService) {}
 
     ngOnInit() {
-
+        this.auth.retrieveAuthInfoFromUrl();
     }
-
     signUp() {
         this.auth.signUp();
     }
-
     login() {
         this.auth.login();
-
     }
-
     logout() {
         this.auth.logout();
     }
-
 }
-
