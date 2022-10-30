@@ -7,6 +7,9 @@ import {User} from "../model/user";
 import * as auth0 from 'auth0-js';
 import {Router} from "@angular/router";
 import * as moment from 'moment';
+import { pluck, share, shareReplay, tap } from 'rxjs/operators';
+
+
 export const ANONYMOUS_USER: User = {
     id: undefined,
     email: ''
@@ -24,18 +27,28 @@ export class AuthService {
         clientID: AUTH_CONFIG.clientID,
         domain: AUTH_CONFIG.domain,
         responseType: 'token id_token',
-        redirectUri: 'https://localhost:4200/lessons'
+        redirectUri: 'https://localhost:4200/lessons',
+        // ask for email
+        scope:'openid email'
     });
-
+    // used to emit the user preferences after the put call
     private userSubject = new BehaviorSubject<User>(undefined);
     user$: Observable<User> = this.userSubject.asObservable().pipe(filter(user => !!user));
-    constructor(private http: HttpClient, private router: Router) {    }
+    constructor(private http: HttpClient, private router: Router) {  
+        // whenever user is logged in and already json web token is present and we want to fetch the user info at startup time
+        // if the user has a valid jwt token that has not yet expired
+        if(this.isLoggedIn()){
+            // trigger the user info call and fetch the user preferences from backend
+            this.userInfo();
+        }
+    }
 
     login() {
-        this.auth0.authorize();
+        this.auth0.authorize({initialScreen:'login'});
     }
 
     signUp() {
+        this.auth0.authorize({initialScreen:'signUp'});
     }
 
     retrieveAuthInfoFromUrl(){
@@ -50,8 +63,16 @@ export class AuthService {
                  // no error - valid authentication scenario
                 console.log("Authentication Succesful, authResult:", authResult);
                 this.setSession(authResult);
+                // We want to make sure that users sign up at user login. And whenever the user refresh is the application and is already logged in, we want to make sure that we fetch from the backend, the user preferences.
+                //send rquest to server
+                this.userInfo();
             }            
         });
+    }
+    // we call the userinfo method whenever we login the user and whenever we register the new user
+    userInfo(){
+        // we are passing null since the json web token already contains the email
+        this.http.put<User>('/api/userinfo',null).pipe(shareReplay(),tap(user=>this.userSubject.next(user))).subscribe();
     }
     logout() {
         // remove the local storage tokens
