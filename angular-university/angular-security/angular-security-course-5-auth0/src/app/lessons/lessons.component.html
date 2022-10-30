@@ -1,8 +1,6 @@
 
 <div class="lessons-list-container v-h-center-block-parent" *ngIf="auth.isLoggedIn()">
-
     <h2>All Lessons</h2>
-
     <table class="table lessons-list card card-strong">
         <tbody>
         <tr *ngFor="let lesson of lessons$ | async" [routerLink]="['/lessons', lesson.id]">
@@ -14,5 +12,4 @@
         </tr>
         </tbody>
     </table>
-
 </div>
