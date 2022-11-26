@@ -13,6 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/api", api);
+// test method
 app.get("/", function (req, res) {
   res.send("Hello from Server");
 });
