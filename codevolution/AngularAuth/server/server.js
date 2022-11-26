@@ -1,5 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+
+// Load env vars
+dotenv.config({ path: "./config/config.env" });
 
 const PORT = 5000;
 const api = require("./routes/api");

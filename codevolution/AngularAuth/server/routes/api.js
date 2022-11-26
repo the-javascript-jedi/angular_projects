@@ -3,8 +3,7 @@ const router = express.Router();
 
 const mongoose = require("mongoose");
 
-const db =
-  "mongodb+srv://nithin123:nithin123@cluster0.vm99a.mongodb.net/eventsdb";
+const db = process.env.MONGO_URI;
 
 mongoose.connect(db, (err) => {
   if (err) {
