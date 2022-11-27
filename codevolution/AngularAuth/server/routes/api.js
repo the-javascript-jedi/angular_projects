@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 //access through dotenv configs
 const db = process.env.MONGO_URI;
 
@@ -12,6 +13,29 @@ mongoose.connect(db, (err) => {
     console.error("Connected to mongodb!!");
   }
 });
+// verify token middleware
+function verifyToken(req, res, next) {
+  // if no token return un authorized
+  if (!req.headers.authorization) {
+    return res.status(401).send("Unauthorized request");
+  }
+  // extract token from headers if it exists
+  console.log("req.headers", req.headers);
+  let token = req.headers.authorization.split(" ")[1];
+  console.log("token", token);
+  if (token === null || token === "null") {
+    return res.status(401).send("Unauthorized request");
+  }
+  // if payload exists check if payload contains the secretkey which we used to hash the id
+  let payload = jwt.verify(token, "secretKey");
+  if (!payload) {
+    return res.status(401).send("Unauthorized request");
+  } else {
+    req.userId = payload.subject;
+  }
+  next();
+}
+
 router.get("/", (req, res) => {
   res.send("From API route");
 });
@@ -27,7 +51,10 @@ router.post("/register", (req, res) => {
     if (error) {
       console.log("register-error", error);
     } else {
-      res.status(200).send(registeredUser);
+      // destructure the id from the db and send it to the front end as a token
+      let payload = { subject: registeredUser._id };
+      let token = jwt.sign(payload, "secretKey");
+      res.status(200).send({ token: token });
     }
   });
 });
@@ -45,7 +72,10 @@ router.post("/login", (req, res) => {
         if (user.password !== userData.password) {
           res.status(401).send("Invalid Password");
         } else {
-          res.status(200).send(user);
+          // destructure the id from the db and send it to the front end as a token
+          let payload = { subject: user._id };
+          let token = jwt.sign(payload, "secretKey");
+          res.status(200).send({ token: token });
         }
       }
     }
@@ -93,8 +123,9 @@ router.get("/events", (req, res) => {
   ];
   res.json(events);
 });
-
-router.get("/special", (req, res) => {
+// verifyToken is a middleware which checks if the token is valid
+// if invalid token the api will not execute
+router.get("/special", verifyToken, (req, res) => {
   let specialEvents = [
     {
       _id: "1",
