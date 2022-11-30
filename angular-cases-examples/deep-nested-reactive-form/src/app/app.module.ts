@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NestedFormComponent } from './nested-form/nested-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomNestedFormComponent } from './custom-nested-form/custom-nested-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NestedFormComponent
+    NestedFormComponent,
+    CustomNestedFormComponent
   ],
   imports: [
     BrowserModule,
