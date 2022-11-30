@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-custom-nested-form',
-//   templateUrl: './custom-nested-form.component.html',
-//   styleUrls: ['./custom-nested-form.component.scss']
-// })
-// export class CustomNestedFormComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -23,7 +7,6 @@ import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@ang
   styleUrls: ['./custom-nested-form.component.scss']
 })
 export class CustomNestedFormComponent implements OnInit {
-  // source--https://stackblitz.com/edit/deep-nested-reactive-form-g4kbdb?file=app%2Fapp.component.ts
   survey: FormGroup;
 
   constructor() { }
