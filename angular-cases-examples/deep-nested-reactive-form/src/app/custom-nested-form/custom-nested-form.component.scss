@@ -1,0 +1,27 @@
+.form-intro,.form-questions,.section-title-placeholder,.section-description-placeholder,.question-description-placeholder,.question-type-placeholder{
+    float: left;
+    padding: 15px;
+}
+
+.section-container{
+    border: 1px solid red;
+    overflow: auto;
+}
+
+.getQuestions{
+    border: 1px solid green;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+.getQuestions-container{
+    overflow: auto;
+    border: 1px solid green;
+}

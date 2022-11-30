@@ -10,15 +10,9 @@ export class CustomNestedFormComponent implements OnInit {
   survey: FormGroup;
 
   constructor() { }
-
+  submitted:boolean=false;
   ngOnInit(): void {
     this.survey = new FormGroup({
-      surveyName: new FormControl(''),
-      logoUrl: new FormControl(''),
-      headerUrl: new FormControl(''),
-      headerColor: new FormControl(''),
-      footerUrl: new FormControl(''),
-      footerColor: new FormControl(''),
       sections: new FormArray([
         this.initSection(),
       ]),
@@ -26,8 +20,8 @@ export class CustomNestedFormComponent implements OnInit {
   }
   initSection() {
     return new FormGroup({
-      sectionTitle: new FormControl(''),
-      sectionDescription: new FormControl(''),
+      sectionTitle: new FormControl('',Validators.required),
+      sectionDescription: new FormControl('',Validators.required),
       questions: new FormArray([
         this.initQuestion()
         ])
@@ -35,11 +29,8 @@ export class CustomNestedFormComponent implements OnInit {
   }
   initQuestion() {
     return new FormGroup({
-      questionTitle: new FormControl(''),
-      questionType: new FormControl('',Validators.required),
-      options: new FormArray([
-        this.initOptions()
-      ])
+      questionTitle: new FormControl('',Validators.required),
+      questionType: new FormControl('',Validators.required),      
     });
   }
 
@@ -50,11 +41,13 @@ export class CustomNestedFormComponent implements OnInit {
   }
 
   addSection() {
+    this.submitted=false;
     const control = <FormArray>this.survey.get('sections');
     control.push(this.initSection());
   }
 
   addQuestion(j) {
+    this.submitted=false;
     console.log(j);
     const control = <FormArray>this.survey.get('sections')['controls'][j].get('questions');
    // console.log(control);
@@ -109,7 +102,9 @@ export class CustomNestedFormComponent implements OnInit {
   }
 
   onSubmit(form){
-    console.log("form--onSubmit",form.value.sections)
+    this.submitted = true;
+    console.log("form",form);
+    // console.log("form--onSubmit",form.value.sections);
   }
   
 
