@@ -88,6 +88,7 @@ export class TableWithPaginationComponent implements OnInit,AfterViewInit {
         this.selection.select(...this.games);
     }
   }
+  // checkbox selection for all elements in same page
   isAllSelected() {
     return this.selection.selected?.length == this.games?.length;
   }
