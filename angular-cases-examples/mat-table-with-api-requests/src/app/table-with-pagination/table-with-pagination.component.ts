@@ -47,11 +47,6 @@ export class TableWithPaginationComponent implements OnInit,AfterViewInit {
 
   loadGamesPage(){
     this.loading = true;
-    // this.sort?.direction ?? "asc",
-    // this.paginator?.pageIndex ?? 0,
-    // this.paginator?.pageSize ?? 3,
-    // this.sort?.active ?? "seqNo"
-    // sortOrder,pageNumber,pageSize,sortColumn
     let sortDirection=this.sort?.direction ?? "asc";
     let pageIndex=this.paginator?.pageIndex ?? 0;
     let pageSize=this.paginator?.pageSize ?? 5;
@@ -84,11 +79,18 @@ export class TableWithPaginationComponent implements OnInit,AfterViewInit {
       }
     })
   }
-
+// toggle all has issues need to look into it
   toggleAll(){
-
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    }
+    else {
+        this.selection.select(...this.games);
+    }
   }
-
+  isAllSelected() {
+    return this.selection.selected?.length == this.games?.length;
+  }
   onLessonToggled(data){
     console.log("data-onLessonToggled",data);
     this.selection.toggle(data);
@@ -102,5 +104,10 @@ export class TableWithPaginationComponent implements OnInit,AfterViewInit {
     else {
         this.expandedLesson = lesson;
     }
+  }
+
+  getSelection(){
+    // does not work for repeating values
+    console.log("this.selection",this.selection);
   }
 }

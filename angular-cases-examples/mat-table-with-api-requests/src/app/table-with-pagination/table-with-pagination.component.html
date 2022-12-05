@@ -10,10 +10,12 @@
             <ng-container matColumnDef="select" sticky>
                 <th mat-header-cell *matHeaderCellDef>
                     <mat-checkbox 
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
                     (change)="toggleAll()"></mat-checkbox>
                 </th>
                 <td  mat-cell *matCellDef="let game" (click)="$event.stopPropagation()">
-                    <mat-checkbox (change)="onLessonToggled(game)">
+                    <mat-checkbox (change)="onLessonToggled(game)" [checked]="selection.isSelected(game)">
                     </mat-checkbox>
                 </td>     
             </ng-container>
@@ -40,8 +42,8 @@
             <tr mat-row
             (click)="onToggleLesson(game)"
             *matRowDef="let game;columns:displayedColumns"></tr>
-            <!-- <tr mat-row *matRowDef="let game;columns:['expandedDetail']"
-                    [class.collapsed-detail]="game != expandedLesson"></tr> -->
+            <tr mat-row *matRowDef="let game;columns:['expandedDetail']"
+                    [class.collapsed-detail]="game != expandedLesson"></tr>
         </table>
         <mat-paginator class="mat-elevation-z8"
         [length]=tableDataCount
@@ -49,4 +51,5 @@
         [pageSizeOptions]="[5, 10, 15]">
         </mat-paginator>
     </div>
+    <button (click)="getSelection()">Get Selection</button>
 </div>
