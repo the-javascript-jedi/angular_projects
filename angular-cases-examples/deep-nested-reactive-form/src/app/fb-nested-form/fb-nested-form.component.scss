@@ -1,0 +1,28 @@
+.section-title{
+    display: flex;
+    justify-content: space-between;
+}
+.section-details,.question-container{
+    padding: 20px;
+    padding-bottom: 0px;
+}
+.section-details{
+    padding: 20px;
+    padding-bottom: 0px;
+    .sectionDescription{
+        margin-left: 20px;
+    }
+}
+.section-row{
+    display: flex;
+    border: 1px solid red;
+}
+.question-container{
+    border: 1px solid green;
+    .questionType{
+        margin-left: 20px;
+    }
+}
+.question-row{
+    margin-bottom: 20px;
+}

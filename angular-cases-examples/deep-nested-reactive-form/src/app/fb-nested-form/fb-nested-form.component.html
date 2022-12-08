@@ -1,0 +1,57 @@
+<h1>Form Builder Approach</h1>
+<!-- Form Builder Approach -->
+<form [formGroup]="survey" novalidate (ngSubmit)="onSubmit(survey)">
+    <div class="buttons-placeholder">
+        <!-- Add Section -->
+        <button type="button" (click)="addSection()" class="point">Add Section </button>
+    </div>
+    <!---Survey Section -->
+    <div formArrayName="sections">
+        <div class="section-container" *ngFor="let section of getSections(survey); let i = index">
+            <div class="ui raised segments" [formGroupName]="i">
+                <div class="section-title">
+                    <h4 class="ui header">Section Details</h4>
+                    <!-- remove section -->
+                    <span *ngIf="getSections(survey).length > 1" (click)="removeSection(i)">X Remove Section</span>
+                </div>
+                <div class="section-row">
+                    <div class="section-details">
+                        <!---Survey Section -->
+                        <input type="text" placeholder="sectionTitle" formControlName="sectionTitle" class="sectionTitle">
+                        <input type="text" placeholder="sectionDescription" formControlName="sectionDescription" class="sectionDescription">
+                    </div>
+
+                    <!-- Question segment -->
+                    <div class="question-container" formArrayName="questions">
+                        <div [formGroupName]="j" *ngFor="let question of getQuestions(section); let j = index" class="question-row">
+                            <input type="text" placeholder="Untitled Question" formControlName="questionTitle" class="questionTitle">
+                            <select formControlName="questionType" class="questionType">
+                                <option></option>
+                                <option>Check Boxes</option>
+                                <option>Free Text</option>
+                                <option>Rating</option>
+                                <option>Date</option>
+                                <option>Time</option>
+                            </select>
+    
+                            <div *ngIf="survey.errors" class="alert alert-danger">
+                                {{ survey.errors }}
+                            </div>
+                            <button type="button" (click)="addQuestion(i)">Add Question</button>
+                            <span *ngIf="getQuestions(section).length > 1" (click)="removeQuestion(i)"> X Remove
+                                Question</span>
+                        </div><br>
+                    </div>
+                    <!-- End Question -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Section -->
+    <!-- Submit -->
+    <button type="submit">
+        Submit
+    </button>
+</form>
+
+<pre> {{survey.value | json}} </pre>

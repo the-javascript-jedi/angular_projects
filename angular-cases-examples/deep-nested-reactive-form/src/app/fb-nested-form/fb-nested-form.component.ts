@@ -1,47 +1,57 @@
+// import { Component, OnInit } from '@angular/core';
+
+// @Component({
+//   selector: 'app-fb-nested-form',
+//   templateUrl: './fb-nested-form.component.html',
+//   styleUrls: ['./fb-nested-form.component.scss']
+// })
+// export class FbNestedFormComponent implements OnInit {
+
+//   constructor() { }
+
+//   ngOnInit(): void {
+//   }
+
+// }
+// ///////////////////////////////////////////////////
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
 @Component({
-  selector: 'app-nested-reactive-form',
-  templateUrl: './nested-reactive-form.component.html',
-  styleUrls: ['./nested-reactive-form.component.css']
+  selector: 'app-fb-nested-form',
+  templateUrl: './fb-nested-form.component.html',
+  styleUrls: ['./fb-nested-form.component.scss']
 })
-export class NestedReactiveFormComponent implements OnInit {
-
+export class FbNestedFormComponent implements OnInit {
   survey: FormGroup;
   constructor(private fb: FormBuilder) {
-    
+
   }
-  
-    ngOnInit() {
+
+//If you want to via formbuilder way just use this file instead of app.component.ts replace the contents
+
+  ngOnInit() {
 
 
-    this.survey = new FormGroup({
-      surveyName: new FormControl(''),
-      logoUrl: new FormControl(''),
-      headerUrl: new FormControl(''),
-      headerColor: new FormControl(''),
-      footerUrl: new FormControl(''),
-      footerColor: new FormControl(''),
-      sections: new FormArray([
+    this.survey = this.fb.group({
+      sections: this.fb.array([
         this.initSection(),
       ]),
     });
   }
 
   initSection() {
-    return new FormGroup({
-      sectionTitle: new FormControl(''),
-      sectionDescription: new FormControl(''),
-      questions: new FormArray([
+    return this.fb.group({
+      sectionTitle: [''],
+      sectionDescription: [''],
+      questions: this.fb.array([
         this.initQuestion()
         ])
     });
   }
   initQuestion() {
-    return new FormGroup({
-      questionTitle: new FormControl(''),
-      questionType: new FormControl('',Validators.required),
+    return this.fb.group({
+      questionTitle: [],
+      questionType: [],
       options: new FormArray([
         this.initOptions()
       ])
@@ -49,8 +59,8 @@ export class NestedReactiveFormComponent implements OnInit {
   }
 
   initOptions() {
-    return new FormGroup({
-      optionTitle: new FormControl('')
+    return this.fb.group({
+      optionTitle: ['']
     });
   }
 
@@ -69,7 +79,7 @@ export class NestedReactiveFormComponent implements OnInit {
 
   add(i,j) {
     //console.log(k);
-    const control = <FormArray>this.survey.get('sections')['controls'][i].get('questions')['controls'][j].get('options');
+    const control = <FormArray>this.survey.get('sections')['controls'][i].get('questions').controls[j].get('options');
 
   // const control = <FormArray>this.survey.get(['sections',0,'questions',k,'options']); // also try this new syntax
     //console.log(control);
@@ -101,19 +111,14 @@ export class NestedReactiveFormComponent implements OnInit {
 
   }
 
-  removeOption(i,j,k){
-    console.log(i,j,k);
+  removeOption(i,j){
    const control = <FormArray>this.survey.get(['sections',i,'questions',j,'options']); // also try this new syntax
-   control.removeAt(k);
-  }
+   control.removeAt(i);
 
-  remove(i,j){
-    const control =  <FormArray>this.survey.get(['sections',i,'questions',j,'options']);
-    control.removeAt(0);
-    control.controls = [];
   }
 
   onSubmit(form){
     
   }
+
 }

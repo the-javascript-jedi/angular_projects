@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NestedReactiveFormComponent } from './nested-reactive-form.component';
+import { FbNestedFormComponent } from './fb-nested-form.component';
 
-describe('NestedReactiveFormComponent', () => {
-  let component: NestedReactiveFormComponent;
-  let fixture: ComponentFixture<NestedReactiveFormComponent>;
+describe('FbNestedFormComponent', () => {
+  let component: FbNestedFormComponent;
+  let fixture: ComponentFixture<FbNestedFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NestedReactiveFormComponent ]
+      declarations: [ FbNestedFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NestedReactiveFormComponent);
+    fixture = TestBed.createComponent(FbNestedFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
