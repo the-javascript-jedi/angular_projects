@@ -12,9 +12,10 @@ import {dataFromApiTS} from "../../data/dummyData"
 })
 export class FbNestedFormComponent implements OnInit {
   survey: FormGroup;
+  loadedSurvey: FormGroup;
   submitted:boolean=false;
+  dataFromAPIS=[];
   constructor(private fb: FormBuilder) {
-
   }
 
 //If you want to via formbuilder way just use this file instead of app.component.ts replace the contents
@@ -26,6 +27,8 @@ export class FbNestedFormComponent implements OnInit {
     // exported array as TS
     let arrayFromTS=dataFromApiTS;
     console.log("arrayFromTS",arrayFromTS);
+    // load data from apis
+    this.dataFromAPIS=arrayFromTS.sections;
 
     this.survey = this.fb.group({
       sections: this.fb.array([
@@ -121,5 +124,37 @@ export class FbNestedFormComponent implements OnInit {
     this.submitted = true;
     console.log("form--onSubmit",form);
   }
-
+  loadData(){
+    console.log('load data called');
+    let data=this.dataFromAPIS;
+    console.log("data",data)
+    this.survey=this.fb.group({
+      sections:this.fb.array(
+        data.map((val,index)=>{
+          return this.fb.group({
+            sectionTitle:[val.sectionTitle,{
+              validators:[Validators.required]
+            }],
+              sectionDescription: [val.sectionDescription,{
+               validators:[Validators.required]
+            }],
+            questions:this.fb.array(
+              val.questions.map((question,index)=>{
+                return(
+                  this.fb.group({
+                      questionTitle:[question.questionTitle,{
+                         validators:[Validators.required]
+                      }],
+                      questionType:[question.questionType,{
+                         validators:[Validators.required]
+                      }]
+                  })
+                )
+              })
+            )
+          })
+        })
+      )
+    })
+  }
 }

@@ -1,4 +1,6 @@
 <h1>Form Builder Approach</h1>
+<button (click)="loadData()">Load Data</button>
+<hr />
 <!-- Form Builder Approach -->
 <form [formGroup]="survey" novalidate (ngSubmit)="onSubmit(survey)">
     <div class="buttons-placeholder">
@@ -75,3 +77,4 @@
 </form>
 <p>survey.valid--{{survey.valid|json}}</p>
 <pre> {{survey.value | json}} </pre>
+
