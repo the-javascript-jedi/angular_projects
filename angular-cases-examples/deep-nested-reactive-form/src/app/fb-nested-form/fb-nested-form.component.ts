@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-fb-nested-form',
-//   templateUrl: './fb-nested-form.component.html',
-//   styleUrls: ['./fb-nested-form.component.scss']
-// })
-// export class FbNestedFormComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-// ///////////////////////////////////////////////////
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 @Component({
@@ -23,6 +7,7 @@ import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@ang
 })
 export class FbNestedFormComponent implements OnInit {
   survey: FormGroup;
+  submitted:boolean=false;
   constructor(private fb: FormBuilder) {
 
   }
@@ -41,8 +26,12 @@ export class FbNestedFormComponent implements OnInit {
 
   initSection() {
     return this.fb.group({
-      sectionTitle: [''],
-      sectionDescription: [''],
+      sectionTitle: ['',{
+        validators:[Validators.required]
+      }],
+      sectionDescription: ['',{
+        validators:[Validators.required]
+      }],
       questions: this.fb.array([
         this.initQuestion()
         ])
@@ -50,11 +39,12 @@ export class FbNestedFormComponent implements OnInit {
   }
   initQuestion() {
     return this.fb.group({
-      questionTitle: [],
-      questionType: [],
-      options: new FormArray([
-        this.initOptions()
-      ])
+      questionTitle: ['',{
+        validators:[Validators.required]
+      }],
+      questionType: ['',{
+        validators:[Validators.required]
+      }],
     });
   }
 
@@ -118,7 +108,8 @@ export class FbNestedFormComponent implements OnInit {
   }
 
   onSubmit(form){
-    
+    this.submitted = true;
+    console.log("form--onSubmit",form);
   }
 
 }

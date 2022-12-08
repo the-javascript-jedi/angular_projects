@@ -15,24 +15,44 @@
                     <span *ngIf="getSections(survey).length > 1" (click)="removeSection(i)">X Remove Section</span>
                 </div>
                 <div class="section-row">
-                    <div class="section-details">
+                    <div class="section-details display_flex">
                         <!---Survey Section -->
-                        <input type="text" placeholder="sectionTitle" formControlName="sectionTitle" class="sectionTitle">
-                        <input type="text" placeholder="sectionDescription" formControlName="sectionDescription" class="sectionDescription">
+                        <div class="sectionTitlePlaceHolder">
+                            <input type="text" placeholder="sectionTitle" formControlName="sectionTitle" class="sectionTitle">
+                            <div *ngIf="submitted && getSections(survey)[i].controls.sectionTitle.errors?.required==true">
+                                Empty Section Title
+                            </div>
+                        </div>
+                        <div class="sectionDescriptionPlaceHolder">
+                            <input type="text" placeholder="sectionDescription" formControlName="sectionDescription" class="sectionDescription">
+                            <div *ngIf="submitted && getSections(survey)[i].controls.sectionDescription.errors?.required==true">
+                                Empty Section Title
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Question segment -->
                     <div class="question-container" formArrayName="questions">
-                        <div [formGroupName]="j" *ngFor="let question of getQuestions(section); let j = index" class="question-row">
-                            <input type="text" placeholder="Untitled Question" formControlName="questionTitle" class="questionTitle">
-                            <select formControlName="questionType" class="questionType">
-                                <option></option>
-                                <option>Check Boxes</option>
-                                <option>Free Text</option>
-                                <option>Rating</option>
-                                <option>Date</option>
-                                <option>Time</option>
-                            </select>
+                        <div [formGroupName]="j" *ngFor="let question of getQuestions(section); let j = index" class="question-row display_flex">
+                            <div class="questionTitlePlaceHolder">
+                                <input type="text" placeholder="Untitled Question" formControlName="questionTitle" class="questionTitle">
+                                <div *ngIf="submitted && getSections(survey)[i].controls.questions.controls[j].controls.questionTitle.errors?.required">
+                                    Empty Question Title
+                                </div>
+                            </div>
+                            <div class="questionTypePlaceHolder">
+                                <select formControlName="questionType" class="questionType">
+                                    <option></option>
+                                    <option>Check Boxes</option>
+                                    <option>Free Text</option>
+                                    <option>Rating</option>
+                                    <option>Date</option>
+                                    <option>Time</option>
+                                </select>
+                                <div  *ngIf="submitted && getSections(survey)[i].controls.questions.controls[j].controls.questionType.errors?.required">
+                                    Empty Question Type
+                                </div>
+                            </div>
     
                             <div *ngIf="survey.errors" class="alert alert-danger">
                                 {{ survey.errors }}
@@ -53,5 +73,5 @@
         Submit
     </button>
 </form>
-
+<p>survey.valid--{{survey.valid|json}}</p>
 <pre> {{survey.value | json}} </pre>
