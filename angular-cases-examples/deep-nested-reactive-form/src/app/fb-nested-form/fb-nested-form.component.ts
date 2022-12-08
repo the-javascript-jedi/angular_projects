@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+// JS Data Extraction
+let module = require('../../data/dummyData.js');
+// TS Data Extraction
+import {dataFromApiTS} from "../../data/dummyData"
+
 @Component({
   selector: 'app-fb-nested-form',
   templateUrl: './fb-nested-form.component.html',
@@ -15,7 +20,12 @@ export class FbNestedFormComponent implements OnInit {
 //If you want to via formbuilder way just use this file instead of app.component.ts replace the contents
 
   ngOnInit() {
-
+    // exported array as JS
+    let arrayFromJS = module.dataFromApiJS;
+    console.log("arrayFromJS",arrayFromJS);
+    // exported array as TS
+    let arrayFromTS=dataFromApiTS;
+    console.log("arrayFromTS",arrayFromTS);
 
     this.survey = this.fb.group({
       sections: this.fb.array([
