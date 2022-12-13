@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "deep-nested-reactive-form"
+  "defaultProject": "deep-nested-reactive-form",
+  "cli": {
+    "analytics": "01a3fb05-74b6-44a9-803f-369eb71a7c0d"
+  }
 }

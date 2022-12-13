@@ -103,9 +103,9 @@ export class FbNestedFormComponent implements OnInit {
 
   }
 
-  removeQuestion(j){
-     const control = <FormArray>this.survey.get('sections')['controls'][j].get('questions');
-     control.removeAt(j);
+  removeQuestion(i,j){
+    const control = <FormArray>this.survey.get('sections')['controls'][i].get('questions');
+    control.removeAt(j);
   }
 
   removeSection(i){
