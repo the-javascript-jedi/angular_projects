@@ -1,0 +1,78 @@
+.example-viewport {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+}
+
+.example-item {
+    height: 50px;
+}
+
+// .container {
+//     font-family: "Roboto";
+//     display: flex;
+//     justify-content: center;
+//     padding: 30px;
+// }
+.input-search-containers{
+    border: 1px solid;
+        /* width: 100%; */
+        display: flex;
+        flex-direction: column;
+        width: 210px;
+}
+
+.scrolling-container {
+    display: block;
+    width: 200px;
+    height: 200px;
+    overflow: scroll;
+}
+.hide-container{
+    position: absolute;
+        z-index: -1;
+        top: -2000px;
+}
+:host ::ng-deep .input-search-containers {
+    .mat-list-item-content {
+        padding: 10px !important;
+        border-bottom: 1px solid black;
+        cursor: pointer;
+    }
+    .mat-list-base .mat-list-item .mat-list-item-content,
+    .mat-list-base .mat-list-option .mat-list-item-content {
+        height: initial;
+    }
+        
+    .mat-list-base .mat-list-item,
+    .mat-list-base .mat-list-option {
+        height: initial;
+    }
+    .loading-data {
+        padding-top: 35px;
+        padding-bottom: 35px;
+        .mat-list-item-content{
+            border-bottom: none;
+        }
+    }
+}
+.overlay-dropdown {
+    // position: fixed;
+    /* Sit on top of the page content */
+    // display: none;
+    /* Hidden by default */
+    // width: 100%;
+    /* Full width (cover the whole page) */
+    // height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}

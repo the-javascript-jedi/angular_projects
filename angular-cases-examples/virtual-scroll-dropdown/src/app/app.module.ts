@@ -8,15 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from "@angular/material/list";
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HighlightDirective } from './directives/highlight.directive';
-import { ScrollPositionDirective } from './directives/scroll-position.directive';
 import { MatInputModule } from "@angular/material/input";
+import { SelectScrollSearchComponent } from './select-scroll-search/select-scroll-search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     VirtualScrollComponent,
-    HighlightDirective,
-    ScrollPositionDirective
+    SelectScrollSearchComponent,
   ],
   imports: [
     BrowserModule,
