@@ -1,0 +1,25 @@
+<div class="table-placeholder">
+    <button (click)="exportToExcel()">Export to Excel</button>
+    <table id="excel-table">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+        <tr *ngFor="let item of tableData">
+            <td>{{item.id}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.email}}</td>
+        </tr>
+    </table>
+</div>
