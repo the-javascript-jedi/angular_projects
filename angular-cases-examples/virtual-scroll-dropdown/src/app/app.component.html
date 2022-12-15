@@ -1,5 +1,7 @@
 <h1>Dropdowns</h1>
-<!-- Virtual Scrol -->
+<!-- Virtual Scroll Dropdowns -->
+<h1>Virtual Scroll Dropdowns</h1>
+<!-- Virtual Scroll -->
 <div class="row">
     <div class="col-md-12 flex">
         <div class="col-md-6 margin-space">
@@ -11,13 +13,22 @@
     </div>
 </div>
 <!-- Select Scroll Container -->
+<h1>Select Scroll Dropdowns</h1>
 <div class="row">
     <div class="col-md-12 flex">
         <div class="col-md-6 margin-space">
-            <app-select-scroll-search apiEndpoint="games" (selectedItemEvent)="selectItemParent($event)"></app-select-scroll-search>
+            <app-select-scroll-search 
+            apiEndpoint="games" 
+            defaultDropdownValue="All"
+            (selectedItemEvent)="selectItemParent($event)">
+        </app-select-scroll-search>
         </div>
         <div class="col-md-6 margin-space">
-            <app-select-scroll-search apiEndpoint="custom_lessons" (selectedItemEvent)="selectItemParent($event)"></app-select-scroll-search>
+            <app-select-scroll-search 
+                apiEndpoint="custom_lessons" 
+                defaultDropdownValue="All"
+                (selectedItemEvent)="selectItemParent($event)">
+            </app-select-scroll-search>
         </div>
     </div>
 </div>
