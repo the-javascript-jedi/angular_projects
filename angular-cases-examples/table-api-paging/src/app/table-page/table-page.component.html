@@ -1,0 +1,43 @@
+<p>table-page works!</p>
+<div class="container">
+    <h2>User Details</h2>
+    <div *ngIf="loading===true">
+        Loading...
+    </div>
+    <table class="table" *ngIf="loading==false">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">description</th>
+                <th scope="col">category</th>
+                <th scope="col">longDescription</th>
+            </tr>
+        </thead>
+        <tbody>            
+        <tr *ngFor="let user of users | paginate : {
+            itemsPerPage:paginationPageSize,
+            currentPage:paginationPageNo,
+            totalItems: totalCount
+            }
+            ">
+                <td scope="row">
+                    {{user.id}}
+                </td>
+                <td scope="row">
+                    {{user.description}}
+                </td>
+                <td scope="row">
+                    {{user.category}}
+                </td>
+                <td scope="row">
+                    {{user.longDescription}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <pagination-controls 
+        (pageChange)="renderPage($event)">
+        </pagination-controls>
+    </div>
+</div>
