@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild,ElementRef ,AfterViewInit} from '@angular/core';
 import *as _ from 'lodash';
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
-import { ChartService } from '../services/chart.service';
+import { ChartService } from '../../services/chart.service';
 @Component({
   selector: 'app-three-d-scatter',
   templateUrl: './three-d-scatter.component.html',

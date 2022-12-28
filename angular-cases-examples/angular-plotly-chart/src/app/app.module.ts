@@ -10,6 +10,7 @@ import { ScatterChartComponent } from './scatter-chart/scatter-chart.component';
 import { GraphComponent } from './graph/graph.component';
 import { ThreeDScatterComponent } from './three-d-scatter/three-d-scatter.component';
 import { ThreeDScatterMultipleComponent } from './three-d-scatter-multiple/three-d-scatter-multiple.component';
+import { PlotyAnnotationComponent } from './ploty-annotation/ploty-annotation.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -20,7 +21,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     ScatterChartComponent,
     GraphComponent,
     ThreeDScatterComponent,
-    ThreeDScatterMultipleComponent
+    ThreeDScatterMultipleComponent,
+    PlotyAnnotationComponent
   ],
   imports: [
     BrowserModule,
