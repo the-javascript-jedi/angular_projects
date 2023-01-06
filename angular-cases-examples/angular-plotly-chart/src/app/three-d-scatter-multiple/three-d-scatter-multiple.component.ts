@@ -22,14 +22,86 @@ export class ThreeDScatterMultipleComponent implements OnInit,AfterViewInit {
   clickButton(){
     console.log("button clicked",PlotlyJS);
     // PlotlyJS.downloadImage('threedMultiple');
-    (document.getElementById('threedMultiple') as any).on('plotly_click', function(data){
-      console.log("data.points[0]",data.points);
-      console.log("data.points[0].x",data.points[0].x);
-      console.log("data.points[0].y",data.points[0].y);
-      console.log("data.points[0].z",data.points[0].z);
-      alert('Clicked X='+data.points[0].x+'\n'+'Clicked Y='+data.points[0].y+'\n'+'Clicked Z='+data.points[0].z);
-    });
+    // (document.getElementById('threedMultiple') as any).on('plotly_click', function(data){
+    //   console.log("data.points[0]",data.points);
+    //   console.log("data.points[0].x",data.points[0].x);
+    //   console.log("data.points[0].y",data.points[0].y);
+    //   console.log("data.points[0].z",data.points[0].z);
+    //   alert('Clicked X='+data.points[0].x+'\n'+'Clicked Y='+data.points[0].y+'\n'+'Clicked Z='+data.points[0].z);
+    // });
+    this.initializeChart();
+     this.scatterChartWithMultipleData();
     
+  }
+
+  clickButtonNew(){
+    var data = [{
+      type: "scatter3d",
+      x: ["2017-01-01", "2017-02-10", "2017-03-20","2017-03-20"],
+      y: ["A", "B", "C","D"],
+      z: [1, 500,550, 1000]
+   }]
+      
+  var layout = {
+      scene: {
+        // camera: {
+        //   eye: {x: 2.1, y: 0.1, z: 0.9}
+        // },
+        // xaxis: {
+        //   title: ""
+        // },
+        // yaxis: {
+        //   title: ""
+        // },
+        // zaxis: {
+        //   type: "log",
+        //   title: ""
+        // },
+        annotations: [{
+            showarrow: false,
+          x: "2017-01-01",
+          y: "A",
+          z: 0,
+          text: "Point 1",
+          font: {
+            color: "black",
+            size: 12
+          },
+          xanchor: "left",
+          xshift: 10,
+          opacity: 0.7
+        },
+        {
+          showarrow: false,
+          x: "2017-02-01",
+          y: "B",
+          z: 500,
+          ax: 50,
+          ay: 0,
+          text: "Point 2",
+          arrowhead: 1,
+          xanchor: "left",
+          yanchor: "bottom"
+        },
+        {
+          x: "2017-03-20",
+          y: "C",
+          z: 5,
+          ax: 50,
+          ay: 0,
+          text: "Point 3",
+          arrowhead: 1,
+          xanchor: "left",
+          yanchor: "bottom"
+        }]
+  }
+  }
+  
+  // Plotly.plot('graphDiv', data, layout, {showSendToCloud:true});
+
+  const element=this.el.nativeElement;
+  PlotlyJS.newPlot(element,data, layout);
+
   }
  ngAfterViewInit() {
      this.scatterChartWithMultipleData();
@@ -80,5 +152,35 @@ export class ThreeDScatterMultipleComponent implements OnInit,AfterViewInit {
     }
     console.log("PlotlyJS",PlotlyJS);
     PlotlyJS.newPlot(element,this.data,style);
+  }
+
+  addAnnotationToScatterChart(){
+    var layout = {
+      scene: {
+        annotations: [{
+          showarrow: false,
+          x: 11,
+          y: 5,
+          z: 10,
+          text: "Point 1",
+          font: {
+            color: "black",
+            size: 12
+          },
+          xanchor: "left",
+          xshift: 10,
+          opacity: 0.7
+        },
+        ]
+  }
+  }
+    const element=this.el.nativeElement;
+    console.log("element",element);
+    // const style={
+    //   // mkargin:{t:0},
+    //   height: 750
+    // }
+    console.log("PlotlyJS",PlotlyJS);
+    PlotlyJS.newPlot(element,this.data,layout);
   }
 }
