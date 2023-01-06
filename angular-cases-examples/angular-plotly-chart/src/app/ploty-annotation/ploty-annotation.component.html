@@ -1,1 +1,18 @@
 <p>ploty-annotation works!</p>
+<form [formGroup]="myForm">
+    <ng-multiselect-dropdown
+        name="city"
+        [placeholder]="'Select City'"
+        [settings]="dropdownSettings"
+        [data]="scatterDataDropdown"
+        formControlName="city"
+        [disabled]="disabled"
+        (onSelect)="onItemSelect($event)"
+        (onDeSelect)="onItemDeSelect($event)"        
+        >
+    </ng-multiselect-dropdown>
+</form>
+<div id="scatterPlotWithAnnotation" #scatterPlotWithAnnotation></div>
+<button (click)="getCameraPosition()">
+    Get Camera Position
+</button>

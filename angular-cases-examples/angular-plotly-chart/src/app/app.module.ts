@@ -11,6 +11,8 @@ import { GraphComponent } from './graph/graph.component';
 import { ThreeDScatterComponent } from './three-d-scatter/three-d-scatter.component';
 import { ThreeDScatterMultipleComponent } from './three-d-scatter-multiple/three-d-scatter-multiple.component';
 import { PlotyAnnotationComponent } from './ploty-annotation/ploty-annotation.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -27,7 +29,9 @@ PlotlyModule.plotlyjs = PlotlyJS;
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PlotlyModule
+    PlotlyModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -183,4 +183,53 @@ export class ThreeDScatterMultipleComponent implements OnInit,AfterViewInit {
     console.log("PlotlyJS",PlotlyJS);
     PlotlyJS.newPlot(element,this.data,layout);
   }
+
+  addAnnotationTwoToScatterChart(){
+    var layout = {
+      scene: {
+        annotations: [{
+          showarrow: false,
+          x: 11,
+          y: 5,
+          z: 10,
+          text: "Point 1",
+          font: {
+            color: "black",
+            size: 12
+          },
+          xanchor: "left",
+          xshift: 10,
+          opacity: 0.7
+        },
+        {
+          showarrow: false,
+          x: 7,
+          y: 20,
+          z: 6,
+          text: "Point 2",
+          font: {
+            color: "black",
+            size: 12
+          },
+          xanchor: "left",
+          xshift: 10,
+          opacity: 0.7
+        },
+        ]
+  }
+  }
+    const element=this.el.nativeElement;
+    console.log("element",element);
+    // const style={
+    //   // mkargin:{t:0},
+    //   height: 750
+    // }
+    console.log("PlotlyJS",PlotlyJS);
+    PlotlyJS.newPlot(element,this.data,layout);
+  }
+
+removeAnnotation(){
+    this.initializeChart();
+    this.scatterChartWithMultipleData();
+  }
 }
