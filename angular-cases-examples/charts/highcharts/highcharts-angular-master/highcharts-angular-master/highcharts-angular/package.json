@@ -1,0 +1,29 @@
+{
+  "name": "highcharts-angular",
+  "description": "Highcharts component for Angular.",
+  "version": "3.0.0",
+  "license": "SEE LICENSE IN <LICENSE>",
+  "author": "Black Label <start@blacklabel.pl> (http://blacklabel.pl)",
+  "bugs": {
+    "url": "https://github.com/highcharts/highcharts-angular/issues"
+  },
+  "homepage": "https://github.com/highcharts/highcharts-angular#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/highcharts/highcharts-angular"
+  },
+  "keywords": [
+    "highcharts",
+    "highstock",
+    "highmaps",
+    "angular"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=9.0.0",
+    "@angular/core": ">=9.0.0",
+    "highcharts": ">=6.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
