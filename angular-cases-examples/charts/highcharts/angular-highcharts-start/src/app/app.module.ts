@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { HelloHighChartsComponent } from './hello-high-charts/hello-high-charts.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloHighChartsComponent
+    HelloHighChartsComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
