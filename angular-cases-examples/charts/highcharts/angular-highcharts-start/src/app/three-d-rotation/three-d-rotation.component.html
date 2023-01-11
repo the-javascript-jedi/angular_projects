@@ -1,1 +1,11 @@
 <p>three-d-rotation works!</p>
+<highcharts-chart
+      id="container"
+      [Highcharts]="Highcharts"
+      [constructorType]="chartConstructor"
+      [options]="chartOptions"
+      [callbackFunction]="chartCallback"
+      [(update)]="updateFromInput"
+      [oneToOne]="true"
+    >
+    </highcharts-chart>
