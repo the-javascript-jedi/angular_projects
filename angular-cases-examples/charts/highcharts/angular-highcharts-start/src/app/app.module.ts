@@ -8,6 +8,9 @@ import { HelloHighChartsComponent } from './hello-high-charts/hello-high-charts.
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ThreeDScatterPlotComponent } from './three-d-scatter-plot/three-d-scatter-plot.component';
 import { ThreeDRotationComponent } from './three-d-rotation/three-d-rotation.component';
+import { ThreeDAnnotationComponent } from './three-d-annotation/three-d-annotation.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { ThreeDRotationComponent } from './three-d-rotation/three-d-rotation.com
     HelloHighChartsComponent,
     BarChartComponent,
     ThreeDScatterPlotComponent,
-    ThreeDRotationComponent
+    ThreeDRotationComponent,
+    ThreeDAnnotationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

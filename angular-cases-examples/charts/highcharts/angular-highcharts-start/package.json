@@ -20,6 +20,7 @@
     "@angular/router": "~12.1.2",
     "highcharts": "^10.3.2",
     "highcharts-angular": "^3.0.0",
+    "ng-multiselect-dropdown": "^0.3.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
