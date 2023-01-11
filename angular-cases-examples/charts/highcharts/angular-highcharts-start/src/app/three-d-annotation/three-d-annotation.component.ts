@@ -14,6 +14,7 @@ HighchartsExporting(Highcharts);
 })
 export class ThreeDAnnotationComponent implements OnInit {
   // multi select dropdown
+  scatterData:any;
   scatterDataDropdown:any;
   myForm:FormGroup;
   disabled = false;
@@ -49,23 +50,23 @@ export class ThreeDAnnotationComponent implements OnInit {
       text: '3D scatter chart',
     },
 
-    yAxis: {
-      min: 0,
-      max: 10,
-      title: null,
-    },
+    // yAxis: {
+    //   min: 0,
+    //   max: 10,
+    //   title: null,
+    // },
 
-    xAxis: {
-      min: 0,
-      max: 10,
-      gridLineWidth: 1,
-    },
+    // xAxis: {
+    //   min: 0,
+    //   max: 10,
+    //   gridLineWidth: 1,
+    // },
 
-    zAxis: {
-      min: 0,
-      max: 10,
-      showFirstLabel: false,
-    },
+    // zAxis: {
+    //   min: 0,
+    //   max: 10,
+    //   showFirstLabel: false,
+    // },
     series: [
       {
         type: 'scatter3d',
@@ -81,7 +82,7 @@ export class ThreeDAnnotationComponent implements OnInit {
             }
           }
         },
-        data: this._dataService.firstData
+        data: this._dataService.firstData.scatterPlotData
       },
       {
         type: 'scatter3d',
@@ -97,7 +98,7 @@ export class ThreeDAnnotationComponent implements OnInit {
             }
           }
         },
-        data: this._dataService.secondData,
+        data: this._dataService.secondData.scatterPlotData,
       },
     ],
   };
@@ -172,28 +173,34 @@ export class ThreeDAnnotationComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: this.ShowFilter
   };
-  this.scatterDataDropdown=[
-    {item_id: 0, item_text: '000'},
-    {item_id: 1, item_text: '111'},
-    {item_id: 2, item_text: '222'},
-    {item_id: 3, item_text: '333'},
-    {item_id: 4, item_text: '444'},
-    {item_id: 5, item_text: '555'},
-    {item_id: 6, item_text: '666'},
-]
+  this.scatterData=[...this._dataService.firstData.scatterPlotData,...this._dataService.secondData.scatterPlotData];
+  this.scatterDataDropdown=this.scatterData.map(function(val,index){
+    return {
+      item_id: index, item_text: val.toString()
+    }
+  })
   this.myForm = this.fb.group({
       city: [this.selectedItems]
   });
   }
   onItemSelect(item: any) {
-    console.log('onItemSelect', item);
-    // console.log('this.myForm.value.city', this.myForm.value.city);
-    // this.createScatterPlotAnnotation(this.myForm.value.city)
+    // console.log('onItemSelect', item);
+    // console.log('this.myForm.value.city selected', this.myForm.value.city);
+    this.createScatterPlotAnnotation(this.myForm.value.city)
   }
   onItemDeSelect(item: any) {
-    console.log('onItemDeSelect', item);
-    // console.log('this.myForm.value.city', this.myForm.value.city);
-    // this.createScatterPlotAnnotation(this.myForm.value.city)
+    // console.log('onItemDeSelect', item);
+    // console.log('this.myForm.value.city deselected', this.myForm.value.city);
+    this.createScatterPlotAnnotation(this.myForm.value.city)
+  }
+
+  createScatterPlotAnnotation(plots){
+    console.log('createScatterPlotAnnotation', plots);
+    let plotsArray=plots.map(val=>val.item_text.split(" "));
+    console.log('plotsArray', plotsArray);
+    this.chartOptions.series.forEach(val=>{
+      console.log("val",val);
+    })
   }
   ngAfterViewInit(): void {
     
