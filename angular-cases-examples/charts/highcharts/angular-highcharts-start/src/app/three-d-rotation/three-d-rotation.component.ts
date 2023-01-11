@@ -59,6 +59,7 @@ export class ThreeDRotationComponent implements OnInit,AfterViewInit {
     series: [
       {
         type: 'scatter3d',
+        name:'series 1',
         data: [
           [1, 6, 5],
           [8, 7, 9],
@@ -76,6 +77,7 @@ export class ThreeDRotationComponent implements OnInit,AfterViewInit {
       },
       {
         type: 'scatter3d',
+        name:'series 2',
         data: [
           [3, 0, 2],
           [9, 9, 0],
