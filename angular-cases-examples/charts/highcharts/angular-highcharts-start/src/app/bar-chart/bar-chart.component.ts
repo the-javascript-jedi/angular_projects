@@ -113,7 +113,7 @@ function updateStackColor(alpha) {
             ? basePointColor.get() // set original color
             : point.x === x
               ? basePointColor.brighten(-alpha).get() // dim orignal color
-              : greyColor // brighten original color
+              : greyColor // added grey color
         }, false)
       })
     })
