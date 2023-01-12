@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  selector: 'app-bar-chart-ii',
+  templateUrl: './bar-chart-ii.component.html',
+  styleUrls: ['./bar-chart-ii.component.scss']
 })
-export class BarChartComponent implements OnInit {
+export class BarChartIiComponent implements OnInit {
 
   constructor() { }
   Highcharts: typeof Highcharts = Highcharts;
@@ -25,10 +25,22 @@ export class BarChartComponent implements OnInit {
       align: 'left'
   },
   xAxis: {
-      categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+      categories: ['Africa is the mew', 'Addddddddddddddddddddddddddddddmerica', 'Asia', 'Europe', 'Oceania',''],
       title: {
           text: 'Countries'
-      }
+      },
+      labels: {
+        formatter: function () {
+            var text = this.value;
+            var formatted = text.toString().length > 10 ? text.toString().substring(0, 10) + '...' : text;
+            console.log("text.toString().length",text.toString().length)
+            return '<div class="js-ellipse" style="width:100px; overflow:hidden" title="' + text + '">' + formatted + '</div>';
+        },
+        style: {
+          width: 150
+      },
+        useHTML: true
+    }
   },
   yAxis: {
       min: 0,
@@ -41,7 +53,15 @@ export class BarChartComponent implements OnInit {
       }
   },
   tooltip: {
-      valueSuffix: ' millions'
+      outside: true,
+      // valueSuffix: ' millions'
+      useHTML: true,
+      formatter: function () {
+          return `<div class="tooltip">
+            <p style="margin:0px;">The value for x is <b>${this.x}</b></p>
+            <p style="margin:0px;">The value for y is <b>${this.y}</b></p>
+          </div>`;
+      }
   },
   plotOptions: {
       bar: {
@@ -57,16 +77,21 @@ export class BarChartComponent implements OnInit {
       }
   },
   legend: {
+      // layout: 'vertical',
+      // align: 'right',
+      // verticalAlign: 'top',
+      // x: -40,
+      // y: 80,
+      // floating: true,
+      // borderWidth: 1,
+      // backgroundColor:
+      //     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+      // shadow: true
       layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'top',
-      x: -40,
-      y: 80,
-      floating: true,
-      borderWidth: 1,
-      backgroundColor:
-          Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-      shadow: true
+            align: 'right',
+            verticalAlign: 'bottom',
+            floating: true,
+            backgroundColor: '#FFFFFF'
   },
   credits: {
       enabled: false
@@ -74,7 +99,13 @@ export class BarChartComponent implements OnInit {
   series: [{
       name: 'Year 1990',
       type:'bar',
-      data: [631, 727, 3202, 721, 26]
+      data: [
+        ['Shanghai', 24.2],
+        ['Beijing', 20.8],
+        ['Karachi', 14.9],
+        ['Shenzhen', 13.7],
+        ['Guangzhou', 13.1],
+      ]
   }, 
   ]
   };
@@ -107,4 +138,5 @@ function updateStackColor(alpha) {
 
     this.series.chart.redraw(false)
   }
+
 }

@@ -11,6 +11,7 @@ import { ThreeDRotationComponent } from './three-d-rotation/three-d-rotation.com
 import { ThreeDAnnotationComponent } from './three-d-annotation/three-d-annotation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BarChartIiComponent } from './bar-chart-ii/bar-chart-ii.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BarChartComponent,
     ThreeDScatterPlotComponent,
     ThreeDRotationComponent,
-    ThreeDAnnotationComponent
+    ThreeDAnnotationComponent,
+    BarChartIiComponent
   ],
   imports: [
     BrowserModule,
