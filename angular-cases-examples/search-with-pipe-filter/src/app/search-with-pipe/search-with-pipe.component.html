@@ -1,0 +1,5 @@
+<p>search-with-pipe works!</p>
+<input [(ngModel)]="query">
+<div *ngFor="let item of items | search:'id,text':query">
+    <a (click)="selectItem(item.text)">{{item.text}}</a>
+</div>
