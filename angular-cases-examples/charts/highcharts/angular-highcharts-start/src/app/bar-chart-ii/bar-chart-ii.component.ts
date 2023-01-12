@@ -88,10 +88,10 @@ export class BarChartIiComponent implements OnInit {
       //     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
       // shadow: true
       layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'bottom',
-            floating: true,
-            backgroundColor: '#FFFFFF'
+      align: 'center',
+      verticalAlign: 'bottom',
+      floating: true,
+      backgroundColor: '#FFFFFF',
   },
   credits: {
       enabled: false
