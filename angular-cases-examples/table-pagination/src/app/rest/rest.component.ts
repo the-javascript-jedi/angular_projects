@@ -13,7 +13,7 @@ export class RestComponent implements OnInit {
   key:string='id';
   reverse:boolean=false;
   currentPageNumber:number=1;
-  itemsPerPageValue=5;
+  itemsPerPageValue=3;
   constructor(private rs:RestService){
 
   }
@@ -37,5 +37,9 @@ export class RestComponent implements OnInit {
   sort(key){
     this.key=key;
     this.reverse=!this.reverse;
+  }
+
+  public setItemsPerPage(event) {
+    this.itemsPerPageValue = event
   }
 }

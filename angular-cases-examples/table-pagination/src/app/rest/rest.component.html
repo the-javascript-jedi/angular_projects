@@ -25,4 +25,13 @@
         <td>{{user.salary}}</td>
     </tbody>
     <pagination-controls (pageChange)="currentPageNumber=$event"></pagination-controls>
+    <div class="col-auto">
+        Items Per Page
+        <select class="custom-select" (change)="setItemsPerPage(page.value)" #page>
+            <option selected>3</option>
+            <option>5</option>
+            <option >10</option>
+            <option >15</option>
+        </select>
+    </div>
 </table>
