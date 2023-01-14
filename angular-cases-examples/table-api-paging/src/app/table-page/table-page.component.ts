@@ -19,7 +19,10 @@ export class TablePageComponent implements OnInit{
     this.loadTableData('asc',this.paginationPageNo,this.paginationPageSize, 'seqNo');
     this.getUsersDataCount();
   }
-
+  public setItemsPerPage(event) {
+    this.paginationPageSize = event;
+    this.loadTableData('asc',this.paginationPageNo,this.paginationPageSize, 'seqNo');
+}
   loadTableData(sortDirection,pageNumber,pageSize,sortOrder){
     this._userService.getUsers(sortDirection,pageNumber,pageSize,sortOrder).subscribe({
       next:(response:any)=>{

@@ -39,5 +39,14 @@
         <pagination-controls 
         (pageChange)="renderPage($event)">
         </pagination-controls>
+        <div class="col-auto">
+            Items to display
+            <select class="custom-select" (change)="setItemsPerPage(page.value)" #page>
+                <option selected>5</option>
+                <option>10</option>
+                <option >20</option>
+                <option >30</option>
+            </select>
+        </div>
     </div>
 </div>
