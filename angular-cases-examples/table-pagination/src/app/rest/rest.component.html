@@ -16,7 +16,7 @@
             <th>Salary</th>
         </tr>
     </thead>
-    <tbody *ngFor="let user of users | orderBy: key:reverse | paginate:{itemsPerPage:5,currentPage:p}">
+    <tbody *ngFor="let user of users | orderBy: key:reverse | paginate:{itemsPerPage:itemsPerPageValue,currentPage:currentPageNumber}">
         <td>{{user.id}}</td>
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
@@ -24,5 +24,5 @@
         <td>{{user.mobile}}</td>
         <td>{{user.salary}}</td>
     </tbody>
-    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    <pagination-controls (pageChange)="currentPageNumber=$event"></pagination-controls>
 </table>

@@ -12,8 +12,8 @@ export class RestComponent implements OnInit {
   firstName:any;
   key:string='id';
   reverse:boolean=false;
-  p:number=1;
-
+  currentPageNumber:number=1;
+  itemsPerPageValue=5;
   constructor(private rs:RestService){
 
   }
