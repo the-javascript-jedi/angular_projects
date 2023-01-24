@@ -1,0 +1,100 @@
+
+
+.input-search-containers{
+    position: relative;
+    // border: 1px solid;
+        /* width: 100%; */
+        display: flex;
+        flex-direction: column;
+        // width: 210px;
+}
+
+.search-input-with-icon{
+    position: relative;
+}
+.search-input{
+    width: 225px;
+    padding-right: 15px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+}
+.dropdown-icon-position{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #757575;
+}
+.request-on-scroll-container{
+    position: absolute;
+    background: #fff;
+    z-index: 1;
+    // top: 37px;
+    top: 0px;
+}
+.scrolling-container {
+    display: block;
+    width: 244px;
+    height: 200px;
+    overflow: scroll;
+}
+.hide-container{
+    position: absolute;
+        z-index: -1;
+        top: -2000px;
+}
+:host ::ng-deep .input-search-containers {
+    .mat-list-item-content {
+        padding: 10px !important;
+        border-bottom: 1px solid black;
+        cursor: pointer;
+    }
+    .mat-list-base .mat-list-item .mat-list-item-content,
+    .mat-list-base .mat-list-option .mat-list-item-content {
+        height: initial;
+    }
+        
+    .mat-list-base .mat-list-item,
+    .mat-list-base .mat-list-option {
+        height: initial;
+    }
+    .loading-data {
+        padding-top: 35px;
+        padding-bottom: 35px;
+        .mat-list-item-content{
+            border-bottom: none;
+        }
+    }
+}
+.overlay-dropdown {
+    // position: fixed;
+    /* Sit on top of the page content */
+    // display: none;
+    /* Hidden by default */
+    // width: 100%;
+    /* Full width (cover the whole page) */
+    // height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}
+
+.btn-clear-dropdown{
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    border-radius: 100%;
+    padding: 2px;
+    height: 21px;
+}

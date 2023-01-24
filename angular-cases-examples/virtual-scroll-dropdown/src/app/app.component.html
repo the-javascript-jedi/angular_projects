@@ -32,3 +32,23 @@
         </div>
     </div>
 </div>
+<!-- Select Scroll II Container -->
+<h1>Select Scroll Dropdowns</h1>
+<div class="row">
+    <div class="col-md-12 flex">
+        <div class="col-md-6 margin-space" #originalInput>
+            <app-select-scroll-search-ii 
+            apiEndpoint="games" 
+            defaultDropdownValue="All"
+            (selectedItemEvent)="selectItemParent($event)">
+        </app-select-scroll-search-ii>
+        </div>
+        <div class="col-md-6 margin-space">
+            <app-select-scroll-search-ii 
+                apiEndpoint="custom_lessons" 
+                defaultDropdownValue="All"
+                (selectedItemEvent)="selectItemParent($event)">
+            </app-select-scroll-search-ii>
+        </div>
+    </div>
+</div>
