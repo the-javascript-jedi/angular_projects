@@ -29,7 +29,7 @@ export class SelectScrollSearchIiComponent implements OnInit {
   @Output() selectedItemEvent = new EventEmitter<string>();
   
   responseData=[];
-  displayDropdown=true;
+  displayDropdown=false;
   dropdownSelectedValue="";
   loadingDropdownApiData:boolean=false;
   dropdownValueFocus="";
@@ -88,7 +88,7 @@ export class SelectScrollSearchIiComponent implements OnInit {
         // console.log("listElement.offsetHeight",this.indication.nativeElement.offsetHeight); 
         console.log("listElement.scrollTop + listElement.offsetHeight",this.scrollContainer.nativeElement.scrollTop + this.scrollContainer.nativeElement.offsetHeight); 
         console.log("listElement.scrollHeight",this.scrollContainer.nativeElement.scrollHeight); 
-         if (((this.scrollContainer.nativeElement.scrollTop + this.scrollContainer.nativeElement.offsetHeight)) >= (this.scrollContainer.nativeElement.scrollHeight+17)) {
+         if (((this.scrollContainer.nativeElement.scrollTop + this.scrollContainer.nativeElement.offsetHeight)) >= (this.scrollContainer.nativeElement.scrollHeight+20)) {
           console.log("listElement.make api call");
           // const searchGamesOnScroll$=fromEvent<any>(this.loadGames('',1).subscribe());
           console.log("this.responseData.length",this.responseData.length);
@@ -96,7 +96,7 @@ export class SelectScrollSearchIiComponent implements OnInit {
           let calculatedPageSize=this.responseData.length+10;
           // search based on the value already selected and scroll
           // this.loadResponse(this.dropdownSelectedValue,calculatedPageSize).subscribe({
-          this.loadResponse('',calculatedPageSize).subscribe({
+          this.loadResponse(this.dropdownSelectedValue,calculatedPageSize).subscribe({
             next:(data)=>{
               this.responseData=data;
               this.loadingDropdownApiData=false;              
