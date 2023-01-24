@@ -32,10 +32,15 @@
         <mat-list class="mat-elevation-z7">
             
             <div itemSize="48" class="scrolling-container" id="indication" appScrollPosition #scrollContainer>
-                <mat-list-item *ngFor="let data of responseData" (click)="selectListItem(data)" >
-                    {{data.description}}
-                </mat-list-item>
-                <mat-list-item class="loading-data" *ngIf="loadingDropdownApiData===true" disabled>
+                <div *ngIf="responseData.length>0">
+                    <mat-list-item *ngFor="let data of responseData" (click)="selectListItem(data)" >
+                        {{data.description}}
+                    </mat-list-item>
+                </div>
+                <div *ngIf="responseData.length===0">
+                    Loading...
+                </div>
+                <mat-list-item class="loading-data" *ngIf="loadScrollingDropdownApiData===true" disabled>
                     LOADING...
                 </mat-list-item>
             </div>

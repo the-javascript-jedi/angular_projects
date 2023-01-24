@@ -24,5 +24,5 @@ exports.searchGames = function (req, res) {
   setTimeout(() => {
     // res.status(200).json({ payload: lessonsPage });
     res.status(200).json({ responseDataFromAPI: gamesDataPage });
-  }, 1000);
+  }, 3000);
 };

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild,Renderer2,Input} from '@angular/core';
-import {merge, fromEvent,concat,BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {merge, fromEvent,concat,BehaviorSubject, Observable, Subscription, Subject} from 'rxjs';
 import { Output, EventEmitter } from '@angular/core';
 import {
   debounceTime,
@@ -11,7 +11,7 @@ import {
   concatMap,
   switchMap,
   withLatestFrom,
-  concatAll, shareReplay
+  concatAll, shareReplay, takeUntil
 } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
@@ -27,19 +27,23 @@ export class SelectScrollSearchIiComponent implements OnInit {
   @ViewChild('menu') menu: ElementRef;  @Input() apiEndpoint = '';
   @Input() defaultDropdownValue = '';
   @Output() selectedItemEvent = new EventEmitter<string>();
-  
+  scrollSubscription:Subscription;
+  loadingData:boolean=true;
+
   responseData=[];
   displayDropdown=false;
   dropdownSelectedValue="";
-  loadingDropdownApiData:boolean=false;
+  loadScrollingDropdownApiData:boolean=false;
   dropdownValueFocus="";
-
+  calculatedPageSizeForObservable:any=20;
   constructor(private _http:HttpClient,private _renderer: Renderer2) { 
     this._renderer.listen('window', 'click',(e:Event)=>{
       console.log("e.target",e.target)
       // if(e.target!==this.searchBox.nativeElement||e.target!==this.searchScrollEntirePlaceholder.nativeElement){
         if(e.target !== this.toggleButtonInput.nativeElement && e.target!==this.menu.nativeElement){
           this.displayDropdown=false;
+          this.calculatedPageSizeForObservable=20;
+         
       }
     })
   }
@@ -64,7 +68,13 @@ export class SelectScrollSearchIiComponent implements OnInit {
     })
     this.dropdownValueFocus=this.defaultDropdownValue;
   }
-
+  
+  ngOnDestroy(): void {
+    // this.destroy.unsubscribe();
+    if(this.scrollSubscription){
+      this.scrollSubscription.unsubscribe();
+    }
+  }
   ngAfterViewInit() {
     //distinctUntilChanged() - If two consecutive values are exactly the same, we only want to emit one value and we can get that functionality using the distinct until changed operator with this operator, we no longer will have duplicate values in our output.
         //switchMap()-switch map is going to unsubscribe from the search that was still ongoing when we type new value.That is an outdated search and the Http  request is going to be canceled. 
@@ -73,53 +83,49 @@ export class SelectScrollSearchIiComponent implements OnInit {
             debounceTime(400),
             distinctUntilChanged(),
             switchMap(search=>this.loadResponse(search))
-        )
-        
+        )        
         searchDropdownData$.subscribe({
       next:(res)=>{
         this.responseData=res;
       }
     })
-    // scroll
-     this.scrollContainer.nativeElement.addEventListener('scroll', () => {
-    //  let listElement: HTMLElement
-        console.log("scrolled"); 
-        // console.log("listElement.scrollTop",this.indication.nativeElement.scrollTop); 
-        // console.log("listElement.offsetHeight",this.indication.nativeElement.offsetHeight); 
-        console.log("listElement.scrollTop + listElement.offsetHeight",this.scrollContainer.nativeElement.scrollTop + this.scrollContainer.nativeElement.offsetHeight); 
-        console.log("listElement.scrollHeight",this.scrollContainer.nativeElement.scrollHeight); 
-         if (((this.scrollContainer.nativeElement.scrollTop + this.scrollContainer.nativeElement.offsetHeight)) >= (this.scrollContainer.nativeElement.scrollHeight+20)) {
-          console.log("listElement.make api call");
-          // const searchGamesOnScroll$=fromEvent<any>(this.loadGames('',1).subscribe());
-          console.log("this.responseData.length",this.responseData.length);
-          this.loadingDropdownApiData=true;
-          let calculatedPageSize=this.responseData.length+10;
-          // search based on the value already selected and scroll
-          // this.loadResponse(this.dropdownSelectedValue,calculatedPageSize).subscribe({
-          this.loadResponse(this.dropdownSelectedValue,calculatedPageSize).subscribe({
-            next:(data)=>{
-              this.responseData=data;
-              this.loadingDropdownApiData=false;              
-            },
-            error:(err)=>{
-              console.log("err",err);
-              this.loadingDropdownApiData=false;              
-            }
-          });
-         }
-   })
+    // scroll container
+    this.scrollSubscription=fromEvent(this.scrollContainer.nativeElement, 'scroll', { capture: true }).pipe(map(event=>{      
+      this.loadScrollingDropdownApiData=true;
+      if (((this.scrollContainer.nativeElement.scrollTop + this.scrollContainer.nativeElement.offsetHeight)) >= (this.scrollContainer.nativeElement.scrollHeight+17)) {
+        console.log("fromEvent scroll",event);
+        return event;
+      }else{
+        console.log("null");
+        return null
+      }
+    }),
+    debounceTime(400),
+    distinctUntilChanged(),
+    switchMap(search=>{
+      console.log("search",search);
+      return this.loadResponse(this.dropdownSelectedValue,this.calculatedPageSizeForObservable);
+    })).subscribe({
+      next:(res)=>{
+        console.log("from event",res);
+        this.responseData=res;
+        this.loadScrollingDropdownApiData=false;
+        this.calculatedPageSizeForObservable=res.length+10;
+      }
+    });
   }
   clearSearchText(){
+    this.responseData=[];
     this.dropdownSelectedValue="";
     this.dropdownValueFocus='';
     this.dropdownValueFocus=this.defaultDropdownValue;
     this.scrollContainer.nativeElement.scrollTop = 0;
-     this.loadResponse().subscribe({
-      next:(res)=>{
-        console.log("2 clearSearchText called");
-        this.responseData=res;
-      }
-    })
+    //  this.loadResponse().subscribe({
+    //   next:(res)=>{
+    //     console.log("2 clearSearchText called");
+    //     this.responseData=res;
+    //   }
+    // })
   }
   inputSearchKeyUp(event){
     console.log("event",event)
@@ -134,12 +140,14 @@ export class SelectScrollSearchIiComponent implements OnInit {
     //   this.dropdownValueFocus=this.dropdownSelectedValue;
     // }
     // this.dropdownSelectedValue='';
-    this.loadResponse().subscribe({
-      next:(res)=>{
-        console.log("3 focusSearchKeyUp called");
-        this.responseData=res;
-      }
-    })
+    if(this.responseData.length<10){
+      this.loadResponse().subscribe({
+        next:(res)=>{
+          console.log("3 focusSearchKeyUp called");
+          this.responseData=res;
+        }
+      })
+    }
   }
   selectDropdownItem(value: string) {
     this.selectedItemEvent.emit(value);

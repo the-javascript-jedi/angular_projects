@@ -63,5 +63,5 @@ exports.searchCustomLessons = function (req, res) {
   setTimeout(() => {
     // res.status(200).json({ payload: lessonsPage });
     res.status(200).json({ responseDataFromAPI: courseDataPage });
-  }, 1000);
+  }, 3000);
 };
