@@ -1,0 +1,20 @@
+<p>filter-dropdown works!</p>
+<div #filterContainer class="filter-container">
+    <div class="search-input-with-icon">
+        <!-- search -->
+        <input class="searchInput" type="text"  [placeholder]="selectedElementPlaceHolder" #searchInput autocomplete="off" 
+        (focus)="onFocusInput()">
+        <!-- icon -->
+        <i class="dropdown-icon-position fa fa-caret-down" 
+        *ngIf="showMenu===false"
+        aria-hidden="true"></i>
+    </div>
+    <div class="menu" *ngIf="showMenu===true">
+        <div class="loading" *ngIf="loadingApiData===true">
+            Loading...
+        </div>
+        <div class="options" *ngFor="let data of menuData">
+            <p (click)="selectData(data)">{{data.description}}</p>
+        </div>
+    </div>
+</div>

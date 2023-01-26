@@ -1,0 +1,51 @@
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #000;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #000;
+  }
+
+
+  .filter-container{
+    position: relative;
+    .searchInput{
+        width: 225px;
+        padding-right: 15px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        padding-left: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        border: 1px solid #e0e0e0;
+      }
+      .search-input-with-icon{
+        position: relative;
+        width: 245px;
+    }
+      .dropdown-icon-position{
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: #757575;
+    }
+    .menu{
+        border: 1px solid #000;
+        width: 200px;
+        position: absolute;
+        background: #fff;
+        z-index: 1;        
+        width: 255px;
+        left: -10px;
+        padding: 0 10px;
+    }
+    .options p{
+        cursor: pointer;
+    }
+}
+

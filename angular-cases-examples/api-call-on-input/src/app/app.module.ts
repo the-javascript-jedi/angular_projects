@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { FilterSearchComponent } from './filter-search/filter-search.component';
 import { FilterCheckComponent } from './filter-check/filter-check.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterDropdownComponent } from './filter-dropdown/filter-dropdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilterSearchComponent,
-    FilterCheckComponent
+    FilterCheckComponent,
+    FilterDropdownComponent
   ],
   imports: [
     BrowserModule,
