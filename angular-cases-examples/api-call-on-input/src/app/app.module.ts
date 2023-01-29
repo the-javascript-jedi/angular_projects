@@ -7,13 +7,15 @@ import { FilterSearchComponent } from './filter-search/filter-search.component';
 import { FilterCheckComponent } from './filter-check/filter-check.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterDropdownComponent } from './filter-dropdown/filter-dropdown.component';
+import { SearchWithMenuComponent } from './search-with-menu/search-with-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilterSearchComponent,
     FilterCheckComponent,
-    FilterDropdownComponent
+    FilterDropdownComponent,
+    SearchWithMenuComponent
   ],
   imports: [
     BrowserModule,

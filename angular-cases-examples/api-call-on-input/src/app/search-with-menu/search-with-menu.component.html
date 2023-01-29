@@ -1,0 +1,28 @@
+<p>filter-dropdown works!</p>
+<div class="dropdown-container">
+    <button class="form-control-style" (click)="toggleMenuFn()" #toggleButton>
+        {{selectedElementDisplay}}
+        <!-- icon -->
+        <i class="dropdown-icon-position fa fa-caret-down"></i>
+        </button>
+        <!-- <div [ngClass]="showMenu===true?'modal-background':''"> -->
+        <div >
+            <div #filterContainer class="filter-container" [ngClass]="showMenu===true?'showMenu':'hideMenu'">
+                <div class="search-input-with-icon">
+                    <!-- search -->
+                    <input class="form-control-style" 
+                    #searchInput
+                    [disabled]="loadingApiData===true"
+                    type="text"  autocomplete="off">                    
+                </div>
+                <div class="menu">
+                    <div class="loading" *ngIf="loadingApiData===true">
+                        Loading...
+                    </div>
+                    <div class="options">
+                        <p *ngFor="let data of menuData" (click)="selectData(data)">{{data.description}}</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+</div>

@@ -1,0 +1,81 @@
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #000;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #000;
+  }
+  .dropdown-icon-position{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #757575;
+}
+.dropdown-container{
+    position: relative;
+}
+  .form-control-style{
+    width: 225px;
+    padding-right: 15px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    position: relative;
+  }
+  .search-input-with-icon{
+    position: relative;
+    width: 245px;
+}
+  .filter-container{
+    position: relative;
+    left: -10px;
+    border: 1px solid #000;
+    background: #fff;
+    .menu{
+        // border: 1px solid #000;
+        width: 200px;
+        // position: absolute;
+        background: #fff;
+        z-index: 1;        
+        width: 255px;
+        left: -10px;
+    }
+    .options p{
+        cursor: pointer;
+        padding: 10px 10px;
+        margin:0px;
+    }
+}
+.showMenu{
+    position: absolute !important;
+    visibility: visible;
+    z-index: 1;
+}
+.hideMenu{
+    position: absolute !important;
+    // top: -9000px !important;
+    visibility: hidden;
+    
+}
+.modal-background{
+    // display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
