@@ -60,7 +60,11 @@
                                 {{ survey.errors }}
                             </div>
                             <button type="button" (click)="addQuestion(i)">Add Question</button>
+<<<<<<< HEAD
+                            <span *ngIf="getQuestions(section).length > 1" (click)="removeQuestion(j)"> X Remove Question</span>
+=======
                             <span *ngIf="getQuestions(section).length > 1" (click)="removeQuestion(i,j)"> X Remove Question</span>
+>>>>>>> 2ba094e88b4c3f291b170edf1d2f8bd3120d93e2
                         </div><br>
                     </div>
                     <!-- End Question -->
