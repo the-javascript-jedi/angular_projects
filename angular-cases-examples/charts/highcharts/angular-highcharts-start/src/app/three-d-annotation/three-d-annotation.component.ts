@@ -45,22 +45,22 @@ export class ThreeDAnnotationComponent implements OnInit {
         fitToPlot: false,
       },
     },
-    annotations:[{
-      draggable:'',
-      labelOptions: {
-          backgroundColor: 'rgba(255,255,255,0.5)',
-          verticalAlign: 'top',
-      },
-      labels: [{
-         point: {
-                xAxis: 0,
-                yAxis: 0,
-                x: 1,
-                y: 1,
-            },
-            text: 'Arbois'
-      }]
-    }],
+    // annotations:[{
+    //   draggable:'',
+    //   labelOptions: {
+    //       backgroundColor: 'rgba(255,255,255,0.5)',
+    //       verticalAlign: 'top',
+    //   },
+    //   labels: [{
+    //      point: {
+    //             xAxis: 0,
+    //             yAxis: 0,
+    //             x: 1,
+    //             y: 1,
+    //         },
+    //         text: 'Arbois'
+    //   }]
+    // }],
     title: {
       text: '3D scatter chart',
     },
@@ -83,38 +83,38 @@ export class ThreeDAnnotationComponent implements OnInit {
     //   showFirstLabel: false,
     // },
     series: [
-      // {
-      //   type: 'scatter3d',
-      //   name:'series 1',
-      //   dataLabels: {
-      //     enabled: true,
-      //     formatter() {
-      //       // console.log("this.point",this.point);
-      //       if(this.point.options.x===1&&this.point.options.y==1&&this.point.options.z==1){
-      //         return 'Test New Series 1'
-      //       }else{
-      //         return '';
-      //       }
-      //     }
-      //   },
-      //   data: this._dataService.firstData.scatterPlotData
-      // },
       {
         type: 'scatter3d',
-        name:'series 2',
+        name:'series 1',
         dataLabels: {
           enabled: true,
           formatter() {
             // console.log("this.point",this.point);
-            if(this.point.options.x===8&&this.point.options.y==0&&this.point.options.z==0){
-              return 'Test New Series 2'
+            if(this.point.options.x===1&&this.point.options.y==1&&this.point.options.z==1){
+              return 'Test New Series 1'
             }else{
               return '';
             }
           }
         },
-        data: this._dataService.secondData.scatterPlotData,
+        data: this._dataService.firstData.scatterPlotData
       },
+      // {
+      //   type: 'scatter3d',
+      //   name:'series 2',
+      //   dataLabels: {
+      //     enabled: true,
+      //     formatter() {
+      //       console.log("this.point",this.point);
+      //       if(this.point.options.x===8&&this.point.options.y==0&&this.point.options.z==0){
+      //         return 'Test New Series 2'
+      //       }else{
+      //         return '';
+      //       }
+      //     }
+      //   },
+      //   data: this._dataService.secondData.scatterPlotData,
+      // },
     ],
   };
   constructor(private fb: FormBuilder,private _dataService:DataService) {
@@ -188,7 +188,8 @@ export class ThreeDAnnotationComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: this.ShowFilter
   };
-  this.scatterData=[...this._dataService.firstData.scatterPlotData,...this._dataService.secondData.scatterPlotData];
+  // this.scatterData=[...this._dataService.firstData.scatterPlotData,...this._dataService.secondData.scatterPlotData];
+  this.scatterData=[...this._dataService.firstData.scatterPlotData];
   this.scatterDataDropdown=this.scatterData.map(function(val,index){
     return {
       item_id: index, item_text: val.toString()
@@ -211,11 +212,48 @@ export class ThreeDAnnotationComponent implements OnInit {
 
   createScatterPlotAnnotation(plots){
     console.log('createScatterPlotAnnotation', plots);
-    let plotsArray=plots.map(val=>val.item_text.split(" "));
-    console.log('plotsArray', plotsArray);
-    this.chartOptions.series.forEach(val=>{
-      console.log("val",val);
+    // let plotsArray=plots.map(val=>val.item_text.split(" "));
+    // console.log('plotsArray', plotsArray);
+    // this.chartOptions.series.forEach(val=>{
+    //   console.log("val",val);
+    // })
+    let chartPlotPointsFromDropdown=[];
+    chartPlotPointsFromDropdown=plots.map(val=>{
+      let plotPointsArray=val.item_text.split(',');
+      val['x']=Number(plotPointsArray[0]);
+      val['y']=Number(plotPointsArray[1]);
+      val['z']=Number(plotPointsArray[2]);
+      return val;
     })
+    console.log("chartPlotPointsFromDropdown",chartPlotPointsFromDropdown);
+    if ( this.chart.series.length) {
+         this.chart.series[0].remove();
+    }
+        let seriesAdded={
+        type: 'scatter3d',
+        name:'series 1',
+        dataLabels: {
+          enabled: true,
+           formatter() {
+            // console.log("formatter called")
+            return chartPlotPointsFromDropdown.map((val,index)=>{
+              if((this.point.options.x==chartPlotPointsFromDropdown[index].x)&&(this.point.options.y==chartPlotPointsFromDropdown[index].y)&&(this.point.options.z==chartPlotPointsFromDropdown[index].z)){
+                return chartPlotPointsFromDropdown[index].item_text;
+              }
+              else{
+              return '';
+              }
+            })
+          }
+        },
+        data: this._dataService.firstData.scatterPlotData
+      }
+      // 
+      this.chart.addSeries(seriesAdded,true)
+      // this.chart.series[0].dataLabels=customDataLabels
+      // this.chart.series[0].setData(this._dataService.secondData.scatterPlotData,true)
+      // this.chart.redraw();
+    
   }
   ngAfterViewInit(): void {
     
