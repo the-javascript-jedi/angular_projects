@@ -178,7 +178,104 @@ export class ThreeDTooltipComponent implements OnInit {
   ngAfterViewInit(): void {
     
   }
-  dropdownCheckData(){
+  dropdownTestData(){
+    //   if ( this.chart.series.length) {
+    //      this.chart.series[0].remove();
+    // }
+    //  let cloneToolTip = null;
+    // let checkx = [];
+    // let checky = [];
+    // let checkz = [];
+    // let clone = [];
+    // let del = [];
+    //  let seriesAdded={
+    //     type: 'scatter3d',
+    //     name:'series 1',
+    //     cursor: 'pointer',
+    //     point: {
+    //         events: {
+    //           click: function (event) {
+    //             console.log("hello")
+    //               console.log("event",event.point.options);
+    //                //check if point was already clicked
+    //               //  var x = checkx.indexOf(event.point.options.x),
+    //               //  y = checky.indexOf(event.point.options.y),
+    //               //  z = checkz.indexOf(event.point.options.z)
+    //                var x = checkx.indexOf(event.point.options.x),
+    //                y = checky.indexOf(event.point.options.y),
+    //                z = checkz.indexOf(event.point.options.z)
+    //                if (x>=0&&y>=0&&x==y) {
+    //                             //remove tooltip
+    //                             (clone[x]).remove();
+    //                             //remove xy coordinate and clone from array --> tooltip can be displayed again
+    //                             clone.splice(x, 1);
+    //                             checky.splice(x, 1);
+    //                             checkx.splice(x, 1);
+    //                }else {
+    //                             var cloneToolTip = this.series.chart.tooltip.label.element.cloneNode(true);
+    //                            this.series.chart.container.firstChild.appendChild(cloneToolTip);
+    //                             //save coordinates and tooltip object
+    //                             // checkx.push(event.point.options.x);
+    //                             // checky.push(event.point.options.y);
+    //                             // checkz.push(event.point.options.z)
+    //                              checkx.push(event.point.options.x);
+    //                             checky.push(event.point.options.y);
+    //                             checkz.push(event.point.options.z)
+    //                             clone.push(cloneToolTip);
+    //                         }
+    //           }
+    //         }
+    //     },
+    //     dataLabels: {
+    //       enabled: true,
+    //       formatter() {
+    //         return '';
+    //       }
+    //     },
+    //     data: this._dataService.firstData.scatterPlotData
+    //   }
+    //   this.chart.addSeries(seriesAdded,true);
+    //   console.log("this.chart.series[0]",this.chart.series[0]);
+    //   console.log("this.chart.series[0].chart.tooltip",this.chart.series[0].chart.tooltip);
+      // var cloneToolTipNode = this.chart.series[0].chart.tooltip.label.element.cloneNode(true);
+      // cloneToolTip = this.chart.series[0].chart.container.firstChild.appendChild(cloneToolTipNode)
+      // this.chart.series[0].chart.tooltip.isHidden=false
+      // console.log("cloneToolTip",cloneToolTip)
+                              //  this.series.chart.container.firstChild.appendChild(cloneToolTip);
+                              //   //save coordinates and tooltip object
+                              //   checkx.push(event.point.options.x);
+                              //   checky.push(event.point.options.y);
+                              //   checkz.push(event.point.options.z)
+                              //   clone.push(cloneToolTip);
+  // this.chart.series[0].data[0].firePointEvent('click',(val)=>{
+  //   console.log("clicked",val)
+  // });
+// console.log("this.chart.series[0].options.point.events.click",this.chart.series[0].options.point.events.click(this.chart.series[0]));
+//  chart.options.plotOptions.series.events.click(chart.series[1]);
+// this.chart.series[0].options.point.events.click(this.chart.series[0])
+// var chart = $("#container").highcharts();
+//     console.log(chart);
+//     console.log(chart.series[0]);
+//     console.log(chart.series[0].data[0]);
+//     var point = chart.series[0].points[0];
+// console.log("this.chart.series[0]",this.chart.series[0].data[0])
+//     Highcharts.fireEvent(this.chart.series[0], 'click',this.chart.series[0].data[0]);
+this.chart.series[0].points[1].firePointEvent('click',{point:{options:{x:1,y:1,z:3}}});
+// console.log("this.chart.series",this.chart.series[0].chart.update({
+//   tooltip: {
+//                             enabled: true
+//                         }
+// }))
+setTimeout(()=>{
+  this.chart.series[0].chart.update({
+                        tooltip: {
+                            enabled: true
+                        }
+                    });
+})
+                            }
+                            
+  dropdownHoverClick(){
       if ( this.chart.series.length) {
          this.chart.series[0].remove();
     }
@@ -218,8 +315,9 @@ export class ThreeDTooltipComponent implements OnInit {
       this.chart.addSeries(seriesAdded,true)
       console.log("this.chart.series[0]",this.chart.series[0]);
     // this.chart.series[0].data[8].setState('hover');
-        this.chart.series[0].data[3].setState('hover');
-        this.chart.tooltip.refresh(this.chart.series[0].data[3]);
+        // this.chart.series[0].data[3].setState('hover');
+        this.chart.tooltip.refresh(this.chart.series[0].data[3],this.chart.series[0].data[1]);
+        
   }
   updateChartTooltip(){
     // tooltip added on click
@@ -236,12 +334,15 @@ export class ThreeDTooltipComponent implements OnInit {
         point: {
             events: {
               click: function (event) {
-                  console.log("event",event.point.options);
+                console.log("event--clicked",event)
+                  // console.log("event",event.point.options);
                    //check if point was already clicked
                    var x = checkx.indexOf(event.point.options.x),
                    y = checky.indexOf(event.point.options.y),
-                   z = checkz.indexOf(event.point.options.z)
+                   z = checkz.indexOf(event.point.options.z);
+                   console.log("x,y,z",x,y,z)
                    if (x>=0&&y>=0&&x==y) {
+                    console.log("if loop");
                                 //remove tooltip
                                 (clone[x]).remove();
                                 //remove xy coordinate and clone from array --> tooltip can be displayed again
@@ -249,13 +350,16 @@ export class ThreeDTooltipComponent implements OnInit {
                                 checky.splice(x, 1);
                                 checkx.splice(x, 1);
                    }else {
+                    console.log("else loop");
                                 var cloneToolTip = this.series.chart.tooltip.label.element.cloneNode(true);
                                this.series.chart.container.firstChild.appendChild(cloneToolTip);
                                 //save coordinates and tooltip object
                                 checkx.push(event.point.options.x);
                                 checky.push(event.point.options.y);
                                 checkz.push(event.point.options.z)
+                                console.log("cloneToolTip",cloneToolTip)
                                 clone.push(cloneToolTip);
+                                
                             }
               }
             }
