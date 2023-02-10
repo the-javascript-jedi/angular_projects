@@ -1,0 +1,13 @@
+<p>three-d-tooltip works!</p>
+<p>three-d-annotation works!</p>
+<form [formGroup]="myForm">
+    <ng-multiselect-dropdown name="city" [placeholder]="'Select City'" [settings]="dropdownSettings"
+        [data]="scatterDataDropdown" formControlName="city" [disabled]="disabled" (onSelect)="onItemSelect($event)"
+        (onDeSelect)="onItemDeSelect($event)">
+    </ng-multiselect-dropdown>
+</form>
+<highcharts-chart id="container" [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="chartOptions"
+    [callbackFunction]="chartCallback" [(update)]="updateFromInput" [oneToOne]="true">
+</highcharts-chart>
+
+<button (click)="updateChartTooltip()">Update Chart</button>

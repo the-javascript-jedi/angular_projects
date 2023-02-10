@@ -12,6 +12,7 @@ import { ThreeDAnnotationComponent } from './three-d-annotation/three-d-annotati
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BarChartIiComponent } from './bar-chart-ii/bar-chart-ii.component';
+import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BarChartIiComponent } from './bar-chart-ii/bar-chart-ii.component';
     ThreeDScatterPlotComponent,
     ThreeDRotationComponent,
     ThreeDAnnotationComponent,
-    BarChartIiComponent
+    BarChartIiComponent,
+    ThreeDTooltipComponent
   ],
   imports: [
     BrowserModule,

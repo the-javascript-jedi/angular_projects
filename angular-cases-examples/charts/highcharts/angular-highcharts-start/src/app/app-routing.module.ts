@@ -7,6 +7,7 @@ import {ThreeDScatterPlotComponent} from './three-d-scatter-plot/three-d-scatter
 import {ThreeDRotationComponent} from './three-d-rotation/three-d-rotation.component';
 import {ThreeDAnnotationComponent} from './three-d-annotation/three-d-annotation.component';
 import {BarChartIiComponent} from './bar-chart-ii/bar-chart-ii.component';
+import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: '3-d-scatterPlot', component: ThreeDScatterPlotComponent },
   { path: '3-d-rotation', component: ThreeDRotationComponent },
   { path: '3-d-annotation', component: ThreeDAnnotationComponent },
+  { path: '3-d-tooltip', component: ThreeDTooltipComponent },
+
 ];
 
 @NgModule({
