@@ -178,6 +178,49 @@ export class ThreeDTooltipComponent implements OnInit {
   ngAfterViewInit(): void {
     
   }
+  dropdownCheckData(){
+      if ( this.chart.series.length) {
+         this.chart.series[0].remove();
+    }
+    let chartPlotPoints=[];
+    chartPlotPoints=[
+      {item_id:0,item_text:'1,1,1',x:1,y:1,z:1},
+      {item_id:1,item_text:'2,2,2',x:2,y:2,z:2},
+      // {item_id:2,item_text:'3,3,3,',x:3,y:3,z:3},
+      // {item_id:3,item_text:'6,6,6',x:6,y:6,z:6},
+      // {item_id:4,item_text:'9,9,9',x:9,y:9,z:9},
+    ]
+    // chartPlotPoints=this.scatterDataDropdown.map(val=>{
+    //   let plotPointsArray=val.item_text.split(',');
+    //   val['x']=Number(plotPointsArray[0]);
+    //   val['y']=Number(plotPointsArray[1]);
+    //   val['z']=Number(plotPointsArray[2]);
+    //   return val;
+    // })
+    console.log("chartPlotPoints",chartPlotPoints);
+   
+    let checkx = [];
+    let checky = [];
+    let checkz = [];
+    let clone = [];
+    let del = [];
+    let seriesAdded={
+        type: 'scatter3d',
+        name:'series 1',
+        dataLabels: {
+          enabled: true,
+           formatter() {
+            return ""
+          }
+        },
+        data: this._dataService.firstData.scatterPlotData
+      }
+      this.chart.addSeries(seriesAdded,true)
+      console.log("this.chart.series[0]",this.chart.series[0]);
+    // this.chart.series[0].data[8].setState('hover');
+        this.chart.series[0].data[3].setState('hover');
+        this.chart.tooltip.refresh(this.chart.series[0].data[3]);
+  }
   updateChartTooltip(){
     // tooltip added on click
     let cloneToolTip = null;
