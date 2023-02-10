@@ -50,95 +50,13 @@ export class ThreeDTooltipComponent implements OnInit {
         fitToPlot: false,
       },
     },
-    // annotations:[{
-    //   draggable:'',
-    //   labelOptions: {
-    //       backgroundColor: 'rgba(255,255,255,0.5)',
-    //       verticalAlign: 'top',
-    //   },
-    //   labels: [{
-    //      point: {
-    //             xAxis: 0,
-    //             yAxis: 0,
-    //             x: 1,
-    //             y: 1,
-    //         },
-    //         text: 'Arbois'
-    //   }]
-    // }],
     title: {
       text: '3D scatter chart',
+    },    
+    series: [ ],
+    tooltip: {
+      shared: true
     },
-
-    // yAxis: {
-    //   min: 0,
-    //   max: 10,
-    //   title: null,
-    // },
-
-    // xAxis: {
-    //   min: 0,
-    //   max: 10,
-    //   gridLineWidth: 1,
-    // },
-
-    // zAxis: {
-    //   min: 0,
-    //   max: 10,
-    //   showFirstLabel: false,
-    // },
-    
-    series: [
-      // {
-      //   type: 'scatter3d',
-      //   name:'series 1',
-      //   cursor: 'pointer',
-      //   point: {
-      //     events: {
-      //         click: function (event) {
-      //           console.log("event",event.point.options)
-      //           //check if point was already clicked
-      //           // var me=this;
-      //           var x = checkx.indexOf(event.point.x),
-      //           y = checky.indexOf(event.point.y),
-      //           z= checkz.indexOf(event.point.z)
-      //           // console.log("x,y,z",x,y,z);
-      //           // if (  x >= 0 &&  y >= 0 && x == y) {
-                  
-      //           // }
-      //         }
-      //     }
-      //   },
-      //   dataLabels: {
-      //     enabled: true,
-      //     formatter() {
-      //       // console.log("this.point",this.point);
-      //       if(this.point.options.x===1&&this.point.options.y==1&&this.point.options.z==1){
-      //         return 'Test New Series 1'
-      //       }else{
-      //         return '';
-      //       }
-      //     }
-      //   },
-      //   data: this._dataService.firstData.scatterPlotData
-      // },
-      // {
-      //   type: 'scatter3d',
-      //   name:'series 2',
-      //   dataLabels: {
-      //     enabled: true,
-      //     formatter() {
-      //       console.log("this.point",this.point);
-      //       if(this.point.options.x===8&&this.point.options.y==0&&this.point.options.z==0){
-      //         return 'Test New Series 2'
-      //       }else{
-      //         return '';
-      //       }
-      //     }
-      //   },
-      //   data: this._dataService.secondData.scatterPlotData,
-      // },
-    ],
   };
   constructor(private fb: FormBuilder,private _dataService:DataService) {
     const self = this;
@@ -261,34 +179,52 @@ export class ThreeDTooltipComponent implements OnInit {
     
   }
   updateChartTooltip(){
-    // let chartPlotPoints=[];
-    // chartPlotPoints=this.scatterDataDropdown.map(val=>{
-    //   let plotPointsArray=val.item_text.split(',');
-    //   val['x']=Number(plotPointsArray[0]);
-    //   val['y']=Number(plotPointsArray[1]);
-    //   val['z']=Number(plotPointsArray[2]);
-    //   return val;
-    // })
-    // console.log("chartPlotPoints",chartPlotPoints);
-    // let seriesAdded={
-    //     type: 'scatter3d',
-    //     name:'series 1',
-    //     dataLabels: {
-    //       enabled: true,
-    //        formatter() {
-    //         // console.log("formatter called")
-    //         return chartPlotPoints.map((val,index)=>{
-    //           if((this.point.options.x==chartPlotPoints[index].x)&&(this.point.options.y==chartPlotPoints[index].y)&&(this.point.options.z==chartPlotPoints[index].z)){
-    //             return chartPlotPoints[index].item_text;
-    //           }
-    //           else{
-    //           return '';
-    //           }
-    //         })
-    //       }
-    //     },
-    //     data: this._dataService.firstData.scatterPlotData
-    //   }
-    //   this.chart.addSeries(seriesAdded,true)
+    // tooltip added on click
+    let cloneToolTip = null;
+    let checkx = [];
+    let checky = [];
+    let checkz = [];
+    let clone = [];
+    let del = [];
+     let seriesAdded={
+        type: 'scatter3d',
+        name:'series 1',
+        cursor: 'pointer',
+        point: {
+            events: {
+              click: function (event) {
+                  console.log("event",event.point.options);
+                   //check if point was already clicked
+                   var x = checkx.indexOf(event.point.options.x),
+                   y = checky.indexOf(event.point.options.y),
+                   z = checkz.indexOf(event.point.options.z)
+                   if (x>=0&&y>=0&&x==y) {
+                                //remove tooltip
+                                (clone[x]).remove();
+                                //remove xy coordinate and clone from array --> tooltip can be displayed again
+                                clone.splice(x, 1);
+                                checky.splice(x, 1);
+                                checkx.splice(x, 1);
+                   }else {
+                                var cloneToolTip = this.series.chart.tooltip.label.element.cloneNode(true);
+                               this.series.chart.container.firstChild.appendChild(cloneToolTip);
+                                //save coordinates and tooltip object
+                                checkx.push(event.point.options.x);
+                                checky.push(event.point.options.y);
+                                checkz.push(event.point.options.z)
+                                clone.push(cloneToolTip);
+                            }
+              }
+            }
+        },
+        dataLabels: {
+          enabled: true,
+          formatter() {
+            return '';
+          }
+        },
+        data: this._dataService.firstData.scatterPlotData
+      }
+      this.chart.addSeries(seriesAdded,true)
   }
 }
