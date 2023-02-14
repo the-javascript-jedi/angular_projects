@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChartService {
-dataX = [
+dataXold = [
   "100",
   "99.2388753892",
   "99.5596084127",
@@ -106,7 +106,9 @@ dataX = [
   "93.0149617215",
   "93.0147091833"
 ];
-dataY = [
+
+
+dataYold = [
   "0.613222019079",
   "0.589852009747",
   "0.599742550669",
@@ -209,7 +211,7 @@ dataY = [
   "0.394354486446",
 ];
 
-dataZ = [
+dataZold = [
   "0.734706454227",
   "0.781320309118",
   "0.762565820325",
@@ -311,11 +313,20 @@ dataZ = [
   "1.8052125009",
   "1.80103652748",
 ];
-
+dataX=Array.from({length: 100000}, () => Math.floor(Math.random() * 100000));
+dataY=Array.from({length: 100000}, () => Math.floor(Math.random() * 100000));
+dataZ=Array.from({length: 100000}, () => Math.floor(Math.random() * 100000));
+// 100k devices
 chartScatterData = {
    dataX:this.dataX,
    dataY:this.dataY,
    dataZ:this.dataZ,
  }
+// normal data
+//  chartScatterData = {
+//    dataX:this.dataX,
+//    dataY:this.dataY,
+//    dataZ:this.dataZ,
+//  }
   constructor() { }
 }
