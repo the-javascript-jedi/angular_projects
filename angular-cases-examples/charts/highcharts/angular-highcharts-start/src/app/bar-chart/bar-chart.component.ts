@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import * as Highcharts from 'highcharts';
+// source
+// https://stackblitz.com/edit/angular-chart-export?file=src%2Fapp%2Fapp.component.html
 
 @Component({
   selector: 'app-bar-chart',
@@ -7,7 +9,7 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit {
-
+  @ViewChild("lineChart", { static: false }) lineChart: any;
   constructor() { }
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
@@ -85,14 +87,10 @@ export class BarChartComponent implements OnInit {
   }
 
   downloadChart(){
-    // this.chartOptions.exportChart({type:"image/jpeg"});
-    this.chartOptions.exporting.enabled=true;
-    var chart  = (<any>document.getElementById('container')).highcharts();
-    chart.exportChartLocal({
-            type: 'image/png',
-            filename: 'theimage'
+     this.lineChart.chart.exportChart({
+          type: "image/png",
+          filename: "chart download"
         });
-    this.Highcharts    
   }
 }
 
