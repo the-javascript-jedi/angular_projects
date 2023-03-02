@@ -76,12 +76,24 @@ export class BarChartComponent implements OnInit {
       type:'bar',
       data: [631, 727, 3202, 721, 26]
   }, 
-  ]
+  ],
+  // disable context menu
+  exporting: { enabled: false }
   };
   
   ngOnInit(): void {
   }
 
+  downloadChart(){
+    // this.chartOptions.exportChart({type:"image/jpeg"});
+    this.chartOptions.exporting.enabled=true;
+    var chart  = (<any>document.getElementById('container')).highcharts();
+    chart.exportChartLocal({
+            type: 'image/png',
+            filename: 'theimage'
+        });
+    this.Highcharts    
+  }
 }
 
 function updateStackColor(alpha) {
