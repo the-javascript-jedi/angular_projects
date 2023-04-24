@@ -1,1 +1,36 @@
 <p>column-chkbox works!</p>
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Network Profile Group Name</th>
+                <th scope="col">
+                    HIGH
+                    <input type="checkbox" [(ngModel)]="highSelected" name="list_name" value="m1"
+                        (change)="checkUncheckAllHigh()" />
+                </th>
+                <th scope="col">
+                    MEDIUM
+                    <input type="checkbox" [(ngModel)]="mediumSelected" name="list_name" value="m1" (change)="checkUncheckAllMedium()" />
+                </th>                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of checklist ">
+                <td>{{item.value}}</td>
+                <td scope="row">
+                    <input type="checkbox" [(ngModel)]="item.isHighSelected" name="list_name" value="{{item.id}}"
+                        (change)="isAllHighSelected()" />
+                </td>
+                <td scope="row">
+                    <input type="checkbox" [(ngModel)]="item.isMediumSelected" name="list_name" value="{{item.id}}"
+                        (change)="isAllHighSelected()" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <button (click)="submitModal()">
+        Submit
+    </button>
+</div>
