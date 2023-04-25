@@ -11,8 +11,14 @@
                 </th>
                 <th scope="col">
                     MEDIUM
-                    <input type="checkbox" [(ngModel)]="mediumSelected" name="list_name" value="m1" (change)="checkUncheckAllMedium()" />
-                </th>                
+                    <input type="checkbox" [(ngModel)]="mediumSelected" name="list_name" value="m1" 
+                    (change)="checkUncheckAllMedium()" />
+                </th>
+                <th scope="col">
+                    ANY
+                    <input type="checkbox" [(ngModel)]="anySelected" name="list_name" value="m1"
+                        (change)="checkUncheckAllAny()" />
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -20,11 +26,15 @@
                 <td>{{item.value}}</td>
                 <td scope="row">
                     <input type="checkbox" [(ngModel)]="item.isHighSelected" name="list_name" value="{{item.id}}"
-                        (change)="isAllHighSelected()" />
+                        (change)="isAllHighSelected(item)" />
                 </td>
                 <td scope="row">
                     <input type="checkbox" [(ngModel)]="item.isMediumSelected" name="list_name" value="{{item.id}}"
-                        (change)="isAllHighSelected()" />
+                        (change)="isAllMediumSelected(item)" />
+                </td>
+                <td scope="row">
+                    <input type="checkbox" [(ngModel)]="item.isAnySelected" name="list_name" value="{{item.id}}"
+                        (change)="isAllAnySelected(item)" />
                 </td>
             </tr>
         </tbody>

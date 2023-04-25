@@ -14,13 +14,14 @@ export class ColumnChkboxComponent implements OnInit {
   checklist:any;
   checkedHighList:any;
   checkedMediumList:any;
+  checkedAnyList:any;
 
   constructor() {
      this.highSelected = false;
    this.checklist =[
-    {id:1,isHighSelected:false,isMediumSelected:false,value:'nexus 2000'},
-    {id:2,isHighSelected:true,isMediumSelected:false,value:'nexus 3000'},
-    {id:3,isHighSelected:false,isMediumSelected:false,value:'nexus 4000'},
+    {id:1,isHighSelected:false,isMediumSelected:false,isAnySelected:false,value:'nexus 2000'},
+    {id:2,isHighSelected:true,isMediumSelected:false,isAnySelected:false,value:'nexus 3000'},
+    {id:3,isHighSelected:true,isMediumSelected:false,isAnySelected:false,value:'nexus 4000'},
   ]
   this.getCheckedHighItemList();
    }
@@ -37,7 +38,13 @@ export class ColumnChkboxComponent implements OnInit {
   }
 
   // Check All Checkbox Checked for HIGH
-  isAllHighSelected() {
+  isAllHighSelected(selectedItem:any) {
+    console.log("selectedItem-high column",selectedItem);
+    if(selectedItem.isHighSelected==true&&selectedItem.isMediumSelected===true){
+      selectedItem.isAnySelected=true;
+    }else{
+      selectedItem.isAnySelected=false;
+    }
     this.highSelected = this.checklist.every(function(item:any) {
         return item.isHighSelected == true;
       })
@@ -70,19 +77,58 @@ export class ColumnChkboxComponent implements OnInit {
     this.checkedMediumList = JSON.stringify(this.checkedMediumList);
     console.log("this.checkedMediumList ",this.checkedMediumList )
   }
-   isAllMediumSelected() {
+   isAllMediumSelected(selectedItem:any) {
+    console.log("selectedItem-medium column",selectedItem);
+    if(selectedItem.isHighSelected==true&&selectedItem.isMediumSelected===true){
+      selectedItem.isAnySelected=true;
+    }else{
+      selectedItem.isAnySelected=false;
+    }
     this.mediumSelected = this.checklist.every(function(item:any) {
         return item.isMediumSelected == true;
       })
-    this.getCheckedHighItemList();
+    this.getCheckedMediumItemList();
   }
 
 
   checkUncheckAllLow(){
 
   }
+ // Any
   checkUncheckAllAny(){
-
+     for (var i = 0; i < this.checklist.length; i++) {
+      this.checklist[i].isAnySelected = this.anySelected;
+    }
+    this.getCheckedAnyItemList();
+  }
+  getCheckedAnyItemList(){
+    this.checkedAnyList = [];
+    for (var i = 0; i < this.checklist.length; i++) {
+      if(this.checklist[i].isAnySelected)
+      this.checkedAnyList.push(this.checklist[i]);
+    }
+    // remove checked items
+    // this.checkedAnyList.forEach(val=>{
+    //   val.isHighSelected=false;
+    //   val.isMediumSelected=false;
+    // })
+    this.checkedAnyList = JSON.stringify(this.checkedAnyList);
+    console.log("this.checkedAnyList ",this.checkedAnyList )
+  }
+   isAllAnySelected(selectedItem:any) {
+    console.log("selectedItem--any column",selectedItem);
+     if(selectedItem.isAnySelected==false){
+      selectedItem.isHighSelected=false;
+      selectedItem.isMediumSelected=false;
+    }else{
+      selectedItem.isHighSelected=true;
+      selectedItem.isMediumSelected=true;
+    }
+    this.anySelected = this.checklist.every(function(item:any) {
+        return item.isAnySelected == true;
+      })
+      console.log("this.anySelected",this.anySelected)
+    this.getCheckedAnyItemList();
   }
 
   submitModal(){
