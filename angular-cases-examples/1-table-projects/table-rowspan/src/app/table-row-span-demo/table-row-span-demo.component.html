@@ -1,0 +1,19 @@
+<p>table-row-span-demo works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>numbers</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of dataList">
+            <tr>
+                <td [attr.rowspan]="data.numbers.length + 1">{{data.pname}}</td>
+            </tr>
+            <tr *ngFor="let number of data.numbers;">
+                <td>{{number}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

@@ -1,1 +1,23 @@
 <p>table-row-span works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>device ip</th>
+            <th>findings</th>
+            <th>comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of dataFromAPIS">
+            <tr>
+                <td [attr.rowspan]="data.details.length + 1">{{data.device_hostname}}</td>
+                <td [attr.rowspan]="data.details.length + 1">{{data.device_ip}}</td>
+            </tr>
+            <tr *ngFor="let detail of data.details;">
+                <td>{{detail.findings}}</td>
+                <td>{{detail.mitigation_steps}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

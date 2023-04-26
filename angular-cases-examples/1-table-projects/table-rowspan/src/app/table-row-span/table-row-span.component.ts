@@ -7,7 +7,6 @@ import {dataFromApiTS} from "../../data/dummyData"
   styleUrls: ['./table-row-span.component.scss']
 })
 export class TableRowSpanComponent implements OnInit {
-
   constructor() { }
   dataFromAPIS:any;
   ngOnInit(): void {

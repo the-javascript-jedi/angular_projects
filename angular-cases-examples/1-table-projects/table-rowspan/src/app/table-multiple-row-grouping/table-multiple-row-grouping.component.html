@@ -1,0 +1,36 @@
+<p>table-multiple-row-grouping works!</p>
+{{streets[0]| json}}
+<table class="table table-fixed" border="1">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Street</th>
+            <th>Male</th>
+            <th>Female</th>
+            <th>Others</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let str of streets">
+            <td *ngIf="firstCountryInGroup(str)" [attr.rowspan]="numberOfCountry(str)">
+                {{str.Country.CountryName}}
+            </td>
+
+            <td *ngIf="firstStateInGroup(str)" [attr.rowspan]="numberOfState(str)">
+                {{str.State.StateName}}
+            </td>
+
+            <td *ngIf="firstCityInGroup(str)" [attr.rowspan]="numberOfCity(str)">
+                {{str.City.CityName}}
+            </td>
+
+            <td>{{str.Street.StreetName}}</td>
+            <td>{{str.Street.Male}}</td>
+            <td>{{str.Street.Female}}</td>
+            <td>{{str.Street.Others}}</td>
+        </tr>
+    </tbody>
+
+</table>
