@@ -1,26 +1,23 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id": 2,
+      "firstName": "alex",
+      "lastName": "new update",
+      "email": "new update",
+      "mobile": "new update",
+      "salary": "654789"
     },
     {
-      "id": 2,
-      "firstName": "22",
-      "lastName": "22",
-      "email": "2",
-      "mobile": "22",
-      "salary": "22"
+      "id": 3,
+      "firstName": "ns",
+      "lastName": "sam",
+      "email": "nsam@gmail.com",
+      "mobile": "123",
+      "salary": "32111111"
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
