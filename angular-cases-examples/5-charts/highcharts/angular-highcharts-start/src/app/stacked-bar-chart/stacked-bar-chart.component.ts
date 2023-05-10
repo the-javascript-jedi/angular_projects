@@ -12,7 +12,11 @@ export class StackedBarChartComponent implements OnInit {
 Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
     chart: {
-      type: 'column'
+      type: 'column',
+      scrollablePlotArea: {
+            minWidth: 700,
+            scrollPositionX: 1
+        }
     },
    title: {
       text: 'Stacked bar chart'
@@ -24,14 +28,24 @@ Highcharts: typeof Highcharts = Highcharts;
       min: 0,
       title: {
         text: 'Total fruit consumption'
-      }
+      },
+      // show labels in end
+      stackLabels: {
+            enabled: true,
+        },
+      // for column chart some scenarios when using horizontal scaling use this below command
+      reversedStacks:false
     },
     legend: {
       reversed: true
     },
      plotOptions: {
       series: {
-        stacking: 'normal'
+        stacking: 'normal',       
+        // show labels inside chart
+        dataLabels: {
+                enabled: true,
+        }
       }
     },
    series: [{
@@ -45,7 +59,7 @@ Highcharts: typeof Highcharts = Highcharts;
     }, {
       name: 'Joe',
       type: 'column',
-      data: [3, 4, 4, 2, 5]
+      data: [13, 4, 4, 0, 5]
     }]
   };
   ngOnInit(): void {
