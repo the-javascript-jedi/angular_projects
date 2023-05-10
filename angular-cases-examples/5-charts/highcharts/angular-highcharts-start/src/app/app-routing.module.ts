@@ -8,6 +8,7 @@ import {ThreeDRotationComponent} from './three-d-rotation/three-d-rotation.compo
 import {ThreeDAnnotationComponent} from './three-d-annotation/three-d-annotation.component';
 import {BarChartIiComponent} from './bar-chart-ii/bar-chart-ii.component';
 import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.component';
+import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: '3-d-rotation', component: ThreeDRotationComponent },
   { path: '3-d-annotation', component: ThreeDAnnotationComponent },
   { path: '3-d-tooltip', component: ThreeDTooltipComponent },
+  { path: '3-d-tooltip', component: ThreeDTooltipComponent },
+  { path: 'stacked-bar-chart', component: StackedBarChartComponent },
 
 ];
 

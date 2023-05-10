@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BarChartIiComponent } from './bar-chart-ii/bar-chart-ii.component';
 import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.component';
+import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.compon
     ThreeDRotationComponent,
     ThreeDAnnotationComponent,
     BarChartIiComponent,
-    ThreeDTooltipComponent
+    ThreeDTooltipComponent,
+    StackedBarChartComponent
   ],
   imports: [
     BrowserModule,
