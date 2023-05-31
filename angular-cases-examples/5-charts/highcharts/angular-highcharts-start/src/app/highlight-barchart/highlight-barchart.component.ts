@@ -9,29 +9,76 @@ import * as Highcharts from 'highcharts';
 export class HighlightBarchartComponent implements OnInit {
 
 @ViewChild("barchart", { static: false }) barchart: any;
-targetCountry = 'Portugal';
-chartOptions:Highcharts.Options = {}
+colorData = [];
+chartOptions:any = {}
 constructor() { 
   const that = this;
   // let targetCountry = 'Portugal';
-  this.targetCountry="May";
+  this.colorData=[
+        {
+          y:10,
+          type:'bar',
+          color:'red',
+        },
+        {
+          y:20,
+          type:'bar',
+          color:'green',
+        },
+        {
+          y:95,
+          type:'bar',
+          color:'blue',
+        },
+        {
+          y:25,
+          type:'bar',
+          color:'yellow',
+        },
+        {
+          y:35,
+          type:'bar',
+          color:'pink',
+        },
+        {
+          y:5,
+          type:'bar',
+          color:'lightblue',
+        },
+        {
+          y:45,
+          type:'bar',
+          color:'lightgreen',
+        },
+        {
+          y:55,
+          type:'bar',
+          color:'lightyellow',
+        },
+         {
+          y:75,
+          type:'bar',
+          color:'purple',
+        },
+         {
+          y:42,
+          type:'bar',
+          color:'Maroon ',
+        },
+        {
+          y:62,
+          type:'bar',
+          color:'orange',
+        },
+        {
+          y:72,
+          type:'bar',
+          color:'Goldenrod ',
+        },
+       ]
   this.chartOptions={
   chart: {
         type: 'column',
-           events: {
-        	render() {
-          	let chart = this,x;            
-            chart.series[0].points.forEach(p=> {
-              let targetCountry = that.targetCountry;
-              if (p.category === targetCountry) {
-                x = p.x;
-              	p.graphic.element.style.fill = 'red'
-              }
-            })
-            
-            chart.xAxis[0].ticks[x].label.element.style.fill = 'red'
-          }
-        }
     },
     title: {
         text: 'Monthly Average Rainfall'
@@ -77,10 +124,7 @@ constructor() {
         }
     },
     series: [{
-        name: 'Tokyo',
-        type:'column',
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4,
-            194.1, 95.6, 54.4]
+       data:this.colorData
 
     }]
   };
