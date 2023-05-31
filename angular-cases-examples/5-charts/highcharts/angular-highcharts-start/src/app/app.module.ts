@@ -14,6 +14,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BarChartIiComponent } from './bar-chart-ii/bar-chart-ii.component';
 import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.component';
 import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
+import { HighlightBarchartComponent } from './highlight-barchart/highlight-barchart.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.
     ThreeDAnnotationComponent,
     BarChartIiComponent,
     ThreeDTooltipComponent,
-    StackedBarChartComponent
+    StackedBarChartComponent,
+    HighlightBarchartComponent
   ],
   imports: [
     BrowserModule,

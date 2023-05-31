@@ -15,7 +15,7 @@ Highcharts: typeof Highcharts = Highcharts;
       type: 'column',
       scrollablePlotArea: {
             minWidth: 700,
-            scrollPositionX: 1
+            scrollPositionX: 0
         }
     },
    title: {
