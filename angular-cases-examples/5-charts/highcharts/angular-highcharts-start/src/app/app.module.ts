@@ -15,6 +15,7 @@ import { BarChartIiComponent } from './bar-chart-ii/bar-chart-ii.component';
 import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.component';
 import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
 import { HighlightBarchartComponent } from './highlight-barchart/highlight-barchart.component';
+import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HighlightBarchartComponent } from './highlight-barchart/highlight-barch
     BarChartIiComponent,
     ThreeDTooltipComponent,
     StackedBarChartComponent,
-    HighlightBarchartComponent
+    HighlightBarchartComponent,
+    CustomTooltipComponent
   ],
   imports: [
     BrowserModule,
