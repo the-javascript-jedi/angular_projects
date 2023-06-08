@@ -16,6 +16,7 @@ import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.compon
 import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
 import { HighlightBarchartComponent } from './highlight-barchart/highlight-barchart.component';
 import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.component';
+import { StockChartComponent } from './stock-chart/stock-chart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.componen
     ThreeDTooltipComponent,
     StackedBarChartComponent,
     HighlightBarchartComponent,
-    CustomTooltipComponent
+    CustomTooltipComponent,
+    StockChartComponent
   ],
   imports: [
     BrowserModule,

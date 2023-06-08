@@ -11,6 +11,7 @@ import { ThreeDTooltipComponent } from './three-d-tooltip/three-d-tooltip.compon
 import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
 import { HighlightBarchartComponent } from './highlight-barchart/highlight-barchart.component';
 import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.component';
+import { StockChartComponent } from './stock-chart/stock-chart.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'stacked-bar-chart', component: StackedBarChartComponent },
   { path: 'highlight-bar-chart', component: HighlightBarchartComponent },
   { path: 'custom-tooltip', component: CustomTooltipComponent },
+  { path: 'stock-chart', component: StockChartComponent },
 
 ];
 
