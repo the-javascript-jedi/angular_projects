@@ -60,5 +60,13 @@ export let dataFromApiTS = {
     "ciscoMlFinal":70.5,
     "dumpDate":"20180512"
   },
+  {
+    "ciscoMlFinal":50.5,
+    "dumpDate":"20170512"
+  },
+  {
+    "ciscoMlFinal":62.5,
+    "dumpDate":"20160512"
+  },
   ]
 };

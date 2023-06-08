@@ -59,7 +59,48 @@ export class StockChartComponent implements OnInit {
     console.log("this.chartData",this.chartData);
   }
 
-    chartOptions: Options = {
+    chartOptions: any = {
+       chart: {
+    events: {
+      load: function() {
+        var chart = this,
+          yAxis = chart.yAxis[0],
+          xAxis = chart.xAxis[0];
+        console.log("xAxis.tickPositions",xAxis.tickPositions);
+        console.log("xAxis.ticks", xAxis.ticks);
+        console.log("yAxis.tickPositions",yAxis.tickPositions);
+        console.log("yAxis.ticks", yAxis.ticks);
+      }
+    },
+    
+  },
+  yAxis:{
+	plotBands: [
+    	{from: 0, to: 20, color: 'rgba(196,240,208,0.5)'},
+      {from: 20, to: 95, color: 'rgba(251,237,198,0.3)'},
+      {from: 95, to: 100, color: 'rgba(255,126,126,0.8)'},     
+    ]
+  },
+  xAxis: {
+    events: {
+      setExtremes: function(e) {
+                    console.log("setExtremes-this",this);                    
+                    // console.log("setExtremes-this",this.userMin);                    
+                    // console.log("setExtremes-this",this.userMax);            
+                    // console.log(this.min, this.max)
+                    console.log(moment(this.userMin).format("DD MMM YYYY")) //parse integer
+                    console.log(moment(this.userMax).format("DD MMM YYYY")) //parse integer
+                    // console.log(moment(this.min).format("DD MMM YYYY hh:mm a")) //parse integer
+                    // console.log(moment(this.max).format("DD MMM YYYY hh:mm a")) //parse integer
+                    // console.log(this.getExtremes())        
+                    // console.log("setExtremes-this.tickPositions",this.tickPositions);                    
+                    // console.log("setExtremes-this.tickPositions[0]",this.tickPositions[0]);                    
+                    // console.log("setExtremes-this.tickPositions[this.tickPositions.length-1]",this.tickPositions[this.tickPositions.length-1]);                    
+                    // console.log(moment(this.tickPositions[0]).format("DD MMM YYYY hh:mm a")) //parse integer
+                    // console.log(moment(this.tickPositions[this.tickPositions.length-1]).format("DD MMM YYYY hh:mm a")) //parse integer
+      }
+    }
+  },
     series: [
       {
         type: "line",
