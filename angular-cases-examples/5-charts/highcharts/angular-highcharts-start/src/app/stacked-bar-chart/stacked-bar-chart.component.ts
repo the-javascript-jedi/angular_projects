@@ -43,8 +43,12 @@ Highcharts: typeof Highcharts = Highcharts;
       series: {
         stacking: 'normal',       
         // show labels inside chart
+        // show all data labels -
         dataLabels: {
                 enabled: true,
+                allowOverlap:true,
+                crop:false,
+                // overflow:'none',
         }
       }
     },
