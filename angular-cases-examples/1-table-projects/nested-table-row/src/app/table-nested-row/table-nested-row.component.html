@@ -1,0 +1,28 @@
+<p>table-nested-row works!</p>
+<table class="table">
+    <tr class="header-row">
+        <th class="header">Province</th>
+    </tr>
+    <tr class="table-row-not-expanded" *ngFor="let covenant of covenants; let i = index">
+        <td class="cell" (click)="covenant.isExpanded = !covenant.isExpanded">
+            <div>{{ covenant.provinceID }}</div>
+
+            <div *ngIf="covenant.isExpanded" class="expanded-panel">
+                <div class="table-container">
+                    <table class="table">
+                        <tr class="header-row">
+                            <th class="header">header 1</th>
+                            <th class="header">header 2</th>
+                            <th class="header">header 3</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="cell">1</td>
+                            <td class="cell">2</td>
+                            <td class="cell">3</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
