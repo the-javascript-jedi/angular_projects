@@ -1,0 +1,18 @@
+.icon-style{
+    width: 20px;
+    text-align: center;
+    background: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+:host{
+    border: 1px solid lightgray;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+
+input{
+    border: none;
+    outline:none;
+}
