@@ -10,6 +10,7 @@
     border: 1px solid red;
     padding-bottom: 1px;
     padding-top: 1px;
+    background-color: #fff;
 }
 /* from child access the particular component in parent such that <au-fa-input class="parent-class"> */
 :host(.parent-class){
@@ -19,4 +20,7 @@
 input{
     border: none;
     outline:none;
+    height: 100%;
+    margin: 1px 0;
+    box-sizing: border-box;
 }
