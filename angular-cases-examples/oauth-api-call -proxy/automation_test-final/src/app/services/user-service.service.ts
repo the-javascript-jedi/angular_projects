@@ -8,17 +8,17 @@ import * as CryptoJS from 'crypto-js';
 })
 export class UserServiceService {
   makeOuathApiCall(url) {
-    //const apiUrl = 'https://cdetsng.cisco.com/wsapi/latest/api/bug/CSCwf44641';
-    //const apiUrl = "https://cdetsng.cisco.com/wsapi/latest/api/search?criteria=([Submitted-on] >= '01/01/2010') &fields=Severity,Status&count=10&start=99990";
-    //const apiUrl = "https://cdetsng.cisco.com/wsapi/latest/api/search?criteria=([Submitted-on]%20%3E%3D%20%2701%2F01%2F2010%27)%20&fields=Severity%2CStatus&count=10&start=99990";
-    //const apiUrl = "https://cdetsng.cisco.com/wsapi/latest/api/search";
+    //const apiUrl = 'https://testurl.com/wsapi/latest/api/bug/CSCwf44641';
+    //const apiUrl = "https://testurl.com/wsapi/latest/api/search?criteria=([Submitted-on] >= '01/01/2010') &fields=Severity,Status&count=10&start=99990";
+    //const apiUrl = "https://testurl.com/wsapi/latest/api/search?criteria=([Submitted-on]%20%3E%3D%20%2701%2F01%2F2010%27)%20&fields=Severity%2CStatus&count=10&start=99990";
+    //const apiUrl = "https://testurl.com/wsapi/latest/api/search";
 
     const criteria = "([Submitted-on] >= '06/30/2021')";
     const fields = "Severity,Status";
     const count = "10";
     const start = "99990";
     // Build the URL with the query parameters
-    const apiUrl = new URL('https://cdetsng.cisco.com/wsapi/latest/api/search');
+    const apiUrl = new URL('https://testurl.com/wsapi/latest/api/search');
     apiUrl.searchParams.append("criteria", encodeURIComponent(criteria));
     apiUrl.searchParams.append("fields", encodeURIComponent(fields));
     apiUrl.searchParams.append("count", encodeURIComponent(count));

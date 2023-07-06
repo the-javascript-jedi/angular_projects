@@ -10,7 +10,7 @@ import {UserServiceService} from '../../services/user-service.service'
 export class HomeComponent {
   ngOnInit() {
     // Called after the constructor and called  after the first ngOnChanges() 
-    this._UserServiceService.makeOuathApiCall("https://cdetsng.cisco.com/wsapi/latest/api/search?criteria=([Submitted-on] >= '01/01/2010') &fields=Severity,Status&count=10&start=99990").subscribe({
+    this._UserServiceService.makeOuathApiCall("https://testurl.com/wsapi/latest/api/search?criteria=([Submitted-on] >= '01/01/2010') &fields=Severity,Status&count=10&start=99990").subscribe({
       next:(val)=>{
         console.log("val",val);
       },
@@ -19,7 +19,7 @@ export class HomeComponent {
       }
     })
 
-    this._UserServiceService.makeOuathApiCall("https://cdetsng.cisco.com/wsapi/latest/api/bug/CSCwf44641").subscribe({
+    this._UserServiceService.makeOuathApiCall("https://testurl.com/wsapi/latest/api/bug/CSCwf44641").subscribe({
       next:(val)=>{
         console.log("val",val);
       },
