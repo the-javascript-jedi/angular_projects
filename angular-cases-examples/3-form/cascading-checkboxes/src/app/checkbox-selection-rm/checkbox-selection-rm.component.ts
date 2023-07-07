@@ -52,13 +52,10 @@ export class CheckboxSelectionRmComponent {
 
     // only if we have a parent do we care about siblings
     if (this.selections[checkbox].parent) {
-
       let parent = this.selections[this.selections[checkbox].parent];
-
       if (value) {
         // if it's true, we have to see if all siblings are true,
         // and if all siblings are true, then we can set the parent(s) true
-
         let siblingsThatAreFalse = parent.children.map(childKey => {
           // children are just an array of key strings so we get the selected property
           return {
@@ -69,24 +66,23 @@ export class CheckboxSelectionRmComponent {
           // then we only keep the ones that are false
           return !child.selected;
         });
-
         // console.log(siblingsThatAreFalse);
-
         if (!siblingsThatAreFalse.length) {
           // if no siblings are left (meaning they are all true) we can set
           // parent true and then recurse up the hierarchy
           parent.selected = true;
           this.changeParent(this.selections[checkbox].parent, true);
         }
-
       } else {
         // if it's false, we can just set all parents to false
         parent.selected = false;
         this.changeParent(this.selections[checkbox].parent, false);
       }
-
     }
- 
+  }
+
+  getSelectedNames(){
+    console.log("selections",this.selections)
   }
 }
 
