@@ -545,12 +545,7 @@ export const LESSONS = {
     'seqNo': 10,
     courseId: 12
   }
-
-
 };
-
-
-
 
 export function findCourseById(courseId: number) {
   return COURSES[courseId];
