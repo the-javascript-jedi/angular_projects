@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CascadingCheckboxComponent } from './cascading-checkbox/cascading-checkbox.component';
+import { CheckboxSelectionRmComponent } from './checkbox-selection-rm/checkbox-selection-rm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CascadingCheckboxComponent
+    CascadingCheckboxComponent,
+    CheckboxSelectionRmComponent
   ],
   imports: [
     BrowserModule,
