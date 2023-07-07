@@ -82,8 +82,26 @@ export class CheckboxSelectionRmComponent {
   }
 
   getSelectedNames(){
-    console.log("selections",this.selections)
+    console.log("selections",this.selections);
+    var resultArray = [];
+     for (const [key, value] of Object.entries(this.selections)) {
+    var customObj = {};   
+    this.selections[key]
+    customObj["key"] = key;
+    customObj["values"]=this.selections[key]
+    customObj["selected"]=this.selections[key].selected    
+    resultArray.push(customObj);
   }
+  // console.log("resultArray",resultArray);
+  // create api text string
+  var checkedCheckboxesNames=resultArray.filter(val=>{
+    if((val.selected==true)&&(val.key!=="hw_sw")&&(val.key!=="fingerprint")){
+      return val;
+    }    
+  }).map(({key}) => key).join("-")
+  console.log("checkedCheckboxesNames",checkedCheckboxesNames);
+  }
+
 }
 
 /**
