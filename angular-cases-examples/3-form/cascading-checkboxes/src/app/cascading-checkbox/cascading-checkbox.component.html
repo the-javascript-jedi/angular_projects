@@ -1,0 +1,132 @@
+<p>cascading-checkbox works!</p>
+<div class="selection-layer">
+    <label for="a">
+        <input type="checkbox" id="a" name="a" [ngModel]="selections.a.selected"
+            (ngModelChange)="toggleCheckbox('a', $event)">
+        a
+    </label>
+
+    <div class="selection-layer">
+
+        <label for="a_a">
+            <input type="checkbox" id="a_a" name="a_a" [ngModel]="selections.a_a.selected"
+                (ngModelChange)="toggleCheckbox('a_a', $event)">
+            a_a
+        </label>
+
+        <div class="selection-layer">
+
+            <label for="a_a_a">
+                <input type="checkbox" id="a_a_a" name="a_a_a" [ngModel]="selections.a_a_a.selected"
+                    (ngModelChange)="toggleCheckbox('a_a_a', $event)">
+                a_a_a
+            </label>
+
+            <label for="a_a_b">
+                <input type="checkbox" id="a_a_b" name="a_a_b" [ngModel]="selections.a_a_b.selected"
+                    (ngModelChange)="toggleCheckbox('a_a_b', $event)">
+                a_a_b
+            </label>
+
+            <label for="a_a_c">
+                <input type="checkbox" id="a_a_c" name="a_a_c" [ngModel]="selections.a_a_c.selected"
+                    (ngModelChange)="toggleCheckbox('a_a_c', $event)">
+                a_a_c
+            </label>
+
+        </div>
+
+        <label for="a_b">
+            <input type="checkbox" id="a_b" name="a_b" [ngModel]="selections.a_b.selected"
+                (ngModelChange)="toggleCheckbox('a_b', $event)">
+            a_b
+        </label>
+
+        <div class="selection-layer">
+
+            <label for="a_b_a">
+                <input type="checkbox" id="a_b_a" name="a_b_a" [ngModel]="selections.a_b_a.selected"
+                    (ngModelChange)="toggleCheckbox('a_b_a', $event)">
+                a_b_a
+            </label>
+
+            <label for="a_b_b">
+                <input type="checkbox" id="a_b_b" name="a_b_b" [ngModel]="selections.a_b_b.selected"
+                    (ngModelChange)="toggleCheckbox('a_b_b', $event)">
+                a_b_b
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <label for="b">
+        <input type="checkbox" id="b" name="b" [ngModel]="selections.b.selected"
+            (ngModelChange)="toggleCheckbox('b', $event)">
+        b
+    </label>
+
+    <div class="selection-layer">
+
+        <label for="b_a">
+            <input type="checkbox" id="b_a" name="b_a" [ngModel]="selections.b_a.selected"
+                (ngModelChange)="toggleCheckbox('b_a', $event)">
+            b_a
+        </label>
+
+        <div class="selection-layer">
+
+            <label for="b_a_a">
+                <input type="checkbox" id="b_a_a" name="b_a_a" [ngModel]="selections.b_a_a.selected"
+                    (ngModelChange)="toggleCheckbox('b_a_a', $event)">
+                b_a_a
+            </label>
+
+            <label for="b_a_b">
+                <input type="checkbox" id="b_a_b" name="b_a_b" [ngModel]="selections.b_a_b.selected"
+                    (ngModelChange)="toggleCheckbox('b_a_b', $event)">
+                b_a_b
+            </label>
+
+            <!-- <label for="a_a_c">
+        <input type="checkbox" id="a_a_c" name="a_a_c"
+          [ngModel]="selections.a_a_c.selected"
+          (ngModelChange)="toggleCheckbox('a_a_c', $event)"
+        >
+        a_a_c
+      </label> -->
+
+        </div>
+
+        <label for="b_b">
+            <input type="checkbox" id="b_b" name="b_b" [ngModel]="selections.b_b.selected"
+                (ngModelChange)="toggleCheckbox('b_b', $event)">
+            b_b
+        </label>
+
+        <!-- <div class="selection-layer">
+
+      <label for="a_b_a">
+        <input type="checkbox" id="a_b_a" name="a_b_a"
+          [ngModel]="selections.a_b_a.selected"
+          (ngModelChange)="toggleCheckbox('a_b_a', $event)"
+        >
+        a_b_a
+      </label>
+
+      <label for="a_b_b">
+        <input type="checkbox" id="a_b_b" name="a_b_b"
+          [ngModel]="selections.a_b_b.selected"
+          (ngModelChange)="toggleCheckbox('a_b_b', $event)"
+        >
+        a_b_b
+      </label>
+
+    </div> -->
+
+    </div>
+
+</div>
+
+<pre>selections: {{selections | json}}</pre>
