@@ -29,7 +29,7 @@ describe('CalculatorService',()=>{
 
     // define a specification using it
     // specification for add function
-    fit('should add two numbers',()=>{
+    it('should add two numbers',()=>{
         console.log("add test");
         const result=calculator.add(2,2);
         expect(result).toBe(4);        
