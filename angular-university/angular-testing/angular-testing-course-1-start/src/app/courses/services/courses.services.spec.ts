@@ -3,6 +3,7 @@ import {HttpClientTestingModule,HttpTestingController} from '@angular/common/htt
 import { CoursesService } from './courses.service';
 import { COURSES } from '../../../../server/db-data';
 import { Course } from '../model/course';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('CoursesService',()=>{
     let coursesService:CoursesService;
@@ -65,11 +66,26 @@ describe('CoursesService',()=>{
         coursesService.saveCourse(12,changes).subscribe(course=>{
             expect(course.id).toBe(12);
         })
+        // trigger a request
         const req=httpTestingController.expectOne('/api/courses/12');
         expect(req.request.method).toEqual("PUT");
         expect(req.request.body.titles.description).toEqual(changes.titles.description);
         req.flush({...COURSES[12],...changes});
 
+    })
+    // server error scenarion
+    it("should give an error if save course fails",()=>{
+        const changes:Partial<Course>={titles:{description:'Testing Course'}};
+        coursesService.saveCourse(12,changes).subscribe(()=>{
+            fail("the save course operation should have failed")
+        },
+        (error:HttpErrorResponse)=>{
+            expect(error.status).toBe(500);
+        })
+        // trigger a request
+        const req=httpTestingController.expectOne('/api/courses/12');
+        expect(req.request.method).toEqual("PUT");
+        req.flush("Save Course failed",{status:500,statusText:'Internal Server Error'});
     })
 
     // verify that no extra api calls are made
