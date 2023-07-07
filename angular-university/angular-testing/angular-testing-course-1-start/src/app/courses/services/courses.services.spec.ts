@@ -36,5 +36,27 @@ describe('CoursesService',()=>{
         expect(req.request.method).toEqual("GET");
         // use flush method to pass some test data to the api
         req.flush({payload:Object.values(COURSES)})
+        
+    })
+
+    // find course by id
+     it('should find a course by id',()=>{
+        coursesService.findCourseById(12)
+        .subscribe(course=>{
+            expect(course).toBeTruthy('No Courses Returned');
+            // check the course id:12 
+            expect(course.id).toBe(12);            
+        })
+        // create a testing controller
+        const req=httpTestingController.expectOne('/api/courses/12');
+        // specify the test is a GET request
+        expect(req.request.method).toEqual("GET");
+        // use flush method to pass some test data to the api
+        req.flush(COURSES[12]);
+       
+    })
+    // verify that no extra api calls are made
+    afterEach(()=>{
+        httpTestingController.verify();
     })
 })
