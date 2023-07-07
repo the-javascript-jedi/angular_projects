@@ -6,29 +6,32 @@
             (ngModelChange)="toggleCheckbox('fingerprint', $event)">
         fingerprint
     </label>
+    <label for="hw_sw">
+        <input type="checkbox" id="hw_sw" name="hw_sw" [ngModel]="selections.hw_sw.selected"
+            (ngModelChange)="toggleCheckbox('hw_sw', $event)">
+        hw_sw
+    </label>
+    <label for="hardware">
+        <input type="checkbox" id="hardware" name="hardware" [ngModel]="selections.hardware.selected"
+            (ngModelChange)="toggleCheckbox('hardware', $event)">
+        hardware
+    </label>
+    <label for="software">
+        <input type="checkbox" id="software" name="software" [ngModel]="selections.software.selected"
+            (ngModelChange)="toggleCheckbox('software', $event)">
+        software
+    </label>
+    <label for="feature">
+        <input type="checkbox" id="feature" name="feature" [ngModel]="selections.feature.selected"
+            (ngModelChange)="toggleCheckbox('feature', $event)">
+        feature
+    </label>
     <div class="selection-layer">
-        <label for="hw_sw">
-            <input type="checkbox" id="hw_sw" name="hw_sw" [ngModel]="selections.hw_sw.selected"
-                (ngModelChange)="toggleCheckbox('hw_sw', $event)">
-            hw_sw
-        </label>
+       
         <div class="selection-layer">
-            <label for="hardware">
-                <input type="checkbox" id="hardware" name="hardware" [ngModel]="selections.hardware.selected"
-                    (ngModelChange)="toggleCheckbox('hardware', $event)">
-                hardware
-            </label>
-            <label for="software">
-                <input type="checkbox" id="software" name="software" [ngModel]="selections.software.selected"
-                    (ngModelChange)="toggleCheckbox('software', $event)">
-                software
-            </label>
+           
         </div>
-        <label for="feature">
-            <input type="checkbox" id="feature" name="feature" [ngModel]="selections.feature.selected"
-                (ngModelChange)="toggleCheckbox('feature', $event)">
-            feature
-        </label>        
+            
         <!-- <label for="a_c">
             <input type="checkbox" id="a_c" name="a_c" [ngModel]="selections.a_c.selected"
                 (ngModelChange)="toggleCheckbox('a_c', $event)">
