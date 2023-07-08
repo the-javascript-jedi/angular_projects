@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 
 @Component({
   selector: 'app-checkbox-selection-rm',
   templateUrl: './checkbox-selection-rm.component.html',
   styleUrls: ['./checkbox-selection-rm.component.scss']
 })
-export class CheckboxSelectionRmComponent {
+export class CheckboxSelectionRmComponent implements AfterViewInit{
+   ngAfterViewInit() {
+    // disabling the checkbox - set the selected as true once all data is loaded
+    this.selections.fingerprint.selected=true
+    this.cdr.detectChanges();
+  }
+  constructor(private cdr: ChangeDetectorRef) {}
+  
   selections: Selections = {
     fingerprint: {
-      selected: true,
+      selected: false,
       children: ['hw_sw', 'feature']
     },
       hw_sw: {
