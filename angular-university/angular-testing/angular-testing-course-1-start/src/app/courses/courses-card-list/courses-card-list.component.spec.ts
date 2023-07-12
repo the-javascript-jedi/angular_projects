@@ -65,10 +65,23 @@ describe('CoursesCardListComponent', () => {
 
 
   it("should display the first course", () => {
-    pending();     
+    // pending();  
+    component.courses=setupCourses();
+    fixture.detectChanges();
+    const course=component.courses[0];
+    // grab the first element of the loaded material course card
+    const card=el.query(By.css(".course-card:first-child"));
+    // grab the title of the first course
+    const title=card.query(By.css("mat-card-title"));
+    // grab the image
+    const image=card.query(By.css("img"));
+
+    // expect a course to be loaded
+    expect(card).toBeTruthy("Could not find course card");
+    // grab the title content and check if it is the correct first content
+    expect(title.nativeElement.textContent).toBe(course.titles.description);
+    // check if image is correctly loaded
+    expect(image.nativeElement.src).toBe(course.iconUrl);
+
   });
-
-
 });
-
-
