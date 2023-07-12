@@ -20,8 +20,12 @@ describe('HomeComponent', () => {
   let el: DebugElement;
   let coursesService:any;  
   // simulate the beginner courses data
+  // setupCourses() is a helper function to simulate the tests
   const beginnerCourses=setupCourses()
     .filter(course=>course.category==='BEGINNER')
+  // simulate the advanced courses data
+  const advancedCourses=setupCourses()
+    .filter(course=>course.category==='ADVANCED')
 
   beforeEach(waitForAsync(() => {
     // testspy for the findAllCourses method inside CoursesService service    
@@ -51,7 +55,6 @@ describe('HomeComponent', () => {
 
 
   it("should display only beginner courses", () => {
-    // setupCourses() is a helper function to simulate the tests
     coursesService.findAllCourses.and.returnValue(of(beginnerCourses));
     // detect the changes in the template
     fixture.detectChanges();
@@ -62,25 +65,26 @@ describe('HomeComponent', () => {
 
 
   it("should display only advanced courses", () => {
-
-      pending();
-
+    coursesService.findAllCourses.and.returnValue(of(advancedCourses));
+    // detect the changes in the template
+    fixture.detectChanges();
+    // check if the data is loaded based on the passed css
+    const tabs=el.queryAll(By.css(".mdc-tab"));
+    expect(tabs.length).toBe(1,"Unexpected number of tabs found");
   });
 
 
   it("should display both tabs", () => {
-
-    pending();
-
+    coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+    // detect the changes in the template
+    fixture.detectChanges();
+    // check if the data is loaded based on the passed css
+    const tabs=el.queryAll(By.css(".mdc-tab"));
+    expect(tabs.length).toBe(2,"Expected to find 2 tabs");
   });
 
 
   it("should display advanced courses when tab clicked", () => {
-
     pending();
-
   });
-
 });
-
-
