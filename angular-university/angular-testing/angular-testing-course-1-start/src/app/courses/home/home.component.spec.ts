@@ -2,6 +2,7 @@ import {async, ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, wai
 import {CoursesModule} from '../courses.module';
 import {DebugElement} from '@angular/core';
 
+
 import {HomeComponent} from './home.component';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {CoursesService} from '../services/courses.service';
@@ -13,7 +14,9 @@ import {of} from 'rxjs';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {click} from '../common/test-utils';
 
+
 describe('HomeComponent', () => {
+
 
   let fixture: ComponentFixture<HomeComponent>;
   let component:HomeComponent;
@@ -27,9 +30,11 @@ describe('HomeComponent', () => {
   const advancedCourses=setupCourses()
     .filter(course=>course.category==='ADVANCED')
 
+
   beforeEach(waitForAsync(() => {
     // testspy for the findAllCourses method inside CoursesService service    
     const coursesServiceSpy=jasmine.createSpyObj('CoursesService',['findAllCourses'])
+
 
     TestBed.configureTestingModule({
       imports:[CoursesModule,NoopAnimationsModule],
@@ -47,7 +52,9 @@ describe('HomeComponent', () => {
         coursesService=TestBed.inject(CoursesService)
     })
 
+
   }));
+
 
   it("should create the component", () => {
     expect(component).toBeTruthy();
@@ -84,7 +91,26 @@ describe('HomeComponent', () => {
   });
 
 
-  it("should display advanced courses when tab clicked", () => {
-    pending();
+  it("should display advanced courses when tab clicked", (done:DoneFn) => {
+    coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+    fixture.detectChanges();
+     // check if the tab is loaded
+    const tabs=el.queryAll(By.css(".mdc-tab"));
+    // method - 1 simulate click of advanced tab
+    // el.nativeElement.click();
+
+
+    // method 2 - simulate click using custom helper function
+    click(tabs[1]);
+    fixture.detectChanges();
+    setTimeout(()=>{
+      // check if after tab clicked the first card element contains the course name "Angular Testing Course"
+      const cardTitles=el.queryAll(By.css('.mat-mdc-card-title'));
+      expect(cardTitles.length).toBeGreaterThan(0,"Could not find card titles");
+      console.log("cardTitles[0].nativeElement.textContent",cardTitles[0].nativeElement.textContent)
+      expect(cardTitles[0].nativeElement.textContent).toContain("Angular Testing Course");
+      done();
+    },500)
   });
 });
+

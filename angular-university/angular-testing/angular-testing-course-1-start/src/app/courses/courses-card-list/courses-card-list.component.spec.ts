@@ -52,7 +52,7 @@ describe('CoursesCardListComponent', () => {
       fixture.detectChanges();
       // Debugging
       // we can use the el.nativeElement to print the html of the dom element for debugging purpose
-      console.log("el.nativeElement.outerHTML",el.nativeElement.outerHTML);
+      // console.log("el.nativeElement.outerHTML",el.nativeElement.outerHTML);
 
       // we use the "By" predicate to identify a given dom element
       // the predicate returns true or false depending if dom element matches certain condition
