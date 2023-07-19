@@ -90,27 +90,43 @@ describe('HomeComponent', () => {
     expect(tabs.length).toBe(2,"Expected to find 2 tabs");
   });
 
+  //// async testing using settimeout ////
+  // it("should display advanced courses when tab clicked", (done:DoneFn) => {
+  //   coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+  //   fixture.detectChanges();
+  //    // check if the tab is loaded
+  //   const tabs=el.queryAll(By.css(".mdc-tab"));
+  //   // method - 1 simulate click of advanced tab
+  //   // el.nativeElement.click();
 
-  it("should display advanced courses when tab clicked", (done:DoneFn) => {
+
+  //   // method 2 - simulate click using custom helper function
+  //   click(tabs[1]);
+  //   fixture.detectChanges();
+  //   setTimeout(()=>{
+  //     // check if after tab clicked the first card element contains the course name "Angular Testing Course"
+  //     const cardTitles=el.queryAll(By.css('.mat-mdc-card-title'));
+  //     expect(cardTitles.length).toBeGreaterThan(0,"Could not find card titles");
+  //     console.log("cardTitles[0].nativeElement.textContent",cardTitles[0].nativeElement.textContent)
+  //     expect(cardTitles[0].nativeElement.textContent).toContain("Angular Testing Course");
+  //     done();
+  //   },500)
+  // });
+
+  it("should display advanced courses when tab clicked",fakeAsync(()=>{
     coursesService.findAllCourses.and.returnValue(of(setupCourses()));
     fixture.detectChanges();
      // check if the tab is loaded
     const tabs=el.queryAll(By.css(".mdc-tab"));
-    // method - 1 simulate click of advanced tab
-    // el.nativeElement.click();
-
-
-    // method 2 - simulate click using custom helper function
+     //   // method 2 - simulate click using custom helper function
     click(tabs[1]);
     fixture.detectChanges();
-    setTimeout(()=>{
-      // check if after tab clicked the first card element contains the course name "Angular Testing Course"
+    // flush() - make sure microtasks(observable) in task queue are executed
+    flush();
       const cardTitles=el.queryAll(By.css('.mat-mdc-card-title'));
       expect(cardTitles.length).toBeGreaterThan(0,"Could not find card titles");
-      console.log("cardTitles[0].nativeElement.textContent",cardTitles[0].nativeElement.textContent)
+      // console.log("cardTitles[0].nativeElement.textContent",cardTitles[0].nativeElement.textContent)
       expect(cardTitles[0].nativeElement.textContent).toContain("Angular Testing Course");
-      done();
-    },500)
-  });
+  }))
 });
 

@@ -3,7 +3,7 @@ import { of } from "rxjs";
 import { delay } from "rxjs/operators";
 
 // fdesribe to focus only on this test
-fdescribe("Async Testing Examples",()=>{
+xdescribe("Async Testing Examples",()=>{
     // if done:DoneFn is not pased and async function completed 
     // there will be error in console
     // it("Asyncronous test example with Jasmine done",(done:DoneFn)=>{
