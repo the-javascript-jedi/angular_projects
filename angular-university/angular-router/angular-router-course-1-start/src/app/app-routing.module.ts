@@ -5,6 +5,11 @@ import { AboutComponent } from './about/about.component';
 
 // routing config corresponds to a particular screen
 const routes: Routes = [
+   {
+    path:"courses",
+    // all routes with courses/ are children of courses route
+    loadChildren:()=>import('./courses/courses.module').then(m=>m.CoursesModule)
+  },
   {
     path:"login",
     component:LoginComponent
