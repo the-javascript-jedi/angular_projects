@@ -9,15 +9,15 @@ export class AuthInterceptorService implements HttpInterceptor{
         console.log("Sending Request Interceptor");
         // modify the request
         let modifiedRequest=req.clone({
-            // headers:req.headers.append('test','abc'),
-            // params:req.params.append('hi','hello world')
+            headers:req.headers.append('custom-header','abc'),
+            params:req.params.append('hi','hello world')
         })
 
         // after modifying the request we must return request.handle
         // we handle the response by adding pipe as it is an observable
         return next.handle(modifiedRequest).pipe(tap(event=>{
             console.log("event",event);
-            console.log("Response from interceptor");
+            console.log("Auth Response from interceptor");
             if(event.type===HttpEventType.Response){
                 console.log("event.body",event.body);
             }
