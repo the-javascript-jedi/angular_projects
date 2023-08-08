@@ -1,0 +1,49 @@
+<p>filter-nested-table works!</p>
+<div class="search">
+    <input type="text" [(ngModel)]="searchTerm" (input)="search($event)"/>
+</div>
+<div class="entire-container">
+        <div class="table-header">
+            <div>cdets bug_last_updated</div>
+            <div>cdets cdets_affected_pf</div>
+            <div>cdets_id</div>
+            <div>cdets_title</div>
+        </div>
+        <div class="table-row-not-expanded" *ngFor="let dataRow of filteredData; let i = index">
+            <div class="cell">
+                <button (click)="dataRow.isExpanded = !dataRow.isExpanded">
+                    EXPAND
+                </button>
+                <div class="row-container">
+                    <div>{{ dataRow.cdetsInfo.bug_last_updated }}</div>
+                    <div>{{ dataRow.cdetsInfo.cdets_affected_pf[0] }}</div>
+                    <div>{{ dataRow.cdetsInfo.cdets_id }}</div>
+                    <div>{{ dataRow.cdetsInfo.cdets_title }}</div>
+                </div>
+                <div *ngIf="dataRow.isExpanded" class="expanded-panel">
+                    <div class="table-container">
+                        <table class="table" >
+                            <tr class="header-row">
+                                <th class="header">match_percentage</th>
+                                <th class="header">sr_affected_pid</th>
+                                <th class="header">sr_description</th>
+                                <th class="header">sr_last_update</th>
+                                <th class="header">sr_number</th>
+                                <th class="header">sr_resolution_summary</th>
+                                <th class="header">sr_symptoms</th>
+                            </tr>
+                            <tr class="table-row" *ngFor="let dataInnerRow of dataRow.cdetsTableInfo">
+                                <td class="cell">{{dataInnerRow.match_percentage}}</td>
+                                <td class="cell">{{dataInnerRow.sr_affected_pid}}</td>
+                                <td class="cell">{{dataInnerRow.sr_description}}</td>
+                                <td class="cell">{{dataInnerRow.sr_last_update}}</td>
+                                <td class="cell">{{dataInnerRow.sr_number}}</td>
+                                <td class="cell">{{dataInnerRow.sr_resolution_summary}}</td>
+                                <td class="cell">{{dataInnerRow.sr_symptoms}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

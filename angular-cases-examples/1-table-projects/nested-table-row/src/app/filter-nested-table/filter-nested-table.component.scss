@@ -1,0 +1,15 @@
+.entire-container{
+    width: 60%;
+    // margin: 0 auto;
+}
+.table-header,.row-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
