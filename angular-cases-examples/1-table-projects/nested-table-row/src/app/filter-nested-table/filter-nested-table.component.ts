@@ -19,13 +19,14 @@ export class FilterNestedTableComponent implements OnInit {
     this.dataFromAPIS.forEach((dataRow,index) => {
       console.log("dataRow",dataRow);
       dataRow.isExpanded = false;
+      // create a search term from outer level elements
       dataRow.OuterSearchTerm=dataRow.cdetsInfo.bug_last_updated+dataRow.cdetsInfo.cdets_id+dataRow.cdetsInfo.cdets_title+dataRow.cdetsInfo.cdets_affected_pf.join(" ")     
       dataRow.cdetsTableInfo.forEach((val,i)=>{
-        let text=val.match_percentage+val.sr_affected_pid+val.sr_description+val.sr_last_update+val.sr_number+val.sr_resolution_summary+val.sr_symptoms+dataRow.OuterSearchTerm
+        // Insert the search term from outer level elements inside the inner level search value
+        let text=val.match_percentage+val.sr_affected_pid+val.sr_description+val.sr_last_update+val.sr_number+val.sr_resolution_summary+val.sr_symptoms+dataRow.OuterSearchTerm;
         val.InnerSearchTerm=text.toLowerCase()
       })      
     });
-
     this.filteredData = this.dataFromAPIS;
     console.log("this.dataFromAPIS",this.dataFromAPIS);
   }
@@ -33,36 +34,19 @@ export class FilterNestedTableComponent implements OnInit {
   search(e){
     let searchText=e.target.value
     console.log("searchText",searchText);
-     console.log("this.dataFromAPIS",this.dataFromAPIS);
-// const searchText = 'book 2';
-// const filteredData = this.dataFromAPIS.filter(d => d.name.toLowerCase().includes(searchText.toLowerCase()));
-// const searchText = 'book 2';
-const filteredData = this.dataFromAPIS.filter(d => d.cdetsTableInfo.some(b => b.InnerSearchTerm.toLowerCase().includes(searchText.toLowerCase())));
-console.log("filteredData",filteredData);
-this.filteredData=filteredData
-  }
-
-  // searchRow(row, searchTerm) {
-  //   console.log("row",row)
-  //   console.log("searchTerm",searchTerm)
-  //   for (let key in row) {
-  //       let value = row[key];
-  //       if (Array.isArray(value)) {
-  //           for (let i = 0; i < value.length; i++) {
-  //               if (this.searchRow(value[i], searchTerm)) {
-  //                   return true;
-  //               }
-  //           }
-  //       } else if (typeof value === 'object') {
-  //           if (this.searchRow(value, searchTerm)) {
-  //               return true;
-  //           }
-  //       } else if (typeof value === 'string' && value.includes(searchTerm)) {
-  //           return true;
-  //       }
-  //   }
-  //   return false;
-  // }
+    //  console.log("this.dataFromAPIS",this.dataFromAPIS);
+const filteredData = this.dataFromAPIS
+  .filter((d) =>
+    d.cdetsTableInfo.some((b) => b.InnerSearchTerm.toLowerCase().includes(searchText.toLowerCase()))
+  )
+  .map((d) => ({
+    ...d,
+    cdetsTableInfo: d.cdetsTableInfo.filter((b) =>
+      b.InnerSearchTerm.toLowerCase().includes(searchText.toLowerCase())
+    ),
+  }));
+console.log("filteredData",filteredData)  
+    this.filteredData = filteredData;
+}
 
 }
-// val[i].searchTerm=val[i].match_percentage+val[i].sr_affected_pid+val[i].sr_description+val[i].sr_last_update+val[i].sr_number+val[i].sr_resolution_summary+val[i].sr_symptoms
