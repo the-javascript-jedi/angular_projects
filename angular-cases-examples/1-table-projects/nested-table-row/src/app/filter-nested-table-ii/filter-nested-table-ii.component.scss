@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table,
+th,
+td {
+    border: 1px solid;
+}
+
+tr {
+    border: 1px solid black;
+    cursor: pointer;
+}

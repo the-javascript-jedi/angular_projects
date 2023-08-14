@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { TableNestedRowComponent } from './table-nested-row/table-nested-row.component';
 import { FilterNestedTableComponent } from './filter-nested-table/filter-nested-table.component';
 import { FormsModule } from '@angular/forms';
+import { FilterNestedTableIiComponent } from './filter-nested-table-ii/filter-nested-table-ii.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableNestedRowComponent,
-    FilterNestedTableComponent
+    FilterNestedTableComponent,
+    FilterNestedTableIiComponent
   ],
   imports: [
     BrowserModule,

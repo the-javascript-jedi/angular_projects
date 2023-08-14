@@ -1,0 +1,33 @@
+<p>filter-nested-table-ii works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>match_percentage</th>
+            <th>sr_affected_pid</th>
+            <th>sr_description</th>
+            <th>sr_last_updated</th>
+            <th>sr_number</th>
+            <th>sr_resolution</th>
+            <th colspan="5">Monthly Savings</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of dataFromAPIS">
+            <tr>
+                <td [attr.rowspan]="data.cdets_info.length + 1">{{data.match_percentage}}</td>
+                <td [attr.rowspan]="data.cdets_info.length + 1">{{data.sr_affected_pid}}</td>
+                <td [attr.rowspan]="data.cdets_info.length + 1">{{data.sr_description}}</td>
+                <td [attr.rowspan]="data.cdets_info.length + 1">{{data.sr_last_updated}}</td>
+                <td [attr.rowspan]="data.cdets_info.length + 1">{{data.sr_number}}</td>
+                <td [attr.rowspan]="data.cdets_info.length + 1">{{data.sr_resolution}}</td>
+            </tr>
+            <tr *ngFor="let detail of data.cdets_info;">
+                <td>{{detail.cdets_id}}</td>
+                <td>{{detail.cdets_title}}</td>
+                <td>{{detail.bug_last_updated}}</td>
+                <td>{{detail.cdets_affected_pf.join(" ")}}</td>
+                <td>{{detail.cdets_affected_sf.join(" ")}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
