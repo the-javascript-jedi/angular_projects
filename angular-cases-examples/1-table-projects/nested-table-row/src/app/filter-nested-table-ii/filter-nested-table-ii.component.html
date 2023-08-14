@@ -1,4 +1,9 @@
 <p>filter-nested-table-ii works!</p>
+<div class="search">
+    <input type="text" (input)="search($event)" />
+</div>
+<div class="entire-container">
+
 <table>
     <thead>
         <tr>
@@ -12,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let data of dataFromAPIS">
+        <ng-container *ngFor="let data of filteredData">
             <tr>
                 <td [attr.rowspan]="data.cdets_info.length + 1">{{data.match_percentage}}</td>
                 <td [attr.rowspan]="data.cdets_info.length + 1">{{data.sr_affected_pid}}</td>
@@ -31,3 +36,4 @@
         </ng-container>
     </tbody>
 </table>
+</div>
