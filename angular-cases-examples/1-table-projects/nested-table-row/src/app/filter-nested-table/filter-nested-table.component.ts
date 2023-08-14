@@ -23,7 +23,7 @@ export class FilterNestedTableComponent implements OnInit {
       dataRow.OuterSearchTerm=dataRow.cdetsInfo.bug_last_updated+dataRow.cdetsInfo.cdets_id+dataRow.cdetsInfo.cdets_title+dataRow.cdetsInfo.cdets_affected_pf.join(" ")     
       dataRow.cdetsTableInfo.forEach((val,i)=>{
         // Insert the search term from outer level elements inside the inner level search value
-        let text=val.match_percentage+val.sr_affected_pid+val.sr_description+val.sr_last_update+val.sr_number+val.sr_resolution_summary+val.sr_symptoms+dataRow.OuterSearchTerm;
+        let text=val.match_percentage+val.sr_affected_pid+val.sr_description+val.sr_last_update+val.sr_number+val.sr_resolution_summary+val.sr_symptoms+val.sr_affected_pf.join(" ")+val.sr_affected_sw.join(" ")+dataRow.OuterSearchTerm;
         val.InnerSearchTerm=text.toLowerCase()
       })      
     });

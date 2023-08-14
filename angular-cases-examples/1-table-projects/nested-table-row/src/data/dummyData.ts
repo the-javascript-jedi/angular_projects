@@ -17,6 +17,8 @@ export let dataFromApiTS = {
         sr_number: "95-one",
         sr_resolution_summary: "summary one one",
         sr_symptoms: "technology symptoms one one",
+        sr_affected_pf:["ONE_pf1_1","ONE_pf1_2","ONE_pf1_3"],
+        sr_affected_sw:["ONE_sw1_100.1","ONE_sw1_100.2","ONE_sw1_100.3"]
       },
       {
         match_percentage: 94,
@@ -26,6 +28,8 @@ export let dataFromApiTS = {
         sr_number: "95-two",
         sr_resolution_summary: "summary one two",
         sr_symptoms: "technology symptoms one two",
+        sr_affected_pf:["ONE_pf2_1","ONE_pf2_2","ONE_pf2_3"],
+        sr_affected_sw:["ONE_sw2_100.1","ONE_sw2_100.2","ONE_sw2_100.3","ONE_sw2_100.2_all"]
       },
       {
         match_percentage: 93,
@@ -35,6 +39,8 @@ export let dataFromApiTS = {
         sr_number: "95-three",
         sr_resolution_summary: "summary one three",
         sr_symptoms: "technology symptoms one three",
+        sr_affected_pf:["ONE_pf3_1","ONE_pf3_2","ONE_pf3_3"],
+        sr_affected_sw:["ONE_sw3_100.1","ONE_sw3_100.2","ONE_sw3_100.3"]
       },
     ],
   },
@@ -55,6 +61,8 @@ export let dataFromApiTS = {
         sr_number: "94-one",
         sr_resolution_summary: "summary two one",
         sr_symptoms: "technology symptoms two one",
+        sr_affected_pf:["TWO_pf1_1","TWO_pf1_2","TWO_pf1_3"],
+        sr_affected_sw:["TWO_sw1_100.1","TWO_sw1_100.2","TWO_sw1_100.3",,"ONE_sw2_100.2_all"]
       },
       {
         match_percentage: 84,
@@ -64,6 +72,8 @@ export let dataFromApiTS = {
         sr_number: "94-two",
         sr_resolution_summary: "summary two two",
         sr_symptoms: "technology symptoms two two",
+        sr_affected_pf:["TWO_pf2_1","TWO_pf2_2","TWO_pf2_3"],
+        sr_affected_sw:["TWO_sw2_100.1","TWO_sw2_100.2","TWO_sw2_100.3"]
       },
       {
         match_percentage: 90,
@@ -73,6 +83,8 @@ export let dataFromApiTS = {
         sr_number: "94-three",
         sr_resolution_summary: "summary two three",
         sr_symptoms: "technology symptoms two three",
+        sr_affected_pf:["TWO_pf3_1","TWO_pf3_2","TWO_pf3_3"],
+        sr_affected_sw:["TWO_sw3_100.1","TWO_sw3_100.2","TWO_sw3_100.3"]
       },
     ],
   },
@@ -93,6 +105,8 @@ export let dataFromApiTS = {
         sr_number: "93-one",
         sr_resolution_summary: "summary three one",
         sr_symptoms: "technology symptoms three one",
+        sr_affected_pf:["THREE_pf3_1","THREE_pf3_2","THREE_pf3_3"],
+        sr_affected_sw:["THREE_sw3_100.1","THREE_sw3_100.2","THREE_sw3_100.3"]
       },
       {
         match_percentage: 74,
@@ -102,6 +116,8 @@ export let dataFromApiTS = {
         sr_number: "93-two",
         sr_resolution_summary: "summary three two",
         sr_symptoms: "technology symptoms three two",
+        sr_affected_pf:["THREE_pf3_1","THREE_pf3_2","THREE_pf3_3"],
+        sr_affected_sw:["THREE_sw3_300.1","THREE_sw3_300.2","THREE_sw3_300.3","ONE_sw2_100.2_all"]
       },
       {
         match_percentage: 70,
@@ -111,6 +127,8 @@ export let dataFromApiTS = {
         sr_number: "93-three",
         sr_resolution_summary: "summary three three",
         sr_symptoms: "technology symptoms three three",
+         sr_affected_pf:["THREE_pf3_1","THREE_pf3_2","THREE_pf3_3"],
+        sr_affected_sw:["THREE_sw3_300.1","THREE_sw3_300.2","THREE_sw3_300.3"]
       },
     ],
   },
