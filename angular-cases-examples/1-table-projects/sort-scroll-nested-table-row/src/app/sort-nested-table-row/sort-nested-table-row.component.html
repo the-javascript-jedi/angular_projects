@@ -1,19 +1,29 @@
 <p>sort-nested-table-row works!</p>
 <div class="entire-container">
-
     <table>
-        <thead>
-            <tr>
-                <th>cdets_id</th>
-                <th (click)="sortBy('last_updated', 'desc')">bug_last_updated
-                    <!-- <i *ngIf="modifiedBy!=='last_updated'" class="fa fa-sort"></i> -->
-                    <i *ngIf="order==='desc' && modifiedBy==='last_updated'" class="up-arrow"></i>
-                    <i *ngIf="order==='asc' && modifiedBy==='last_updated'" class="down-arrow"></i>
-                </th>
-                <th>cdets_link</th>
-                <th>cdets_title</th>
-                <th colspan="5">match_percentage</th>
-            </tr>
+        <thead>         
+            <ng-container>
+                <tr >
+                    <th *ngFor="let header of tableHeaders">
+                        <div class="table-head-content">
+                            <div class="header-title">{{header.columnName}}</div>
+                            <div class="header-arrows" *ngIf="header.sortable==true">
+                                <!-- <ng-container>
+                                    <pre>{{header|json}}</pre>
+                                </ng-container> -->
+                                    <!-- <i class="fas fa-sort" *ngIf="header.sortDirection==''" (click)='sortTable(header.columnName,"asc")'></i> -->
+                                    <i class="fa fa-caret-up" 
+                                    [ngClass]="header.sortDirection=='asc'?'activeIcon':'inactiveIcon'" 
+                                    (click)='sortTable(header.columnName,"asc");header.sortDirection="asc"'></i>
+                                    <i class="fa fa-caret-down" 
+                                    [ngClass]="header.sortDirection=='desc'?'activeIcon':'inactiveIcon'" 
+                                    (click)='sortTable(header.columnName,"desc");header.sortDirection="desc"'></i>
+                                   
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </ng-container>
         </thead>
         <tbody>
             <ng-container *ngFor="let data of filteredData">
