@@ -1,0 +1,34 @@
+<p>sort-nested-table-row works!</p>
+<div class="entire-container">
+
+    <table>
+        <thead>
+            <tr>
+                <th>cdets_id</th>
+                <th (click)="sortBy('last_updated', 'desc')">bug_last_updated
+                    <!-- <i *ngIf="modifiedBy!=='last_updated'" class="fa fa-sort"></i> -->
+                    <i *ngIf="order==='desc' && modifiedBy==='last_updated'" class="up-arrow"></i>
+                    <i *ngIf="order==='asc' && modifiedBy==='last_updated'" class="down-arrow"></i>
+                </th>
+                <th>cdets_link</th>
+                <th>cdets_title</th>
+                <th colspan="5">match_percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of filteredData">
+                <tr>
+                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_id}}</td>
+                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.bug_last_updated}}</td>
+                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_link}}</td>
+                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_title}}</td>
+                </tr>
+                <tr *ngFor="let detail of data.sr_data;">
+                    <td>{{detail.sr_id}}</td>
+                    <td>{{detail.sr_title}}</td>
+                    <td>{{detail.match_percentage}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
