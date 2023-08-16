@@ -184,6 +184,81 @@ export let dataFromApiTS = {
           last_updated:"2021-Apr-08"
         }
       ]
+    },{
+      bug_last_updated:"2022-jan-14",
+      cdets_id:"CSCvu03609",
+      cdets_link:"https:",
+      cdets_title:"c9300l may not boot up",
+      sr_data:[
+        {
+          sr_id:300,
+          match_percentage:100,
+          sr_title:"sr_title_300",
+          last_updated:"2021-Apr-08"
+        },
+        {
+          sr_id:301,
+          match_percentage:99,
+          sr_title:"sr_title_301",
+          last_updated:"2021-Apr-08"
+        },
+        {
+          sr_id:302,
+          match_percentage:99.5,
+          sr_title:"sr_title_302",
+          last_updated:"2021-Apr-08"
+        }
+      ]
+    },{
+      bug_last_updated:"2022-Jun-20",
+      cdets_id:"CSCvu03609",
+      cdets_link:"https:",
+      cdets_title:"c9300l may not boot up",
+      sr_data:[
+        {
+          sr_id:300,
+          match_percentage:12.5,
+          sr_title:"sr_title_300",
+          last_updated:"2021-Apr-08"
+        },
+        {
+          sr_id:301,
+          match_percentage:82.5,
+          sr_title:"sr_title_301",
+          last_updated:"2021-Apr-08"
+        },
+        {
+          sr_id:302,
+          match_percentage:32,
+          sr_title:"sr_title_302",
+          last_updated:"2021-Apr-08"
+        }
+      ]
+    },{
+      bug_last_updated:"2022-Feb-20",
+      cdets_id:"CSCvu03609",
+      cdets_link:"https:",
+      cdets_title:"c9300l may not boot up",
+      sr_data:[
+        {
+          sr_id:300,
+          match_percentage:45,
+          sr_title:"sr_title_300",
+          last_updated:"2021-Apr-08"
+        },
+        {
+          sr_id:301,
+          match_percentage:46.5,
+          sr_title:"sr_title_301",
+          last_updated:"2021-Apr-08"
+        },
+        {
+          sr_id:302,
+          match_percentage:42,
+          sr_title:"sr_title_302",
+          last_updated:"2021-Apr-08"
+        }
+      ]
     }
   ]
 };

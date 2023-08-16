@@ -1,44 +1,47 @@
 <p>sort-nested-table-row works!</p>
 <div class="entire-container">
-    <table>
-        <thead>         
-            <ng-container>
-                <tr >
-                    <th *ngFor="let header of tableHeaders">
-                        <div class="table-head-content">
-                            <div class="header-title">{{header.columnName}}</div>
-                            <div class="header-arrows" *ngIf="header.sortable==true">
-                                <!-- <ng-container>
-                                    <pre>{{header|json}}</pre>
-                                </ng-container> -->
-                                    <!-- <i class="fas fa-sort" *ngIf="header.sortDirection==''" (click)='sortTable(header.columnName,"asc")'></i> -->
-                                    <i class="fa fa-caret-up" 
-                                    [ngClass]="header.sortDirection=='asc'?'activeIcon':'inactiveIcon'" 
-                                    (click)='sortTable(header.columnName,"asc");header.sortDirection="asc"'></i>
-                                    <i class="fa fa-caret-down" 
-                                    [ngClass]="header.sortDirection=='desc'?'activeIcon':'inactiveIcon'" 
-                                    (click)='sortTable(header.columnName,"desc");header.sortDirection="desc"'></i>
-                                   
+    <div class="table-container" style="max-height:400px;overflow: hidden;overflow-y:auto;">
+        <table>
+            <thead style="position:sticky;top:0px;background-color:#fff">
+                <ng-container>
+                    <tr >
+                        <th *ngFor="let header of tableHeaders">
+                            <div class="table-head-content">
+                                <div class="header-title">{{header.columnName}}</div>
+                                <div class="header-arrows" *ngIf="header.sortable==true">
+                                    <!-- <ng-container>
+                                        <pre>{{header|json}}</pre>
+                                    </ng-container> -->
+                                        <!-- <i class="fas fa-sort"></i> -->
+                                        <i class="fa fa-caret-up" 
+                                        [ngClass]="header.sortDirection=='asc'?'activeIcon':'inactiveIcon'" 
+                                        (click)='sortTable(header.columnName,"asc");header.sortDirection="asc"'></i>
+                                        <i class="fa fa-caret-down" 
+                                        [ngClass]="header.sortDirection=='desc'?'activeIcon':'inactiveIcon'" 
+                                        (click)='sortTable(header.columnName,"desc");header.sortDirection="desc"'></i>
+                                       
+                                </div>
                             </div>
-                        </div>
-                    </th>
-                </tr>
-            </ng-container>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let data of filteredData">
-                <tr>
-                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_id}}</td>
-                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.bug_last_updated}}</td>
-                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_link}}</td>
-                    <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_title}}</td>
-                </tr>
-                <tr *ngFor="let detail of data.sr_data;">
-                    <td>{{detail.sr_id}}</td>
-                    <td>{{detail.sr_title}}</td>
-                    <td>{{detail.match_percentage}}</td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
+                        </th>
+                    </tr>
+                </ng-container>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let data of filteredData">
+                    <tr>
+                        <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_id}}</td>
+                        <td [attr.rowspan]="data.sr_data.length + 1">{{data.bug_last_updated}}</td>
+                        <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_link}}</td>
+                        <td [attr.rowspan]="data.sr_data.length + 1">{{data.cdets_title}}</td>
+                    </tr>
+                    <tr *ngFor="let detail of data.sr_data;">
+                        <td>{{detail.sr_id}}</td>
+                        <td>{{detail.sr_title}}</td>
+                        <td>{{detail.match_percentage}}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+        
 </div>

@@ -48,6 +48,7 @@ export class SortNestedTableRowComponent {
      this.dataFromAPIS=dataFromApiTS.data;
       this.filteredData=dataFromApiTS.data;
       this.dataFromAPIS.forEach(val=>{
+        val['readableDate']=dayjs(val.bug_last_updated).toDate();
         val['convertedDate']=dayjs(val.bug_last_updated).toDate().getTime();
         // calculate average match percentage
         let avgMatchPercentage=val.sr_data.reduce(function (acc, obj) { return acc + obj.match_percentage; }, 0)
@@ -71,6 +72,7 @@ export class SortNestedTableRowComponent {
       property=headerColumn
     }
     const direction = sortType=="desc" ? 1 : -1;
+    console.log("direction",direction)
     this.filteredData=this.filteredData.sort((a, b) => {
           if (a[property] < b[property]) {
             return -1 * direction;
