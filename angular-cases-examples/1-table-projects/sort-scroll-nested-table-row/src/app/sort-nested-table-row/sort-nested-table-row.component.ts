@@ -14,36 +14,48 @@ export class SortNestedTableRowComponent {
   tableHeaders=[{
     columnName:"cdets_id",
     sortable:false,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   },{
     columnName:"bug_last_updated",
     sortable:true,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   },{
     columnName:"cdets_link",
     sortable:false,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   },{
     columnName:"cdets_title",
     sortable:false,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   },
   {
     columnName:"sr_id",
     sortable:false,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   },
   {
     columnName:"sr_title",
     sortable:false,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   },
   {
     columnName:"match_percentage",
     sortable:true,
-    sortDirection:""
+    sortDirection:"",
+    sorted:false
   }]
-
+resetSortIcons(){
+ this.tableHeaders.forEach(val=>{
+      // val.sortDirection="";
+      val.sorted=false;
+    })
+}
    ngOnInit(): void {
      this.dataFromAPIS=dataFromApiTS.data;
       this.filteredData=dataFromApiTS.data;
@@ -57,11 +69,13 @@ export class SortNestedTableRowComponent {
       })
       console.log("this.dataFromAPIS",this.dataFromAPIS);
    }
- 
   sortTable(headerColumn,sortType) {
     console.log("headerColumn",headerColumn)
     console.log("sortType",sortType);
-    this.tableHeaders.forEach(val=>val.sortDirection="")
+    this.tableHeaders.forEach(val=>{
+      val.sortDirection="";
+      // val.sorted=false;
+    })
     let property='';
     if(headerColumn==="bug_last_updated"){
       property="convertedDate";  

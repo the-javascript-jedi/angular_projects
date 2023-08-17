@@ -12,14 +12,28 @@
                                     <!-- <ng-container>
                                         <pre>{{header|json}}</pre>
                                     </ng-container> -->
-                                        <!-- <i class="fas fa-sort"></i> -->
-                                        <i class="fa fa-caret-up" 
-                                        [ngClass]="header.sortDirection=='asc'?'activeIcon':'inactiveIcon'" 
-                                        (click)='sortTable(header.columnName,"asc");header.sortDirection="asc"'></i>
-                                        <i class="fa fa-caret-down" 
-                                        [ngClass]="header.sortDirection=='desc'?'activeIcon':'inactiveIcon'" 
+                                    <!-- old --individual sort icons-->
+                                    <ng-container *ngIf="false">
+                                        <i class="fa fa-caret-up" [ngClass]="header.sortDirection=='asc'?'activeIcon':'inactiveIcon'"
+                                            (click)='sortTable(header.columnName,"asc");header.sortDirection="asc"'></i>
+                                        <i class="fa fa-caret-down" [ngClass]="header.sortDirection=='desc'?'activeIcon':'inactiveIcon'"
+                                            (click)='sortTable(header.columnName,"desc");header.sortDirection="desc"'></i>
+                                    </ng-container>
+                                    <!-- new-- cycling sort icons-->                                    
+                                    <ng-container *ngIf="true">
+                                        <!-- sort icon -->
+                                        <i class="fas fa-sort" *ngIf="header.sorted==false" 
+                                        (click)='resetSortIcons();
+                                        sortTable(header.columnName,"asc");
+                                        header.sortDirection="asc";header.sorted=true'></i>
+                                        <!-- asc sort icon -->
+                                        <i class="fa fa-caret-up activeIcon" *ngIf="header.sortDirection=='asc'" 
                                         (click)='sortTable(header.columnName,"desc");header.sortDirection="desc"'></i>
-                                       
+                                        <!-- desc sort icon -->
+                                        <i class="fa fa-caret-down activeIcon" *ngIf="header.sortDirection=='desc'"
+                                            (click)='sortTable(header.columnName,"asc");
+                                            header.sortDirection="asc"'></i>                                            
+                                    </ng-container>
                                 </div>
                             </div>
                         </th>
@@ -43,5 +57,4 @@
             </tbody>
         </table>
     </div>
-        
 </div>
