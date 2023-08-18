@@ -70,12 +70,8 @@ it('should check if name is positive', () => {
 //     }));
   });
 
-  // error and next
+  // subscribe (next: and error:) scenarios
   describe('MyComponent', () => {
-  //   let component: TableWithGraphComponent;
-  // let fixture: ComponentFixture<TableWithGraphComponent>;
-  // let userService: ApiDataService;
-  // let httpTestingController: HttpTestingController;
   let component: TableWithGraphComponent;
   let httpMock: HttpTestingController;
   let myService: ApiDataService;
@@ -97,14 +93,17 @@ it('should check if name is positive', () => {
     fixture.detectChanges();
   });
 
-  it('should handle success response', () => {
+  it('should handle success response---val.bar_direction="positive"', () => {
+    // provide a mock data with positive contribution
     const mockData={responseDataFromAPI:[{id: 0, description: "Halo: Combat Evolved", contribution: 1.93705}]}
     spyOn(myService, 'getHorizontalTableData').and.returnValue(of(mockData));
 
     component.ngOnInit();
     expect(component.tableData).toEqual(mockData.responseDataFromAPI);
   });
-    it('should handle success response---val.bar_direction="positive"', () => {
+
+    it('should handle success response---val.bar_direction="negative"', () => {
+    // provide a mock data with negative contribution
     const mockData={responseDataFromAPI:[{id: 0, description: "Halo: Combat Evolved", contribution: -1.93705}]}
     spyOn(myService, 'getHorizontalTableData').and.returnValue(of(mockData));
 
@@ -112,17 +111,10 @@ it('should check if name is positive', () => {
     expect(component.tableData).toEqual(mockData.responseDataFromAPI);
   });
 
-  // it('should handle error response---val.bar_direction="negative"', () => {
-  //   const mockError = new Error('An error occurred');
-  //   spyOn(myService, 'getHorizontalTableData').and.throwError(mockError);
-
-  //   component.ngOnInit();
-  //   expect(component.error).toEqual(mockError);
-  // });
   it('should handle error response', () => {
+    // simulate an error
     const mockError = new Error('An error occurred');
     spyOn(myService, 'getHorizontalTableData').and.returnValue(throwError(mockError));
-
     component.ngOnInit();
     expect(component.error).toEqual(mockError);
   });
