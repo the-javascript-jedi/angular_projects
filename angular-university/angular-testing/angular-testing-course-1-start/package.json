@@ -14,7 +14,9 @@
     "build:prod": "ng build --prod",
     "start:prod": "http-server ./dist -a localhost -p 4200",
     "build-and-start:prod": "run-s build:prod start:prod",
-    "e2e": "start-server-and-test build-and-start:prod http://localhost:4200 cypress:run"
+    "e2e": "start-server-and-test build-and-start:prod http://localhost:4200 cypress:run",
+    "code-coverage":"ng test --watch=false --code-coverage",
+    "code-coverage-watch":"ng test --watch=true --code-coverage"
   },
   "private": true,
   "dependencies": {
