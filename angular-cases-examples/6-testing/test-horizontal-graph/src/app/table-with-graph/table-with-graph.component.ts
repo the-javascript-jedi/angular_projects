@@ -13,8 +13,9 @@ import { ApiDataService } from '../services/api-data.service';
 export class TableWithGraphComponent implements OnInit {
   dataResponse:any=[]
   tableData=[];
+  error:any;
   constructor(private _http:HttpClient,private _apiData:ApiDataService) { }
-
+  name='test name';
   ngOnInit(): void {
     this.loadResponse();
   }
@@ -31,15 +32,16 @@ calculateBorderColor(colorValue){
     this._apiData.getHorizontalTableData(100).subscribe({
       next:(res)=>{
         this.dataResponse=res['responseDataFromAPI'];
-        // check whether number is positive or negative and add a flag
-        this.dataResponse.forEach(val=>{
-          if(val.contribution>0){
-            val.bar_direction="positive"
-          }else{
-            val.bar_direction="negative"
-          }
-        })
-        // change negative values to positive
+        if( this.dataResponse.length!==0){
+          // check whether number is positive or negative and add a flag
+          this.dataResponse.forEach(val=>{
+            if(val.contribution>0){
+              val.bar_direction="positive"
+            }else{
+              val.bar_direction="negative"
+            }
+          })
+           // change negative values to positive
         // const positiveData = this.dataResponse.map( s => Math.abs(s.contribution));
         const positiveData = this.dataResponse.map(val=>{
            val.contribution=Math.abs(val.contribution)
@@ -57,10 +59,12 @@ calculateBorderColor(colorValue){
         });
 
         this.tableData=percents;
+        }
+       
         // console.log("this.tableData",this.tableData);
       },
-      error:()=>{
-
+      error:(error)=>{
+        this.error = error;
       }
     })
   }

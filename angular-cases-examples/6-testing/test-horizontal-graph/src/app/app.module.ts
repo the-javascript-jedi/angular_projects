@@ -7,6 +7,7 @@ import { TableWithGraphComponent } from './table-with-graph/table-with-graph.com
 import {HTTP_INTERCEPTORS, HttpClientModule,HttpClient } from "@angular/common/http";
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { LoggingInterceptorServce } from './services/logging-interceptor.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { LoggingInterceptorServce } from './services/logging-interceptor.service
     HttpClientModule,
     
   ],
+  schemas: [
+  CUSTOM_ELEMENTS_SCHEMA
+],
   providers: [
     HttpClient,
     // for angular interceptors we also need to specify in the provider

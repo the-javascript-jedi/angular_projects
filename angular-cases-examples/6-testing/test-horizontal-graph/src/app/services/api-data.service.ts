@@ -11,6 +11,6 @@ export class ApiDataService {
 
   getHorizontalTableData(pageSize){
     let url=`http://localhost:5000/api/games?&pageSize=${pageSize}`;
-    return this._http.get<any[]>(url).pipe(share());
+    return this._http.get<any>(url).pipe(share());
   }
 }
