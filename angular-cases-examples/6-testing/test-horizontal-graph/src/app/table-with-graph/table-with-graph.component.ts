@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {    
     map,    
 } from 'rxjs/operators';
+import { ApiDataService } from '../services/api-data.service';
 // https://math.stackexchange.com/questions/2089295/converting-numbers-to-percentage
 @Component({
   selector: 'app-table-with-graph',
@@ -12,7 +13,7 @@ import {
 export class TableWithGraphComponent implements OnInit {
   dataResponse:any=[]
   tableData=[];
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient,private _apiData:ApiDataService) { }
 
   ngOnInit(): void {
     this.loadResponse();
@@ -24,9 +25,11 @@ calculateBorderColor(colorValue){
     return '1px solid red';
   }
 }
+
+  // load api data
   loadResponse(){
-    this._http.get<any>(`http://localhost:5000/api/games?&filter=&pageSize=100`).pipe().subscribe({
-      next:((res)=>{
+    this._apiData.getHorizontalTableData(100).subscribe({
+      next:(res)=>{
         this.dataResponse=res['responseDataFromAPI'];
         // check whether number is positive or negative and add a flag
         this.dataResponse.forEach(val=>{
@@ -55,8 +58,10 @@ calculateBorderColor(colorValue){
 
         this.tableData=percents;
         // console.log("this.tableData",this.tableData);
-      })
-    })
+      },
+      error:()=>{
 
+      }
+    })
   }
 }
