@@ -4,22 +4,14 @@ import {HttpClientModule, HttpErrorResponse} from '@angular/common/http';
 import { TableWithGraphComponent } from './table-with-graph.component';
 import { ApiDataService} from '../services/api-data.service';
 import { By } from '@angular/platform-browser';
-import { async, asyncScheduler, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { waitForAsync } from '@angular/core/testing';
-// for api response
-// import { of } from 'rxjs';
 
-//api testing
-// import { ObserverThrowUnitTestComponent } from './observer-throw-unit-test.component';
-// import { ObserverThrowService } from './observer-throw.service';
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
 describe('UserListComponent', () => {
   let component: TableWithGraphComponent;
   let fixture: ComponentFixture<TableWithGraphComponent>;
   let userService: ApiDataService;
   let httpTestingController: HttpTestingController;
-  // let _observerThrowService: ObserverThrowService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,6 +22,7 @@ describe('UserListComponent', () => {
 
     fixture = TestBed.createComponent(TableWithGraphComponent);
     component = fixture.componentInstance;
+    // for api services
     userService = TestBed.inject(ApiDataService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
@@ -54,20 +47,6 @@ it('should check if name is positive', () => {
     // Check that the component's name property was updated
     expect(component.calculateBorderColor).toBeDefined()
   });  
-//// ::::::check loadResponse::::::
-// it("should call getUsers and return list of users", waitForAsync(() => {
-//   //  const response = {
-//   //       responseDataFromAPI:[{id: 0, description: "Halo: Combat Evolved", contribution: 1.93705},{id: 1, description: "Halo 2", contribution: 1.84059},{id: 2, description: "Halo 3", contribution: 1.0607}]}
-//       const response = [];
-
-//       spyOn(userService, 'getHorizontalTableData').and.returnValue(of(response))
-
-//       component.loadResponse()
-
-//       fixture.detectChanges();
-    
-//       expect(component.tableData).toEqual(response);
-//     }));
   });
 
   // subscribe (next: and error:) scenarios

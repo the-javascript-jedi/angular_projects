@@ -1,0 +1,36 @@
+<p>select-scroll-search works!</p>
+<div class="input-search-containers" #searchBox> 
+    <div class="search-input-with-icon">
+        <input type="text"
+        class="search-input"
+        autocomplete="off" 
+        #searchInput 
+        [title]="dropdownSelectedValue"
+        (focus)="focusSearchKeyUp()" 
+        [(ngModel)]="dropdownSelectedValue"
+        (keyup)="inputSearchKeyUp($event)"
+        [placeholder]="dropdownValueFocus"
+        />
+        <!-- <span class="icon-dropdown icon-size-10 dropdown-icon-position"></span> -->
+        <i class="dropdown-icon-position fa fa-caret-down" 
+        *ngIf="displayDropdown===false"
+        aria-hidden="true"></i>
+        <button class="btn-clear btn-clear-dropdown" 
+        *ngIf="displayDropdown===true"
+        (click)="clearSearchText()">X</button>        
+    </div>
+    <div class="request-on-scroll-container" [ngClass]="displayDropdown===false?'hide-container':''">
+        <mat-list class="mat-elevation-z7">
+            
+            <div itemSize="48" class="scrolling-container" id="indication" appScrollPosition #scrollContainer>
+                <mat-list-item *ngFor="let data of responseData" (click)="selectListItem(data)" >
+                    {{data.description}}
+                </mat-list-item>
+                <mat-list-item class="loading-data" *ngIf="loadingDropdownApiData===true" disabled>
+                    LOADING...
+                </mat-list-item>
+            </div>
+        </mat-list>
+        <!-- scrolling - overlay -->
+    </div>
+</div>

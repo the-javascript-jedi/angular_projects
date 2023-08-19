@@ -8,17 +8,21 @@ import {HTTP_INTERCEPTORS, HttpClientModule,HttpClient } from "@angular/common/h
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { LoggingInterceptorServce } from './services/logging-interceptor.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SelectScrollSearchComponent } from './select-scroll-search/select-scroll-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableWithGraphComponent
+    TableWithGraphComponent,
+    SelectScrollSearchComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    
+    FormsModule    
   ],
   schemas: [
   CUSTOM_ELEMENTS_SCHEMA
