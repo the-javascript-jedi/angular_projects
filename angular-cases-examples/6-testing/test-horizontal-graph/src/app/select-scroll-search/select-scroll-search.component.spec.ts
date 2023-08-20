@@ -85,3 +85,35 @@ describe('SearchDropdownComponent', () => {
     expect(component.responseData).toEqual([result1]);
   }));
 });
+
+
+//============================================================================================//
+// ngOnInit
+describe('SearchDropdownComponent', () => {
+  let component: SelectScrollSearchComponent;
+  let fixture: ComponentFixture<SelectScrollSearchComponent>;
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      declarations: [SelectScrollSearchComponent],
+      // providers: [ApiDataService]
+    }).compileComponents();
+  }));
+ beforeEach(() => {
+    fixture = TestBed.createComponent(SelectScrollSearchComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+ it('should load response data and set dropdown value in init', () => {
+    let result1={id: 0, description: "Halo: Combat Evolved", contribution: 1.93705}
+    const loadResponseSpy = spyOn(component, 'loadResponse').and.returnValue(of([result1]));
+    component.defaultDropdownValue='test';
+    component.ngOnInit();
+    expect(loadResponseSpy).toHaveBeenCalled();
+    expect(component.responseData).toEqual([result1]);
+  });
+})
