@@ -1,7 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 
 import { SelectScrollSearchComponent } from './select-scroll-search.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { By } from '@angular/platform-browser';
+import { async, of } from 'rxjs';
 
 describe('SelectScrollSearchComponent', () => {
   let component: SelectScrollSearchComponent;
@@ -25,7 +27,7 @@ describe('SelectScrollSearchComponent', () => {
     expect(component).toBeTruthy(); // Trigger change detection
     fixture.detectChanges();
     // Check that the component's name property was updated
-    expect(component.apiEndpoint).toEqual('');
+    expect(component.apiEndpoint).toEqual('games');
     expect(component.defaultDropdownValue).toEqual('');
   });
 
@@ -47,16 +49,39 @@ describe('SelectScrollSearchComponent', () => {
     expect(component.clearSearchText).toBeDefined();
   });
 
-  // it('verify inputSearchKeyUp function', () => {
-  //   let event=component.searchInput.nativeElement.dispatchEvent(generateKeyUpEvent('a'));
-
-  //   component.inputSearchKeyUp(event);
-  //   expect(component.inputSearchKeyUp).toBeDefined();
-  // });
-
-// inputSearchKeyUp
 });
-function generateKeyUpEvent(arg0: string): any {
-  throw new Error('Function not implemented.');
-}
+//============================================================================================//
+// ngAfterViewInit
+describe('SearchDropdownComponent', () => {
+  let component: SelectScrollSearchComponent;
+  let fixture: ComponentFixture<SelectScrollSearchComponent>;
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      declarations: [SelectScrollSearchComponent],
+      // providers: [ApiDataService]
+    }).compileComponents();
+  }));
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SelectScrollSearchComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should search for data when keyup event is triggered', fakeAsync(() => {
+    const searchInput = fixture.debugElement.query(By.css('.search-input')).nativeElement;
+    let result1={id: 0, description: "Halo: Combat Evolved", contribution: 1.93705}
+    const loadResponseSpy = spyOn(component, 'loadResponse').and.returnValue(of([result1]));
+    
+    searchInput.value = 'test';
+    searchInput.dispatchEvent(new Event('keyup'));
+    tick(400);
+    
+    expect(loadResponseSpy).toHaveBeenCalledWith('test');
+    expect(component.responseData).toEqual([result1]);
+  }));
+});

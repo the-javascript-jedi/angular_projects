@@ -24,7 +24,7 @@ export class SelectScrollSearchComponent implements OnInit,AfterViewInit {
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
   @ViewChild('searchBox', { static: true }) searchBox: ElementRef;
   @ViewChild('scrollContainer', { static: true }) scrollContainer: ElementRef;
-  @Input() apiEndpoint = '';
+  @Input() apiEndpoint = 'games';
   @Input() defaultDropdownValue = '';
   @Output() selectedItemEvent = new EventEmitter<string>();
 
