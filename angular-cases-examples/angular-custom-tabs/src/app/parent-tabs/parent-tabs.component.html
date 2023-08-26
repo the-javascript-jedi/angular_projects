@@ -10,25 +10,40 @@
             <li id="tabOne" [class.activeColor]="tabIdParent==='tabOne'" (click)="tabParentChange('tabOne')">tabOne</li>
             <li id="tabTwo" [class.activeColor]="tabIdParent==='tabTwo'" (click)="tabParentChange('tabTwo')">tabTwo</li>
             <li id="tabThree" [class.activeColor]="tabIdParent==='tabThree'" (click)="tabParentChange('tabThree')">tabThree</li>
+            <li id="tabFour" [class.activeColor]="tabIdParent==='tabFour'" (click)="tabParentChange('tabFour')">tabFour</li>
+            <li id="tabFive" [class.activeColor]="tabIdParent==='tabFive'" (click)="tabParentChange('tabFive')">tabFive</li>
+            <li id="tabSix" [class.activeColor]="tabIdParent==='tabSix'" (click)="tabParentChange('tabSix')">tabSix</li>
         </ul>
-        <!--Mission Content  -->
         <div class="content">
             <div class="content-value" *ngIf="tabIdParent==='tabOne'">
                 <h2>app-tab-one</h2>
                 <p>app-tab-one</p>
                 <app-tab-one></app-tab-one>
             </div>
-            <!--Vision Content  -->
             <div class="content-value" *ngIf="tabIdParent==='tabTwo'">
                 <h2>app-tab-two</h2>
                 <p>app-tab-two</p>
                 <app-tab-two></app-tab-two>
             </div>
-            <!--Values  -->
             <div class="content-value" *ngIf="tabIdParent==='tabThree'">
                 <h2>app-tab-three</h2>
                 <p>app-tab-three</p>
                 <app-tab-three></app-tab-three>
+            </div>
+            <div class="content-value" *ngIf="tabIdParent==='tabFour'">
+                <h2>app-tab-four</h2>
+                <p>app-tab-four</p>
+                <app-tab-four></app-tab-four>
+            </div>
+            <div class="content-value" *ngIf="tabIdParent==='tabFive'">
+                <h2>app-tab-five</h2>
+                <p>app-tab-five</p>
+                <app-tab-five></app-tab-five>
+            </div>
+            <div class="content-value" *ngIf="tabIdParent==='tabSix'">
+                <h2>app-tab-six</h2>
+                <p>app-tab-six</p>
+                <app-tab-six></app-tab-six>
             </div>
         </div>
     </div>

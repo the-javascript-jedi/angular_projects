@@ -6,29 +6,33 @@ import { Injectable } from '@angular/core';
 export class SharedDataService {
 
   constructor() { }
-  selectedParentTabName="";
-  selectedChildTabName="";
     // get parent tab data
     getParentTabname():string {
-        return this.selectedParentTabName;
+        let parentTabName = localStorage.getItem("parentTab");
+        return parentTabName;
     }
     // set parent tab data
     setParentTabname(value: string) {
-        this.selectedParentTabName = value;
+        localStorage.setItem("parentTab", value);
+        // this.selectedParentTabName = value;
     }
 
     // get child tab data
     getChildTabname():string {
-        return this.selectedChildTabName;
+        let childTabName = localStorage.getItem("childTab");
+        return childTabName;
     }
     // set child tab data
     setChildTabname(value: string) {
-        this.selectedChildTabName = value;
+         localStorage.setItem("childTab", value);
     }
 
-    // reset data
-    resetSelectedTabs(){
-      this.selectedParentTabName = '';
-      this.selectedChildTabName = '';
+    // reset parent tab
+    resetSelectedParentTab(){
+      localStorage.removeItem("parentTab");
+    }
+    // reset child tab
+    resetSelectedChildTab(){
+      localStorage.removeItem("childTab");
     }
 }

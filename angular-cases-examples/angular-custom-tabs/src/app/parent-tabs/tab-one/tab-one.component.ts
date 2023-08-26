@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-tab-one',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabOneComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _sharedData:SharedDataService) { }
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy(): void {
+    console.log("app-tab-one--ngOnDestroy"); 
+    this._sharedData.resetSelectedParentTab();
+    this._sharedData.resetSelectedChildTab();
+  }
 }

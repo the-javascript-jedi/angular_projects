@@ -15,7 +15,7 @@ export class ChildTabsComponent implements OnInit {
   childIdTab:any="mission";
   // apply active tab based on click
   tabChildChange(idClicked:string){
-    console.log("idClicked",idClicked);
+    // console.log("idClicked",idClicked);
     this.childIdTab=idClicked;
   }
 }

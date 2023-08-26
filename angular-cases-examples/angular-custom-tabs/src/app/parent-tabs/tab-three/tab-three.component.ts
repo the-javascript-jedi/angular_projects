@@ -11,5 +11,7 @@ export class TabThreeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy(): void {
+    console.log("app-tab-three--ngOnDestroy"); 
+  }
 }

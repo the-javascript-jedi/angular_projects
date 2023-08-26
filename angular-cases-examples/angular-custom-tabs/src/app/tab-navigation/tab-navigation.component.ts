@@ -17,4 +17,9 @@ export class TabNavigationComponent implements OnInit {
       this._sharedData.setParentTabname(parentTabName);
       this._sharedData.setChildTabname(childTabName);
   }
+   ngOnDestroy(): void {
+    console.log("app-parent-tabs--ngOnDestroy"); 
+    this._sharedData.resetSelectedParentTab();
+    this._sharedData.resetSelectedChildTab();
+  }
 }

@@ -11,5 +11,7 @@ export class TabTwoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy(): void {
+    console.log("app-tab-two--ngOnDestroy"); 
+  }
 }
