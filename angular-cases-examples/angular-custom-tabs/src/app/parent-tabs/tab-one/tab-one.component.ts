@@ -13,8 +13,6 @@ export class TabOneComponent implements OnInit {
   ngOnInit(): void {
   }
   ngOnDestroy(): void {
-    console.log("app-tab-one--ngOnDestroy"); 
-    this._sharedData.resetSelectedParentTab();
-    this._sharedData.resetSelectedChildTab();
+    console.log("app-tab-one--ngOnDestroy");
   }
 }

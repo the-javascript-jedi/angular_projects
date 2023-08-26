@@ -7,18 +7,18 @@ import { SharedDataService } from '../services/shared-data.service';
   styleUrls: ['./parent-tabs.component.scss']
 })
 export class ParentTabsComponent implements OnInit {
-  parentTabName="";
-  childTabName="";
+  parentTabNameLocalStorage="";
+  childTabNameLocalStorage="";
 
   constructor(private _sharedData:SharedDataService) { }
   tabIdParent:string="tabOne";
 
   ngOnInit(): void {
-    this.parentTabName=this._sharedData.getParentTabname();
-    this.childTabName=this._sharedData.getChildTabname();
-    console.log("this.parentTabName",this.parentTabName)
-    if(this.parentTabName!=null){
-      this.tabParentChange(this.parentTabName);
+    this.parentTabNameLocalStorage=this._sharedData.getParentTabname();
+    this.childTabNameLocalStorage=this._sharedData.getChildTabname();
+    console.log("this.parentTabNameLocalStorage",this.parentTabNameLocalStorage)
+    if(this.parentTabNameLocalStorage!=null){
+      this.tabParentChange(this.parentTabNameLocalStorage);
     }else{
       this.tabParentChange('tabOne');
     }
