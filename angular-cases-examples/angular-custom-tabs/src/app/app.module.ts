@@ -12,6 +12,7 @@ import { ChildTabsComponent } from './parent-tabs/tab-three/child-tabs/child-tab
 import { MissionComponent } from './parent-tabs/tab-three/child-tabs/mission/mission.component';
 import { VisionComponent } from './parent-tabs/tab-three/child-tabs/vision/vision.component';
 import { ValuesComponent } from './parent-tabs/tab-three/child-tabs/values/values.component';
+import { TabNavigationComponent } from './tab-navigation/tab-navigation.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ValuesComponent } from './parent-tabs/tab-three/child-tabs/values/value
     TabTwoComponent,
     TabThreeComponent,
     ChildTabsComponent,
+    TabNavigationComponent,
   ],
   imports: [
     BrowserModule,

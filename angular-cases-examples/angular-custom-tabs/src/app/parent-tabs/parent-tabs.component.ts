@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
   selector: 'app-parent-tabs',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parent-tabs.component.scss']
 })
 export class ParentTabsComponent implements OnInit {
+  parentTabName="";
+  childTabName="";
 
-  constructor() { }
+  constructor(private _sharedData:SharedDataService) { }
 
   ngOnInit(): void {
+    this.parentTabName=this._sharedData.getParentTabname();
+    this.childTabName=this._sharedData.getChildTabname();
   }
   tabIdParent:string="tabOne";
   tabParentChange(idClicked:string){
