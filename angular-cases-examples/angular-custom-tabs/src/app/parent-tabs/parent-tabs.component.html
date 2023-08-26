@@ -1,0 +1,31 @@
+<p>parent-tabs works!</p>
+<div class="container">
+    <div class="tab">
+        <ul>
+            <!-- apply active tab for custom color using [class.activeColor]-->
+            <li id="tabOne" [class.activeColor]="tabIdParent==='tabOne'" (click)="tabParentChange('tabOne')">tabOne</li>
+            <li id="tabTwo" [class.activeColor]="tabIdParent==='tabTwo'" (click)="tabParentChange('tabTwo')">tabTwo</li>
+            <li id="tabThree" [class.activeColor]="tabIdParent==='tabThree'" (click)="tabParentChange('tabThree')">tabThree</li>
+        </ul>
+        <!--Mission Content  -->
+        <div class="content">
+            <div class="content-value" *ngIf="tabIdParent==='tabOne'">
+                <h2>app-tab-one</h2>
+                <p>app-tab-one</p>
+                <app-tab-one></app-tab-one>
+            </div>
+            <!--Vision Content  -->
+            <div class="content-value" *ngIf="tabIdParent==='tabTwo'">
+                <h2>app-tab-two</h2>
+                <p>app-tab-two</p>
+                <app-tab-two></app-tab-two>
+            </div>
+            <!--Values  -->
+            <div class="content-value" *ngIf="tabIdParent==='tabThree'">
+                <h2>app-tab-three</h2>
+                <p>app-tab-three</p>
+                <app-tab-three></app-tab-three>
+            </div>
+        </div>
+    </div>
+</div>

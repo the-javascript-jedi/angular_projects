@@ -1,0 +1,27 @@
+<p>child-tabs works!</p>
+<div class="container">
+  <div class="tab">
+    <ul>
+      <li id="mission" [class.activeColor]="childIdTab==='mission'" (click)="tabChildChange('mission')">Our Mission</li>
+      <li id="vision"  [class.activeColor]="childIdTab==='vision'" (click)="tabChildChange('vision')">Our Vision</li>
+      <li id="value" [class.activeColor]="childIdTab==='value'" (click)="tabChildChange('value')">Values</li>
+    </ul>
+    <div class="content">
+      <div class="content-value" *ngIf="childIdTab==='mission'">
+        <h2>Our Mission</h2>
+        <p>Mission Mission Mission Mission Mission Mission</p>
+        <app-mission></app-mission>
+      </div>
+      <div class="content-value" *ngIf="childIdTab==='vision'">
+        <h2>Our Vision</h2>
+        <p>Vision Vision Vision Vision Vision Vision</p>
+        <app-vision></app-vision>
+      </div>
+      <div class="content-value" *ngIf="childIdTab==='value'">
+        <h2>Values</h2>
+        <p>Values Values Values Values Values Values</p>
+        <app-values></app-values>
+      </div>
+    </div>
+  </div>
+</div>

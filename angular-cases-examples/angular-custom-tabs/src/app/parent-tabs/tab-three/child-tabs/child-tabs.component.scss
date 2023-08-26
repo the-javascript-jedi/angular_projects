@@ -1,0 +1,18 @@
+.tab ul {
+    padding: 10px;
+    background: rgb(21, 209, 46);
+    display: inline-block;
+    border-radius: 2px;
+    margin: 0;
+}
+
+.tab ul li {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 20px 0;
+    color: #fff;
+}
+
+.activeColor {
+    color: #140bba !important;
+}
