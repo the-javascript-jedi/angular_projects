@@ -12,6 +12,7 @@ import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.
 import { HighlightBarchartComponent } from './highlight-barchart/highlight-barchart.component';
 import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.component';
 import { StockChartComponent } from './stock-chart/stock-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'highlight-bar-chart', component: HighlightBarchartComponent },
   { path: 'custom-tooltip', component: CustomTooltipComponent },
   { path: 'stock-chart', component: StockChartComponent },
+  { path: 'line-chart', component: LineChartComponent },
 
 ];
 

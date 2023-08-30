@@ -17,6 +17,7 @@ import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.
 import { HighlightBarchartComponent } from './highlight-barchart/highlight-barchart.component';
 import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.component';
 import { StockChartComponent } from './stock-chart/stock-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StockChartComponent } from './stock-chart/stock-chart.component';
     StackedBarChartComponent,
     HighlightBarchartComponent,
     CustomTooltipComponent,
-    StockChartComponent
+    StockChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
