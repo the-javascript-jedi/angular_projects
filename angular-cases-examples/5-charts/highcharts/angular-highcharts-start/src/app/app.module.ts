@@ -18,6 +18,9 @@ import { HighlightBarchartComponent } from './highlight-barchart/highlight-barch
 import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.component';
 import { StockChartComponent } from './stock-chart/stock-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+// API Call
+import { HttpClientModule } from '@angular/common/http';
+import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-data.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +36,16 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     HighlightBarchartComponent,
     CustomTooltipComponent,
     StockChartComponent,
-    LineChartComponent
+    LineChartComponent,
+    LineChartApiDataComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HighchartsChartModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
