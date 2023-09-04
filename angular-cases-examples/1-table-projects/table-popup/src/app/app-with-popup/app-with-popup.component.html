@@ -1,0 +1,32 @@
+<p>app-with-popup works!</p>
+<div class="entire-container">
+
+    <table>
+        <thead>
+            <tr>
+                <th>match_percentage</th>
+                <th>sr_affected_pid</th>
+                <th>sr_description</th>
+                <th>sr_last_updated</th>
+                <th>sr_number</th>
+                <th>sr_resolution</th>               
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container >               
+                <tr *ngFor="let data of dataFromAPIS;let i = index" class="CellWithCommentRow" [ngClass]="{ 'last-final-rows': i >= dataFromAPIS.length - 1 }">
+                    <td>{{data.match_percentage}}</td>
+                    <td class="CellWithComment">
+                        <span class="CellComment">
+                            we recommend to create new report
+                        </span>
+                        {{data.sr_affected_pid}}
+                    </td>
+                    <td>{{data.sr_last_updated}}</td>
+                    <td>{{data.sr_number}}</td>
+                    <td>{{data.sr_resolution}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

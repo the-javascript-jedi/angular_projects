@@ -1,0 +1,32 @@
+// check this if popup alignment is not correct
+// .CellWithCommentRow{
+//     position: relative;
+// }
+.CellWithComment{
+    position: relative;
+    padding: 0px !important;
+}
+.CellWithComment:hover span.CellComment{
+    display: block;
+}
+.CellComment{
+    top: -25px;
+    left: 20px;
+    display:none;
+    position: absolute;
+    z-index: 2000;
+    border: 1px;
+    background-color: #fff;
+    border-style:solid;
+    border-width: 1px;
+    padding: 3px;    
+    text-align: left;
+    font-size: 12px;
+    width: 300px;
+}
+.CellComment.last-row{
+    top: -150px;
+}
+.last-final-rows{
+    background: springgreen;
+}
