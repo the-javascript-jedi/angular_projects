@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as Highcharts from 'highcharts';
-
 @Component({
-  selector: 'app-column-popup',
-  templateUrl: './column-popup.component.html',
-  styleUrls: ['./column-popup.component.scss']
+  selector: 'app-column-view-all',
+  templateUrl: './column-view-all.component.html',
+  styleUrls: ['./column-view-all.component.scss']
 })
-export class ColumnPopupComponent implements OnInit {
+export class ColumnViewAllComponent implements OnInit {
+ @Output() outputCloseModal = new EventEmitter();
+
 viewAll=false;
-constructor() { }
+    constructor() { }
 Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
     chart: {
@@ -55,23 +56,21 @@ Highcharts: typeof Highcharts = Highcharts;
    series: [{
       name: 'John',
       type: 'column',
-      data: [5, 3, 4, 7, 2]
+      data: [5, 3, 4, 7, 25,29, 32, 3, 2, 1,60,20,10,30,49,20]
     }, {
       name: 'Jane',
       type: 'column',
-      data: [2, 2, 3, 2, 1]
+      data: [2,22, 53, 2, 1,13, 4, 14, 0, 5,20,30,21,2,32,34,53,56,43,23]
     }, {
       name: 'Joe',
       type: 'column',
-      data: [13, 4, 4, 0, 5]
+      data: [13, 4, 40, 20, 65,5, 3, 4, 7,32, 3, 2, 1,60,20,]
     }]
   };
   ngOnInit(): void {
   }
-closeViewAllPopu(event){
-console.log("closeViewAllPopu",event);
-  if(event==='close'){
-    this.viewAll=false;
+
+  closeModal(modalStatus){
+    this.outputCloseModal.emit(modalStatus)
   }
-}
 }

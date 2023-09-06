@@ -14,6 +14,7 @@ import { CustomTooltipComponent } from './custom-tooltip/custom-tooltip.componen
 import { StockChartComponent } from './stock-chart/stock-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-data.component';
+import { ColumnPopupComponent } from './column-popup/column-popup.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'stock-chart', component: StockChartComponent },
   { path: 'line-chart', component: LineChartComponent },
   { path: 'line-chart-api-data', component: LineChartApiDataComponent },
+  { path: 'stacked-column-popup', component: ColumnPopupComponent },
 
 ];
 
