@@ -21,6 +21,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 // API Call
 import { HttpClientModule } from '@angular/common/http';
 import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-data.component';
+import { ColumnPopupComponent } from './column-popup/column-popup.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-
     CustomTooltipComponent,
     StockChartComponent,
     LineChartComponent,
-    LineChartApiDataComponent
+    LineChartApiDataComponent,
+    ColumnPopupComponent
   ],
   imports: [
     BrowserModule,
