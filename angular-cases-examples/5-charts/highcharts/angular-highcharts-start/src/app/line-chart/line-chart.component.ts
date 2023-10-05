@@ -81,6 +81,12 @@ export class LineChartComponent implements OnInit {
     title: {
       text: 'Number of Employees'
     },
+    // remove k displayed in the data
+     labels: {
+        formatter: function () {
+            return this.value;
+        }
+    },
     min : 0
   },
   plotOptions: {
