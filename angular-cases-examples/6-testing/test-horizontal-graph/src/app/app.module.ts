@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableWithGraphComponent } from './table-with-graph/table-with-graph.component';
+import { TableWithGraphComponentDirectService } from './table-with-graph-direct-service/table-with-graph.component';
 import {HTTP_INTERCEPTORS, HttpClientModule,HttpClient } from "@angular/common/http";
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { LoggingInterceptorServce } from './services/logging-interceptor.service';
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     TableWithGraphComponent,
+    TableWithGraphComponentDirectService,
     SelectScrollSearchComponent,
     
   ],
