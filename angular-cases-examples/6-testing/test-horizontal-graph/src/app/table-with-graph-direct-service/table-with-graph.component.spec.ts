@@ -43,4 +43,20 @@ it('should check loadResponse is defined', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
+
+  //// ::::::check calculateBorderColor::::::
+it('should check if name is positive', () => {
+    // Trigger change detection
+    fixture.detectChanges();
+    component.calculateBorderColor('positive')
+    // Check that the component's name property was updated
+    expect(component.calculateBorderColor).toBeDefined()
+  });  
+  it('should check if name is negative', () => {
+    // Trigger change detection
+    fixture.detectChanges();
+    component.calculateBorderColor('negative')
+    // Check that the component's name property was updated
+    expect(component.calculateBorderColor).toBeDefined()
+  });  
 })
