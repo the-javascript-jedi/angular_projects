@@ -80,6 +80,9 @@ export class BarChartComponent implements OnInit {
   }, 
   ],
   exporting: {
+    // adjust downloaded width and height
+    sourceWidth: 300,
+    sourceHeight: 400,
     // change title for exported image
     chartOptions:{
                     title: {
