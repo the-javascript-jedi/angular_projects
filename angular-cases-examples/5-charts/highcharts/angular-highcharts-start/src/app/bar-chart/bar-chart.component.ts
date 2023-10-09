@@ -14,7 +14,7 @@ export class BarChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
     chart: {
-      type: 'bar'
+      type: 'bar',
   },
   title: {
       text: 'Historic World Population by Region',
@@ -79,8 +79,17 @@ export class BarChartComponent implements OnInit {
       data: [631, 727, 3202, 721, 26]
   }, 
   ],
-  // disable context menu
-  exporting: { enabled: false }
+  exporting: {
+    // change title for exported image
+    chartOptions:{
+                    title: {
+                        text:'Monthly Average Temperature',
+                        align:'left'
+                    }
+                },
+              // disable context menu
+              enabled: false,
+              }
   };
   
   ngOnInit(): void {
