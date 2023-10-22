@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-data.component';
 import { ColumnPopupComponent } from './column-popup/column-popup.component';
 import { ColumnViewAllComponent } from './column-popup/column-view-all/column-view-all.component';
+import { PieChartSliceComponent } from './pie-chart-slice/pie-chart-slice.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ColumnViewAllComponent } from './column-popup/column-view-all/column-vi
     LineChartComponent,
     LineChartApiDataComponent,
     ColumnPopupComponent,
-    ColumnViewAllComponent
+    ColumnViewAllComponent,
+    PieChartSliceComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { StockChartComponent } from './stock-chart/stock-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-data.component';
 import { ColumnPopupComponent } from './column-popup/column-popup.component';
+import { PieChartSliceComponent } from './pie-chart-slice/pie-chart-slice.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'line-chart', component: LineChartComponent },
   { path: 'line-chart-api-data', component: LineChartApiDataComponent },
   { path: 'stacked-column-popup', component: ColumnPopupComponent },
+  { path: 'pie-chart-slice', component: PieChartSliceComponent },
 
 ];
 
