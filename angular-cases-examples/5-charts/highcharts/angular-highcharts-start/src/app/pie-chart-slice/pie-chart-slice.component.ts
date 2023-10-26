@@ -71,11 +71,29 @@ export class PieChartSliceComponent implements OnInit {
 chart: {
         type: 'pie'
     },
-
+// change the connector label width
     plotOptions: {
         pie: {
+          // pie chart slicing
             allowPointSelect: true,
-            slicedOffset: 20
+            slicedOffset: 20,
+            // pie chart label connector
+             dataLabels: {
+            enabled: true,
+                    align: 'right',
+                    formatter: function () {
+                      const point = this.point;
+                        return '<span style="color: ' + point.color + '">' +
+                    point.name + ': ' + point.x + '%</span>';
+                    },
+                    // distance: 15,
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 'normal'
+                    },
+                    connectorWidth: 0,
+                    connectorPadding: -20
+          }
         }
     },
 
