@@ -8,12 +8,14 @@ import { HomeComponent } from './home/home.component';
 import { RatingModule } from 'ng-starrating';
 // IMPORT STAR RATING MODULE
 import { StarRatingModule } from 'angular-star-rating';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

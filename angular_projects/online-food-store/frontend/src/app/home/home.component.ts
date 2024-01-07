@@ -15,7 +15,19 @@ export class HomeComponent {
 
 
   ngOnInit(){
-    this.foods=this.foodService.getAll();
+    // this.foods=this.foodService.getAll();
+    this.route.params.subscribe(params=>{
+      if(params.searchTerm){
+        this.foods=this.foodService.getAll().filter(
+          food=>DOMRectReadOnly.name.toLowerCase().includes(params.searchTerm.toLowerCase())
+        )
+      }
+      else if(params.tag){
+        this.foods=this.foodService.getAllFoodsByTag(params.tag);
+      }else{
+        this.foods=this.foodService.getAll();
+      }
+    })
   }
  onClickResult: any;
   onHoverRatingChangeResult: any;
