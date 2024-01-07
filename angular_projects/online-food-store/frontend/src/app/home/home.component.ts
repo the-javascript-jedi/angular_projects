@@ -18,9 +18,10 @@ export class HomeComponent {
     // this.foods=this.foodService.getAll();
     this.route.params.subscribe(params=>{
       if(params.searchTerm){
-        this.foods=this.foodService.getAll().filter(
-          food=>DOMRectReadOnly.name.toLowerCase().includes(params.searchTerm.toLowerCase())
-        )
+        this.foods=this.foodService.getAllFoodsBySearchTerm(params.searchTerm);
+        // this.foods=this.foodService.getAll().filter(
+        //   food=>DOMRectReadOnly.name.toLowerCase().includes(params.searchTerm.toLowerCase())
+        // )
       }
       else if(params.tag){
         this.foods=this.foodService.getAllFoodsByTag(params.tag);

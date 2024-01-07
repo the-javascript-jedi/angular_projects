@@ -9,17 +9,21 @@ import { RatingModule } from 'ng-starrating';
 // IMPORT STAR RATING MODULE
 import { StarRatingModule } from 'angular-star-rating';
 import { SearchComponent } from './search/search.component';
+import { TagsComponent } from './tags/tags.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     StarRatingModule.forRoot(),
   ],
   providers: [],
