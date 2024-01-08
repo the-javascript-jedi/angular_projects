@@ -8,6 +8,7 @@ export class FoodService {
   constructor() { }
 
   getFoodById(id: number): Food{
+    // ! at end of return implies item will not return undefined
     return this.getAll().find(food => food.id == id)!;
   }
   
