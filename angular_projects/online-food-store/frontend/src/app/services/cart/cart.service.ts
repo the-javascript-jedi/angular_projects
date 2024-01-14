@@ -11,6 +11,7 @@ export class CartService {
   
   addToCart(food: Food):void{
     let cartItem = this.cart.items.find(item => item.food.id === food.id);
+    // increase quantity of cart if item already
     if(cartItem){
       this.changeQuantity(food.id, cartItem.quantity + 1);
       return;
