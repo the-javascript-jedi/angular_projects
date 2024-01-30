@@ -6,7 +6,7 @@
         Are you sure that you want to delete this?
     </div>
     <div id="actions">
-        <button>No</button>
-        <button>Yes</button>
+        <button class="cancel" (click)="generalService.showDialog=false">No</button>
+        <button (click)="generalService.showDialog=false">Yes</button>
     </div>
 </div>

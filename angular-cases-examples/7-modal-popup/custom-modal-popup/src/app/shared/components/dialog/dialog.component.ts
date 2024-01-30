@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GeneralService } from '../../services/general.service';
 
 @Component({
   selector: 'app-dialog',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class DialogComponent {
 
+  constructor(public generalService:GeneralService){
+
+  }
 }

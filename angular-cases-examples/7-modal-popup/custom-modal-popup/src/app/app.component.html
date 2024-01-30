@@ -1,1 +1,2 @@
-<app-dialog></app-dialog>
+<app-dialog *ngIf="generalService.showDialog==true"></app-dialog>
+<button (click)="generalService.showDialog=true">Show Dialog</button>
