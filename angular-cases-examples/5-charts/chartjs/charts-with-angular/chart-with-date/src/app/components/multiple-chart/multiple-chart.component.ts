@@ -51,6 +51,6 @@ export class MultipleChartComponent implements OnInit {
       maintainAspectRatio: true,
       responsive: true,
     }
-    });
+    } as any);
   }
 }
