@@ -1,1 +1,7 @@
-<p>logs works!</p>
+<ul class="list-group">
+    <li *ngFor="let log of logs" class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="#">{{log.text}}</a>
+        <span class="log-date">{{log.date | date:'short'}}</span>
+        <i class="fa fa-remove"></i>
+    </li>
+</ul>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-logs',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./logs.component.scss']
 })
 export class LogsComponent {
+  logs=[];
+  
+  constructor(private _logsService:LogService){
 
+  }
+  
+  ngOnInit(){
+    this.logs=this._logsService.getLogs()
+   
+  }
+    
 }
