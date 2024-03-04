@@ -10,6 +10,8 @@ import { CalendarComponent } from './components/crash-risk-trend/calendar/calend
 import { ChartComponentComponent } from './components/crash-risk-trend/chart-component/chart-component.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
+import { MultipleChartComponent } from './components/multiple-chart/multiple-chart.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ApiService } from './services/api.service';
     AppComponent,
     CrashRiskTrendComponent,
     CalendarComponent,
-    ChartComponentComponent
+    ChartComponentComponent,
+    MultipleChartComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
