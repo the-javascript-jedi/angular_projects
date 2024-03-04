@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart,registerables} from 'chart.js';
-import { LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
 
 @Component({
   selector: 'app-multiple-chart',
@@ -12,7 +11,8 @@ export class MultipleChartComponent implements OnInit {
  charts = [];
 
   constructor() {
-    Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale);
+    // add registerables for enabling all the chart features
+    Chart.register(...registerables);
 
     // Example: Initialize your charts data here
     // This could be replaced with dynamic data from a service
