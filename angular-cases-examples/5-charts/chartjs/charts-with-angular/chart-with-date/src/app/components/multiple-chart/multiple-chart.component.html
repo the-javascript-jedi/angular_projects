@@ -1,1 +1,12 @@
 <p>multiple-chart works!</p>
+<!-- <div class="chart-container" *ngFor="let chartData of charts; let i = index">
+    <canvas id="chart-{{i}}" width="400" height="400"></canvas>
+</div> -->
+
+<!-- maintain aspect ratio -->
+<!-- in options maintainAspectRatio: true,
+      responsive: true, -->
+
+    <div class="chart-container-responsive" *ngFor="let chartData of charts; let i = index">
+        <canvas id="chart-{{i}}"></canvas>
+    </div>
