@@ -8,51 +8,38 @@ import {Chart,registerables} from 'chart.js';
   styleUrls: ['./multiple-chart-viewchild.component.css']
 })
 export class MultipleChartViewchildComponent {
-  @ViewChild('chartContainer', { static: true }) chartContainer: ElementRef;
+ chartData = [
+    {
+      labels: ['Label 1', 'Label 2', 'Label 3'],
+      datasets: [
+        {
+          data: [10, 20, 30],
+          backgroundColor: ['red', 'blue', 'green'],
+        },
+      ],
+    },
+    {
+      labels: ['Label 1', 'Label 2', 'Label 3'],
+      datasets: [
+        {
+          data: [15, 25, 35],
+          backgroundColor: ['purple', 'orange', 'teal'],
+        },
+      ],
+    },
+    {
+      labels: ['Label 1', 'Label 2', 'Label 3','Label 4','Label 5','Label 6'],
+      datasets: [
+        {
+          data: [70, 20, 30,90,50,100],
+          backgroundColor: ['red', 'blue', 'green','purple', 'orange', 'teal'],
+        },
+      ],
+    },
+  ];
 
-  constructor() {
-     // add registerables for enabling all the chart features
-    Chart.register(...registerables);
-   }
+  constructor() { }
 
   ngOnInit(): void {
-    this.createCharts();
   }
-
-  createCharts(): void {
-    // Example data, replace with your own
-    const datasets = [
-      {
-        data: [10, 20, 30],
-        backgroundColor: ['red', 'blue', 'green'],
-      },
-      {
-        data: [15, 25, 35],
-        backgroundColor: ['purple', 'orange', 'teal'],
-      },
-    ];
-
-    datasets.forEach((dataset, index) => {
-      const canvas = document.createElement('canvas');
-      canvas.id = `chart-${index}`;
-      this.chartContainer.nativeElement.appendChild(canvas);
-
-      const ctx = canvas.getContext('2d');
-      new Chart(ctx, {
-        type: 'bar', // or any other type
-        data: {
-          labels: ['Label 1', 'Label 2', 'Label 3'],
-          datasets: [dataset],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    });
-  }
-
 }

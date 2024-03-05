@@ -1,4 +1,8 @@
 <p>multiple-chart-viewchild works!</p>
-<div #chartContainer class="chart-container-responsive">
-    <!-- Charts will be inserted here -->
+<!-- Charts will be inserted here -->
+<!-- <div #chartContainer class="chart-container-responsive">
+</div> -->
+<!--  -->
+<div>
+    <app-chart-child *ngFor="let data of chartData" [chartData]="data" [chartType]="'bar'"></app-chart-child>
 </div>
