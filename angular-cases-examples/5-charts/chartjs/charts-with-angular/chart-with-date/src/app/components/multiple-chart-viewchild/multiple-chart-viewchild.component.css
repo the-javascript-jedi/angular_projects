@@ -1,0 +1,19 @@
+.chart-container {
+    width: 400px;
+    /* or any other width */
+    height: 400px;
+    /* or any other height */
+    margin-bottom: 20px;
+    /* Optional: Adds some space between the charts */
+}
+
+.chart-container-responsive {
+    width: 100%;
+    /* Makes the chart container full width */
+    max-width: 800px;
+    /* Ensures the chart is not too wide on larger screens */
+    height: auto;
+    /* Makes height adjust to maintain aspect ratio */
+    aspect-ratio: 16 / 9;
+    /* Optional: Sets a specific aspect ratio */
+}

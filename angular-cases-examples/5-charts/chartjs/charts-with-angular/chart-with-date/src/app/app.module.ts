@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { MultipleChartComponent } from './components/multiple-chart/multiple-chart.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MultipleChartViewchildComponent } from './components/multiple-chart-viewchild/multiple-chart-viewchild.component';
+import { ChartChildComponent } from './components/multiple-chart-viewchild/chart-child/chart-child.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     CalendarComponent,
     ChartComponentComponent,
     MultipleChartComponent,
-    NavbarComponent
+    NavbarComponent,
+    MultipleChartViewchildComponent,
+    ChartChildComponent
   ],
   imports: [
     BrowserModule,
