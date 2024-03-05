@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {Chart,registerables} from 'chart.js';
 
 @Component({
   selector: 'app-multiple-chart',
   templateUrl: './multiple-chart.component.html',
-  styleUrls: ['./multiple-chart.component.css']
+  styleUrls: ['./multiple-chart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MultipleChartComponent implements OnInit {
-
+clickedCounter:number=1;
  charts = [];
-
+clickedCount(){
+  console.log("clickedCount")
+  this.clickedCounter=this.clickedCounter+1;
+  console.log("clickedCounter",this.clickedCounter)
+}
   constructor() {
     // add registerables for enabling all the chart features
     Chart.register(...registerables);

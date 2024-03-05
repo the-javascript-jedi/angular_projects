@@ -10,3 +10,7 @@
     <div class="chart-container-responsive" *ngFor="let chartData of charts; let i = index">
         <canvas id="chart-{{i}}"></canvas>
     </div>
+    <p>clickedCounter - {{clickedCounter}}</p>
+<button (click)="clickedCount()">
+    hello
+</button>
