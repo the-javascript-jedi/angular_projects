@@ -1,0 +1,45 @@
+.sidenav {
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.collapse-button {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.collapsed {
+    width: 50px;
+}
+
+.collapsed .sidenav a {
+    padding: 8px;
+}
+.sidebarCollapsed{
+    display: none;
+}

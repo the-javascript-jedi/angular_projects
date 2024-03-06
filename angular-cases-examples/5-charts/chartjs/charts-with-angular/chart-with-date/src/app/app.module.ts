@@ -14,6 +14,7 @@ import { MultipleChartComponent } from './components/multiple-chart/multiple-cha
 import { NavbarComponent } from './navbar/navbar.component';
 import { MultipleChartViewchildComponent } from './components/multiple-chart-viewchild/multiple-chart-viewchild.component';
 import { ChartChildComponent } from './components/multiple-chart-viewchild/chart-child/chart-child.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ChartChildComponent } from './components/multiple-chart-viewchild/chart
     MultipleChartComponent,
     NavbarComponent,
     MultipleChartViewchildComponent,
-    ChartChildComponent
+    ChartChildComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

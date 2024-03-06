@@ -1,0 +1,10 @@
+<div class="sidenav" [class.collapsed]="isCollapsed">
+    <!-- Collapse Button -->
+    <button class="collapse-button" (click)="toggleCollapse()">☰</button>
+    <!-- navigation links  -->
+    <div [class.sidebarCollapsed]="isCollapsed">
+        <a routerLink="/">Home</a>
+        <a routerLink="/multipleChart">Multiple Chart</a>
+        <a routerLink="/multipleChartViewChild">Multiple Chart Viewchild</a>
+    </div>
+</div>
