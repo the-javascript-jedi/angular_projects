@@ -14,7 +14,7 @@ export class VisOneComponent {
   ngAfterViewInit() {
      const container = this.el.nativeElement;
      const nodes = new DataSet<any>([
-        {id: 1, label: 'Node 1'},
+        {id: 1, label: 'Node 1',color:{background: '#C5FAD5'}},
         {id: 2, label: 'Node 2'},
         {id: 3, label: 'Node 3'},
         {id: 4, label: 'Node 4'},
