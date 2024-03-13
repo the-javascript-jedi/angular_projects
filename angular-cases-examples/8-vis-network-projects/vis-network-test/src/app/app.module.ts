@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { VisOneComponent } from './vis-one/vis-one.component';
+import { VisManipulationComponent } from './vis-manipulation/vis-manipulation.component';
+import { VisSaveLoadComponent } from './vis-save-load/vis-save-load.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    VisOneComponent
+    VisOneComponent,
+    VisManipulationComponent,
+    VisSaveLoadComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
