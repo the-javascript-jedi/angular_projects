@@ -17,8 +17,11 @@ export class NestedObjectsearchPipe implements PipeTransform {
   }
 
   private itemContainsSearchText(item: any, searchText: string): boolean {
-    // console.log("searchText",searchText)
+    console.log("item",item)
     for (const key in item) {
+      console.log("key",key)
+      // add key!=='direction' to exclude the direction key in the search
+      // if (item.hasOwnProperty(key)&&key!=='direction') {
       if (item.hasOwnProperty(key)) {
         const value = item[key];
         if (value && typeof value === 'object') {
