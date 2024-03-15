@@ -1,0 +1,12 @@
+<p>search-with-pipe works!</p>
+    <input [(ngModel)]="query" 
+    (focus)="_setFocus(true);" 
+    (focusout)="_setFocus(false)"
+    [placeholder]="selectedPlaceholder"    
+    >
+<div class="dropdown" *ngIf="inputFocused==true">
+    <div *ngFor="let item of items | search:'id,text':query">
+        <a (click)="selectItem(item)">{{item.text}}</a>
+        <i class="fa-solid fa-check" *ngIf="item.selected"></i>
+    </div>
+</div>
