@@ -7,7 +7,7 @@ export let dataFromApiTS = {
       policy_type:"test_policy_type_1",
       poduct_family:"test_pf_1",
       applied_interfaces:[
-        {direction:"in",interface:"interface  - nithin"},
+        {direction:"samy",interface:"interface  - nithin"},
         {direction:"out",interface:"interface  - samuel"}
       ]
     },
@@ -18,8 +18,8 @@ export let dataFromApiTS = {
       policy_type:"test_policy_type_2",
       poduct_family:"test_pf_2",
       applied_interfaces:[
-        {direction:"in",interface:"interface  - jeeva"},
-        {direction:"out",interface:"interface  - winpray"}
+        {direction:"out",interface:"interface - jeeva"},
+        {direction:"out",interface:"interface - winpray"}
       ]
     },
      {
@@ -29,7 +29,7 @@ export let dataFromApiTS = {
       policy_type:"test_policy_type_3",
       poduct_family:"test_pf_3",
       applied_interfaces:[
-        {direction:"in",interface:"interface  - rian"},
+        {direction:"out",interface:"interface  - rian"},
         {direction:"out",interface:"interface  - samuel"}
       ]
     }

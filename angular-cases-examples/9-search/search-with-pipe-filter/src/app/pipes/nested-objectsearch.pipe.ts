@@ -5,20 +5,31 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NestedObjectsearchPipe implements PipeTransform {
 
-  transform(items: any[], searchText: string): any[] {
-    if (!items) {
-      return [];
-    }
-    if (!searchText) {
+ transform(items: any[], searchText: string): any[] {
+    if (!items || !searchText) {
       return items;
     }
-    searchText = searchText.toLowerCase();
+
+    searchText = searchText.trim().toLowerCase().replace(/\s+/g, ''); // Trim whitespace and convert to lowercase
     return items.filter(item => {
-      // Modify this condition based on your table structure
-      return Object.values(item).some(val =>
-        val.toString().toLowerCase().includes(searchText)
-      );
+      return this.itemContainsSearchText(item, searchText);
     });
   }
 
+  private itemContainsSearchText(item: any, searchText: string): boolean {
+    // console.log("searchText",searchText)
+    for (const key in item) {
+      if (item.hasOwnProperty(key)) {
+        const value = item[key];
+        if (value && typeof value === 'object') {
+          if (this.itemContainsSearchText(value, searchText)) {
+            return true;
+          }
+        } else if (value !== null && typeof value === 'string' && value.trim().toLowerCase().replace(/\s+/g, '').includes(searchText)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }
