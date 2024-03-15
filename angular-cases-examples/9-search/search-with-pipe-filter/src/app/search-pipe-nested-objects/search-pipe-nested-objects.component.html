@@ -1,0 +1,25 @@
+<p>search-pipe-nested-objects works!</p>
+search: <input type="text" [(ngModel)]="searchText" placeholder="Search...">
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>hostname</th>
+            <th>product_family</th>
+            <th>policy_id</th>
+            <th>policy_type</th>
+            <th>applied_interfaces</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tableData | nestedObjectsearch: searchText">
+            <td>{{data.name}}</td>
+            <td>{{data.hostname}}</td>
+            <td>{{data.policy_id}}</td>
+            <td>{{data.poduct_family}}</td>
+            <td>{{data.policy_type}}</td>
+            <td>{{data.applied_interfaces[0].interface}}</td>
+        </tr>
+    </tbody>
+</table>
