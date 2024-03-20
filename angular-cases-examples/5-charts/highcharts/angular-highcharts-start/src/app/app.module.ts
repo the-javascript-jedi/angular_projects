@@ -25,6 +25,7 @@ import { ColumnPopupComponent } from './column-popup/column-popup.component';
 import { ColumnViewAllComponent } from './column-popup/column-view-all/column-view-all.component';
 import { PieChartSliceComponent } from './pie-chart-slice/pie-chart-slice.component';
 import { BubbleChartComponent } from './bubble-chart/bubble-chart.component';
+import { BubbleChartIiComponent } from './bubble-chart-ii/bubble-chart-ii.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BubbleChartComponent } from './bubble-chart/bubble-chart.component';
     ColumnPopupComponent,
     ColumnViewAllComponent,
     PieChartSliceComponent,
-    BubbleChartComponent
+    BubbleChartComponent,
+    BubbleChartIiComponent
   ],
   imports: [
     BrowserModule,

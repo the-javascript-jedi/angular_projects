@@ -17,6 +17,7 @@ import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-
 import { ColumnPopupComponent } from './column-popup/column-popup.component';
 import { PieChartSliceComponent } from './pie-chart-slice/pie-chart-slice.component';
 import { BubbleChartComponent } from './bubble-chart/bubble-chart.component';
+import { BubbleChartIiComponent } from './bubble-chart-ii/bubble-chart-ii.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'helloHighChart', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'stacked-column-popup', component: ColumnPopupComponent },
   { path: 'pie-chart-slice', component: PieChartSliceComponent },
   { path: 'bubble-chart', component: BubbleChartComponent },
+  { path: 'bubble-chart-ii', component: BubbleChartIiComponent },
 
 ];
 
