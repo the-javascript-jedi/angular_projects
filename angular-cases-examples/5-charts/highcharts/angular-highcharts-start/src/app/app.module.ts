@@ -24,6 +24,7 @@ import { LineChartApiDataComponent } from './line-chart-api-data/line-chart-api-
 import { ColumnPopupComponent } from './column-popup/column-popup.component';
 import { ColumnViewAllComponent } from './column-popup/column-view-all/column-view-all.component';
 import { PieChartSliceComponent } from './pie-chart-slice/pie-chart-slice.component';
+import { BubbleChartComponent } from './bubble-chart/bubble-chart.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PieChartSliceComponent } from './pie-chart-slice/pie-chart-slice.compon
     LineChartApiDataComponent,
     ColumnPopupComponent,
     ColumnViewAllComponent,
-    PieChartSliceComponent
+    PieChartSliceComponent,
+    BubbleChartComponent
   ],
   imports: [
     BrowserModule,
