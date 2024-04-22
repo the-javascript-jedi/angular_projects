@@ -1,0 +1,51 @@
+<div>
+    <button (click)="addRow()">Add Row</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of tableData; let i = index">
+            <!-- Name -->
+            <td>
+                <div *ngIf="isEditing(i)">
+                    <input [(ngModel)]="row.name" [ngClass]="{ 'error-input': validationErrors[i]?.name }">
+                    <!-- Error message for name -->
+                    <div *ngIf="validationErrors[i]?.name" class="error-message">
+                        {{ validationErrors[i].name }}
+                    </div>
+                </div>
+                <div *ngIf="!isEditing(i)">
+                    {{ row.name }}
+                </div>
+            </td>
+
+            <!-- Age -->
+            <td>
+                <div *ngIf="isEditing(i)">
+                    <input [(ngModel)]="row.age" type="number" [ngClass]="{ 'error-input': validationErrors[i]?.age }">
+                    <!-- Error message for age -->
+                    <div *ngIf="validationErrors[i]?.age" class="error-message">
+                        {{ validationErrors[i].age }}
+                    </div>
+                </div>
+                <div *ngIf="!isEditing(i)">
+                    {{ row.age }}
+                </div>
+            </td>
+
+            <!-- Actions -->
+            <td>
+                <button *ngIf="!isEditing(i)" (click)="editRow(i)">Edit</button>
+                <button *ngIf="isEditing(i)" (click)="saveRow(i)">Save</button>
+                <button *ngIf="isEditing(i)" (click)="cancelEdit(i)">Cancel</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
