@@ -1,0 +1,29 @@
+.nav-head{
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+}
+.nav-list-item{
+    width: 100px;
+    border: 1px solid;
+    margin: 10px;
+    padding: 10px;
+    flex: none;
+    cursor: pointer;
+}
+.btn{
+    padding: 10px;
+}
+.scroll-box{
+    position: relative;
+    button.prev-button{
+        position: absolute;
+        left: 0;
+        top: 12px;
+    }
+    button.next-button{
+        position: absolute;
+        right: 0;
+        top: 12px;
+    }
+}
