@@ -3,6 +3,22 @@
     display: flex;
     overflow: scroll;
 }
+.nav-head {
+    /* Hide the scrollbar */
+    overflow: hidden;
+    /* This may fully hide the scrollbar in some browsers */
+    overflow-x: auto;
+    /* Allow horizontal scrolling */
+}
+/* For Webkit-based browsers (e.g., Chrome, Safari) */
+.nav-head::-webkit-scrollbar {
+    display: none;
+}
+/* For Mozilla Firefox */
+.nav-head {
+    scrollbar-width: none;
+    /* Hide the scrollbar */
+}
 .nav-list-item{
     width: 100px;
     border: 1px solid;

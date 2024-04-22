@@ -49,6 +49,6 @@ export class ScrollNavComponent implements OnInit {
     console.log("navHeadElement.scrollWidth",navHeadElement.scrollWidth)
     console.log("navHeadElement.scrollLeft + navHeadElement.clientWidth",navHeadElement.scrollLeft + navHeadElement.clientWidth)
     this.showPrevButton = navHeadElement.scrollLeft > 0;
-    this.showNextButton = (navHeadElement.scrollLeft + navHeadElement.clientWidth) < navHeadElement.scrollWidth-100;
+    this.showNextButton = (navHeadElement.scrollLeft + navHeadElement.clientWidth) < navHeadElement.scrollWidth-50;
   }
 }
