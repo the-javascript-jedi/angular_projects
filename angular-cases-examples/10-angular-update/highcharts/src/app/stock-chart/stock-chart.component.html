@@ -1,0 +1,8 @@
+<p>stock-chart works!</p>
+<highcharts-chart 
+style="display:block;width: 50%;margin:0 auto;"
+[Highcharts]="Highcharts" [constructorType]="'stockChart'" [options]="chartOptions">
+</highcharts-chart>
+<button (click)="getDates()">
+    Get Dates
+</button>

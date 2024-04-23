@@ -1,0 +1,24 @@
+<p>three-d-annotation works!</p>
+<form [formGroup]="myForm">
+    <ng-multiselect-dropdown
+        name="devicesForScatterPlot"
+        [placeholder]="'Select Device'"
+        [settings]="dropdownSettings"
+        [data]="scatterDataDropdown"
+        formControlName="devicesForScatterPlot"
+        [disabled]="disabled"
+        (onSelect)="onItemSelect($event)"
+        (onDeSelect)="onItemDeSelect($event)"
+        >
+    </ng-multiselect-dropdown>
+</form>
+<highcharts-chart
+      id="container"
+      [Highcharts]="Highcharts"
+      [constructorType]="chartConstructor"
+      [options]="chartOptions"
+      [callbackFunction]="chartCallback"
+      [(update)]="updateFromInput"
+      [oneToOne]="true"
+    >
+    </highcharts-chart>

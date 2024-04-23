@@ -1,0 +1,9 @@
+<p>line-chart-api-data works!</p>
+<p>line-chart works!</p>
+<div *ngIf="loadingData==false">
+    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+        style="width: 100%; height: 400px; display: block;"></highcharts-chart>
+</div>
+<div *ngIf="loadingData==true">
+    Loading...
+</div>
