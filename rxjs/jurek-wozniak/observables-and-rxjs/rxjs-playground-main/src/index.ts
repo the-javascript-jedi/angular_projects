@@ -1,22 +1,35 @@
-import { Observable } from "rxjs";
+import {of,Observable} from "rxjs";
 
+// creation of observable using of
+of("Alice","Ben","Charlie").subscribe({
+    next:value=>console.log("value of",value),
+    complete:()=>console.log("completed")
+})
 
-const interval$ = new Observable<number>(subscriber => {
-  let counter = 1;
-
-  const intervalId = setInterval(() => {
-    console.log('Emitted', counter);
-    subscriber.next(counter++);
-  }, 2000);
-  //observable cleanup -without this observer will keep on emitting even after unsubscribing
-  return () => {
-    clearInterval(intervalId);
-  };
+// manual observable creation
+const names$ = new Observable<string>(subscriber => {
+  subscriber.next('Alice');
+  subscriber.next('Ben');
+  subscriber.next('Charlie');
+  subscriber.complete();
 });
 
-const subscription = interval$.subscribe(value => console.log(value));
+names$.subscribe({
+  next: value => console.log("value manual",value),
+  complete: () => console.log('Completed')
+});
 
-setTimeout(() => {
-  console.log('Unsubscribe');
-  subscription.unsubscribe();
-}, 7000);
+// manually created of observable - (our own of observable)
+ourOwnOf('Alice', 'Ben', 'Charlie').subscribe({
+  next: value => console.log("our own off",value),
+  complete: () => console.log('Completed')
+});
+
+function ourOwnOf(...args: string[]): Observable<string> {
+  return new Observable<string>(subscriber => {
+    for(let i = 0; i < args.length; i++) {
+      subscriber.next(args[i]);
+    }
+    subscriber.complete();
+  });
+}
