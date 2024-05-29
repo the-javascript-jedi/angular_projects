@@ -1,37 +1,20 @@
-import { fromEvent, Observable } from "rxjs";
+import { forkJoin } from "rxjs";
+// Mike is from New Delhi and likes to eat pasta.
 
-const triggerButton = document.querySelector('button#trigger');
+import { ajax } from "rxjs/ajax";
 
-// const subscriptionFromEvent = fromEvent<MouseEvent>(triggerButton, 'click').subscribe(
-//   event => console.log(event.type, event.x, event.y)
-// );
+const randomName$ = ajax<any>('https://random-data-api.com/api/name/random_name');
 
-// // after 5 seconds exectue the return function specified in triggerClick$
-// setTimeout(() => {
-//   console.log('Unsubscribe');
-//   subscriptionFromEvent.unsubscribe();
-// }, 5000);
+const randomNation$ = ajax<any>('https://random-data-api.com/api/nation/random_nation');
 
+const randomFood$ = ajax<any>('https://random-data-api.com/api/food/random_food');
 
-const triggerClick$ = new Observable<MouseEvent>(subscriber => {
-  const clickHandlerFn = (event:MouseEvent) => {
-    console.log('Event callback executed');
-    subscriber.next(event);
-  };
+// separate calls
+// randomName$.subscribe(ajaxResponse => console.log(ajaxResponse.response.first_name));
+// randomNation$.subscribe(ajaxResponse => console.log(ajaxResponse.response.capital));
+// randomFood$.subscribe(ajaxResponse => console.log(ajaxResponse.response.dish));
 
-  triggerButton.addEventListener('click', clickHandlerFn);
-
-  return () => {
-    triggerButton.removeEventListener('click', clickHandlerFn);
-  };
-});
-
-const subscription = triggerClick$.subscribe(
-  event => console.log(event.type, event.x, event.y)
+// combine all the api responses using fork join
+forkJoin([randomName$, randomNation$, randomFood$]).subscribe(
+  ([nameAjax, nationAjax, foodAjax]) => console.log(`${nameAjax.response.first_name} is from ${nationAjax.response.capital} and likes to eat ${foodAjax.response.dish}.`)
 );
-
-// after 5 seconds exectue the return function specified in triggerClick$
-setTimeout(() => {
-  console.log('Unsubscribe');
-  subscription.unsubscribe();
-}, 5000);
