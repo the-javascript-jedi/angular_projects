@@ -1,20 +1,30 @@
-import { forkJoin } from "rxjs";
-// Mike is from New Delhi and likes to eat pasta.
+import { forkJoin, Observable } from "rxjs";
 
-import { ajax } from "rxjs/ajax";
+// observable simulates success
+const a$ = new Observable(subscriber => {
+  setTimeout(() => {
+    subscriber.next('A');
+    subscriber.complete();
+  }, 5000);
 
-const randomName$ = ajax<any>('https://random-data-api.com/api/name/random_name');
+  return () => {
+    console.log('A teardown');
+  };
+});
 
-const randomNation$ = ajax<any>('https://random-data-api.com/api/nation/random_nation');
+// observable simulates an error
+const b$ = new Observable(subscriber => {
+  setTimeout(() => {
+    subscriber.error('Failure!');
+  }, 3000);
+  
+  return () => {
+    console.log('B teardown');
+  };
+});
 
-const randomFood$ = ajax<any>('https://random-data-api.com/api/food/random_food');
-
-// separate calls
-// randomName$.subscribe(ajaxResponse => console.log(ajaxResponse.response.first_name));
-// randomNation$.subscribe(ajaxResponse => console.log(ajaxResponse.response.capital));
-// randomFood$.subscribe(ajaxResponse => console.log(ajaxResponse.response.dish));
-
-// combine all the api responses using fork join
-forkJoin([randomName$, randomNation$, randomFood$]).subscribe(
-  ([nameAjax, nationAjax, foodAjax]) => console.log(`${nameAjax.response.first_name} is from ${nationAjax.response.capital} and likes to eat ${foodAjax.response.dish}.`)
-);
+// even if one observale subscription fails, other future observales are cancelled and error logic is executed and complete return logic is called
+forkJoin([a$, b$]).subscribe({
+  next: value => console.log(value),
+  error: err => console.log('Error:', err)
+});
