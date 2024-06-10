@@ -1,30 +1,24 @@
-import { forkJoin, Observable } from "rxjs";
+import { combineLatest, fromEvent } from "rxjs";
 
-// observable simulates success
-const a$ = new Observable(subscriber => {
-  setTimeout(() => {
-    subscriber.next('A');
-    subscriber.complete();
-  }, 5000);
+const temperatureInput = document.getElementById('temperature-input');
+const conversionDropdown = document.getElementById('conversion-dropdown');
+const resultText = document.getElementById('result-text');
 
-  return () => {
-    console.log('A teardown');
-  };
-});
+const temperatureInputEvent$ = fromEvent(temperatureInput, 'input');
+const conversionInputEvent$ = fromEvent(conversionDropdown, 'input');
 
-// observable simulates an error
-const b$ = new Observable(subscriber => {
-  setTimeout(() => {
-    subscriber.error('Failure!');
-  }, 3000);
-  
-  return () => {
-    console.log('B teardown');
-  };
-});
+combineLatest([temperatureInputEvent$, conversionInputEvent$]).subscribe(
+  ([temperatureInputEvent, conversionInputEvent]) => {
+    const temperature = Number((temperatureInputEvent.target as HTMLInputElement).value);
+    const conversion = (conversionInputEvent.target as HTMLSelectElement).value;
 
-// even if one observale subscription fails, other future observales are cancelled and error logic is executed and complete return logic is called
-forkJoin([a$, b$]).subscribe({
-  next: value => console.log(value),
-  error: err => console.log('Error:', err)
-});
+    let result: number;
+    if (conversion === 'f-to-c') {
+      result = (temperature - 32) * 5/9;
+    } else if (conversion === 'c-to-f') {
+      result = temperature * 9/5 + 32;
+    }
+
+    resultText.innerText = String(result);
+  }
+);
