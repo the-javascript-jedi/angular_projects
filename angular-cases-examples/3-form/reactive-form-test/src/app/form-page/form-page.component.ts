@@ -11,7 +11,7 @@ export class FormPageComponent {
 
   constructor(private fb: FormBuilder) {
     this.myForm=this.fb.group({
-      name:['name',[Validators.required]],
+      name:['',[Validators.required]],
       email:['',[Validators.required]],
       password:['',[Validators.required]],
       gender:['',[Validators.required]],
@@ -26,5 +26,20 @@ export class FormPageComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+   // Method to remove the 'required' validator from the 'name' control
+  removeNameValidator() {
+    this.myForm.get('name').clearValidators();
+    this.myForm.get('name').updateValueAndValidity();
+  }
+
+   getSerializedForm() {
+    return JSON.stringify(this.myForm.value, null, 2);
+  }
+
+  addNameValidator(){
+    this.myForm.get('name').setValidators([Validators.required, Validators.minLength(3)]);
+    this.myForm.get('name').updateValueAndValidity();
   }
 }

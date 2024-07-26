@@ -1,5 +1,8 @@
 <!-- app.component.html -->
 <div>
+    <!-- myForm.value -->
+    <pre>myForm - {{ myForm.value | json }}</pre>
+    <pre>myForm - {{ getSerializedForm() }}</pre>
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div>
             <label for="name">Name:</label>
@@ -51,6 +54,8 @@
         </div>
 
         <button type="submit" [disabled]="myForm.invalid">Submit</button>
+        <button (click)="removeNameValidator()">Remove 'required' Validator from Name</button>
+        <button (click)="addNameValidator()">Add 'required' Validator from Name</button>
     </form>
 </div>
 
