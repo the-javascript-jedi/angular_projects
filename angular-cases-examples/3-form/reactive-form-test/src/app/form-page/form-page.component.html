@@ -1,0 +1,114 @@
+<!-- app.component.html -->
+<div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" formControlName="name">
+            <div *ngIf="myForm.get('name').invalid && myForm.get('name').touched">
+                <small *ngIf="myForm.get('name').errors.required">Name is required.</small>
+                <small *ngIf="myForm.get('name').errors.minlength">Name must be at least 3 characters long.</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email">
+            <div *ngIf="myForm.get('email').invalid && myForm.get('email').touched">
+                <small *ngIf="myForm.get('email').errors.required">Email is required.</small>
+                <small *ngIf="myForm.get('email').errors.email">Email is invalid.</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" type="password" formControlName="password">
+            <div *ngIf="myForm.get('password').invalid && myForm.get('password').touched">
+                <small *ngIf="myForm.get('password').errors.required">Password is required.</small>
+                <small *ngIf="myForm.get('password').errors.minlength">Password must be at least 6 characters
+                    long.</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Gender:</label>
+            <label>
+                <input type="radio" formControlName="gender" value="male"> Male
+            </label>
+            <label>
+                <input type="radio" formControlName="gender" value="female"> Female
+            </label>
+            <div *ngIf="myForm.get('gender').invalid && myForm.get('gender').touched">
+                <small *ngIf="myForm.get('gender').errors.required">Gender is required.</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="comments">Comments:</label>
+            <textarea id="comments" formControlName="comments"></textarea>
+            <div *ngIf="myForm.get('comments').invalid && myForm.get('comments').touched">
+                <small *ngIf="myForm.get('comments').errors.maxlength">Comments cannot exceed 500 characters.</small>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="myForm.invalid">Submit</button>
+    </form>
+</div>
+
+
+<!-- app.component.html - using srict approach -->
+<!-- <div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" formControlName="name">
+            <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
+                <small *ngIf="myForm.get('name')?.errors?.['required']">Name is required.</small>
+                <small *ngIf="myForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters
+                    long.</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email">
+            <div *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                <small *ngIf="myForm.get('email')?.errors?.['required']">Email is required.</small>
+                <small *ngIf="myForm.get('email')?.errors?.['email']">Email is invalid.</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" type="password" formControlName="password">
+            <div *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                <small *ngIf="myForm.get('password')?.errors?.['required']">Password is required.</small>
+                <small *ngIf="myForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters
+                    long.</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Gender:</label>
+            <label>
+                <input type="radio" formControlName="gender" value="male"> Male
+            </label>
+            <label>
+                <input type="radio" formControlName="gender" value="female"> Female
+            </label>
+            <div *ngIf="myForm.get('gender')?.invalid && myForm.get('gender')?.touched">
+                <small *ngIf="myForm.get('gender')?.errors?.['required']">Gender is required.</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="comments">Comments:</label>
+            <textarea id="comments" formControlName="comments"></textarea>
+            <div *ngIf="myForm.get('comments')?.invalid && myForm.get('comments')?.touched">
+                <small *ngIf="myForm.get('comments')?.errors?.['maxlength']">Comments cannot exceed 500
+                    characters.</small>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="myForm.invalid">Submit</button>
+    </form>
+</div> -->
