@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SharedServiceService } from '../services/shared-service.service';
 
 @Component({
   selector: 'app-form-page',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormPageComponent {
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private sharedData:SharedServiceService) {
     this.myForm=this.fb.group({
       name:['',[Validators.required]],
       email:['',[Validators.required]],
@@ -23,6 +24,8 @@ export class FormPageComponent {
   // console.log("this.myForm",this.myForm);
    if (this.myForm.valid) {
       console.log('Form Submitted!', this.myForm.value);
+      this.sharedData.setData(this.myForm.value)
+      // this.sharedData.setData=this.myForm.value
     } else {
       console.log('Form is invalid');
     }
@@ -43,3 +46,4 @@ export class FormPageComponent {
     this.myForm.get('name').updateValueAndValidity();
   }
 }
+
