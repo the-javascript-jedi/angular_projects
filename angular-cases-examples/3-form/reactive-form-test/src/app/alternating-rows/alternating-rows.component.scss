@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-even {
+    flex-direction: row;
+}
+
+.row-odd {
+    flex-direction: row-reverse;
+}
+
+.box {
+    width: 300px;
+    height: 100px;
+    margin: 5px;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

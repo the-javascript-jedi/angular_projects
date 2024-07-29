@@ -10,13 +10,22 @@
         <th>Gender</th>
         <th>Comments</th>
     </tr>
-    <tr *ngFor="let data of receivedData">
-        <td>{{ data.name }}</td>
-        <td>{{ data.email }}</td>
-        <td>{{ data.password }}</td>
-        <td>{{ data.gender }}</td>
-        <td>{{ data.comments }}</td>
-        <td><button>Edit</button></td>
-        <td><button>Delete</button></td>
+    <tr *ngFor="let data of receivedData;let i = index">
+        <td *ngIf="!data.isEdit">{{ data.name }}</td>
+        <td *ngIf="data.isEdit"><input [(ngModel)]="data.name"></td>
+        
+        <td *ngIf="!data.isEdit">{{ data.email }}</td>
+        <td *ngIf="data.isEdit"><input [(ngModel)]="data.email"></td>
+        
+        <td *ngIf="!data.isEdit">{{ data.password }}</td>
+        <td *ngIf="data.isEdit"><input [(ngModel)]="data.password"></td>
+        
+        <td *ngIf="!data.isEdit">{{ data.gender }}</td>
+        <td *ngIf="data.isEdit"><input [(ngModel)]="data.gender"></td>
+        
+        <td *ngIf="!data.isEdit">{{ data.comments }}</td>
+        <td *ngIf="data.isEdit"><input [(ngModel)]="data.comments"></td>
+        <td><button (click)="editRow(data)">{{ data.isEdit ? 'Save' : 'Edit' }}</button></td>
+        <td><button (click)="deleteRow(i)">Delete</button></td>
     </tr>
 </table>

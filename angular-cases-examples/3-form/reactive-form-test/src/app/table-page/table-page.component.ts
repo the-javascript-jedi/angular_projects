@@ -23,5 +23,17 @@ export class TablePageComponent {
     });
   }
 
+ editRow(data: any) {
+    if (data.isEdit) {
+      // Save the edited data (you may also send the edited data to a server here)
+      data.isEdit = false;
+    } else {
+      // Enable editing mode
+      data.isEdit = true;
+    }
+  }
 
+  deleteRow(index: number) {
+    this.receivedData.splice(index, 1);
+  }
 }
