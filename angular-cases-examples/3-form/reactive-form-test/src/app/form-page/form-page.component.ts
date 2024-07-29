@@ -45,5 +45,12 @@ export class FormPageComponent {
     this.myForm.get('name').setValidators([Validators.required, Validators.minLength(3)]);
     this.myForm.get('name').updateValueAndValidity();
   }
+
+  resetForm(){
+    this.myForm.reset({
+      name: '',
+      email: ''
+    }); // Resets the form to the specified values
+  }
 }
 

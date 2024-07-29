@@ -8,9 +8,7 @@ import { SharedServiceService } from '../services/shared-service.service';
 })
 export class TablePageComponent {
   receivedData: any =[];
-  constructor(private sharedData:SharedServiceService){
-
-  }
+  constructor(private sharedData:SharedServiceService){  }
 
   ngOnInit(){
     
@@ -18,8 +16,7 @@ export class TablePageComponent {
       console.log("Page Loaded",this.receivedData);
       if(data){
         this.receivedData.push(data);
-      }
-      
+      }      
     });
   }
 

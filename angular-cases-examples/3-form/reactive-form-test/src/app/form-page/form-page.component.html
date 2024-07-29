@@ -56,11 +56,12 @@
         <button type="submit" [disabled]="myForm.invalid">Submit</button>
         <button (click)="removeNameValidator()">Remove 'required' Validator from Name</button>
         <button (click)="addNameValidator()">Add 'required' Validator from Name</button>
+        <button (click)="resetForm()">Clear/Reset</button>
     </form>
 </div>
 
 
-<!-- app.component.html - using srict approach -->
+<!-- app.component.html - using strict approach -->
 <!-- <div>
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div>
