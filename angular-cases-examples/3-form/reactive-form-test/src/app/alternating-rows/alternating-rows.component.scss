@@ -1,12 +1,13 @@
 .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .row {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .row-even {
@@ -18,7 +19,8 @@
 }
 
 .box {
-    width: 300px;
+    flex: 1;
+    max-width: 300px;
     height: 100px;
     margin: 5px;
     background-color: lightblue;
