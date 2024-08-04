@@ -19,6 +19,7 @@ export class TableForkJoinComponent implements OnInit {
   }
 
   loadTableData(postId){  
+   // api 1 and api 2 called in same time
    this.userTableData$ = forkJoin<any>({
       userDetails:this._mergeApiService.loadUsers(postId),
       postDetails:this._mergeApiService.loadPosts(postId)

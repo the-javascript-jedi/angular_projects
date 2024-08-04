@@ -20,16 +20,19 @@ export class TableConcatMapComponent implements OnInit {
   }
 
   loadTableData(postId){
+    // api 1
     this.userTableData$=this._mergeApiService.loadUsers(postId).pipe(
       concatMap(userResponse=>{
         console.log("userResponse",userResponse)
+        // api 2 using api1's result id
         return this._mergeApiService.loadPosts(userResponse['id']).pipe(map(val=>{
           console.log("val",val)
+          // change the id
+          val['id']="testId";
           return val;
         }))
       }
       )
     )
   }
-
 }
