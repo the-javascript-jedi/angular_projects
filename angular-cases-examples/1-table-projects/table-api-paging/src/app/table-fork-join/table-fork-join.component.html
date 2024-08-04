@@ -1,0 +1,22 @@
+<p>table-fork-join works!</p>
+<div *ngIf="userTableData$ | async as userData; else loading">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ userData['id'] }}</td>
+                <td>{{ userData['name'] }}</td>
+                <td>{{ userData['username'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #loading>
+    <p>Loading...</p>
+</ng-template>

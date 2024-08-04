@@ -6,11 +6,16 @@ import { AppComponent } from './app.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HttpClientModule} from '@angular/common/http';
 import { TablePageComponent } from './table-page/table-page.component';
+import {TableMergeApiService} from './services/table-merge-api.service';
+import { TableForkJoinComponent } from './table-fork-join/table-fork-join.component';
+import { TableConcatMapComponent } from './table-concat-map/table-concat-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TablePageComponent
+    TablePageComponent,
+    TableForkJoinComponent,
+    TableConcatMapComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +23,7 @@ import { TablePageComponent } from './table-page/table-page.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [TableMergeApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
