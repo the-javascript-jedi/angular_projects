@@ -1,1 +1,22 @@
 <p>table-concat-map works!</p>
+<div *ngIf="userTableData$ | async as userData; else loading">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Body</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ userData['id'] }}</td>
+                <td>{{ userData['body'] }}</td>
+                <td>{{ userData['title'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #loading>
+    <p>Loading...</p>
+</ng-template>

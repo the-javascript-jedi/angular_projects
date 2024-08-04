@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TableMergeApiService} from '../services/table-merge-api.service';
+import { concatMap, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-table-concat-map',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableConcatMapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _mergeApiService:TableMergeApiService) { }
+  
+  userTableData$:any;
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    let postId=1; 
+    this.loadTableData(postId)
+  }
+
+  loadTableData(postId){
+    this.userTableData$=this._mergeApiService.loadUsers(postId).pipe(
+      concatMap(userResponse=>{
+        console.log("userResponse",userResponse)
+        return this._mergeApiService.loadPosts(userResponse['id']).pipe(map(val=>{
+          console.log("val",val)
+          return val;
+        }))
+      }
+      )
+    )
   }
 
 }
