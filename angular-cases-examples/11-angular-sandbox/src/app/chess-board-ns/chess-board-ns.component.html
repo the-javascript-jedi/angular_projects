@@ -1,0 +1,10 @@
+<div class="chessboard">
+    <div *ngFor="let row of rows; let rowIndex = index" class="row">
+      <div *ngFor="let val of row; let colIndex = index"
+           class="cell"
+           [ngClass]="{'black': (rowIndex + colIndex) % 2 === 0, 'white': (rowIndex + colIndex) % 2 !== 0}">
+        {{ val }}
+      </div>
+    </div>
+  </div>
+  

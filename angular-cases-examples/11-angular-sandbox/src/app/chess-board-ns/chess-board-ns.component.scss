@@ -1,0 +1,31 @@
+.chessboard {
+    display: flex;
+    flex-direction: column; /* Arrange rows vertically */
+    width: 400px; /* Adjust width as needed */
+    height: 400px; /* Adjust height as needed */
+  }
+  
+  .row {
+    display: flex;
+    flex: 1; /* Each row should take up equal space */
+  }
+  
+  .cell {
+    flex: 1; /* Each cell should take up equal space within the row */
+    width: 12.5%;  /* 100% / 8 columns = 12.5% width for each cell */
+    // height: 12.5%; /* 100% / 8 rows = 12.5% height for each cell */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Adjust font size as needed */
+  }
+  
+  .black {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .white {
+    background-color: #fff;
+  }
+  

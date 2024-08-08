@@ -1,0 +1,20 @@
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 50px); /* Adjust size as needed */
+    grid-template-rows: repeat(8, 50px);    /* Adjust size as needed */
+    gap: 0;
+  }
+  
+  .cell {
+    width: 50px;  /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+  }
+  
+  .black {
+    background-color: #000;
+  }
+  
+  .white {
+    background-color: #fff;
+  }
+  
