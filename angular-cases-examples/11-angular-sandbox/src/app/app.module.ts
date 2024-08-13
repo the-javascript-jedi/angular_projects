@@ -8,6 +8,7 @@ import { ChessBoardChatgptComponent } from './chess-board-chatgpt/chess-board-ch
 import { ChessBoardNsComponent } from './chess-board-ns/chess-board-ns.component';
 import { CustomDirectiveComponent } from './custom-directive/custom-directive.component';
 import { HighlightDirective } from '../directives/highlight.directive';
+import { PhoneFormatterDirective } from '../directives/phone-formatter.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HighlightDirective } from '../directives/highlight.directive';
     ChessBoardChatgptComponent,
     ChessBoardNsComponent,
     CustomDirectiveComponent,
-    HighlightDirective
+    HighlightDirective,
+    PhoneFormatterDirective,
   ],
   imports: [
     BrowserModule,
