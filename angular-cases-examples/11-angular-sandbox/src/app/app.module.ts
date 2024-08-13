@@ -9,6 +9,7 @@ import { ChessBoardNsComponent } from './chess-board-ns/chess-board-ns.component
 import { CustomDirectiveComponent } from './custom-directive/custom-directive.component';
 import { HighlightDirective } from '../directives/highlight.directive';
 import { PhoneFormatterDirective } from '../directives/phone-formatter.directive';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PhoneFormatterDirective } from '../directives/phone-formatter.directive
     CustomDirectiveComponent,
     HighlightDirective,
     PhoneFormatterDirective,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
