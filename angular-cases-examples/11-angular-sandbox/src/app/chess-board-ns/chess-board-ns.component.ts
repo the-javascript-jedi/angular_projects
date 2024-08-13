@@ -12,4 +12,20 @@ export class ChessBoardNsComponent {
   rows: number[][] = Array.from({ length: this.size }, (_, rowIndex) => 
     Array.from({ length: this.size }, (_, colIndex) => rowIndex * this.size + colIndex + 1)
   );
+//   // Create a 2D array of numbers
+// rows: number[][] = [];
+
+// // Loop through each row
+// for (let rowIndex = 0; rowIndex < this.size; rowIndex++) {
+//   let row: number[] = [];
+
+//   // Loop through each column in the current row
+//   for (let colIndex = 0; colIndex < this.size; colIndex++) {
+//     // Calculate the value and add it to the row
+//     row.push(rowIndex * this.size + colIndex + 1);
+//   }
+
+//   // Add the row to the rows array
+//   rows.push(row);
+// }
 }
