@@ -16,6 +16,7 @@ import { ComponentCommunicationComponent } from './component-communication/compo
 import { ParentComponentComponent } from './component-communication/parent-component/parent-component.component';
 import { ChildComponentComponent } from './component-communication/parent-component/child-component/child-component.component';
 import { FormsModule } from '@angular/forms';
+import { ClickToggleDirective } from '../directives/click-toggle.directive';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     ComponentCommunicationComponent,
     ParentComponentComponent,
     ChildComponentComponent,
+    ClickToggleDirective,
   ],
   imports: [
     ReactiveFormsModule,
