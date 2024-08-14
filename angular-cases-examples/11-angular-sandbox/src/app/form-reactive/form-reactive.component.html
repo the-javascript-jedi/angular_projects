@@ -1,13 +1,19 @@
 <p>form-reactive works!</p>
-<form [formGroup]="form" (ngSubmit)="submitForm()">
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
     <div>
         <label for="">Name</label>
         <input type="text" formControlName="name"/>
+        <div *ngIf="myForm.get('name').invalid && myForm.get('name').touched">
+            <small *ngIf="myForm.get('name').errors.required">Name is required.</small>
+        </div>
     </div>
     <div>
         <label for="">Age</label>
         <input type="text" formControlName="age" />
+        <div *ngIf="myForm.get('age').invalid && myForm.get('age').touched">
+            <small *ngIf="myForm.get('age').errors.required">age is required.</small>
+        </div>
     </div>
    
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <button type="submit" [disabled]="myForm.invalid">Submit</button>
 </form>

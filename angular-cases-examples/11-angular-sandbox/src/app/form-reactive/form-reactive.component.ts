@@ -7,17 +7,17 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
   styleUrls: ['./form-reactive.component.scss']
 })
 export class FormReactiveComponent {
-  form:FormGroup;
+  myForm:FormGroup;
 
   constructor(private fb:FormBuilder){
-     this.form=this.fb.group({
+     this.myForm=this.fb.group({
       name:["",Validators.required],
       age:["",[Validators.required,Validators.pattern("^[0-9]*$")]]
      })
   }
 
   submitForm(){
-    console.log("this.form",this.form)
+    console.log("this.myForm",this.myForm)
   }
 
  
