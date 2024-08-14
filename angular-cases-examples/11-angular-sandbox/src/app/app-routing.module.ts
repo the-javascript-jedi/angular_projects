@@ -5,6 +5,7 @@ import { ChessBoardChatgptComponent } from './chess-board-chatgpt/chess-board-ch
 import { ChessBoardNsComponent } from './chess-board-ns/chess-board-ns.component';
 import { CustomDirectiveComponent } from './custom-directive/custom-directive.component';
 import { FormReactiveComponent } from './form-reactive/form-reactive.component'; 
+import { ComponentCommunicationComponent } from './component-communication/component-communication.component';
 
 const routes: Routes = [
   {path:"",component:FormReactiveComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:"chessBoard-chatgpt",component:ChessBoardChatgptComponent},
   {path:"chessBoard-ns",component:ChessBoardNsComponent},
   {path:"customDirective",component:CustomDirectiveComponent},
+  {path:"componentCommunication",component:ComponentCommunicationComponent},
 ];
 
 @NgModule({

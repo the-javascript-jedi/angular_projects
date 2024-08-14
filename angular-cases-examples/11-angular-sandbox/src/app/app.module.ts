@@ -12,6 +12,9 @@ import { PhoneFormatterDirective } from '../directives/phone-formatter.directive
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FormReactiveComponent } from './form-reactive/form-reactive.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentCommunicationComponent } from './component-communication/component-communication.component';
+import { ParentComponentComponent } from './component-communication/parent-component/parent-component.component';
+import { ChildComponentComponent } from './component-communication/parent-component/child-component/child-component.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PhoneFormatterDirective,
     NavbarComponent,
     FormReactiveComponent,
+    ComponentCommunicationComponent,
+    ParentComponentComponent,
+    ChildComponentComponent,
   ],
   imports: [
     ReactiveFormsModule,
