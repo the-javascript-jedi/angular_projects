@@ -10,6 +10,8 @@ import { CustomDirectiveComponent } from './custom-directive/custom-directive.co
 import { HighlightDirective } from '../directives/highlight.directive';
 import { PhoneFormatterDirective } from '../directives/phone-formatter.directive';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FormReactiveComponent } from './form-reactive/form-reactive.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     HighlightDirective,
     PhoneFormatterDirective,
     NavbarComponent,
+    FormReactiveComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],

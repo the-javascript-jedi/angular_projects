@@ -4,9 +4,10 @@ import { AlternatingRowsComponent } from './alternating-rows/alternating-rows.co
 import { ChessBoardChatgptComponent } from './chess-board-chatgpt/chess-board-chatgpt.component';
 import { ChessBoardNsComponent } from './chess-board-ns/chess-board-ns.component';
 import { CustomDirectiveComponent } from './custom-directive/custom-directive.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FormReactiveComponent } from './form-reactive/form-reactive.component'; 
 
 const routes: Routes = [
+  {path:"",component:FormReactiveComponent},
   {path:"alternatingRows",component:AlternatingRowsComponent},
   {path:"chessBoard-chatgpt",component:ChessBoardChatgptComponent},
   {path:"chessBoard-ns",component:ChessBoardNsComponent},

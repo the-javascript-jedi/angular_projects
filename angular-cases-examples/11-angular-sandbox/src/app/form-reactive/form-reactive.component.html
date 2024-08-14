@@ -1,0 +1,13 @@
+<p>form-reactive works!</p>
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div>
+        <label for="">Name</label>
+        <input type="text" formControlName="name"/>
+    </div>
+    <div>
+        <label for="">Age</label>
+        <input type="text" formControlName="age" />
+    </div>
+   
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
