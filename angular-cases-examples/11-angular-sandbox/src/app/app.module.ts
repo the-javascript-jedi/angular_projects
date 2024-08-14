@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentCommunicationComponent } from './component-communication/component-communication.component';
 import { ParentComponentComponent } from './component-communication/parent-component/parent-component.component';
 import { ChildComponentComponent } from './component-communication/parent-component/child-component/child-component.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ChildComponentComponent } from './component-communication/parent-compon
   imports: [
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

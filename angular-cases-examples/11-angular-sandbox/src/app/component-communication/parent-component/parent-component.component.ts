@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./parent-component.component.scss']
 })
 export class ParentComponentComponent {
+  nameData="test";
 
+  submitChildEvent(event){
+    console.log("submitChildEvent",event)
+  }
 }
