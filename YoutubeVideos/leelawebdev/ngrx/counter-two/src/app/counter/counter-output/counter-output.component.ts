@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class CounterOutputComponent implements OnInit {
   counter$:Observable<{counter:number}>
+  // channelName$:Observable<{channelName:string}>  
+  channelName:string;
   // constructor(private store:Store<{counter:{counter:number}}>) { }
   constructor(private store:Store<{counter:CounterState}>) { }
 
@@ -17,10 +19,13 @@ export class CounterOutputComponent implements OnInit {
   ngOnInit(): void {
     // referring the variable from an observable
     this.store.select('counter').subscribe((data)=>{
+      console.log("data",data)
       this.counter=data.counter
     })
 
     // directly referring the observable
-    this.counter$=this.store.select('counter')
+    this.counter$=this.store.select('counter');
+
+    this.store.select('counter').subscribe(val=>this.channelName=val.channelName);
   }
 }
