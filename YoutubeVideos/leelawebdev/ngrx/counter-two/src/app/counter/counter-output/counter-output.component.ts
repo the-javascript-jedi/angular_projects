@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CounterState } from '../state/counter.state';
 import { Observable } from 'rxjs';
+import { getChannelName, getCounter } from '../state/counter.selector';
 
 @Component({
   selector: 'app-counter-output',
@@ -9,23 +10,21 @@ import { Observable } from 'rxjs';
   styleUrls: ['./counter-output.component.scss']
 })
 export class CounterOutputComponent implements OnInit {
-  counter$:Observable<{counter:number}>
-  // channelName$:Observable<{channelName:string}>  
+  counter:number;
   channelName:string;
   // constructor(private store:Store<{counter:{counter:number}}>) { }
   constructor(private store:Store<{counter:CounterState}>) { }
 
-  counter:number;
   ngOnInit(): void {
     // referring the variable from an observable
-    this.store.select('counter').subscribe((data)=>{
-      console.log("data",data)
-      this.counter=data.counter
+    this.store.select(getCounter).subscribe((counter)=>{
+      this.counter=counter;
     })
 
-    // directly referring the observable
-    this.counter$=this.store.select('counter');
-
-    this.store.select('counter').subscribe(val=>this.channelName=val.channelName);
+    
+    // this.store.select('counter').subscribe(val=>this.channelName=val.channelName);
+    this.store.select(getChannelName).subscribe((channel)=>{      
+      this.channelName=channel;
+    })
   }
 }
