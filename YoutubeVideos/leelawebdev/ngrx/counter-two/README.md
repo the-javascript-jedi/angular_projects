@@ -1,1 +1,2 @@
-npm install @ngrx/store0
+npm install @ngrx/store
+npm install @ngrx/store-devtools --save
