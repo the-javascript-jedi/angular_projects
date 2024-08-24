@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Update Post</h3>
+        <hr/>
+        <form [formGroup]="postForm" (ngSubmit)="updatePost()">
+            <div class="mb-3">
+                <label>
+                    Title
+                </label>
+                <input type="text" class="form-control" formControlName="title"/>
+            </div>
+            <div class="mb-3">
+                <label>
+                    Description
+                </label>
+                <textarea class="form-control" formControlName="description"></textarea>                
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Update Post</button>
+            </div>
+        </form>
+    </div>
+</div>
