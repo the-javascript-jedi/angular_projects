@@ -14,14 +14,7 @@ const routes: Routes = [
     path:'counter',
     loadChildren:()=>import('./counter/counter.module').then(m=>m.CounterModule)
   },
-  {
-    path:'posts',
-    component:PostsListComponent,
-    children:[
-      {path:'add',component:AddPostComponent},
-      {path:'edit/:id',component:EditPostComponent},
-    ]
-  },
+  
 ];
 
 @NgModule({
