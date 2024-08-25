@@ -7,14 +7,17 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'posts',
     loadChildren:()=>import('./posts/post.module').then(m=>m.CounterModule)
   },
   {
     path:'counter',
     loadChildren:()=>import('./counter/counter.module').then(m=>m.CounterModule)
   },
-  
+  {
+    path:'auth',
+    loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)
+  },
 ];
 
 @NgModule({

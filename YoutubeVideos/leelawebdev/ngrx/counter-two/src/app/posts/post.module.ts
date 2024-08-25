@@ -11,7 +11,7 @@ import { POST_STATE_NAME } from "./state/posts.selector";
 
 const routes:Routes=[
     {
-        path:'posts',
+        path:'',
         component:PostsListComponent,
         children:[
             {path:'add',component:AddPostComponent},
