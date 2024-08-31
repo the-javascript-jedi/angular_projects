@@ -11,4 +11,15 @@
       inputId="myId" 
       formControlName="name">
     </app-input>
+    <!-- select -->
+    <!-- [customErrorMessages]="errorMessages" -->
+     <app-select      
+      label="select" 
+      selectId="selectId" 
+      [options]='["1","2","3"]'
+      formControlName="age"></app-select>
  </form>
+
+ <div>
+  {{formGroup.value|json}}
+ </div>

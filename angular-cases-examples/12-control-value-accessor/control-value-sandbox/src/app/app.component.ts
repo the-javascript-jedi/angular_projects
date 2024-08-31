@@ -13,6 +13,7 @@ export class AppComponent {
   testControl=new FormControl('MyDefaultValue',Validators.required);
 
   formGroup=new FormGroup({
-    name:new FormControl('',Validators.required)
+    name:new FormControl('',Validators.required),
+    age:new FormControl('',Validators.required),
   })
 }

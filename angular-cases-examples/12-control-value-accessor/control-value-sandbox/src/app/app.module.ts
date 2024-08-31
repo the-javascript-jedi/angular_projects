@@ -7,13 +7,15 @@ import { InputComponent } from './input/input.component';
 import { ControlValueAccessorDirective } from './control-value-accessor.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrorsComponent } from './validation-errors/validation-errors.component';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputComponent,
     ControlValueAccessorDirective,
-    ValidationErrorsComponent
+    ValidationErrorsComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,
