@@ -19,6 +19,7 @@ import { ControlValueAccessorDirective } from '../control-value-accessor.directi
 export class SelectComponent<T> extends ControlValueAccessorDirective<T>{
   @Input() options:T[]=[];
   @Input() selectId="";
+  @Input() selectLabel="";
   @Input() selectErrorMessaage="";
   @Input() label="";
   @Input() customErrorMessages:Record<string,string>={}

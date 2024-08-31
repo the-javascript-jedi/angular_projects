@@ -10,7 +10,9 @@
         </option>
     </select>
     <!-- errors -->
-    <app-validation-errors [customErrorMessages]="customErrorMessages"
+    <app-validation-errors [controlType]="'select'" 
+        [selectLabel]="selectLabel"
+        [customErrorMessages]="customErrorMessages"
         [selectErrorMessaage]="selectErrorMessaage"
         [errors]="control.errors"></app-validation-errors>
 </div>
