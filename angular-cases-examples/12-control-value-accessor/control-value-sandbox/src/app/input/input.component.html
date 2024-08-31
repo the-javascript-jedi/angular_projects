@@ -1,0 +1,9 @@
+<!-- check if control is passed -->
+<div class="dvs-form-control" *ngIf="control">
+    <label [for]="inputId" *ngIf="label" [class.required]="isRequired">
+        {{label}}
+    </label>
+    <input [type]="type" [id]="inputId" [formControl]="control" [class.required]="isRequired">
+    <!-- errors -->
+    <app-validation-errors [customErrorMessages]="customErrorMessages" [errors]="control.errors"></app-validation-errors>
+</div>
