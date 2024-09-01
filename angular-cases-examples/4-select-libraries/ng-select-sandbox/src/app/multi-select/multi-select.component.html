@@ -1,0 +1,8 @@
+<p>multi-select works!</p>
+<ng-select [items]="cities" 
+    bindLabel="name" bindValue="id" 
+    placeholder="Select cities" 
+    [multiple]="true"
+     (change)="onChange($event)"
+    [(ngModel)]="selectedCities">
+</ng-select>

@@ -1,0 +1,26 @@
+<router-outlet></router-outlet>
+<!-- direct form control -->
+<app-input label="Hello" inputId="myId" [formControl]="testControl"></app-input>
+
+<!-- formGroup with FormControl -->
+ <form [formGroup]="formGroup">
+    <!-- pass a custom error message which will owerite the existing value -->
+    <app-input 
+      [customErrorMessages]="errorMessages"
+      label="Hello" 
+      inputId="myId" 
+      formControlName="name">
+    </app-input>
+    <!-- select -->
+    <!-- [customErrorMessages]="errorMessages" -->
+     <app-select      
+      label="select" 
+      [selectLabel]="'age-select'"
+      selectId="selectId" 
+      [options]='["1","2","3"]'
+      formControlName="age"></app-select>
+ </form>
+
+ <div>
+  {{formGroup.value|json}}
+ </div>

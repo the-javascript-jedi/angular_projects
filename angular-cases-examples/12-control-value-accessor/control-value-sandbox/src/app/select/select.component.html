@@ -1,0 +1,18 @@
+
+<!-- check if control is passed -->
+<div class="dvs-form-control" *ngIf="control">
+    <label [for]="selectId" *ngIf="label" [class.required]="isRequired">
+        {{label}}
+    </label>
+    <select [formControl]="control" [id]="selectId">
+        <option *ngFor="let option of options" [value]="option">
+            {{option}}
+        </option>
+    </select>
+    <!-- errors -->
+    <app-validation-errors [controlType]="'select'" 
+        [selectLabel]="selectLabel"
+        [customErrorMessages]="customErrorMessages"
+        [selectErrorMessaage]="selectErrorMessaage"
+        [errors]="control.errors"></app-validation-errors>
+</div>

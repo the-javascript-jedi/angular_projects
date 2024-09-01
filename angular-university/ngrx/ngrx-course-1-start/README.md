@@ -26,3 +26,7 @@ and deleted package-lock.json
 
 npm run server
 npm run start
+
+<!--  -->
+
+ng generate store auth/Auth --module auth.module.ts

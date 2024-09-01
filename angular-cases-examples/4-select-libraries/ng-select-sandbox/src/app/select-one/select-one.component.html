@@ -1,0 +1,9 @@
+<p>select-one works!</p>
+<ng-select [items]="cities" 
+bindLabel="name" 
+bindValue="id" 
+placeholder="Select a city" 
+[(ngModel)]="selectedCity"
+(change)="onChange($event)"
+>
+</ng-select>
