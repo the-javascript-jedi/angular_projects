@@ -1,0 +1,4 @@
+<p>select-filter works!</p>
+<ng-select [items]="cities" bindLabel="name" bindValue="id" placeholder="Select a city" [(ngModel)]="selectedCity"
+    [searchable]="true" (search)="onSearch($event)">
+</ng-select>

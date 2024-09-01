@@ -8,12 +8,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { SelectOneComponent } from './select-one/select-one.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
+import { SelectFilterComponent } from './select-filter/select-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SelectOneComponent,
-    MultiSelectComponent
+    MultiSelectComponent,
+    SelectFilterComponent
   ],
   imports: [
     BrowserModule,
