@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { SelectOneComponent } from './select-one/select-one.component';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectOneComponent
+    SelectOneComponent,
+    MultiSelectComponent
   ],
   imports: [
     BrowserModule,
