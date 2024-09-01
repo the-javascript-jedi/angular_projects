@@ -5,7 +5,7 @@
     </ng-select>
 
     <div *ngIf="selectedCity.invalid && (selectedCity.dirty || selectedCity.touched)">
-        <small class="text-danger" *ngIf="selectedCity.errors?.['required']">
+        <small class="text-danger" *ngIf="selectedCity.errors?.['required']" style="color: red;">
             City selection is required.
         </small>
     </div>

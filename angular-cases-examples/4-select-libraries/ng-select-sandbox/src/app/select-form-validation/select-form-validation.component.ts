@@ -10,7 +10,7 @@ export class SelectFormValidationComponent implements OnInit {
 
  form: FormGroup;
   cities = [
-    { id: null, name: null },
+    { id: null, name: 'Select' },
     { id: 1, name: 'New York' },
     { id: 2, name: 'Los Angeles' },
     { id: 3, name: 'Chicago' }
