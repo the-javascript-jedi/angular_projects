@@ -1,0 +1,14 @@
+<p>select-form-validation works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ng-select [items]="cities" bindLabel="name" bindValue="id" placeholder="Select a city"
+        formControlName="selectedCity" [searchable]="true">
+    </ng-select>
+
+    <div *ngIf="selectedCity.invalid && (selectedCity.dirty || selectedCity.touched)">
+        <small class="text-danger" *ngIf="selectedCity.errors?.['required']">
+            City selection is required.
+        </small>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
