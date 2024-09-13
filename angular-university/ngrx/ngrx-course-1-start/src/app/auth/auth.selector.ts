@@ -1,9 +1,13 @@
-import { createSelector } from "@ngrx/store";
+import { createSelector ,createFeatureSelector} from "@ngrx/store";
+import { AuthState } from "./reducers";
+
+//access only a particular part of the state using createFeatureSelector
+export const selectAuthState= createFeatureSelector<AuthState>("auth");
 
 // we negate the function to see if user is logged in
 // selector is recalculated only if input changes
 export const isLoggedIn=createSelector(
-    state=>state["auth"],
+    selectAuthState,
     (auth)=>!!auth.user
 )
 
