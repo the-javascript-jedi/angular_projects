@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthActions } from "./action-types";
 import { tap } from "rxjs/operators";
 import { dispatch } from "rxjs/internal/observable/pairs";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthEffects{
@@ -14,7 +15,18 @@ export class AuthEffects{
             ),{dispatch:false}
         )
 
-    constructor(private action$:Actions){
+        logout$=createEffect(()=>
+            this.action$.pipe(
+                ofType(AuthActions.logout),
+                tap(action=>{
+                    localStorage.removeItem('user');
+                    this.router.navigateByUrl('login')
+                })
+            ),
+            {dispatch:false}
+        )
+    
+    constructor(private action$:Actions,private router:Router){
         // APPROACH 1
         // action$.subscribe(action=>{
         //     if(action.type=='[Login Page] User Login'){
