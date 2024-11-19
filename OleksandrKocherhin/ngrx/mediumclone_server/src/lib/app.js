@@ -37,6 +37,24 @@ app.use(
   }),
 )
 
+// app.use(
+//   cors({
+//     origin: (ctx) => {
+//       // Specify your frontend's origin or dynamically handle origins
+//       const allowedOrigins = ["http://localhost:4200/", "http://your-frontend-url.com"];
+//       if (allowedOrigins.includes(ctx.request.header.origin)) {
+//         return ctx.request.header.origin;
+//       }
+//       return "http://your-frontend-url.com"; // Default allowed origin
+//     },
+//     exposeHeaders: ["Authorization"],
+//     credentials: true, // Enable cookies or Authorization headers
+//     allowMethods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+//     allowHeaders: ["Authorization", "Content-Type"],
+//     keepHeadersOnError: true,
+//   }),
+// );
+
 app.use(camelizeMiddleware)
 
 app.use(error)
