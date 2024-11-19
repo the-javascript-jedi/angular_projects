@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core'
+import {RouterOutlet} from '@angular/router'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone:true,
-  imports:[RouterOutlet]
+  standalone: true,
+  imports: [RouterOutlet],
 })
-export class AppComponent {
-  title = 'mediumclone_angular';
-}
+export class AppComponent {}
