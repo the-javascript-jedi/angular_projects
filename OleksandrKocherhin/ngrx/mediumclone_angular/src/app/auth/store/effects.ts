@@ -11,12 +11,14 @@ export const registerEffect = createEffect(
     return actions$.pipe(
       ofType(authActions.register),
       switchMap(({request}) => {
+        // use service and make api calls
         return authService.register(request).pipe(
           map((currentUser: CurrentUserInterface) => {
             return authActions.registerSuccess({currentUser})
           }),
           catchError((errorResponse:HttpErrorResponse) => {
-            return of(authActions.registerFailure(errorResponse.error.errors))
+            console.log("errorResponse",errorResponse)
+            return of(authActions.registerFailure(errorResponse.error))
           })
         )
       })

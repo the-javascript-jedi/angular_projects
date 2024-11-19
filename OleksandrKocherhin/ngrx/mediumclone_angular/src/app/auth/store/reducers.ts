@@ -14,7 +14,10 @@ const authFeature = createFeature({
     initialState,
     on(authActions.register, (state) => ({...state, isSubmitting: true,validationErrors:null})),
     on(authActions.registerSuccess, (state,action) => ({...state, isSubmitting: false,currentUser:action.currentUser})),
-    on(authActions.registerFailure, (state,action) => ({...state, isSubmitting: false,validationErrors:action.errors}))
+    on(authActions.registerFailure, (state,action) => {
+      console.log("action",action)  
+      return {...state, isSubmitting: false,validationErrors:action.errors}
+    })
   ),
 })
 // selectors that are automatically generated when using createFeature and createReducer in NgRx.
