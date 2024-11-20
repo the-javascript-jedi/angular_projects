@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { PersistenceService } from '../services/persistance.service'
 import { Router } from '@angular/router'
 
+// register effect
 export const registerEffect = createEffect(
   // inject services to make api calls
   (actions$ = inject(Actions), authService = inject(AuthService) , persistenceService=inject(PersistenceService)) => {
@@ -47,3 +48,44 @@ export const redirectAfterRegisterEffect=createEffect(
     )
   },{functional:true,dispatch:false})
 
+  // login effect
+  export const loginEffect = createEffect(
+  // inject services to make api calls
+  (actions$ = inject(Actions), authService = inject(AuthService) , persistenceService=inject(PersistenceService)) => {
+    return actions$.pipe(
+      ofType(authActions.register),
+      switchMap(({request}) => {
+        // use service and make api calls
+        return authService.login(request).pipe(
+          map((currentUser: CurrentUserInterface) => {
+            // save data to local storage using effects
+            persistenceService.set('accessToken',currentUser.token)
+            // call the login success action
+            return authActions.loginSuccess({currentUser})
+          }),
+          catchError((errorResponse:HttpErrorResponse) => {
+            console.log("errorResponse",errorResponse)
+            // call the register failiure action
+            return of(authActions.registerFailure(errorResponse.error))
+          })
+        )
+      })
+    )
+  },
+  {functional: true}
+)
+
+
+/* redirecton effect 
+here we keep the dispatch as false - only we are doing routing no actions are dispatched
+*/
+// on Login Success dispatch an effect to navigate to the home page
+export const redirectAfterLoginEffect=createEffect(
+  (action$=inject(Actions),router=inject(Router))=>{
+    return action$.pipe(
+      ofType(authActions.loginSuccess),
+      tap(()=>{
+        router.navigateByUrl('/')
+      })
+    )
+  },{functional:true,dispatch:false})

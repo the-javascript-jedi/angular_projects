@@ -12,9 +12,17 @@ const authFeature = createFeature({
   name: 'auth',
   reducer: createReducer(
     initialState,
+    // register state
     on(authActions.register, (state) => ({...state, isSubmitting: true,validationErrors:null})),
     on(authActions.registerSuccess, (state,action) => ({...state, isSubmitting: false,currentUser:action.currentUser})),
     on(authActions.registerFailure, (state,action) => {
+      console.log("action",action)  
+      return {...state, isSubmitting: false,validationErrors:action.errors}
+    }),
+    // login state
+    on(authActions.login, (state) => ({...state, isSubmitting: true,validationErrors:null})),
+    on(authActions.loginSuccess, (state,action) => ({...state, isSubmitting: false,currentUser:action.currentUser})),
+    on(authActions.loginFailure, (state,action) => {
       console.log("action",action)  
       return {...state, isSubmitting: false,validationErrors:action.errors}
     })
