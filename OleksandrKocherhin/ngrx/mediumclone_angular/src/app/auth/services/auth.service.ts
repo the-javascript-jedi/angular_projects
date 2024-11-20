@@ -5,7 +5,7 @@ import {map, Observable} from 'rxjs'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 import {AuthResponseInterface} from '../types/authResponse.interface'
 import {environment} from 'src/environments/environment'
-import { LoginRequestInterface } from '../types/lognRequest.interface'
+import { LoginRequestInterface } from '../types/loginRequest.interface'
 
 @Injectable({
   providedIn: 'root',

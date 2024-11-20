@@ -53,7 +53,7 @@ export const redirectAfterRegisterEffect=createEffect(
   // inject services to make api calls
   (actions$ = inject(Actions), authService = inject(AuthService) , persistenceService=inject(PersistenceService)) => {
     return actions$.pipe(
-      ofType(authActions.register),
+      ofType(authActions.login),
       switchMap(({request}) => {
         // use service and make api calls
         return authService.login(request).pipe(
@@ -66,7 +66,7 @@ export const redirectAfterRegisterEffect=createEffect(
           catchError((errorResponse:HttpErrorResponse) => {
             console.log("errorResponse",errorResponse)
             // call the register failiure action
-            return of(authActions.registerFailure(errorResponse.error))
+            return of(authActions.loginFailure(errorResponse.error))
           })
         )
       })

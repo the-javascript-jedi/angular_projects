@@ -9,12 +9,16 @@ import {AppComponent} from './app/app.component'
 import {appRoutes} from './app/app.routes'
 import {authFeatureKey, authReducer} from './app/auth/store/reducers'
 import * as authEffects from './app/auth/store/effects'
+import { provideRouterStore, routerReducer } from '@ngrx/router-store'
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter(appRoutes),
-    provideStore(),
+    provideRouterStore(),
+    provideStore({
+      router:routerReducer
+    }),
     provideState(authFeatureKey, authReducer),
     provideEffects(authEffects),
     provideStoreDevtools({
