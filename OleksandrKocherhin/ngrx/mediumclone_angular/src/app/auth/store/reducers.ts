@@ -28,7 +28,14 @@ const authFeature = createFeature({
       return {...state, isSubmitting: false,validationErrors:action.errors}
     }),
     // on router navigation remove the errors by changing the state of validationErrors
-    on(routerNavigatedAction,(state)=>({...state,validationErrors:null}))
+    on(routerNavigatedAction,(state)=>({...state,validationErrors:null})),
+    // current user
+    on(authActions.getCurrentUser, (state) => ({...state, isLoading: true})),
+    on(authActions.getCurrentUserSuccess, (state,action) => ({...state, isLoading: false,currentUser:action.currentUser})),
+    on(authActions.getCurrentUserFailure, (state) => {
+      // set the currentUser value to null
+      return {...state, isLoading: false,currentUser:null}
+    }),
   ),
 })
 // selectors that are automatically generated when using createFeature and createReducer in NgRx.

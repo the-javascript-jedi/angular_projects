@@ -8,6 +8,37 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { PersistenceService } from '../services/persistance.service'
 import { Router } from '@angular/router'
 
+// get current user effect
+export const getCurrentUserEffect = createEffect(
+  // inject services to make api calls
+  (actions$ = inject(Actions), authService = inject(AuthService) , persistenceService=inject(PersistenceService)) => {
+    return actions$.pipe(
+      ofType(authActions.getCurrentUser),
+      switchMap(() => {
+        // check if token is present, if no token dispatch failure action
+        const token=persistenceService.get('accessToken');
+        if(!token){
+            return of(authActions.getCurrentUserFailure());
+        }
+
+        // use service and make api calls
+        return authService.getCurrentUser().pipe(
+          map((currentUser: CurrentUserInterface) => {
+            // save data to local storage using effects
+            return authActions.getCurrentUserSuccess({currentUser})
+          }),
+          // no backend errors so we dont need to pass anything
+          catchError(() => {
+            return of(authActions.getCurrentUserFailure())
+          })
+        )
+      })
+    )
+  },
+  {functional: true}
+)
+
+
 // register effect
 export const registerEffect = createEffect(
   // inject services to make api calls
