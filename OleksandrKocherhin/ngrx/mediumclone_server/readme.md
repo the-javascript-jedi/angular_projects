@@ -63,3 +63,6 @@ you can just copy `.example-env`
 # How it works
 
 > Describe the general architecture of your app here
+
+# run the docker compose 
+docker compose up --build
