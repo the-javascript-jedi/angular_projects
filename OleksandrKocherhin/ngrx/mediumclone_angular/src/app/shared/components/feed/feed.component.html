@@ -25,5 +25,14 @@
             </a>
         </div>
         PAGINATION
+       
+        <app-pagination 
+            [total]="data.feed.articlesCount" 
+            [limit]="limit"
+            [url]="baseUrl"
+            [currentPage]="currentPage"
+            >
+
+        </app-pagination>
     </div>
 </ng-container>
