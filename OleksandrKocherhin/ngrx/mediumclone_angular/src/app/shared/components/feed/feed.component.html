@@ -1,1 +1,29 @@
-<p>feed works!</p>
+<ng-container *ngIf="data$ | async as data">
+    <app-loading *ngIf="data.isLoading"></app-loading>
+    <!-- <div *ngIf="data.isLoading">Loading...</div> -->
+    <app-error-message *ngIf="data.error" [message]="data.error"></app-error-message>
+    <!-- <div *ngIf="data.error">{{ data.error }}</div> -->
+    <div *ngIf="data.feed">
+        <div class="article-preview" *ngFor="let article of data.feed.articles">
+            <div class="article-meta">
+                <a [routerLink]="['/profiles', article.author.username]">
+                    <img [src]="article.author.image" />
+                </a>
+                <div class="info">
+                    <a [routerLink]="['/profiles', article.author.username]">
+                        {{ article.author.username }}
+                    </a>
+                    <span class="date">{{ article.createdAt }}</span>
+                </div>
+                <div class="pull-xs-right">ADD TO FAVORITES</div>
+            </div>
+            <a [routerLink]="['/articles', article.slug]" class="preview-link">
+                <h1>{{ article.title }}</h1>
+                <p>{{ article.description }}</p>
+                <span>Read more...</span>
+                TAG LIST
+            </a>
+        </div>
+        PAGINATION
+    </div>
+</ng-container>
