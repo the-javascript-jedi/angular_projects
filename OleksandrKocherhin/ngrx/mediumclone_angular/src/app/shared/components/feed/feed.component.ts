@@ -10,12 +10,13 @@ import { LoadingComponent } from '../loading/loading.component';
 import { environment } from 'src/environments/environment';
 import { PaginationComponent } from '../pagination/pagination.component';
 import queryString from 'query-string'
+import { TagListComponent } from '../tag-list/tag-list.component';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
     standalone: true,
-  imports: [CommonModule, RouterLink,ErrorMessageComponent,LoadingComponent,PaginationComponent],
+  imports: [CommonModule, RouterLink,ErrorMessageComponent,LoadingComponent,PaginationComponent,TagListComponent],
 })
 export class FeedComponent {
   @Input() apiUrl:string="";
@@ -55,8 +56,9 @@ export class FeedComponent {
   }
 
   fetchFeed():void{
-      const offset = this.currentPage * this.limit - this.limit
+    const offset = this.currentPage * this.limit - this.limit
     const parsedUrl = queryString.parseUrl(this.apiUrl)
+    // stringify the params to send api request
     const stringifiedParams = queryString.stringify({
       limit: this.limit,
       offset,
