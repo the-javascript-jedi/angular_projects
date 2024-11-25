@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { feedActions } from './store/action';
 import { combineLatest, map } from 'rxjs';
@@ -55,6 +55,12 @@ export class FeedComponent {
     })
   }
 
+  ngOnChanges(changes:SimpleChanges):void{
+    const isAPiUrlChanged=!changes['apiUrl'].firstChange&&changes['apiUrl'].currentValue!==changes['apiUrl'].previousValue;
+    if(isAPiUrlChanged){
+      this.fetchFeed();
+    }
+  }
   fetchFeed():void{
     const offset = this.currentPage * this.limit - this.limit
     const parsedUrl = queryString.parseUrl(this.apiUrl)
