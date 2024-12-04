@@ -20,7 +20,7 @@ generatePdf(): void {
     (y-coordinate): This is the vertical position on the page, 
       -the text will be placed 20 mm from the top of the page.
     */
-    doc.text('{{Arun test name 1}}', 10, 20);
+    doc.text('{{test name 1}}', 10, 20);
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
     doc.text('Remittance Statement', 120, 30);
@@ -28,7 +28,7 @@ generatePdf(): void {
     // Receiver Details
     doc.setFontSize(12);
     doc.text("Receiver's Details", 10, 60);
-    doc.text('{{Harsh Vardhan}}', 10, 70);
+    doc.text('{{receiver name}}', 10, 70);
 
     // Issued Date Label
     doc.text('Issued date:', 215, 60);
