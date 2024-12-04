@@ -14,36 +14,43 @@ generatePdf(): void {
     // Title and header
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(16);
-    doc.text('bank test', 10, 20);
-    doc.setFontSize(12);
-    doc.text('Statement', 10, 30);
-
-    doc.setFontSize(10);
-    doc.text('Arun Setupathi', 10, 40);
-    doc.text('Issued date: 2024-07-25', 150, 40);
-    doc.text('Total amount sent: ¥18,440', 150, 50);
-
+    /* doc.text(text to be printed,x coordinate,y-ccordinate)
+    (x-coordinate): This is the horizontal position on the page, 
+      -the text will start 10 mm from the left side of the page.
+    (y-coordinate): This is the vertical position on the page, 
+      -the text will be placed 20 mm from the top of the page.
+    */
+    doc.text('{{Arun test name 1}}', 10, 20);
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Remittance Statement', 120, 30);
+   
     // Receiver Details
     doc.setFontSize(12);
     doc.text("Receiver's Details", 10, 60);
     doc.text('Harsh Vardhan', 10, 70);
 
+    // Issued Details
+    doc.text('Issued date: 2024-07-25', 210, 60);
+    doc.text('Total amount sent: ¥18,440', 210, 70);
+
+
     // Table headers
     const tableHeaders = [
-      ['Transfer Date', 'japanese text'],
-      ["Receiver's Country", 'japanese text'],
-      ['Delivery Method', 'japanese text'],
-      ['Transaction ID', 'japanese text'],
-      ['Amount Sent', 'japanese text'],
-      ['Transfer Fee', 'japanese text'],
-      ['Amount Received', 'japanese text']
+      ['japanese text','Transfer Date'],
+      ['japanese text',"Receiver's Country"],
+      ['japanese text','Delivery Method'],
+      ['japanese text','Transaction ID'],
+      ['japanese text','Amount Sent'],
+      ['japanese text','Transfer Fee'],
+      ['japanese text','Amount Received']
     ];
 
 
     const tableData = [
-      ['YYYY/MM/DD', 'India', '1', '12710702', '¥10,000', '¥780', '¥9,220'],
-      ['YYYY/MM/DD', 'India', '1', '12710702', '¥10,000', '¥780', '¥9,220'],
-      ['YYYY/MM/DD', 'India', '1', '12710702', '¥10,000', '¥780', '¥9,220']
+      ['YYYY/MM/DD', 'India', '1', '12710702', '10,000', '780', '9,220'],
+      ['YYYY/MM/DD', 'India', '1', '12710702', '10,000', '780', '9,220'],
+      ['YYYY/MM/DD', 'India', '1', '12710702', '10,000', '780', '9,220']
     ];
 
     // Table settings
