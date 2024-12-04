@@ -103,6 +103,6 @@ generatePdf(): void {
     doc.text('test data second line', 10, pageHeight - 15); 
 
     // Save the PDF
-    doc.save('remittance-statement.pdf');
+    doc.save('remittance-statement_pdf_two.pdf');
   }
 }
