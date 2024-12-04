@@ -28,22 +28,38 @@ generatePdf(): void {
     // Receiver Details
     doc.setFontSize(12);
     doc.text("Receiver's Details", 10, 60);
-    doc.text('Harsh Vardhan', 10, 70);
+    doc.text('{{Harsh Vardhan}}', 10, 70);
 
-    // Issued Details
-    doc.text('Issued date: 2024-07-25', 210, 60);
-    doc.text('Total amount sent: ¥18,440', 210, 70);
+    // Issued Date Label
+    doc.text('Issued date:', 215, 60);
+    // Issued Date text
+    doc.text('{{2024-07-25}}', 250, 60);
+    
+    // Total amount Label
+    doc.text('Total amount sent:', 200, 70);
+     // Total amount text
+    doc.text('{{18,440}}', 250, 70);
 
 
-    // Table headers
-    const tableHeaders = [
-      ['japanese text','Transfer Date'],
-      ['japanese text',"Receiver's Country"],
-      ['japanese text','Delivery Method'],
-      ['japanese text','Transaction ID'],
-      ['japanese text','Amount Sent'],
-      ['japanese text','Transfer Fee'],
-      ['japanese text','Amount Received']
+    // Table headers -- double line
+    // const tableHeaders = [
+    //   ['test','Transfer Date'],
+    //   ['test',"Receiver's Country"],
+    //   ['test','Delivery Method'],
+    //   ['test','Transaction ID'],
+    //   ['test','Amount Sent'],
+    //   ['test','Transfer Fee'],
+    //   ['test','Amount Received']
+    // ];
+
+     const tableHeaders = [
+      'Transfer Date',
+      "Receiver's Country",
+      'Delivery Method',
+      'Transaction ID',
+      'Amount Sent',
+      'Transfer Fee',
+      'Amount Received'
     ];
 
 
@@ -56,7 +72,7 @@ generatePdf(): void {
     // Table settings
     const startX = 10;
     const startY = 80;
-    const cellWidth = [30, 40, 40, 50, 30, 30, 40]; // Column widths
+    const cellWidth = [35, 45, 40, 50, 40, 30, 40]; // Column widths
     const headerHeight = 20; // Increased height for headers
     const cellHeight = 10;
 
@@ -84,7 +100,7 @@ generatePdf(): void {
     const pageHeight = doc.internal.pageSize.getHeight(); // Get page height dynamically
     doc.setFontSize(10);
     doc.text('For customer service call: 0120-961-623', 10, pageHeight - 20); // 20px from the bottom
-    doc.text('japanese text', 10, pageHeight - 15); 
+    doc.text('test data second line', 10, pageHeight - 15); 
 
     // Save the PDF
     doc.save('remittance-statement.pdf');
