@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PdfOneComponent } from './pdf-one/pdf-one.component';
 import { PdfTwoComponent } from './pdf-two/pdf-two.component';
 import { PdfThreeComponent } from './pdf-three/pdf-three.component';
+import { PdfFourComponent } from './pdf-four/pdf-four.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PdfOneComponent,
     PdfTwoComponent,
-    PdfThreeComponent
+    PdfThreeComponent,
+    PdfFourComponent
   ],
   imports: [
     BrowserModule,
