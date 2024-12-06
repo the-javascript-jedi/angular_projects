@@ -7,6 +7,7 @@ import { PdfOneComponent } from './pdf-one/pdf-one.component';
 import { PdfTwoComponent } from './pdf-two/pdf-two.component';
 import { PdfThreeComponent } from './pdf-three/pdf-three.component';
 import { PdfFourComponent } from './pdf-four/pdf-four.component';
+import { PdfFiveComponent } from './pdf-five/pdf-five.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PdfFourComponent } from './pdf-four/pdf-four.component';
     PdfOneComponent,
     PdfTwoComponent,
     PdfThreeComponent,
-    PdfFourComponent
+    PdfFourComponent,
+    PdfFiveComponent
   ],
   imports: [
     BrowserModule,
