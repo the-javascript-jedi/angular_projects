@@ -17,6 +17,7 @@ import { ParentComponentComponent } from './component-communication/parent-compo
 import { ChildComponentComponent } from './component-communication/parent-component/child-component/child-component.component';
 import { FormsModule } from '@angular/forms';
 import { ClickToggleDirective } from '../directives/click-toggle.directive';
+import { IdlePopupComponent } from './idle-popup/idle-popup.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ClickToggleDirective } from '../directives/click-toggle.directive';
     ParentComponentComponent,
     ChildComponentComponent,
     ClickToggleDirective,
+    IdlePopupComponent,
   ],
   imports: [
     ReactiveFormsModule,
