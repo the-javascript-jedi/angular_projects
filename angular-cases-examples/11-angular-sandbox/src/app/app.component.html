@@ -7,3 +7,4 @@
  <!-- <app-custom-directive></app-custom-directive> -->
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
+<app-idle-popup *ngIf="showPopup" [remainingTime]="remainingTime" (close)="onClosePopup()"></app-idle-popup>
