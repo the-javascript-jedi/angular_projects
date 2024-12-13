@@ -7,3 +7,12 @@ nav a{
 .active-class{
     color: blue !important;
 }
+
+
+.pdf-hidden {
+        /* Completely hide the elements from view */
+        position: absolute;
+        top: -9999px;
+        /* Position off-screen to avoid layout shifts */
+        left: -9999px;
+}

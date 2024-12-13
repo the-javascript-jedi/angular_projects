@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "html2canvas": "^1.4.1",
     "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.8.4",
     "rxjs": "~7.8.0",

@@ -5,6 +5,7 @@ import { PdfTwoComponent } from './pdf-two/pdf-two.component';
 import { PdfThreeComponent } from './pdf-three/pdf-three.component';
 import { PdfFourComponent } from './pdf-four/pdf-four.component';
 import { PdfFiveComponent } from './pdf-five/pdf-five.component';
+import { CanvasPdfOneComponent } from './canvas-pdf-one/canvas-pdf-one.component';
 
 const routes: Routes = [
   {path:"pdf_one",component:PdfOneComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:"pdf_three",component:PdfThreeComponent},
   {path:"pdf_four",component:PdfFourComponent},
   {path:"pdf_five",component:PdfFiveComponent},
+  {path:"pdf_canvas_one",component:CanvasPdfOneComponent},
 ];
 
 @NgModule({
