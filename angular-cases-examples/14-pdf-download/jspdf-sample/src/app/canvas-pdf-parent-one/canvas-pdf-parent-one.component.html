@@ -1,0 +1,7 @@
+<p>canvas-pdf-parent-one works!</p>
+<button (click)="downloadPdf()">Download PDF</button>
+<div id="pdf-container">
+    <app-canvas-pdf-one *ngFor="let data of pdfData; let i = index" [data]="data" [id]="'pdf-receiver-' + i"
+        class="pdf-hidden">
+    </app-canvas-pdf-one>
+</div>

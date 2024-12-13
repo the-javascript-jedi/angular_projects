@@ -1,4 +1,4 @@
-export const data=[
+export const dataForPdfOne=[
     {
         "receiverName": "MERRY GTDAPPROVE",
         "receiverUid": "17300562706736358",

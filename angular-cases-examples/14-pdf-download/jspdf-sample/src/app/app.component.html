@@ -4,13 +4,6 @@
 <a routerLink="/pdf_three" routerLinkActive="active-class" [routerLinkActiveOptions]="{ exact: true }">PDF three</a>
 <a routerLink="/pdf_four" routerLinkActive="active-class" [routerLinkActiveOptions]="{ exact: true }">PDF four</a>
 <a routerLink="/pdf_five" routerLinkActive="active-class" [routerLinkActiveOptions]="{ exact: true }">PDF five</a>
-</nav>
-<nav>
-    <a routerLink="/pdf_canvas_one" routerLinkActive="active-class" [routerLinkActiveOptions]="{ exact: true }">PDF Canvas one</a>
+<a routerLink="/pdf_canvas_one" routerLinkActive="active-class" [routerLinkActiveOptions]="{ exact: true }">PDF Canvas one</a>
 </nav>
 <router-outlet></router-outlet>
-<button (click)="downloadPdf()">Download PDF</button>
-<div id="pdf-container">
-    <app-canvas-pdf-one *ngFor="let data of pdfData; let i = index" [data]="data" [id]="'pdf-receiver-' + i" class="pdf-hidden">
-    </app-canvas-pdf-one>
-</div>
