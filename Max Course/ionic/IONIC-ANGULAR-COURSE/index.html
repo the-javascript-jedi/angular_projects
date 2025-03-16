@@ -16,7 +16,25 @@
             </ion-toolbar>
         </ion-header>
         <ion-content>
-
+            <ion-row>
+                <!-- size-md = medium screens and higher -->
+                 <!-- offset-md = add offset for center alligning  -->
+                <ion-col size-md="6" offset-md="3">
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>New Expense</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-item>
+                                <ion-input label="Expense Reason" label-placement="floating" placeholder="Expense Reason"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-input label="Expense Amount" label-placement="floating" placeholder="Expense Amount"></ion-input>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
         </ion-content>
     </ion-app>    
     <!-- Scripts -->
