@@ -26,17 +26,17 @@
                         </ion-card-header>
                         <ion-card-content>
                             <ion-item>
-                                <ion-input label="Expense Reason" label-placement="floating" placeholder="Expense Reason"></ion-input>
+                                <ion-input id="input-reason" label="Expense Reason" label-placement="floating" placeholder="Expense Reason"></ion-input>
                             </ion-item>
                             <ion-item>
-                                <ion-input label="Expense Amount" label-placement="floating" placeholder="Expense Amount"></ion-input>
+                                <ion-input id="input-amount" label="Expense Amount" label-placement="floating" placeholder="Expense Amount"></ion-input>
                             </ion-item>
                             <div class="ion-margin-vertical ion-text-right">
-                                <ion-button fill="outline" color="danger">
+                                <ion-button fill="outline" color="danger" id="btn-cancel">
                                     <ion-icon slot="start" name="close"></ion-icon>
                                     Clear
                                 </ion-button>
-                                <ion-button>
+                                <ion-button id="btn-confirm">
                                     <ion-icon slot="start" name="add"></ion-icon>
                                     Add Expense
                                 </ion-button>
@@ -45,10 +45,21 @@
                     </ion-card>
                 </ion-col>
             </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-list id="expenses-list"></ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                   <p id="total-expenses">Total Expenses: <span id="total-expenses"></span></p>
+                </ion-col>
+            </ion-row>
         </ion-content>
     </ion-app>    
     <!-- Scripts -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>
