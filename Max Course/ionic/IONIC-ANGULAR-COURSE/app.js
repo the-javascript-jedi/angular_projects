@@ -4,6 +4,7 @@ const cancelBtn = document.querySelector("#btn-cancel");
 const confirmBtn = document.querySelector("#btn-confirm");
 const expensesList = document.querySelector("#expenses-list");
 const totalExpensesOutput = document.querySelector("#total-expenses");
+const alertCtrl = document.querySelector("#alert");
 
 const clear = () => {
   reasonInput.value = "";
@@ -22,7 +23,14 @@ confirmBtn.addEventListener("click", () => {
     enteredAmount <= 0 ||
     enteredAmount.trim().length <= 0
   ) {
-    return;
+    // create model
+    const alertIon = document.createElement("ion-alert");
+    alertIon.header = "Invalid inputs";
+    alertIon.message = "Please enter valid name and amount";
+    alertIon.buttons = ["Oh, ok"];
+    alertCtrl.appendChild(alertIon);
+    alertIon.present();
+    return; // this is to avoid adding new line of ion-item
   }
   console.log("enteredReason", enteredReason);
   console.log("enteredAmount", enteredAmount);
