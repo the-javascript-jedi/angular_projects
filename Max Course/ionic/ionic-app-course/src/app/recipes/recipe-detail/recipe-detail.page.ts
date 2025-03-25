@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { RecipesService } from '../recipes.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -12,13 +14,13 @@ import { RecipesService } from '../recipes.service';
 export class RecipeDetailPage implements OnInit {
  loadedRecipe: Recipe | null = null; // Allow null values
  
- constructor(private activatedRoute:ActivatedRoute,private recipesService:RecipesService) { }
+ constructor(private activatedRoute:ActivatedRoute,private recipesService:RecipesService,private router:Router,private alertCtrl:AlertController) { }
  
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap=>{
       if(!paramMap.has('recipeId')){
-        // redirect
-        return;
+        // redirect if no recipeId is available
+         this.router.navigate(['/recipes']);
       }
       const recipeId=paramMap.get('recipeId');
       if(recipeId){
@@ -26,5 +28,31 @@ export class RecipeDetailPage implements OnInit {
       }
     })
   }
+
+onDeleteRecipe(recipeId?: string) {
+  this.alertCtrl.create({
+    header: 'Are you sure?',
+    message: 'Do you really want to delete the recipe?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+           if (recipeId) {
+              console.log('onDeleteRecipe', recipeId);
+              this.recipesService.deleteRecipe(recipeId);
+              this.router.navigate(['/recipes']);
+          }
+        }
+      }
+    ]
+  }).then(alertEl => {
+    alertEl.present();
+  })
+ 
+}
 
 }
