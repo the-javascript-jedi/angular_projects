@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <!--if there's no previous history (e.g., user opens the page directly via a link), clicking the back button will navigate to /recipes.  -->
+      <ion-back-button defaultHref="/recipes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{loadedRecipe?.title}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDeleteRecipe(loadedRecipe?.id)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+      <!-- <ion-button routerLink="/recipes/edit/{{loadedRecipe.id}}">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button> -->
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar color="primary">
+      <ion-title size="large">recipe-detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col>
+        <ion-img class="ion-no-padding" [src]="loadedRecipe?.imageUrl">
+        </ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1 class="ion-text-center">{{loadedRecipe?.title}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let ig of loadedRecipe?.ingredients">
+            {{ig}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  Recipe Details Loaded
+</ion-content>
