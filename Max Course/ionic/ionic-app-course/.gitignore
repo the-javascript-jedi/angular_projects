@@ -23,6 +23,8 @@ log.txt
 /platforms
 /plugins
 
+# for now not adding android and ios folders
+/android
 # Compiled output
 /dist
 /tmp
