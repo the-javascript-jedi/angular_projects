@@ -26,3 +26,15 @@ npx cap open android
 # live server steps need to be checked - max
 
 ionic capacitor run android -l
+#########################################
+live server checking
+i)in one terminal
+ng build --watch
+
+ii)in another terminal
+npx cap copy android
+or
+while ($true) { npx cap copy android; Start-Sleep -Seconds 2 }
+
+iii)in another terminal - run once
+npx cap open android
