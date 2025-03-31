@@ -1,3 +1,7 @@
+#### create ionic project
+
+$ionic start
+
 #### to run app
 
 ionic serve
