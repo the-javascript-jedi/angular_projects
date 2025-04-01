@@ -1,0 +1,1 @@
+ionic generate page auth

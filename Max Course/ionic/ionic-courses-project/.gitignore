@@ -23,8 +23,6 @@ log.txt
 /platforms
 /plugins
 
-# for now not adding android and ios folders
-/android
 # Compiled output
 /dist
 /tmp
@@ -33,6 +31,7 @@ log.txt
 
 # Node
 /node_modules
+/.vscode
 npm-debug.log
 yarn-error.log
 
