@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-discover',
   templateUrl: './discover.page.html',
   styleUrls: ['./discover.page.scss'],
+  standalone: false
 })
 export class DiscoverPage implements OnInit {
 
