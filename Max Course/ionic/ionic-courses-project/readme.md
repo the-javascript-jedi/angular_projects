@@ -1,3 +1,3 @@
-ionic generate page auth
-
 ionic serve
+
+ionic generate page auth
