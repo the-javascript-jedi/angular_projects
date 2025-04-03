@@ -1,13 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>place-detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places/tabs/discover">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>discover</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">place-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div style="margin-top: 60px;border:1px solid red">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">place-detail</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-button color="primary" class="ion-margin" (click)="onBookplace()" >
+      Book
+    </ion-button>
+  </div>
 </ion-content>
