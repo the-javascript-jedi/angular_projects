@@ -7,9 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: DiscoverPage
-  },  {
+  },
+  {
     path: 'place-detail',
-    loadChildren: () => import('./place-detail/place-detail.module').then( m => m.PlaceDetailPageModule)
+    loadChildren: () => import('./place-detail/place-detail.module').then(m => m.PlaceDetailPageModule)
   }
 
 ];
@@ -18,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DiscoverPageRoutingModule {}
+export class DiscoverPageRoutingModule { }

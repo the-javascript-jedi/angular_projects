@@ -35,3 +35,22 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Custom global styles */
+// ion-content {
+//     --padding-top: 56px !important;
+//     /* Adjust value based on toolbar height */
+//     --padding-bottom: 16px !important;
+// }
+ion-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Ensures it stays above content */
+    background: var(--ion-background-color, white);
+    /* Ensures it's not transparent */
+}
+ion-header[collapse="condense"] {
+    min-height: 56px !important;
+    /* Ensure it has a minimum height */
+}
