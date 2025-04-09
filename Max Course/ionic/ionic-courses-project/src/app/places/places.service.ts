@@ -34,6 +34,10 @@ export class PlacesService {
     return [...this._places];
   }
 
+  getPlace(id: string) {
+    const found = this._places.find(place => place.id === id);
+    return found ? { ...found } : undefined;
+  }
 
   constructor() { }
 }
