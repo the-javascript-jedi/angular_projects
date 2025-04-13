@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/places/tabs/offers"></ion-back-button>
     </ion-buttons>
-    <ion-title>offer-bookings</ion-title>
+    <ion-title>offer-bookings - {{place?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,10 +11,13 @@
   <div>
 
   </div>
-  <ion-button  *ngIf="place"  color="primary" [routerLink]="['/','places','tabs','offers','edit',place.id]">Edit</ion-button>
-  <ion-header collapse="condense">
+  <div>
+
+  </div>
+  <ion-header>
     <ion-toolbar>
       <ion-title size="large">offer-bookings</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button  *ngIf="place"  color="primary" [routerLink]="['/','places','tabs','offers','edit',place.id]">Edit</ion-button>
 </ion-content>
