@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -10,9 +10,14 @@ import { NavController } from '@ionic/angular';
 })
 export class PlaceDetailPage implements OnInit {
 
-  constructor(private router: Router, private navCtrl: NavController) { }
+  constructor(private router: Router, private navCtrl: NavController, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(paramMap => {
+
+      const placeId = paramMap.get('placeId')!;
+      console.log("placeId", placeId)
+    });
   }
 
   onBookplace() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-offer',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditOfferPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(paramMap => {
+      const placeId = paramMap.get('placeId')!;
+      console.log("offer-placeId", placeId)
+    });
   }
 
 }
