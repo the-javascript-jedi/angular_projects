@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { t } from '@angular/core/weak_ref.d-Bp6cSy-X';
 import { Place } from 'src/app/models/place.model';
 import { PlacesService } from '../places.service';
 import { MenuController } from '@ionic/angular';

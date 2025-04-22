@@ -12,3 +12,7 @@ ionic generate
 
 > guard
 > auth/auth
+
+<!-- modal -->
+
+ionic generate component bookings/create-book

@@ -17,4 +17,4 @@ import { BookingsPage } from './bookings.page';
   ],
   declarations: [BookingsPage]
 })
-export class BookingsPageModule {}
+export class BookingsPageModule { }
