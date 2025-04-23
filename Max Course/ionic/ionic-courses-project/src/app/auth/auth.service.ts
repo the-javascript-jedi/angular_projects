@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
-  private _userIsAuthenticated = false;
+  // temporarily hardcoded user authentication status
+  private _userIsAuthenticated = true;
   get userIsAuthentcated() {
     return this._userIsAuthenticated;
   }
