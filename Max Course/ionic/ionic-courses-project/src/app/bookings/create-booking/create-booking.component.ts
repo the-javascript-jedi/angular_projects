@@ -1,5 +1,6 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { Place } from 'src/app/models/place.model';
 
 @Component({
   selector: 'app-create-booking',
@@ -10,8 +11,17 @@ import { IonicModule } from '@ionic/angular';
 })
 export class CreateBookingComponent implements OnInit {
 
-  constructor() { }
+  //passed value as props for the modal
+  @Input() selectedPlace: Place | null = null;
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() { }
 
+  onCancel() {
+    // if id - booking-modal is not mentioned the nearest available model is dismissed
+    this.modalCtrl.dismiss(null, 'cancel', 'booking-modal');
+  }
+  onBookPlace() {
+    this.modalCtrl.dismiss({ message: 'This is an Information Message!' }, 'confirm', 'booking-modal');
+  }
 }

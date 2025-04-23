@@ -37,11 +37,22 @@ export class PlaceDetailPage implements OnInit {
   onBookplace() {
     console.log('Booking place...');
     // this.navCtrl.navigateBack('/places/tabs/discover');
+    // componentProps used to send data inside the modal it will be received as an Input value
     this.modalCtrl.create({
       component: CreateBookingComponent,
+      componentProps: { selectedPlace: this.place },
+      id: 'booking-modal'
     }).then(modalEl => {
       modalEl.present();
-      // return modalEl.onDidDismiss();
+      return modalEl.onDidDismiss();
+    }).then(resultData => {
+      console.log(resultData.data, resultData.role);
+      if (resultData.role === 'confirm') {
+        console.log('Confirmed!');
+        console.log(resultData.data.message);
+      } else {
+        console.log('Cancelled!');
+      }
     })
   }
 }
