@@ -1,3 +1,5 @@
+node version - v20.18.0
+
 ionic serve
 
 ionic generate page auth
