@@ -1,5 +1,9 @@
 node version - v20.18.0
 
+npm install -g @angular/cli
+
+npm install -g @ionic/cli
+
 ionic serve
 
 ionic generate page auth
@@ -47,5 +51,3 @@ xl: Extra large screens (1200px and up)
     </ion-row>
   </ion-grid>
 </ion-content>
-
-// test commit
