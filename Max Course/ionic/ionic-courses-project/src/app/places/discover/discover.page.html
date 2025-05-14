@@ -12,6 +12,14 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-segment (ionChange)="onFilterUpdate($event)" value="all">
+    <ion-segment-button value="all" (click)="onFilterUpdate('all')">
+      All
+    </ion-segment-button>
+    <ion-segment-button value="bookable" (click)="onFilterUpdate('bookable')">
+      Booked
+    </ion-segment-button>
+  </ion-segment>
  <ion-grid>
   <ion-row>
     <ion-col size="12" size-sm="8" size-md="6" offset-sm="2" offset-md="3" class="ion-text-center">
