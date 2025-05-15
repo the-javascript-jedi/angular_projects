@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class AuthPage implements OnInit {
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -16,7 +17,11 @@ export class AuthPage implements OnInit {
   }
   onLogin() {
     console.log('Login clicked!');
+    this.isLoading = true;
     this.authService.login();
-    this.router.navigateByUrl('/places/tabs/discover');
+    setTimeout(() => {
+      this.router.navigateByUrl('/places/tabs/discover');
+       this.isLoading = false;
+    },1500)
   }
 }
