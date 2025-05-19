@@ -8,12 +8,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ExampleDialogComponent } from './example-dialog/example-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { SpeedBumpModalComponent } from './speed-bump-modal/speed-bump-modal.component';
+import { TestInstallComponent } from './pages/test-install/test-install.component';
+import { TestConnectionComponent } from './pages/test-connection/test-connection.component';
+import { TestActivationComponent } from './pages/test-activation/test-activation.component';
+import { TestAccountSummaryComponent } from './pages/test-account-summary/test-account-summary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExampleDialogComponent,
-    SpeedBumpModalComponent
+    SpeedBumpModalComponent,
+    TestInstallComponent,
+    TestConnectionComponent,
+    TestActivationComponent,
+    TestAccountSummaryComponent
   ],
   imports: [
     MatDialogModule,
