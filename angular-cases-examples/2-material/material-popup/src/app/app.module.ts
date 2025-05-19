@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExampleDialogComponent } from './example-dialog/example-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { SpeedBumpModalComponent } from './speed-bump-modal/speed-bump-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleDialogComponent
+    ExampleDialogComponent,
+    SpeedBumpModalComponent
   ],
   imports: [
     MatDialogModule,
