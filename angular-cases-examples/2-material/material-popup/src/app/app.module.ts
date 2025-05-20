@@ -12,6 +12,8 @@ import { TestInstallComponent } from './pages/test-install/test-install.componen
 import { TestConnectionComponent } from './pages/test-connection/test-connection.component';
 import { TestActivationComponent } from './pages/test-activation/test-activation.component';
 import { TestAccountSummaryComponent } from './pages/test-account-summary/test-account-summary.component';
+import { TestSecondPageComponent } from './pages/test-second-page/test-second-page.component';
+import { TestThirdPageComponent } from './pages/test-third-page/test-third-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TestAccountSummaryComponent } from './pages/test-account-summary/test-a
     TestInstallComponent,
     TestConnectionComponent,
     TestActivationComponent,
-    TestAccountSummaryComponent
+    TestAccountSummaryComponent,
+    TestSecondPageComponent,
+    TestThirdPageComponent
   ],
   imports: [
     MatDialogModule,
