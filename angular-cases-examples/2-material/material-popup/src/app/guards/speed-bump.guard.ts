@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { CanDeactivate } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanDeactivateFn } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SpeedBumpService } from '../services/speed-bump.service';
 
@@ -8,32 +8,26 @@ export interface CanComponentDeactivate {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SpeedBumpGuard implements CanDeactivate<CanComponentDeactivate> {
-
-  constructor(private speedBumpService: SpeedBumpService) {}
-
-  canDeactivate(
-    component: CanComponentDeactivate,
-    currentRoute: any,
-    currentState: any,
-    nextState: any
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    
-    // If navigation is already allowed by the service, let it proceed
-    if (this.speedBumpService.canNavigate()) {
-      return true;
-    }
-
-    // If the component implements canDeactivate, ask it first
-    if (component && component.canDeactivate) {
-      return component.canDeactivate();
-    }
-
-    // Default behavior: allow navigation
-    // The actual speed bump logic is handled by the service's popstate listener
+// Functional guard approach (recommended in Angular 15+)
+export const SpeedBumpGuard: CanDeactivateFn<CanComponentDeactivate> = (
+  component,
+  currentRoute,
+  currentState,
+  nextState
+) => {
+  const speedBumpService = inject(SpeedBumpService);
+  
+  // If navigation is already allowed by the service, let it proceed
+  if (speedBumpService.canNavigate()) {
     return true;
   }
-}
+  
+  // If the component implements canDeactivate, ask it first
+  if (component && component.canDeactivate) {
+    return component.canDeactivate();
+  }
+  
+  // Default behavior: allow navigation
+  // The actual speed bump logic is handled by the service's popstate listener
+  return true;
+};
