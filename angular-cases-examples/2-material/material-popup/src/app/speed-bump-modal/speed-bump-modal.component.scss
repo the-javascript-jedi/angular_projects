@@ -1,0 +1,21 @@
+.speed-bump-modal {
+  .mat-dialog-content {
+    margin-bottom: 20px;
+  }
+  
+  .mat-dialog-actions {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    
+    button {
+      margin-left: 8px;
+    }
+  }
+}
+
+::ng-deep .speed-bump-dialog {
+  .mat-dialog-container {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}

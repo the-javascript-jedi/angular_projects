@@ -1,0 +1,14 @@
+<div class="speed-bump-modal">
+  <h2 mat-dialog-title>Exit Setup?</h2>
+  <mat-dialog-content>
+    <p>Are you sure you want to exit the setup process? Any unsaved progress will be lost.</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="stayOnPage()" color="primary">
+      Stay on Page
+    </button>
+    <button mat-raised-button (click)="exitSetup()" color="warn">
+      Exit Setup
+    </button>
+  </mat-dialog-actions>
+</div>
