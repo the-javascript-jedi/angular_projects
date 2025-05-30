@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { SpeedBumpModalComponent } from '../speed-bump-modal/speed-bump-modal.component';
 import { filter, take } from 'rxjs/operators';
 import { Location } from '@angular/common';
@@ -25,6 +25,7 @@ export class SpeedBumpService {
   private allowNavigation = false;
   private isProcessingBackButton = false;
   private stopProcessesCallback: (() => void) | null = null;
+  private pendingNavigation: string | null = null;
   
   // Observable to track if speed bump should be shown
   private shouldShowSpeedBump = new BehaviorSubject<boolean>(false);
@@ -43,6 +44,27 @@ export class SpeedBumpService {
     this.initialized = true;
     this.stopProcessesCallback = stopProcessesCallback;
 
+    // Intercept navigation start to prevent unwanted navigation
+    this.router.events
+      .pipe(filter((event): event is NavigationStart => event instanceof NavigationStart))
+      .subscribe((event: NavigationStart) => {
+        // If this is a back navigation and we're not allowing it
+        if (event.navigationTrigger === 'popstate' && 
+            !this.allowNavigation && 
+            !this.excludedRoutes.includes(this.currentUrl) &&
+            !this.isProcessingBackButton) {
+          
+          // Cancel the navigation
+          this.router.navigateByUrl(this.currentUrl, { skipLocationChange: true });
+          
+          // Store where they wanted to go
+          this.pendingNavigation = event.url;
+          
+          // Show speed bump
+          this.showSpeedBumpModal();
+        }
+      });
+
     // Track successful navigation to update current URL
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
@@ -53,34 +75,13 @@ export class SpeedBumpService {
         }
       });
 
-    // Override browser back button behavior
+    // Set up additional popstate handling as backup
     this.setupBackButtonHandling();
   }
 
   private setupBackButtonHandling(): void {
-    // Store the original pushState and replaceState methods
-    const originalPushState = history.pushState;
-    const originalReplaceState = history.replaceState;
-
-    // Override pushState to track navigation
-    history.pushState = function(...args) {
-      const result = originalPushState.apply(history, args);
-      window.dispatchEvent(new Event('locationchange'));
-      return result;
-    };
-
-    // Override replaceState to track navigation
-    history.replaceState = function(...args) {
-      const result = originalReplaceState.apply(history, args);
-      window.dispatchEvent(new Event('locationchange'));
-      return result;
-    };
-
-    // Listen for actual browser back/forward button
+    // Listen for popstate events as a backup measure
     window.addEventListener('popstate', this.handlePopState.bind(this));
-    
-    // Push initial state with custom marker
-    history.pushState({ speedBumpEnabled: true }, '', this.currentUrl);
   }
 
   private handlePopState = (event: PopStateEvent): void => {
@@ -93,12 +94,9 @@ export class SpeedBumpService {
       return;
     }
 
-    // Prevent the navigation by immediately pushing current state back
-    event.preventDefault();
-    history.pushState({ speedBumpEnabled: true }, '', this.currentUrl);
-    
-    // Show speed bump modal
-    this.showSpeedBumpModal();
+    // This is a backup - the main logic should be handled by NavigationStart
+    // Ensure we stay on the current page
+    this.location.go(this.currentUrl);
   };
 
   private showSpeedBumpModal(): void {
@@ -107,9 +105,6 @@ export class SpeedBumpService {
     }
 
     this.isProcessingBackButton = true;
-
-    // Force the browser to stay on current URL
-    this.location.go(this.currentUrl);
 
     // Close any existing dialogs
     this.dialog.closeAll();
@@ -130,7 +125,8 @@ export class SpeedBumpService {
         // User confirmed exit
         this.handleUserConfirmedExit();
       } else {
-        // User cancelled - ensure we stay on current page
+        // User cancelled - clear pending navigation
+        this.pendingNavigation = null;
         this.handleUserCancelledExit();
       }
     });
@@ -141,9 +137,12 @@ export class SpeedBumpService {
       this.stopProcessesCallback();
     }
 
-    // Allow navigation and go to test summary
+    // Allow navigation and go to test summary or pending navigation
     this.allowNavigation = true;
-    this.router.navigate(['/test-summary']).finally(() => {
+    const targetRoute = '/test-summary'; // or this.pendingNavigation if you want to honor the original destination
+    
+    this.router.navigate([targetRoute]).finally(() => {
+      this.pendingNavigation = null;
       // Small delay before re-enabling the interceptor
       setTimeout(() => {
         this.allowNavigation = false;
@@ -152,13 +151,10 @@ export class SpeedBumpService {
   }
 
   private handleUserCancelledExit(): void {
-    // Ensure we're on the correct URL
+    // Ensure we stay on current URL
     this.location.go(this.currentUrl);
     
-    // Push state again for future back button handling
-    history.pushState({ speedBumpEnabled: true }, '', this.currentUrl);
-    
-    // Make sure the router thinks we're on the right route
+    // Make sure the router is in sync
     if (this.router.url !== this.currentUrl) {
       this.router.navigateByUrl(this.currentUrl, { skipLocationChange: true });
     }
@@ -187,6 +183,7 @@ export class SpeedBumpService {
   public destroy(): void {
     this.initialized = false;
     this.allowNavigation = true;
+    this.pendingNavigation = null;
     window.removeEventListener('popstate', this.handlePopState);
   }
 
