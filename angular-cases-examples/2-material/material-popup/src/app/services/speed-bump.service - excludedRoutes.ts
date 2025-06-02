@@ -10,10 +10,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SpeedBumpService {
-  // CHANGE 1: Rename excludedRoutes to includedRoutes
-  private includedRoutes = [
+  private excludedRoutes = [
     '/test-connection',
     '/test-activation',
+    '/restart',
+    '/post-activation',
+    '/setup-success',
+    '/test-summary',
     '/test-third-page'
   ];
 
@@ -24,7 +27,7 @@ export class SpeedBumpService {
   private stopProcessesCallback: (() => void) | null = null;
   private pendingNavigation: string | null = null;
   
-  // CHANGE 2: Update observable logic
+  // Observable to track if speed bump should be shown
   private shouldShowSpeedBump = new BehaviorSubject<boolean>(false);
   public shouldShowSpeedBump$ = this.shouldShowSpeedBump.asObservable();
 
@@ -45,10 +48,10 @@ export class SpeedBumpService {
     this.router.events
       .pipe(filter((event): event is NavigationStart => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
-        // CHANGE 3: Reverse the condition - show speed bump only if route is included
+        // If this is a back navigation and we're not allowing it
         if (event.navigationTrigger === 'popstate' && 
             !this.allowNavigation && 
-            this.includedRoutes.includes(this.currentUrl) &&
+            !this.excludedRoutes.includes(this.currentUrl) &&
             !this.isProcessingBackButton) {
           
           // Cancel the navigation
@@ -68,8 +71,7 @@ export class SpeedBumpService {
       .subscribe((event: NavigationEnd) => {
         if (!this.isProcessingBackButton) {
           this.currentUrl = event.url;
-          // CHANGE 4: Update observable based on included routes
-          this.shouldShowSpeedBump.next(this.includedRoutes.includes(event.url));
+          this.shouldShowSpeedBump.next(!this.excludedRoutes.includes(event.url));
         }
       });
 
@@ -87,8 +89,8 @@ export class SpeedBumpService {
       return;
     }
 
-    // CHANGE 5: Reverse condition - only intercept if route is included
-    if (!this.includedRoutes.includes(this.currentUrl)) {
+    // Check if current route should show speed bump
+    if (this.excludedRoutes.includes(this.currentUrl)) {
       return;
     }
 
@@ -158,9 +160,9 @@ export class SpeedBumpService {
     }
   }
 
-  // CHANGE 6: Update canNavigate logic
+  // Public method to check if navigation should be allowed
   public canNavigate(): boolean {
-    return this.allowNavigation || !this.includedRoutes.includes(this.currentUrl);
+    return this.allowNavigation || this.excludedRoutes.includes(this.currentUrl);
   }
 
   // Method to programmatically trigger navigation without speed bump
@@ -198,27 +200,27 @@ export class SpeedBumpService {
     this.destroy();
   }
 
-  // CHANGE 7: Update route management methods
-  // public addIncludedRoute(route: string): void {
-  //   if (!this.includedRoutes.includes(route)) {
-  //     this.includedRoutes.push(route);
-  //   }
-  //   this.shouldShowSpeedBump.next(this.includedRoutes.includes(this.currentUrl));
-  // }
+  // Route management methods
+  public addExcludedRoute(route: string): void {
+    if (!this.excludedRoutes.includes(route)) {
+      this.excludedRoutes.push(route);
+    }
+    this.shouldShowSpeedBump.next(!this.excludedRoutes.includes(this.currentUrl));
+  }
 
-  // public removeIncludedRoute(route: string): void {
-  //   const index = this.includedRoutes.indexOf(route);
-  //   if (index > -1) {
-  //     this.includedRoutes.splice(index, 1);
-  //   }
-  //   this.shouldShowSpeedBump.next(this.includedRoutes.includes(this.currentUrl));
-  // }
+  public removeExcludedRoute(route: string): void {
+    const index = this.excludedRoutes.indexOf(route);
+    if (index > -1) {
+      this.excludedRoutes.splice(index, 1);
+    }
+    this.shouldShowSpeedBump.next(!this.excludedRoutes.includes(this.currentUrl));
+  }
 
-  // public isCurrentRouteIncluded(): boolean {
-  //   return this.includedRoutes.includes(this.currentUrl);
-  // }
+  public isCurrentRouteExcluded(): boolean {
+    return this.excludedRoutes.includes(this.currentUrl);
+  }
 
-  // public getCurrentUrl(): string {
-  //   return this.currentUrl;
-  // }
+  public getCurrentUrl(): string {
+    return this.currentUrl;
+  }
 }
