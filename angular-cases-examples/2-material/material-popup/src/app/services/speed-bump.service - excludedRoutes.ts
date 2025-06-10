@@ -10,12 +10,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SpeedBumpService {
-  // CHANGE 1: Update to use partial URL matching
-  private includedRouteSegments = [
-    'connecting',
-    'installing',
-    'activating'
-    // Add other URL segments that should trigger speed bump
+  private excludedRoutes = [
+    '/test-connection',
+    '/test-activation',
+    '/restart',
+    '/post-activation',
+    '/setup-success',
+    '/test-summary',
+    '/test-third-page'
   ];
 
   private initialized = false;
@@ -25,7 +27,7 @@ export class SpeedBumpService {
   private stopProcessesCallback: (() => void) | null = null;
   private pendingNavigation: string | null = null;
   
-  // CHANGE 2: Update observable logic
+  // Observable to track if speed bump should be shown
   private shouldShowSpeedBump = new BehaviorSubject<boolean>(false);
   public shouldShowSpeedBump$ = this.shouldShowSpeedBump.asObservable();
 
@@ -46,10 +48,10 @@ export class SpeedBumpService {
     this.router.events
       .pipe(filter((event): event is NavigationStart => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
-        // CHANGE 3: Check if current URL contains any included segment
+        // If this is a back navigation and we're not allowing it
         if (event.navigationTrigger === 'popstate' && 
             !this.allowNavigation && 
-            this.shouldShowSpeedBumpForCurrentUrl() &&
+            !this.excludedRoutes.includes(this.currentUrl) &&
             !this.isProcessingBackButton) {
           
           // Cancel the navigation
@@ -69,8 +71,7 @@ export class SpeedBumpService {
       .subscribe((event: NavigationEnd) => {
         if (!this.isProcessingBackButton) {
           this.currentUrl = event.url;
-          // CHANGE 4: Update observable based on URL segment matching
-          this.shouldShowSpeedBump.next(this.shouldShowSpeedBumpForCurrentUrl());
+          this.shouldShowSpeedBump.next(!this.excludedRoutes.includes(event.url));
         }
       });
 
@@ -88,8 +89,8 @@ export class SpeedBumpService {
       return;
     }
 
-    // CHANGE 5: Only intercept if URL contains included segment
-    if (!this.shouldShowSpeedBumpForCurrentUrl()) {
+    // Check if current route should show speed bump
+    if (this.excludedRoutes.includes(this.currentUrl)) {
       return;
     }
 
@@ -159,16 +160,9 @@ export class SpeedBumpService {
     }
   }
 
-  // CHANGE 6: Update canNavigate logic for segment matching
+  // Public method to check if navigation should be allowed
   public canNavigate(): boolean {
-    return this.allowNavigation || !this.shouldShowSpeedBumpForCurrentUrl();
-  }
-
-  // Helper method to check if current URL should show speed bump
-  private shouldShowSpeedBumpForCurrentUrl(): boolean {
-    return this.includedRouteSegments.some(segment => 
-      this.currentUrl.toLowerCase().includes(segment.toLowerCase())
-    );
+    return this.allowNavigation || this.excludedRoutes.includes(this.currentUrl);
   }
 
   // Method to programmatically trigger navigation without speed bump
@@ -206,27 +200,27 @@ export class SpeedBumpService {
     this.destroy();
   }
 
-  // // CHANGE 7: Update route management methods for segments
-  // public addIncludedRouteSegment(segment: string): void {
-  //   if (!this.includedRouteSegments.includes(segment)) {
-  //     this.includedRouteSegments.push(segment);
-  //   }
-  //   this.shouldShowSpeedBump.next(this.shouldShowSpeedBumpForCurrentUrl());
-  // }
+  // Route management methods
+  public addExcludedRoute(route: string): void {
+    if (!this.excludedRoutes.includes(route)) {
+      this.excludedRoutes.push(route);
+    }
+    this.shouldShowSpeedBump.next(!this.excludedRoutes.includes(this.currentUrl));
+  }
 
-  // public removeIncludedRouteSegment(segment: string): void {
-  //   const index = this.includedRouteSegments.indexOf(segment);
-  //   if (index > -1) {
-  //     this.includedRouteSegments.splice(index, 1);
-  //   }
-  //   this.shouldShowSpeedBump.next(this.shouldShowSpeedBumpForCurrentUrl());
-  // }
+  public removeExcludedRoute(route: string): void {
+    const index = this.excludedRoutes.indexOf(route);
+    if (index > -1) {
+      this.excludedRoutes.splice(index, 1);
+    }
+    this.shouldShowSpeedBump.next(!this.excludedRoutes.includes(this.currentUrl));
+  }
 
-  // public isCurrentRouteIncluded(): boolean {
-  //   return this.shouldShowSpeedBumpForCurrentUrl();
-  // }
+  public isCurrentRouteExcluded(): boolean {
+    return this.excludedRoutes.includes(this.currentUrl);
+  }
 
-  // public getCurrentUrl(): string {
-  //   return this.currentUrl;
-  // }
+  public getCurrentUrl(): string {
+    return this.currentUrl;
+  }
 }
