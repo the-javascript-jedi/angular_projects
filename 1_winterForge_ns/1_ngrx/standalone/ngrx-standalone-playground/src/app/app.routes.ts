@@ -6,5 +6,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./products/products.routes').then((m) => m.PRODUCTS_ROUTES),
   },
-  { path: '', redirectTo: 'products', pathMatch: 'full' },
+  {
+    path: 'games',
+    loadChildren: () =>
+      import('./games/games.routes').then((m) => m.GAMES_ROUTES),
+  },
+  { path: '', redirectTo: 'games', pathMatch: 'full' },
 ];
