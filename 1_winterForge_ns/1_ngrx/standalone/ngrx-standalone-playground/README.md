@@ -17,3 +17,5 @@ ng g component products/products --standalone
 
 Step 2
 Create NgRx store files manually
+
+git commit --date="2025-12-06 2:30:00 +0530" -m "added api call for game platforms"

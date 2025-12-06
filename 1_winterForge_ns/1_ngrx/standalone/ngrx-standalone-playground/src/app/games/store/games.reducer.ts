@@ -21,5 +21,10 @@ export const gamesReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+
+  on(GamesActions.loadGamePlatformSuccess, (state, { gamePlatformData }) => ({
+    ...state,
+    platform: gamePlatformData,
   }))
 );
