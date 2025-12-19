@@ -1,0 +1,23 @@
+<p>games works!</p>
+<h2>Games</h2>
+
+<div *ngIf="loading$ | async">Loading...</div>
+
+<table *ngIf="!(loading$ | async)" border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of games$ | async">
+      <td>{{ game.id }}</td>
+      <td>{{ game.description }}</td>
+      <td>{{ game.category }}</td>
+      <td>{{ game.longDescription }}</td>
+    </tr>
+  </tbody>
+</table>
