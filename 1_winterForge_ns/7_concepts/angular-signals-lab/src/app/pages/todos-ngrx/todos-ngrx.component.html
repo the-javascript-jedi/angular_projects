@@ -1,0 +1,26 @@
+<p>todos-ngrx works!</p>
+<h1>Signals Todo App</h1>
+<p>
+  Completed:
+  {{ completedCount() }}
+</p>
+<input
+  type="text"
+  [ngModel]="newTodo()"
+  (ngModelChange)="newTodo.set($event)"
+  placeholder="Enter todo"
+/>
+<button (click)="addTodo()">Add</button>
+<hr />
+@for (todo of todos(); track todo.id) {
+  <div>
+    <input
+      type="checkbox"
+      [checked]="todo.completed"
+      (change)="toggleTodo(todo.id)"
+    />
+
+    {{ todo.text }}
+    <button (click)="deleteTodo(todo.id)">Delete</button>
+  </div>
+}
