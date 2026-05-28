@@ -2,17 +2,12 @@
 <h1>Signals Todo App</h1>
 <p>
   Completed:
-  {{ completedCount() }}
+  <!-- {{ completedCount() }} -->
 </p>
-<input
-  type="text"
-  [ngModel]="newTodo()"
-  (ngModelChange)="newTodo.set($event)"
-  placeholder="Enter todo"
-/>
+<input type="text" [(ngModel)]="newTodo" placeholder="Enter todo" />
 <button (click)="addTodo()">Add</button>
 <hr />
-@for (todo of todos(); track todo.id) {
+@for (todo of todos$ | async; track todo.id) {
   <div>
     <input
       type="checkbox"

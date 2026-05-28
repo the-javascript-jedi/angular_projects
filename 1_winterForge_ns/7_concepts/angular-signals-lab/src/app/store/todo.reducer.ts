@@ -2,19 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import * as TodoActions from './todo.actions';
 
-export interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
-
-export interface TodoState {
-  todos: Todo[];
-}
-
-export const initialState: TodoState = {
-  todos: [],
-};
+import { initialState } from './todo.state';
 
 export const todoReducer = createReducer(
   initialState,

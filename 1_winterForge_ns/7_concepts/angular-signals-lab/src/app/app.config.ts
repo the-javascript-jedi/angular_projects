@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { todoReducer } from './store/todo.reducer';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       todo: todoReducer,
+    }),
+    provideStoreDevtools({
+      maxAge: 25,
     }),
     provideEffects(),
   ],

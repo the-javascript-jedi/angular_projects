@@ -1,6 +1,10 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { selectTodos } from '../../store/todo.selectors';
+import { Observable } from 'rxjs';
+import * as TodoActions from '../../store/todo.actions';
 
 interface Todo {
   id: number;
@@ -16,64 +20,27 @@ interface Todo {
   standalone: true,
 })
 export class TodosNgrxComponent {
-  newTodo = signal('');
+  todos$: Observable<Todo[]>;
+  newTodo = '';
 
-  todos = signal<Todo[]>([
-    {
-      id: 1,
-      text: 'Learn Angular Signals',
-      completed: false,
-    },
-  ]);
+  constructor(private store: Store) {
+    this.todos$ = this.store.select(selectTodos);
+  }
 
   addTodo() {
-    const text = this.newTodo().trim();
-
+    const text = this.newTodo.trim();
+    console.log('Adding todo:', text);
     if (!text) return;
-
-    const newItem: Todo = {
-      id: Date.now(),
-      text,
-      completed: false,
-    };
-    // .set() directly replaces the signal value.
-    //
-    // Here newTodo is a signal storing
-    // the current text input value.
-    // After adding a todo successfully,
-    // we reset the input field back to empty string.
-    this.todos.update((todos) => [...todos, newItem]);
-
-    this.newTodo.set('');
+    this.store.dispatch(TodoActions.addTodo({ text }));
+    this.newTodo = '';
   }
-  // update() is used when the new signal value
-  // depends on the previous value.
-  //
-  // Angular gives the current todos array
-  // as the parameter: (todos)
+
   toggleTodo(id: number) {
-    this.todos.update((todos) =>
-      todos.map((todo) =>
-        todo.id === id
-          ? {
-              ...todo,
-              completed: !todo.completed,
-            }
-          : todo,
-      ),
-    );
+    console.log('Toggling todo with id:', id);
+    this.store.dispatch(TodoActions.toggleTodo({ id }));
   }
-  // computed() creates a reactive derived value.
-  //
-  // Whenever the todos signal changes,
-  // Angular automatically reruns this function.
-  completedCount = computed(() => {
-    return this.todos().filter((todo) => todo.completed).length;
-  });
 
-  // update() is used when the new signal value
-  // depends on the previous value.
   deleteTodo(id: number) {
-    this.todos.update((todos) => todos.filter((todo) => todo.id !== id));
+    this.store.dispatch(TodoActions.deleteTodo({ id }));
   }
 }
