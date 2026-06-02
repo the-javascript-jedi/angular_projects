@@ -1,8 +1,7 @@
-<p>todos-ngrx works!</p>
-<h1>Signals Todo App</h1>
+<h1>Todo App with NGRX</h1>
 <p>
   Completed:
-  <!-- {{ completedCount() }} -->
+  {{ completedCount$ | async }}
 </p>
 <input type="text" [(ngModel)]="newTodo" placeholder="Enter todo" />
 <button (click)="addTodo()">Add</button>
@@ -19,3 +18,9 @@
     <button (click)="deleteTodo(todo.id)">Delete</button>
   </div>
 }
+<hr />
+<!-- for ngrx -->
+<pre>
+    {{ todos$ | async | json }}
+  </pre
+>

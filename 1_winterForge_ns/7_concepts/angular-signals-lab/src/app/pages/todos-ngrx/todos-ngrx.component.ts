@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { selectTodos } from '../../store/todo.selectors';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import * as TodoActions from '../../store/todo.actions';
 
 interface Todo {
@@ -22,9 +22,12 @@ interface Todo {
 export class TodosNgrxComponent {
   todos$: Observable<Todo[]>;
   newTodo = '';
-
+  completedCount$: Observable<number>;
   constructor(private store: Store) {
     this.todos$ = this.store.select(selectTodos);
+    this.completedCount$ = this.todos$.pipe(
+      map((todos) => todos.filter((todo) => todo.completed).length),
+    );
   }
 
   addTodo() {
