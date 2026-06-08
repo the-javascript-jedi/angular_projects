@@ -15,3 +15,15 @@ export const loadGamesFailure = createAction(
   '[Games] Load Games Failure',
   props<{ error: string }>()
 );
+
+export const loadGamePlatform = createAction('[Games] Load Game Platform');
+
+export const loadGamePlatformSuccess = createAction(
+  '[Games] Load Game Platform Success',
+  props<{ gamePlatformData: string }>()
+);
+
+export const loadGamePlatformFailure = createAction(
+  '[Games] Load Game Platform Failure',
+  props<{ error: string }>()
+);

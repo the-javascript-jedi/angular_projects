@@ -1,0 +1,25 @@
+<h1>Todo App with only NGRX x Signals</h1>
+<div>
+  <p>Completed: {{ completedCount() }}</p>
+  <input type="text" [(ngModel)]="newTodo" placeholder="Enter todo" />
+  <button (click)="addTodo()">Add</button>
+  @for (todo of todosSignal(); track todo.id) {
+    <div>
+      <input
+        type="checkbox"
+        name=""
+        id=""
+        [checked]="todo.completed"
+        (change)="toggleTodo(todo.id)"
+      />
+      {{ todo.text }}
+      <button (click)="deleteTodo(todo.id)">Delete</button>
+    </div>
+  }
+  <br />
+  <!-- for signals -->
+  <pre>
+  {{ todosSignal() | json }}
+</pre
+  >
+</div>

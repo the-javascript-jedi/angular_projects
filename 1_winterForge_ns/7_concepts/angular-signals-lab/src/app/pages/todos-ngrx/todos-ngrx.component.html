@@ -1,0 +1,26 @@
+<h1>Todo App with NGRX</h1>
+<p>
+  Completed:
+  {{ completedCount$ | async }}
+</p>
+<input type="text" [(ngModel)]="newTodo" placeholder="Enter todo" />
+<button (click)="addTodo()">Add</button>
+<hr />
+@for (todo of todos$ | async; track todo.id) {
+  <div>
+    <input
+      type="checkbox"
+      [checked]="todo.completed"
+      (change)="toggleTodo(todo.id)"
+    />
+
+    {{ todo.text }}
+    <button (click)="deleteTodo(todo.id)">Delete</button>
+  </div>
+}
+<hr />
+<!-- for ngrx -->
+<pre>
+    {{ todos$ | async | json }}
+  </pre
+>
