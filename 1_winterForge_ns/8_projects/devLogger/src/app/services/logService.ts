@@ -19,6 +19,11 @@ export class LogService {
   }
 
   getLogs(): Observable<Log[]> {
+    if (localStorage.getItem('logs') === null) {
+      this.logs = [];
+    } else {
+      this.logs = JSON.parse(localStorage.getItem('logs')!);
+    }
     return of(this.logs);
   }
 
@@ -28,6 +33,7 @@ export class LogService {
 
   addLog(log: Log) {
     this.logs.unshift(log);
+    localStorage.setItem('logs', JSON.stringify(this.logs));
   }
   updateLog(log: Log) {
     console.log('log', log);
@@ -43,10 +49,15 @@ export class LogService {
       this.logs.splice(logIndexToUpdate, 1);
     }
     this.logs.unshift(log);
+
+    // update local storage
+    localStorage.setItem('logs', JSON.stringify(this.logs));
   }
 
   deleteLog(id: string) {
     const logIndexToUpdate = this.logs.findIndex((l) => l.id === id);
     this.logs.splice(logIndexToUpdate, 1);
+    // update local storage
+    localStorage.setItem('logs', JSON.stringify(this.logs));
   }
 }
