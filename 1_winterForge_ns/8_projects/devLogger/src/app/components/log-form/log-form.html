@@ -1,6 +1,6 @@
 <p>log-form works!</p>
 <div class="card card-body">
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <input
         type="text"
@@ -11,8 +11,13 @@
       />
     </div>
 
-    <input type="submit" value="Add Log" class="btn btn-light" [disabled]="!this.text" />
+    <input
+      type="submit"
+      value="Add Log"
+      class="btn btn-light"
+      [disabled]="!this.text"
+    />
 
-    <button type="button" class="btn btn-warning" [hidden]="!this.text">Clear</button>
+    <button type="button" class="btn btn-warning" [hidden]="!this.text" (click)="clearForm()">Clear</button>
   </form>
 </div>

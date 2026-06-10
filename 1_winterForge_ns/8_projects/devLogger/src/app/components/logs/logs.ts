@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Log } from '../../models/log';
 import { LogService } from '../../services/logService';
 
 @Component({
   selector: 'app-logs',
-  imports: [NgFor, DatePipe],
+  imports: [DatePipe],
   templateUrl: './logs.html',
   styleUrl: './logs.scss',
 })
 export class Logs implements OnInit {
   logs: Log[] = [];
+  selectedLogId: string = '';
 
   constructor(private _logService: LogService) {}
 
@@ -24,6 +25,18 @@ export class Logs implements OnInit {
     //   { id: '2', text: 'added bootstrap', date: new Date('12/27/2017 12:54:23') },
     //   { id: '1', text: 'added logs  components', date: new Date('12/28/2017 12:54:23') },
     // ];
-    this.logs = this._logService.getLogs();
+    // this.logs = this._logService.getLogs();
+    this._logService.getLogs().subscribe((logs) => {
+      this.logs = logs;
+    });
+  }
+
+  selectLog(selectedLog: Log) {
+    this.selectedLogId = selectedLog.id;
+    this._logService.setFormLog(selectedLog);
+  }
+
+  deleteLog(logId: string) {
+    this._logService.deleteLog(logId);
   }
 }
