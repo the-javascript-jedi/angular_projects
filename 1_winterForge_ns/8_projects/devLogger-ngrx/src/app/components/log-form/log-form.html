@@ -11,8 +11,15 @@
       />
     </div>
 
-    <input type="submit" value="Add Log" class="btn btn-light" [disabled]="!this.text" />
+    <input
+      type="submit"
+      [value]="selectedLog ? 'Update Log' : 'Add Log'"
+      class="btn btn-light"
+      [disabled]="!text"
+    />
 
-    <button type="button" class="btn btn-warning" [hidden]="!this.text">Clear</button>
+    <button type="button" class="btn btn-warning" [hidden]="!selectedLog" (click)="clearLog()">
+      Cancel Edit
+    </button>
   </form>
 </div>

@@ -3,9 +3,9 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 import { Log } from '../../models/log';
 import { LogService } from '../../services/logService';
 import { Store } from '@ngrx/store';
-import { selectAllLogs } from '../../store/logger.selector';
+import { selectAllLogs, selectCurrentLog } from '../../store/logger.selector';
 import { Observable } from 'rxjs';
-import { deleteLog } from '../../store/logger.action';
+import { deleteLog, selectLog } from '../../store/logger.action';
 
 @Component({
   selector: 'app-logs',
@@ -14,7 +14,7 @@ import { deleteLog } from '../../store/logger.action';
   styleUrl: './logs.scss',
 })
 export class Logs implements OnInit {
-  logs: Log[] = [];
+  // logs: Log[] = [];
   private store = inject(Store);
   log$: Observable<Log[]>;
 
@@ -30,11 +30,15 @@ export class Logs implements OnInit {
     this.store.dispatch(deleteLog({ id: id }));
   }
 
+  selectSingleLog(log: Log) {
+    this.store.dispatch(selectLog({ log }));
+  }
+
   ngOnInit() {
     // this.logs = [
-    //   { id: '1', text: 'generated components', date: new Date('12/26/2017 12:54:23') },
-    //   { id: '2', text: 'added bootstrap', date: new Date('12/27/2017 12:54:23') },
-    //   { id: '1', text: 'added logs  components', date: new Date('12/28/2017 12:54:23') },
+    // { id: '1', text: 'generated components', date: new Date('12/26/2017 12:54:23') },
+    // { id: '2', text: 'added bootstrap', date: new Date('12/27/2017 12:54:23') },
+    // { id: '1', text: 'added logs  components', date: new Date('12/28/2017 12:54:23') },
     // ];
     // this.logs = this._logService.getLogs();
   }

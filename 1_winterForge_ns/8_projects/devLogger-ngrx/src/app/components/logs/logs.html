@@ -11,7 +11,7 @@
 
   @for (log of log$ | async; track log.id) {
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      <a href="#">{{ log.text }}</a>
+      <a (click)="selectSingleLog(log)">{{ log.text }}</a>
       <span class="log-date">{{ log.date | date: 'short' }}</span>
       <button class="fa fa-remove" (click)="deleteLog(log.id)">X</button>
     </li>
