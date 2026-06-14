@@ -56,6 +56,9 @@ export class LogForm {
   private store = inject(Store);
 
   selectedLog = toSignal(this.store.select(selectCurrentLog), { initialValue: null });
+
+  // Derives text from selectedLog — auto-fills with existing log's text for editing,
+  // resets to '' when selectedLog is null (create mode). Writable so user can type freely.
   text = linkedSignal(() => this.selectedLog()?.text ?? '');
 
   onSubmit() {
