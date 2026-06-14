@@ -6,19 +6,19 @@
         type="text"
         class="form-control"
         placeholder="Add a log..."
-        [(ngModel)]="text"
+        [ngModel]="text()" (ngModelChange)="text.set($event)"
         name="text"
       />
     </div>
 
     <input
       type="submit"
-      [value]="selectedLog ? 'Update Log' : 'Add Log'"
+      [value]="selectedLog() ? 'Update Log' : 'Add Log'"
       class="btn btn-light"
-      [disabled]="!text"
+      [disabled]="!text()"
     />
 
-    <button type="button" class="btn btn-warning" [hidden]="!selectedLog" (click)="clearLog()">
+    <button type="button" class="btn btn-warning" [hidden]="!selectedLog()" (click)="clearLog()">
       Cancel Edit
     </button>
   </form>

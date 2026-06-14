@@ -1,8 +1,49 @@
-import { Component, inject } from '@angular/core';
+// import { Component, inject } from '@angular/core';
+// import { FormsModule } from '@angular/forms';
+// import { Store } from '@ngrx/store';
+// import { addLog, updateLog, selectLog } from '../../store/logger.action';
+// import { Log } from '../../models/log';
+// import { selectCurrentLog } from '../../store/logger.selector';
+
+// @Component({
+//   selector: 'app-log-form',
+//   imports: [FormsModule],
+//   templateUrl: './log-form.html',
+//   styleUrl: './log-form.scss',
+// })
+// export class LogForm {
+//   text: string = '';
+//   selectedLog: Log | null = null;
+
+//   private store = inject(Store);
+
+//   constructor() {
+//     this.store.select(selectCurrentLog).subscribe((log) => {
+//       this.selectedLog = log;
+//       this.text = log?.text ?? '';
+//     });
+//   }
+
+//   onSubmit() {
+//     if (this.selectedLog) {
+//       this.store.dispatch(updateLog({ log: { ...this.selectedLog, text: this.text } }));
+//     } else {
+//       this.store.dispatch(addLog({ log: { id: crypto.randomUUID(), text: this.text, date: new Date() } }));
+//     }
+//     this.text = '';
+//   }
+
+//   clearLog() {
+//     this.store.dispatch(selectLog({ log: null }));
+//     this.text = '';
+//   }
+// }
+
+import { Component, inject, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { addLog, updateLog, selectLog } from '../../store/logger.action';
-import { Log } from '../../models/log';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { selectCurrentLog } from '../../store/logger.selector';
 
 @Component({
@@ -12,29 +53,25 @@ import { selectCurrentLog } from '../../store/logger.selector';
   styleUrl: './log-form.scss',
 })
 export class LogForm {
-  text: string = '';
-  selectedLog: Log | null = null;
-
   private store = inject(Store);
 
-  constructor() {
-    this.store.select(selectCurrentLog).subscribe((log) => {
-      this.selectedLog = log;
-      this.text = log?.text ?? '';
-    });
-  }
+  selectedLog = toSignal(this.store.select(selectCurrentLog), { initialValue: null });
+  text = linkedSignal(() => this.selectedLog()?.text ?? '');
 
   onSubmit() {
-    if (this.selectedLog) {
-      this.store.dispatch(updateLog({ log: { ...this.selectedLog, text: this.text } }));
+    const log = this.selectedLog();
+    if (log) {
+      this.store.dispatch(updateLog({ log: { ...log, text: this.text() } }));
     } else {
-      this.store.dispatch(addLog({ log: { id: crypto.randomUUID(), text: this.text, date: new Date() } }));
+      this.store.dispatch(
+        addLog({ log: { id: crypto.randomUUID(), text: this.text(), date: new Date() } }),
+      );
     }
-    this.text = '';
+    this.text.set('');
   }
 
   clearLog() {
     this.store.dispatch(selectLog({ log: null }));
-    this.text = '';
+    this.text.set('');
   }
 }
