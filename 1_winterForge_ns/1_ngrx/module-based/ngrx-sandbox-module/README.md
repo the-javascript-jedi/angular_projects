@@ -14,3 +14,5 @@ src/app/products/
 ├── products-routing.module.ts
 ├── products.component.ts
 └── store/
+
+git commit --date="2025-12-04 1:30:00 +0530" -m "addded ngrx for module effects for api call"

@@ -1,1 +1,23 @@
 <p>logs works!</p>
+<ul class="list-group">
+  <!-- using ngFor syntax -->
+  <!-- <li
+    *ngFor="let log of logs; trackBy: trackLog"
+    class="list-group-item d-flex justify-content-between align-items-center"
+  >
+    <a href="#">{{ log.text }}</a>
+    <span class="log-date">{{ log.date | date: 'short' }}</span>
+    <button class="fa fa-remove">X</button>
+  </li> -->
+  @if (logs.length > 0) {
+    @for (log of logs; track log.id) {
+      <li class="list-group-item d-flex justify-content-between align-items-center" [class.active]="selectedLogId === log.id">
+        <a href="#" (click)="selectLog(log)">{{ log.text }}</a>
+        <span class="log-date">{{ log.date | date: 'short' }}</span>
+        <button class="fa fa-remove" (click)="deleteLog(log.id)">X</button>
+      </li>
+    }
+  } @else {
+    <div>no logs</div>
+  }
+</ul>
