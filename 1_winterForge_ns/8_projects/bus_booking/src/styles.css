@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+.search-form {
+  background-color: #f05a58; /* Background color similar to the image */
+  padding: 20px;
+  border-radius: 40px;
+}
+.search-form .form-control {
+  border-radius: 20px;
+}
+.search-form button {
+  border-radius: 20px;
+}
+.search-form .input-group-text {
+  background-color: transparent;
+  border: none;
+}
+
+.bus-layout {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+}
+.seat {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.seat.available {
+  background-color: #fff;
+}
+.seat.selected {
+  background-color: #f05a58;
+}
+.seat.reserved {
+  background-color: #a9a9a9;
+  cursor: not-allowed;
+}
+.driver {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}

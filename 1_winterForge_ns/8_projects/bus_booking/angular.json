@@ -25,6 +25,7 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ]
           },
@@ -59,7 +60,8 @@
               "buildTarget": "bus_booking:build:production"
             },
             "development": {
-              "buildTarget": "bus_booking:build:development"
+              "buildTarget": "bus_booking:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

@@ -1,0 +1,55 @@
+<section>
+  <div class="container mt-5 d-flex justify-content-center">
+    <form class="search-form d-flex align-items-center shadow-lg">
+      <div class="row w-100 text-white">
+        <div class="col-md-3 d-flex align-items-center">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+            <select class="form-select" [(ngModel)]="searchObj.fromLocation" name="fromLocation">
+              <option value="">Select From Location</option>
+              @for (item of location$ | async; track $index) {
+                <option [value]="item.locationId">
+                  {{ item.locationName }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
+          <i class="bi bi-arrow-left-right fs-3"></i>
+        </div>
+        <div class="col-md-3 d-flex align-items-center">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+            <select class="form-select" [(ngModel)]="searchObj.toLocation" name="toLocation">
+              <option value="">Select To Location</option>
+              @for (item of location$ | async; track $index) {
+                <option [value]="item.locationId">
+                  {{ item.locationName }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-center">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Date"
+              value="18 Aug 2024"
+              [(ngModel)]="searchObj.travelDate"
+              name="travelDate"
+            />
+          </div>
+        </div>
+        <div class="col-md-2 text-center">
+          <button type="submit" class="btn btn-light text-danger w-100" (click)="onSearch()">
+            SEARCH BUSES
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
