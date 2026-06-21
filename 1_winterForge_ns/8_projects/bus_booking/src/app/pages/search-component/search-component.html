@@ -53,3 +53,58 @@
     </form>
   </div>
 </section>
+
+<!-- Buses List -->
+<section id="buses-list" class="my-4">
+  <h2>Available Buses</h2>
+  @for (item of busList; track $index) {
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+              <h5 class="card-title">{{ item.busName }}</h5>
+              <p class="card-text">A/C Sleeper (2+1)</p>
+            </div>
+            <div class="col-md-9">
+              <div class="card-body row">
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>{{ item.departureTime | date: 'hh:mm:ss' }}</strong>
+                  </p>
+                  <p class="card-text">Departure</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>11h 55m</strong></p>
+                  <p class="card-text">Duration</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>{{ item.arrivalTime | date: 'dd-MM-yyyy' }}</strong>
+                  </p>
+                  <p class="card-text">Arrival</p>
+                  <p class="text-danger">18-Aug</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>4.5</strong> ⭐</p>
+                  <p class="card-text">567 Ratings</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="card-text"><strong>INR 935</strong></p>
+                  <p class="card-text">
+                    {{ item.availableSeats }} Seats available out of {{ item.totalSeats }}
+                  </p>
+                </div>
+                <div class="col-md-2 text-end">
+                  <button class="btn btn-danger" [routerLink]="['/booking/', item.scheduleId]">
+                    VIEW SEATS
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</section>

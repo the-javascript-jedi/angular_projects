@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import searchBusData from '../../apis/searchBus.json';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,7 @@ export class MasterService {
   }
 
   searchBus(from: number, to: number, travelDate: string): Observable<any> {
-    return this.http.get(
-      `${this.apiUrl}searchBus?fromLocation=${from}&toLocation=${to}&travelDate=${travelDate}`,
-    );
+    return of(searchBusData);
+    // return this.http.get(`${this.apiUrl}searchBus?fromLocation=${from}&toLocation=${to}&travelDate=${travelDate}`);
   }
 }

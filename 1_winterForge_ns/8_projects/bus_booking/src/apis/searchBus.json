@@ -1,0 +1,62 @@
+[
+  {
+    "availableSeats": 0,
+    "totalSeats": 0,
+    "price": 1250.0,
+    "arrivalTime": "2024-08-19T07:30:00",
+    "scheduleId": 3602,
+    "departureTime": "2024-08-18T18:00:00",
+    "busName": "IntrCity Express",
+    "busVehicleNo": "MH18GH3456",
+    "fromLocationName": null,
+    "toLocationName": null,
+    "vendorName": null,
+    "scheduleDate": "0001-01-01T00:00:00",
+    "vendorId": 0
+  },
+  {
+    "availableSeats": 0,
+    "totalSeats": 0,
+    "price": 1100.0,
+    "arrivalTime": "2024-08-19T12:00:00",
+    "scheduleId": 3601,
+    "departureTime": "2024-08-18T22:30:00",
+    "busName": "Orange Volvo",
+    "busVehicleNo": "MH16EF9012",
+    "fromLocationName": null,
+    "toLocationName": null,
+    "vendorName": null,
+    "scheduleDate": "0001-01-01T00:00:00",
+    "vendorId": 0
+  },
+  {
+    "availableSeats": 0,
+    "totalSeats": 0,
+    "price": 850.0,
+    "arrivalTime": "2024-08-19T10:30:00",
+    "scheduleId": 3600,
+    "departureTime": "2024-08-18T21:00:00",
+    "busName": "Royal Sleeper",
+    "busVehicleNo": "MH14CD5678",
+    "fromLocationName": null,
+    "toLocationName": null,
+    "vendorName": null,
+    "scheduleDate": "0001-01-01T00:00:00",
+    "vendorId": 0
+  },
+  {
+    "availableSeats": 0,
+    "totalSeats": 0,
+    "price": 935.0,
+    "arrivalTime": "2024-08-19T08:55:00",
+    "scheduleId": 3599,
+    "departureTime": "2024-08-18T19:00:00",
+    "busName": "Test Express",
+    "busVehicleNo": "MH12AB1234",
+    "fromLocationName": null,
+    "toLocationName": null,
+    "vendorName": null,
+    "scheduleDate": "0001-01-01T00:00:00",
+    "vendorId": 0
+  }
+]

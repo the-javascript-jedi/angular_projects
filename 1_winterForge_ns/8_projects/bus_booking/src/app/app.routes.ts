@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: SearchComponent,
   },
   {
-    path: 'booking',
+    path: 'booking/:id',
     component: BookingComponent,
   },
 ];
