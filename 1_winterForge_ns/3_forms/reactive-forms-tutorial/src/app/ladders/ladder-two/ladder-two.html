@@ -1,0 +1,32 @@
+<p>Signup with confirm password</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="">Email</label>
+    <input type="text" formControlName="email" />
+    @if (email?.touched && email?.errors?.['required']) {
+      <span>Required.</span>
+    }
+    @if (email?.touched && email?.errors?.['email']) {
+      <span>Invalid email.</span>
+    }
+  </div>
+  <div>
+    <label for="">Password</label>
+    <input type="password" formControlName="password" />
+    @if (password?.touched && password?.errors?.['required']) {
+      <span>Password is required</span>
+    }
+    @if (password?.touched && password?.errors?.['minlength']) {
+      <span>Password should be more than 3</span>
+    }
+  </div>
+  <div>
+    <label for="">Confirm Password</label>
+    <!-- error lives on the GROUP, not the control -->
+    <input type="confirmPassword" formControlName="confirmPassword" />
+    @if (form.errors?.['passwordMismatch'] && confirmPassword?.touched) {
+      <span>Passwords do not match.</span>
+    }
+  </div>
+  <input type="submit" value="Submit" />
+</form>
