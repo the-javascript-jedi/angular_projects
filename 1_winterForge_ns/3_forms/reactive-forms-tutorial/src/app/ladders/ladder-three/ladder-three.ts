@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-ladder-three',
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './ladder-three.html',
-  styleUrl: './ladder-three.scss',
+  // styleUrl: './ladder-three.scss',
 })
 export class LadderThree {
   private fb = inject(FormBuilder);

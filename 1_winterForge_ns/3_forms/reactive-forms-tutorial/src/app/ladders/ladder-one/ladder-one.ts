@@ -5,7 +5,7 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
   selector: 'app-ladder-one',
   imports: [ReactiveFormsModule],
   templateUrl: './ladder-one.html',
-  styleUrl: './ladder-one.scss',
+  // styleUrl: './ladder-one.scss',
 })
 export class LadderOne {
   private fb = inject(FormBuilder);
