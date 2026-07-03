@@ -5,7 +5,7 @@ import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angula
   selector: 'app-ladder-four',
   imports: [ReactiveFormsModule],
   templateUrl: './ladder-four.html',
-  styleUrl: './ladder-four.scss',
+  // styleUrl: './ladder-four.scss',
 })
 export class LadderFour {
   private fb = inject(FormBuilder);

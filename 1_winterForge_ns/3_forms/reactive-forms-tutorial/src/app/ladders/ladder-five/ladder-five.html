@@ -1,0 +1,78 @@
+<p>FormArray of groups</p>
+
+<!-- [formGroup]="form" connects this <form> to the FormGroup defined in the component.
+     (ngSubmit) fires when the Submit button is clicked, calling onSubmit(). -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <!-- Plain FormControls (name, age) — these are flat fields at the top level of the FormGroup -->
+  <div>
+    <label for="">Name</label>
+    <input type="text" formControlName="name" />
+    <!-- Show error only after the user has touched (clicked into) this field -->
+    @if (form.get('name')?.invalid && form.get('name')?.touched) {
+      <div>
+        <span>Name is required</span>
+      </div>
+    }
+  </div>
+  <div>
+    <label for="">Age</label>
+    <input type="number" formControlName="age" />
+    @if (form.get('age')?.invalid && form.get('age')?.touched) {
+      <div>
+        <span>Age is required</span>
+      </div>
+    }
+  </div>
+
+  <hr />
+
+  <!-- formArrayName="experience" tells Angular this div contains a FormArray.
+       It matches the key "experience" in the FormGroup defined in the component. -->
+  <div formArrayName="experience">
+
+    <!-- Loop over each FormGroup inside the FormArray.
+         track $index: Angular uses the position to identify each row in the DOM.
+         let i = $index: i is the index we use for [formGroupName] and removeExperience(i). -->
+    @for (exp of experience.controls; track $index; let i = $index) {
+
+      <!-- [formGroupName]="i" tells Angular this div maps to the FormGroup at index i
+           inside the FormArray. Controls inside it use formControlName relative to that group. -->
+      <div [formGroupName]="i">
+        <div>
+          <label for="">Company</label>
+          <input type="text" formControlName="company" />
+          <!-- exp is the AbstractControl for this row; exp.get() reaches into the nested group -->
+          @if (exp.get('company')?.invalid && exp.get('company')?.touched) {
+            <span>Company is required</span>
+          }
+        </div>
+        <div>
+          <label for="">Role</label>
+          <input type="text" formControlName="role" />
+          @if (exp.get('role')?.invalid && exp.get('role')?.touched) {
+            <span>Role is required</span>
+          }
+        </div>
+        <div>
+          <label for="">Years</label>
+          <input type="text" formControlName="years" />
+          @if (exp.get('years')?.invalid && exp.get('years')?.touched) {
+            <span>Years is required</span>
+          }
+        </div>
+        <div>
+          <!-- type="button" prevents this from accidentally submitting the form -->
+          <button type="button" (click)="removeExperience(i)">Remove Experience</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div>
+    <!-- type="button" is required here — without it the browser defaults to type="submit"
+         and clicking this would also trigger ngSubmit, showing errors prematurely -->
+    <button type="button" (click)="addExperience()">Add Experience</button>
+    <button type="submit">Submit</button>
+  </div>
+</form>
