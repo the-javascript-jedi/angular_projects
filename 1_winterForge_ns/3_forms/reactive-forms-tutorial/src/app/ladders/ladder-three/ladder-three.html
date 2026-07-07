@@ -1,0 +1,19 @@
+<p>Async Validator!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div>
+    <input type="text" formControlName="username" />
+    <!-- Angular's built-in -->
+    <span *ngIf="username?.pending">Checking...</span>
+    <!-- Your custom flag -->
+    <div *ngIf="isCheckingUsername"><span class="spinner"></span> Checking availability...</div>
+
+    <div *ngIf="username?.invalid && username?.touched && !isCheckingUsername">
+      <span *ngIf="username?.errors?.['required']">Required.</span>
+      <span *ngIf="username?.errors?.['minlength']">Min 3 characters.</span>
+      <span *ngIf="username?.errors?.['usernameTaken']">Username is taken.</span>
+    </div>
+
+    <span *ngIf="username?.valid && !isCheckingUsername">Username is available!</span>
+  </div>
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>

@@ -1,0 +1,21 @@
+<p>Dynamic FormArray Controls</p>
+<p>Form status: {{ form.status }}</p>
+<p>Skills status: {{ skills.status }}</p>
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div formArrayName="skills">
+      @for (skill of skills.controls; track i; let i = $index) {
+        <div>
+          <label>Skill {{ i + 1 }}</label>
+          <input type="text" [formControlName]="i" />
+          @if (skills.at(i).invalid && skills.at(i).touched) {
+            <span>Skill is required</span>
+          }
+          <button type="button" (click)="removeSkill(i)">Remove Skill</button>
+        </div>
+      }
+    </div>
+    <button type="button" (click)="addSkill()">Add Skill</button>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>
