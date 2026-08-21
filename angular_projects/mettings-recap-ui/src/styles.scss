@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --brand-50: #eef0ff;
+  --brand-100: #e0e3ff;
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+
+  --sidebar-bg: #12172b;
+  --sidebar-text: #e5e7eb;
+  --sidebar-muted: #94a0c2;
+
+  --surface-page: #f6f7fb;
+  --surface-card: #ffffff;
+  --surface-muted: #f1f2f6;
+  --border-color: #e6e8f0;
+
+  --text-primary: #16192c;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+
+  --success-bg: #e8f8ee;
+  --success-text: #15803d;
+  --warning-bg: #fef3e2;
+  --warning-text: #b45309;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  color: var(--text-primary);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: inherit;
+}
