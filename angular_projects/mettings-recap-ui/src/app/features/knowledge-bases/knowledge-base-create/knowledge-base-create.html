@@ -1,0 +1,231 @@
+<div class="page">
+  <nav class="breadcrumb">
+    <a routerLink="/knowledge-bases">Knowledge Bases</a>
+    <span>›</span>
+    <span class="breadcrumb__current">Create New</span>
+  </nav>
+
+  <header class="page-header">
+    <div>
+      <h1>Create Knowledge Base</h1>
+      <p>Create a new knowledge base to organize and query your VTT transcripts.</p>
+    </div>
+    <div class="page-header__actions">
+      <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
+      <button type="button" class="btn btn--primary" (click)="submit()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+        </svg>
+        Create Knowledge Base
+      </button>
+    </div>
+  </header>
+
+  <form class="layout" [formGroup]="form">
+    <section class="card">
+      <h2>1. Basic Information</h2>
+
+      <div class="field">
+        <label for="kb-name">Knowledge Base Name <span class="required">*</span></label>
+        <input
+          id="kb-name"
+          type="text"
+          placeholder="e.g., Project Alpha"
+          formControlName="name"
+        />
+        @if (submitted() && form.controls.name.invalid) {
+          <p class="field__error">Give your knowledge base a name (at least 2 characters).</p>
+        } @else {
+          <p class="field__hint">A clear and descriptive name for your knowledge base.</p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="kb-description">Description</label>
+        <textarea
+          id="kb-description"
+          rows="4"
+          placeholder="Describe this knowledge base, its purpose, and what kind of transcripts it will contain..."
+          formControlName="description"
+        ></textarea>
+        <p class="field__hint">This helps you and others understand the purpose of this knowledge base.</p>
+      </div>
+
+      <div class="field">
+        <label for="kb-category">Category</label>
+        <select id="kb-category" formControlName="category">
+          <option value="">Select a category</option>
+          @for (category of categories; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+        <p class="field__hint">Choose a category to help organize your knowledge bases.</p>
+      </div>
+
+      <div class="field">
+        <label for="kb-tags">Tags (Optional)</label>
+        <div class="tag-input">
+          @for (tag of tags(); track tag) {
+            <span class="tag-chip">
+              {{ tag }}
+              <button type="button" (click)="removeTag(tag)" aria-label="Remove tag">×</button>
+            </span>
+          }
+          <input
+            id="kb-tags"
+            type="text"
+            placeholder="Add tags..."
+            formControlName="tagsInput"
+            (keydown.enter)="$event.preventDefault(); addTagFromInput()"
+            (blur)="addTagFromInput()"
+          />
+        </div>
+        <p class="field__hint">Add relevant tags to make your knowledge base easier to find.</p>
+      </div>
+
+      <div class="callout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v5.5M12 8v.01" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>You can always modify these details later from the knowledge base settings.</span>
+      </div>
+    </section>
+
+    <div class="right-column">
+      <section class="card">
+        <h2>2. Upload VTT Files (Optional)</h2>
+        <p class="card__subtitle">Upload VTT files now or skip this step and add files later.</p>
+
+        <label
+          class="dropzone"
+          [class.dropzone--active]="isDragging()"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave()"
+          (drop)="onDrop($event)"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path
+              d="M7 17.5a4 4 0 0 1-1-7.86 5 5 0 0 1 9.65-2.14A4.5 4.5 0 0 1 17.5 17.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path d="M12 12v7m0-7 3 3m-3-3-3 3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="dropzone__title">Drag &amp; drop VTT files here</div>
+          <div class="dropzone__or">or</div>
+          <span class="btn btn--primary btn--sm">Browse Files</span>
+          <input type="file" accept=".vtt" multiple hidden (change)="onFileInputChange($event)" />
+        </label>
+
+        <div class="format-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path
+              d="M6 3.5h7.5L18 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="format-note__text">
+            <strong>Supported Format</strong>
+            <span>Only .vtt files are supported</span>
+          </div>
+          <span class="format-note__max">Max file size: 100MB per file</span>
+        </div>
+
+        <div class="file-list">
+          @if (uploadedFiles().length === 0) {
+            <div class="file-list__empty">
+              <div>No files uploaded yet</div>
+              <div class="file-list__empty-sub">You can upload files after creating the knowledge base.</div>
+            </div>
+          } @else {
+            @for (file of uploadedFiles(); track file.name) {
+              <div class="file-row">
+                <span class="file-row__name">{{ file.name }}</span>
+                <span class="file-row__size">{{ file.sizeLabel }}</span>
+                <button type="button" (click)="removeFile(file.name)" aria-label="Remove file">×</button>
+              </div>
+            }
+          }
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Settings (Optional)</h2>
+
+        <div class="setting-row">
+          <div class="setting-row__icon setting-row__icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="5" y="10" width="14" height="10" rx="2" />
+              <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="setting-row__text">
+            <strong>Visibility</strong>
+            <span>Control who can access and query this knowledge base.</span>
+          </div>
+          <select formControlName="visibility">
+            <option value="private">Private</option>
+            <option value="team">Team</option>
+            <option value="public">Public</option>
+          </select>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-row__icon setting-row__icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="8.5" />
+              <path d="M3.5 12h17M12 3.5c2.2 2.3 3.5 5.3 3.5 8.5s-1.3 6.2-3.5 8.5c-2.2-2.3-3.5-5.3-3.5-8.5S9.8 5.8 12 3.5Z" />
+            </svg>
+          </div>
+          <div class="setting-row__text">
+            <strong>Default Language</strong>
+            <span>Set the primary language of the transcripts.</span>
+          </div>
+          <select formControlName="language">
+            <option value="auto">Auto-detect</option>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+
+        <button type="button" class="advanced-toggle" (click)="toggleAdvanced()">
+          Advanced Settings
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            [class.advanced-toggle__chevron--open]="advancedOpen()"
+            class="advanced-toggle__chevron"
+          >
+            <path d="m7 10 5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        @if (advancedOpen()) {
+          <div class="advanced-body">
+            <div class="field">
+              <label>Chunking Strategy</label>
+              <select>
+                <option>By speaker turn</option>
+                <option>Fixed segment length</option>
+                <option>By timestamp gap</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Embedding Model</label>
+              <select>
+                <option>text-embedding-3-large</option>
+                <option>text-embedding-3-small</option>
+              </select>
+            </div>
+          </div>
+        }
+      </section>
+    </div>
+  </form>
+</div>

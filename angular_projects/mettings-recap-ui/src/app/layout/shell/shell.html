@@ -1,0 +1,77 @@
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__logo">🤖</div>
+      <div class="brand__text">
+        <span class="brand__title">Kiro AI Agent</span>
+        <span class="brand__subtitle">Transcript Knowledge Agent</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      @for (item of navItems; track item.path) {
+        <a
+          class="nav__item"
+          [routerLink]="item.path"
+          routerLinkActive="nav__item--active"
+        >
+          <span class="nav__icon">
+            @switch (item.icon) {
+              @case ('ask') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M4 5.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4.2 3.2a.5.5 0 0 1-.8-.4V16.5H6a2 2 0 0 1-2-2v-9Z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              }
+              @case ('knowledge-bases') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M12 3 3 7.5 12 12l9-4.5L12 3Z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M3 12 12 16.5 21 12" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M3 16.5 12 21l9-4.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              }
+              @case ('files') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M6 3.5h7.5L18 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M13 3.5V8h5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              }
+              @case ('history') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              }
+              @case ('settings') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V19.5a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.04H4.5a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.04 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10.5a1.7 1.7 0 0 0 1.04-1.56V4.5a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10.5a1.7 1.7 0 0 0 1.56 1.04h.09a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1.04Z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              }
+            }
+          </span>
+          <span class="nav__label">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <main class="workspace">
+    <router-outlet />
+  </main>
+</div>

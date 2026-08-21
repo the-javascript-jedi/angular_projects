@@ -1,0 +1,30 @@
+<p>ladder-six works!</p>
+<form [formGroup]="form">
+  <label>Search</label>
+  <input type="text" formControlName="search" placeholder="Type to search..." />
+
+  <label>Category</label>
+  <select formControlName="category" placeholder="Type to search">
+    <option value="all">All</option>
+    <option value="framework">Framework</option>
+    <option value="library">Library</option>
+  </select>
+  <label>Sort By</label>
+  <label><input type="radio" formControlName="sortBy" value="name" /> Name</label>
+  <label><input type="radio" formControlName="sortBy" value="category" /> Category</label>
+</form>
+@if (isSearching) {
+  <p>Searching...</p>
+}
+
+@if (!isSearching && results.length > 0) {
+  <ul>
+    @for (result of results; track result.name) {
+      <li>{{ result.name }} — {{ result.category }}</li>
+    }
+  </ul>
+}
+
+@if (!isSearching && results.length === 0) {
+  <p>No results found.</p>
+}
